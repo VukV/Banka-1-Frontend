@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {UserModel} from "../model/user-model";
+import {catchError, Observable, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private usersUrl = environment.usersUrl;
+  private usersUrl = environment.usersUrl + "/reset-password";
   private headers = new HttpHeaders({
-    'Authorization':'Bearer ' + localStorage.getItem("jwt")
+    'Authorization': 'Bearer ' + localStorage.getItem("jwt")
   });
 
   constructor(private httpClient: HttpClient) { }
@@ -31,5 +32,15 @@ export class UserService {
     return this.httpClient.post<UserModel>(`${this.usersUrl}/api/users/create`, userCreationData, {
         headers: this.headers
       });
+
+
+  activatePassword(id: string, secretKey: string, password: string): Observable<any> {
+    return this.httpClient.post<any>(`${this.usersUrl}/${id}`, {password, secretKey}, {
+      headers: this.headers
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
   }
 }
