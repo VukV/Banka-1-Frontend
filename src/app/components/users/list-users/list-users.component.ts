@@ -5,7 +5,8 @@ import {CurrentUserService} from "../../../services/current-user.service";
 import {UserService} from "../../../services/user.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {PopupComponent} from "../../popup/popup.component";
-import {UserModel} from "../model/user-model";
+import {UserModel} from "../../../model/user-model";
+
 
 @Component({
   selector: 'app-list-users',
