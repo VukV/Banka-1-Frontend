@@ -5,7 +5,7 @@ import {CurrentUserService} from "../../../services/current-user.service";
 import {UserService} from "../../../services/user.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {PopupComponent} from "../../popup/popup.component";
-import {User} from "../../../model/UserModel";
+import {UserModel} from "../model/user-model";
 
 @Component({
   selector: 'app-list-users',
@@ -14,7 +14,7 @@ import {User} from "../../../model/UserModel";
 })
 export class ListUsersComponent implements OnInit {
 
-  users: User[] = [
+  users: UserModel[] = [
     {
       id: -1,
       firstName: '',
@@ -29,17 +29,16 @@ export class ListUsersComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
-  constructor(private userService: UserService) {
-    this.userService.loadAllUsers().subscribe((data) => {
+  constructor(private userService: UserService) { }
+
+  ngOnInit(): void {
+      this.userService.loadAllUsers().subscribe((data) => {
       this.users = data;
       },
        (error) => {
         this.popupComponent.openPopup(error.message());
       }
     )
-  }
-
-  ngOnInit(): void {
   }
 
 }
