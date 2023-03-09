@@ -26,7 +26,7 @@ export class AddUserComponent implements OnInit {
   allPositions: string[] = Object.values(UserPositionEnum);
   roles: string[] = [];
   allRoles: string[] = Object.values(UserRoleEnum);
-  error: string = "Testing error message with some smart error";
+  error: string = "";
 
   constructor(private userService: UserService,
               private router: Router) { }
