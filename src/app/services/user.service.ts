@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../model/UserModel";
-import {Observable} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 import {environment} from "../../environments/environment";
 import {CurrentUserService} from "./current-user.service";
 
@@ -26,6 +26,10 @@ export class UserService {
     headers = this.headers;
     return this.httpClient.get<User[]>(`${this.apiUrl}/users`, {
       headers,
-    });
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
   }
 }
