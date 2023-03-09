@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {UserModel} from "../model/user-model";
 import {catchError, Observable, throwError} from "rxjs";
+import {LogInResponse} from "../model/log-in-response";
+import {LogInRequest} from "../model/log-in-request";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,9 @@ import {catchError, Observable, throwError} from "rxjs";
 export class UserService {
 
   private usersUrl = environment.usersUrl + "/reset-password";
+  private loginUrl = environment.usersUrl + "/login"
+  private forgotPasswordUrl = environment.usersUrl + "/forgot-password"
+
   private headers = new HttpHeaders({
     'Authorization': 'Bearer ' + localStorage.getItem("jwt")
   });
@@ -43,5 +48,26 @@ export class UserService {
     );
   }
 
+  logUserIn(loginReq: LogInRequest): Observable<LogInResponse> {
+    var email = loginReq.email
+    var password = loginReq.password
+    return this.httpClient.post<LogInResponse>(`${this.loginUrl}`, {email, password}, {
+    } ).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+        })
+    )
+  }
+
+  resetPasswordRequest(email: string): Observable<any>{
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("email",email);
+    return this.httpClient.get<any>( `${this.forgotPasswordUrl}`, {params: queryParams}
+    ).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+      })
+    )
+  }
 
 }

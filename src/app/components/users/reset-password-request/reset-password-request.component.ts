@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {PopupComponent} from "../../popup/popup.component";
+import {Router} from "@angular/router";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-reset-password-request',
@@ -7,9 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPasswordRequestComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(PopupComponent)
+  popupComponent!: PopupComponent;
+  email: string
+
+  constructor(private userService: UserService, private router:Router) {
+    this.email = ''
+  }
 
   ngOnInit(): void {
+  }
+
+  sendPassResetReq(): void {
+    this.userService.resetPasswordRequest(this.email).subscribe({
+      complete: () => {
+
+      },
+      error: (error) => {
+        this.popupComponent.openPopup(error)
+      },
+      next: (any) => {
+        this.popupComponent.openPopup(any.headers.statusCode)
+        console.log(any.headers.statusCode)
+      }
+
+    })
+  }
+
+  redirect(): void {
+    this.router.navigate(['/login'])
   }
 
 }
