@@ -27,7 +27,6 @@ export class UserService {
       position: position,
       roles: roles
     };
-    console.log(userCreationData);
     return this.httpClient.post<UserModel>(`${this.usersUrl}/api/users/create`, userCreationData, {
       headers: this.headers
     });
@@ -52,7 +51,6 @@ export class UserService {
       roles: roles,
       active: active
     };
-    console.log(userUpdateData);
     return this.httpClient.put<UserModel>(`${this.usersUrl}/api/users/update/${id}`, userUpdateData, {
       headers: this.headers
     });
