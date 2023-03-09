@@ -14,17 +14,7 @@ import {UserModel} from "../model/user-model";
 })
 export class ListUsersComponent implements OnInit {
 
-  users: UserModel[] = [
-    {
-      id: -1,
-      firstName: '',
-      lastName: '',
-      email: '',
-      userPosition: UserPositionEnum.Manager,
-      isActive: false,
-      phoneNumber: '',
-    },
-  ];
+  users: UserModel[] = [];
 
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
