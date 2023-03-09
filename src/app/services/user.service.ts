@@ -33,6 +33,31 @@ export class UserService {
     });
   }
 
+  getUser(id: number): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(`${this.usersUrl}/api/users/${id}`, {
+      headers: this.headers
+    });
+  }
+
+  updateUser(id: number, email: string, phone: string, jmbg: string, firstName: string,
+             lastName: string, position: string, roles: string[], active: boolean)
+    : Observable<UserModel> {
+    const userUpdateData = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      jmbg: jmbg,
+      phoneNumber: phone,
+      position: position,
+      roles: roles,
+      active: active
+    };
+    console.log(userUpdateData);
+    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/users/update/${id}`, userUpdateData, {
+      headers: this.headers
+    });
+  }
+
   activatePassword(id: string, secretKey: string, password: string): Observable<any> {
     return this.httpClient.post<any>(`${this.usersUrl}/${id}`, {password, secretKey}, {
       headers: this.headers
