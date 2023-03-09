@@ -20,7 +20,7 @@ export class UpdateUserComponent implements OnInit {
   id: number = -1;
   email: string = "";
   phone: string = "";
-  jmbg: string = "";
+  password: string = "";
   firstName: string = "";
   lastName: string = "";
   position: string = "";
@@ -45,7 +45,6 @@ export class UpdateUserComponent implements OnInit {
       next: (userModel) => {
         this.email = userModel.email;
         this.phone = userModel.phoneNumber;
-        this.jmbg = userModel.jmbg;
         this.firstName = userModel.firstName;
         this.lastName = userModel.lastName;
         this.position = userModel.position;
@@ -75,7 +74,7 @@ export class UpdateUserComponent implements OnInit {
       this.error = "Telefon mora biti unet!";
       return;
     }
-    if (!this.jmbgRegex.test(this.jmbg)) {
+    if (!this.jmbgRegex.test(this.password)) {
       this.error = "JMBG nije validan!";
       return;
     }
@@ -93,7 +92,7 @@ export class UpdateUserComponent implements OnInit {
     }
     const position = Object.keys(UserPositionEnum)[Object.values(UserPositionEnum).indexOf(this.position as UserPositionEnum)];
     const roles = this.roles.map(role => Object.keys(UserRoleEnum)[Object.values(UserRoleEnum).indexOf(role as UserRoleEnum)]);
-    this.userService.updateUser(this.id, this.email, this.phone, this.jmbg, this.firstName, this.lastName, position, roles, this.active)
+    this.userService.updateUser(this.id, this.email, this.phone, this.password, this.firstName, this.lastName, position, roles, this.active)
       .subscribe({
           next: () => this.router.navigate(["users"]),
           error: (error) => this.popupComponent.openPopup(`Čuvanje izmena nije uspelo: ${error.error.message}`)

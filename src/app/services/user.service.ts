@@ -38,14 +38,14 @@ export class UserService {
     });
   }
 
-  updateUser(id: number, email: string, phone: string, jmbg: string, firstName: string,
+  updateUser(id: number, email: string, phone: string, password: string, firstName: string,
              lastName: string, position: string, roles: string[], active: boolean)
     : Observable<UserModel> {
     const userUpdateData = {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      jmbg: jmbg,
+      password: password,
       phoneNumber: phone,
       position: position,
       roles: roles,
