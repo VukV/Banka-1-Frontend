@@ -27,7 +27,7 @@ export class ResetPasswordRequestComponent implements OnInit {
 
       },
       error: (error) => {
-        this.popupComponent.openPopup(error)
+        this.popupComponent.openPopup(error.message)
       },
       next: (any) => {
         this.popupComponent.openPopup(any.headers.statusCode)

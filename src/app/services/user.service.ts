@@ -73,8 +73,8 @@ export class UserService {
   }
 
   logUserIn(loginReq: LogInRequest): Observable<LogInResponse> {
-    var email = loginReq.email
-    var password = loginReq.password
+    let email = loginReq.email
+    let password = loginReq.password
     return this.httpClient.post<LogInResponse>(`${this.loginUrl}`, {email, password}, {
     } ).pipe(
       catchError(err => {
@@ -93,9 +93,16 @@ export class UserService {
       })
     )
   }
-  loadAllUsers(): Observable<UserModel[]> {
+
+  loadAllUsers(firstName: string, lastName: string, email: string, position: string): Observable<UserModel[]> {
     return this.httpClient.get<UserModel[]>(this.usersUrl, {
-    headers: this.headers
+      headers: this.headers,
+      params: {
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "position": position
+      }
   }).pipe(
     catchError(err => {
       return throwError(() => new Error(err.error.message));
