@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  postApi: "http://localhost:8080"
+  usersUrl: "http://localhost:8080/api/users"
 };
 
 /*
