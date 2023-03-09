@@ -9,5 +9,6 @@ export interface UserModel {
   jmbg: string,
   position: UserPositionEnum,
   phoneNumber: string,
-  roles: UserRoleEnum[]
+  roles: UserRoleEnum[],
+  active: boolean
 }
