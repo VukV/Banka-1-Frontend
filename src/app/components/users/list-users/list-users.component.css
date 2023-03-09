@@ -1,0 +1,63 @@
+.box {
+  box-sizing: border-box;
+
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  border-radius: 9px;
+}
+
+#email, #ime, #prezime, #pozicija{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  padding-left: 12px;
+  padding-bottom: 7px;
+  padding-top: 6px;
+}
+
+#dugme{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 5px;
+  width: 120px;
+}
+
+#trtable{
+  color: var(--si-green);
+}
+
+#csstable{
+  color: white;
+}
+
+.table-d{
+  color: white;
+  font-weight: 600;
+
+}
+
+.rectangle{
+  box-sizing: border-box;
+
+  position: relative;
+  padding: 20px;
+  border: 1px solid #00B127;
+  border-radius: 60px;
+}
+
+.dot {
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  left:25px;
+  width: 11px;
+  height: 11px;
+  /*background-color: var(--si-red);*/
+  border-radius: 50%;
+
+}

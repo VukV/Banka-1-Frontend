@@ -1,15 +1,17 @@
+import {CurrentUserService} from "./current-user.service";
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {UserModel} from "../model/user-model";
 import {catchError, Observable, throwError} from "rxjs";
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private usersUrl = environment.usersUrl + "/reset-password";
+  private usersUrl = environment.usersUrl;
   private headers = new HttpHeaders({
     'Authorization': 'Bearer ' + localStorage.getItem("jwt")
   });
@@ -57,11 +59,21 @@ export class UserService {
   }
 
   activatePassword(id: string, secretKey: string, password: string): Observable<any> {
-    return this.httpClient.post<any>(`${this.usersUrl}/${id}`, {password, secretKey}, {
+    return this.httpClient.post<any>(`${this.usersUrl}/reset-password/${id}`, {password, secretKey}, {
       headers: this.headers
     }).pipe(
       catchError(err => {
         return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  loadAllUsers(): Observable<UserModel[]> {
+    return this.httpClient.get<UserModel[]>(this.usersUrl, {
+    headers: this.headers
+  }).pipe(
+    catchError(err => {
+      return throwError(() => new Error(err.error.message));
       })
     );
   }
