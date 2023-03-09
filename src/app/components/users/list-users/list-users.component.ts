@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {User} from "../../../model/UserModel";
+
 import {UserPositionEnum} from "../../../model/user-position-enum";
 import {CurrentUserService} from "../../../services/current-user.service";
 import {UserService} from "../../../services/user.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {PopupComponent} from "../../popup/popup.component";
+import {User} from "../../../model/UserModel";
 
 @Component({
   selector: 'app-list-users',
