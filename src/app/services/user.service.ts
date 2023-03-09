@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
 import {UserModel} from "../model/user-model";
 import {catchError, Observable, throwError} from "rxjs";
 
@@ -30,9 +29,9 @@ export class UserService {
     };
     console.log(userCreationData);
     return this.httpClient.post<UserModel>(`${this.usersUrl}/api/users/create`, userCreationData, {
-        headers: this.headers
-      });
-
+      headers: this.headers
+    });
+  }
 
   activatePassword(id: string, secretKey: string, password: string): Observable<any> {
     return this.httpClient.post<any>(`${this.usersUrl}/${id}`, {password, secretKey}, {
@@ -43,4 +42,6 @@ export class UserService {
       })
     );
   }
+
+
 }
