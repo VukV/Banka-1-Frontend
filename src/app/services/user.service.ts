@@ -32,8 +32,31 @@ export class UserService {
       position: position,
       roles: roles
     };
-    console.log(userCreationData);
     return this.httpClient.post<UserModel>(`${this.usersUrl}/api/users/create`, userCreationData, {
+      headers: this.headers
+    });
+  }
+
+  getUser(id: number): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(`${this.usersUrl}/api/users/${id}`, {
+      headers: this.headers
+    });
+  }
+
+  updateUser(id: number, email: string, phone: string, password: string, firstName: string,
+             lastName: string, position: string, roles: string[], active: boolean)
+    : Observable<UserModel> {
+    const userUpdateData = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      phoneNumber: phone,
+      position: position,
+      roles: roles,
+      active: active
+    };
+    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/users/update/${id}`, userUpdateData, {
       headers: this.headers
     });
   }
