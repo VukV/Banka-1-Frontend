@@ -67,8 +67,8 @@
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.userPosition }}</td>
-            <td class="dot" [ngStyle]="{'background-color': user.isActive? 'green' : 'var(--si-red)'}"></td>
+            <td>{{ user.position }}</td>
+            <td class="dot" [ngStyle]="{'background-color': user.active? 'green' : 'var(--si-red)'}"></td>
             <td>{{ user.phoneNumber}}</td>
             <td><button [routerLink]="['/update-user', user.id]" type="button" class="btn btn-outline-light rounded-pill" style="display: block; margin: auto; margin-top: -8px">Izmeni</button></td>
           </tr>
