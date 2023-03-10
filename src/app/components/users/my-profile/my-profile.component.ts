@@ -4,6 +4,7 @@ import {UserPositionEnum} from "../../../model/user-position-enum";
 import {UserRoleEnum} from "../../../model/user-role-enum";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
+import {MyProfileService} from "../../../services/my-profile.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -37,14 +38,8 @@ export class MyProfileComponent implements OnInit {
   }
 
 
-  roleCheckChanged(role: string, event: Event): void {
-    const isChecked = (event.target as HTMLInputElement).checked;
-    if (isChecked)
-      this.roles.push(role);
-    else
-      this.roles = this.roles.filter(arrayRole => arrayRole !== role);
-  }
-  changeUser(): void {
+
+  updateMyprofile(): void {
     this.error = "";
     if (!this.emailRegex.test(this.email)) {
       this.error = "Email nije validan!";
