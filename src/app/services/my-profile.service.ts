@@ -38,7 +38,7 @@ export class MyProfileService{
       lastName: lastName,
       phoneNumber: phone,
     };
-    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/users/my-profile/update`, userUpdateData, {
+    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/my-profile/update`, userUpdateData, {
       headers: this.headers
     });
   }

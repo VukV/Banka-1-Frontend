@@ -31,7 +31,7 @@ export class MyProfileComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService,
+  constructor(private MyProfileService: MyProfileService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -67,7 +67,7 @@ export class MyProfileComponent implements OnInit {
     }
     const position = Object.keys(UserPositionEnum)[Object.values(UserPositionEnum).indexOf(this.position as UserPositionEnum)];
     const roles = this.roles.map(role => Object.keys(UserRoleEnum)[Object.values(UserRoleEnum).indexOf(role as UserRoleEnum)]);
-    this.userService.addUser(this.email, this.phone, this.jmbg, this.firstName, this.lastName, position, roles)
+    this.MyProfileService.updateMyprofile(this.firstName, this.lastName, this.phone)
       .subscribe({
           next: () => this.router.navigate(["users"]),
           error: (error) => this.popupComponent.openPopup(`Registrovanje korisnika nije uspelo: ${error.error.message}`)
