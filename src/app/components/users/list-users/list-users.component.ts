@@ -19,6 +19,12 @@ export class ListUsersComponent implements OnInit {
   lastName: string = "";
   position: string = "";
 
+  totalPages: number = 20;
+  currentPage: number = 1;
+  totalUsers: number = 0;
+  page: number = 1;
+
+
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
@@ -29,14 +35,21 @@ export class ListUsersComponent implements OnInit {
   }
 
   searchUsers(){
-    this.userService.loadAllUsers(this.firstName, this.lastName, this.email, this.position).subscribe(
+    this.userService.loadAllUsers(this.firstName, this.lastName, this.email, this.position, this.page-1).subscribe(
       (data) => {
-        this.users = data;
+        this.users = data.content;
+        this.totalPages = data.totalPages;
+        this.totalUsers = data.totalElements;
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
       }
     )
+  }
+
+  pageChangeEvent(event: number){
+    this.page = event;
+    this.searchUsers();
   }
 
 }

@@ -94,8 +94,8 @@ export class UserService {
     )
   }
 
-  loadAllUsers(firstName: string, lastName: string, email: string, position: string): Observable<UserModel[]> {
-    return this.httpClient.post<UserModel[]>(this.usersUrl, {
+  loadAllUsers(firstName: string, lastName: string, email: string, position: string, page: number): Observable<any> {
+    return this.httpClient.post<any>(this.usersUrl + '?page=' + page, {
       headers: this.headers,
       params: {
         "firstName": firstName,

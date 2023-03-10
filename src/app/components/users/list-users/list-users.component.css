@@ -54,3 +54,7 @@ select{
 .users-table-row{
   margin-top: 20px;
 }
+
+pagination-controls{
+  margin-top: 20px;
+}

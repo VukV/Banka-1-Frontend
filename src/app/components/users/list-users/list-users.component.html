@@ -29,9 +29,8 @@
   <br>
   <br>
   <br>
-</div>
-<div class="container">
-  <div class="row form-inline ">
+
+  <div class="row form-inline">
     <div class="row d-flex justify-content-between">
       <div class="col-md-auto align-items-center d-flex justify-content-center">
         <h2 class="row fw-bold">Spisak korisnika</h2>
@@ -39,18 +38,12 @@
       <div class="col-md-auto align-items-center d-flex justify-content-center">
         <button type="button" class="btn btn-outline rounded-pill" [routerLink]="['/add-user']">Dodaj novog korisnika</button>
       </div>
-  </div>
-<!--  <div class="col-xs-12 col-md-6 col-sm-8 col-lg-6 center-block">-->
-<!--    <br>-->
-<!--    <h2 class="row fw-bold">Spisak korisnika<span class="pull-right">-->
-<!--     <button type="button" class="btn btn-outline rounded-pill">Dodaj novog korisnika</button></span></h2>-->
-<!--    <br>-->
-<!--  </div>-->
+    </div>
 
     <div class="row justify-content-center users-table-row">
       <div style="overflow: auto" class="rectangle">
-      <table class="table table-borderless table-d " id="csstable">
-        <thead>
+        <table class="table table-borderless table-d " id="csstable">
+          <thead>
           <tr id="trtable">
             <th>#</th>
             <th>Ime</th>
@@ -61,10 +54,10 @@
             <th>Telefon</th>
             <th></th>
           </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
           <tr>
-          <tr *ngFor="let user of this.users; let i = index">
+          <tr *ngFor="let user of this.users | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalUsers }">
             <th scope="row">{{ user.id }}</th>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
@@ -74,11 +67,17 @@
             <td>{{ user.phoneNumber}}</td>
             <td><button [routerLink]="['/update-user', user.id]" type="button" class="btn btn-outline-light rounded-pill" style="display: block; margin: auto; margin-top: -8px">Izmeni</button></td>
           </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+      </div>
     </div>
   </div>
-</div>
 
   <app-popup></app-popup>
 </div>
