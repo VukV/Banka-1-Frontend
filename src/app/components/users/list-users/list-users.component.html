@@ -1,1 +1,80 @@
-<p>list-users works!</p>
+<div class="container">
+
+  <br>
+  <br>
+
+  <div class="row form-inline ">
+    <form class="row justify-content-center">
+      <div class="col-md-2 align-items-center">
+        <input type="email" class="box" id="email" placeholder="email">
+      </div>
+      <div class="col-md-2 align-items-center">
+        <input type="ime" class="box" id="ime" placeholder="ime">
+      </div>
+      <div class="col-md-2 align-items-center">
+        <input type="prezime" class="box" id="prezime" placeholder="prezime">
+      </div>
+      <div class="col-md-2 align-items-center">
+        <input type="pozicija" class="box" id="pozicija" placeholder="pozicija">
+      </div>
+      <div class="col-md-2 align-items-center">
+        <button type="button" class="btn btn-green btn-block rounded-pill" id="dugme">Pretrazi</button>
+      </div>
+    </form>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<div class="container">
+  <div class="row form-inline ">
+    <div class="row justify-content-between">
+      <div class="col-md-auto align-items-center">
+        <h2 style="padding-left: 70px" class="row fw-bold">Spisak korisnika</h2>
+      </div>
+      <div class="col-md-auto align-items-center">
+        <button type="button" class="btn btn-outline rounded-pill" [routerLink]="['/add-user']">Dodaj novog korisnika</button>
+      </div>
+  </div>
+<!--  <div class="col-xs-12 col-md-6 col-sm-8 col-lg-6 center-block">-->
+<!--    <br>-->
+<!--    <h2 class="row fw-bold">Spisak korisnika<span class="pull-right">-->
+<!--     <button type="button" class="btn btn-outline rounded-pill">Dodaj novog korisnika</button></span></h2>-->
+<!--    <br>-->
+<!--  </div>-->
+
+  <br>
+    <div class="m-4">
+      <div style="overflow: auto" class="rectangle">
+      <table class="table table-borderless table-d " id="csstable">
+        <thead>
+          <tr id="trtable">
+            <th>#</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Email</th>
+            <th>Pozicija</th>
+            <th>Aktivan</th>
+            <th>Telefon</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <tr *ngFor="let user of this.users; let i = index">
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.position }}</td>
+            <td class="dot" [ngStyle]="{'background-color': user.active? 'green' : 'var(--si-red)'}"></td>
+            <td>{{ user.phoneNumber}}</td>
+            <td><button [routerLink]="['/update-user', user.id]" type="button" class="btn btn-outline-light rounded-pill" style="display: block; margin: auto; margin-top: -8px">Izmeni</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>

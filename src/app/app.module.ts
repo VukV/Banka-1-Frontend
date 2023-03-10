@@ -12,7 +12,7 @@ import { ResetPasswordComponent } from './components/users/reset-password/reset-
 import { ResetPasswordRequestComponent } from './components/users/reset-password-request/reset-password-request.component';
 import { UpdateUserComponent } from './components/users/update-user/update-user.component';
 import { HomeComponent } from './components/home/home.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { PopupComponent } from './components/popup/popup.component';
 
@@ -34,7 +34,8 @@ import { PopupComponent } from './components/popup/popup.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

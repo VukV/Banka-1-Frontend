@@ -17,6 +17,7 @@
               <div class="form-outline form-white mb-4">
                 <input
                   type="name"
+                  [(ngModel)]="firstName"
                   id="typeNameX"
                   class="form-control form-control-lg"
                   value="ime"
@@ -27,6 +28,7 @@
               <div class="form-outline form-white mb-4">
                 <input
                   type="surname"
+                  [(ngModel)]="lastName"
                   id="typeSurnameX"
                   class="form-control form-control-lg"
                   value="prezime"
@@ -36,6 +38,7 @@
               <div class="form-outline form-white mb-4">
                 <input
                   type="number"
+                  [(ngModel)]="phone"
                   id="typePhoneX"
                   class="form-control form-control-lg"
                   value="381"
@@ -46,6 +49,7 @@
               <div class="form-outline form-white mb-4">
                 <input
                   type="email"
+                  [(ngModel)]="email"
                   id="typeEmailX"
                   class="form-control form-control-lg"
                   value="email"
@@ -55,6 +59,7 @@
               <div class="form-outline form-white mb-4">
                 <input
                   type="jmbg"
+                  [(ngModel)]="jmbg"
                   id="typeJmbgX"
                   class="form-control form-control-lg"
                   value="jmbg"
@@ -69,14 +74,16 @@
                   value="pozicija"
                 />
                 <label class="form-label" for="typePozicijaX" style="color: darkgreen" >Pozicija</label>
+                <select [(ngModel)]="position" class="form-select" id="position" name="position">
+                  <option *ngFor="let position of allPositions" value="{{position}}">{{position}}</option>
+                </select>
               </div>
 
 
               <p class="small mb-5 pb-lg-2">
                 <a class="text-white-50" href="#!">Promeni sifru</a>
               </p>
-
-              <button class="btn btn-outline-light btn-lg px-5" type="submit" >
+              <button class="btn btn-outline-light btn-lg px-5" type="submit" (click)="changeUser()" >
 
                 Promeni
               </button>
@@ -105,5 +112,6 @@
         </div>
       </div>
     </div>
+    <app-popup></app-popup>
   </div>
 </section>
