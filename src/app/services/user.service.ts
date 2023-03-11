@@ -33,13 +33,13 @@ export class UserService {
       position: position,
       roles: roles
     };
-    return this.httpClient.post<UserModel>(`${this.usersUrl}/api/users/create`, userCreationData, {
+    return this.httpClient.post<UserModel>(`${this.usersUrl}/create`, userCreationData, {
       headers: this.headers
     });
   }
 
   getUser(id: number): Observable<UserModel> {
-    return this.httpClient.get<UserModel>(`${this.usersUrl}/api/users/${id}`, {
+    return this.httpClient.get<UserModel>(`${this.usersUrl}/${id}`, {
       headers: this.headers
     });
   }
@@ -57,14 +57,13 @@ export class UserService {
       roles: roles,
       active: active
     };
-    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/users/update/${id}`, userUpdateData, {
+    return this.httpClient.put<UserModel>(`${this.usersUrl}/update/${id}`, userUpdateData, {
       headers: this.headers
     });
   }
 
   activatePassword(id: string, secretKey: string, password: string): Observable<any> {
     return this.httpClient.post<any>(`${this.usersUrl}/reset-password/${id}`, {password, secretKey}, {
-      headers: this.headers
     }).pipe(
       catchError(err => {
         return throwError(() => new Error(err.error.message));
