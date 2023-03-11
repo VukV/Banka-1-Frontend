@@ -4,7 +4,6 @@ import {UserPositionEnum} from "../../../model/user-position-enum";
 import {UserRoleEnum} from "../../../model/user-role-enum";
 import {UserService} from "../../../services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MyProfileService} from "../../../services/my-profile.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -37,21 +36,7 @@ export class MyProfileComponent implements OnInit {
               private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let id = this.activatedRoute.snapshot.paramMap.get("userId");
-    if (id == null) {
-      this.router.navigate(["users"]);
-      return;
-    }
-    this.id = parseInt(id);
-    this.UserService.getUser(this.id).subscribe({
-      next: (userModel) => {
-        this.phone = userModel.phoneNumber;
-        this.firstName = userModel.firstName;
-        this.lastName = userModel.lastName;
 
-      },
-      error: (error) => this.popupComponent.openPopup(`Nije uspelo dohvatanje logovanog korisnika: ${error.error.message}`)
-    });
   }
 
 
