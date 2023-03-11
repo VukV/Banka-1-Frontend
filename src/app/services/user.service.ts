@@ -111,7 +111,7 @@ export class UserService {
       lastName: lastName,
       phoneNumber: phone,
     };
-    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/my-profile/update`, userUpdateData, {
+    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/my-profile/update`,{firstName,lastName,phone}, {
       headers: this.headers
     });
   }

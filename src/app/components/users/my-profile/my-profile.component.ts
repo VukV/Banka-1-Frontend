@@ -19,7 +19,8 @@ export class MyProfileComponent implements OnInit {
 
   email: string = "";
   id: number = -1;
-
+  errorsExists: boolean=false;
+  errorString: string[] = [];
   phone: string = "";
   jmbg: string = "";
   firstName: string = "";
@@ -29,7 +30,6 @@ export class MyProfileComponent implements OnInit {
   roles: string[] = [];
   allRoles: string[] = Object.values(UserRoleEnum);
   error: string = "";
-
 
 
   constructor(private UserService: UserService,
@@ -56,6 +56,13 @@ export class MyProfileComponent implements OnInit {
 
 
   updateMyprofile(): void {
+    this.errorString=[];
+    this.errorsExists=false;
+    if(this.phone==="" || this.firstName ==="" || this.lastName === "")
+    {
+      this.errorString.push("Morate popuniti  polja!");
+      this.errorsExists=true;
+    }
     this.error = "";
     if (!this.emailRegex.test(this.email)) {
       this.error = "Email nije validan!";
@@ -81,8 +88,6 @@ export class MyProfileComponent implements OnInit {
       this.error = "Pozicija mora biti odabrana!";
       return;
     }
-    const position = Object.keys(UserPositionEnum)[Object.values(UserPositionEnum).indexOf(this.position as UserPositionEnum)];
-    const roles = this.roles.map(role => Object.keys(UserRoleEnum)[Object.values(UserRoleEnum).indexOf(role as UserRoleEnum)]);
     this.UserService.updateMyprofile(this.firstName, this.lastName, this.phone)
       .subscribe({
           next: () => this.router.navigate(["users"]),
