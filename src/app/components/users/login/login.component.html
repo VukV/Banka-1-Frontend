@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="vh-100 d-flex justify-content-center align-items-center">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6 width verticalx-center">
+  <div class="d-flex justify-content-center align-items-center">
+
+      <div class="row d-flex flex-column vertical-center justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 width verticalx-center text-center">
           <h2 class="fw-bold">Login</h2>
           <br>
           <div class="card login-card">
             <div class="">
-              <form  (submit)="handleLoggingIn" class="button-bottom-margin mt-md-4">
+              <form  (submit)="handleLoggingIn()" class="button-bottom-margin mt-md-4">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
                 <div class="mb-3">
                   <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-field centralize-input" id="useremail" placeholder="Email"
@@ -17,7 +17,7 @@
                 <div class="mb-3 password-holder" style="margin-bottom: 10px !important;">
                   <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}"
                          [attr.type]="showPassword ? 'text' : 'password'"
-                         type="password" class="form-control input-field  password-input" id="userpassword" placeholder="Lozinka">
+                         type="password" class="form-control input-field  password-input" id="userpassword" placeholder="Šifra">
                   <i
                     (click)="toggleShowPassword($event)"
                     *ngIf="!showPassword" class="fa fa-eye"
@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-      </div>
+
     </div>
   </div>
   <app-popup></app-popup>

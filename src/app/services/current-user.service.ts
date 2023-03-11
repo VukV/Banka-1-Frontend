@@ -90,4 +90,8 @@ export class CurrentUserService {
     this.setLoggedInBehavior(false);
     this.router.navigate(['/login']);
   }
+
+  logoutUnload(){
+    localStorage.removeItem("jwt");
+  }
 }

@@ -1,28 +1,19 @@
-.box {
-  box-sizing: border-box;
+.form-control{
+  margin-bottom: 5px;
+}
 
-  background: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  border-radius: 9px;
+select{
+  margin-bottom: 5px;
 }
 
 #email, #ime, #prezime, #pozicija{
-  font-family: 'Source Sans Pro', sans-serif;
-  font-style: normal;
   font-weight: 500;
-  font-size: 13px;
-  line-height: 16px;
-  padding-left: 12px;
-  padding-bottom: 7px;
-  padding-top: 6px;
+  font-size: 14px;
 }
 
 #dugme{
-  font-family: 'Source Sans Pro', sans-serif;
-  font-style: normal;
   font-weight: 500;
-  font-size: 13px;
-  padding: 5px;
+  font-size: 14px;
   width: 120px;
 }
 
@@ -42,7 +33,6 @@
 
 .rectangle{
   box-sizing: border-box;
-
   position: relative;
   padding: 20px;
   border: 1px solid #00B127;
@@ -59,5 +49,35 @@
   height: 11px;
   /*background-color: var(--si-red);*/
   border-radius: 50%;
+}
 
+.users-table-row{
+  margin-top: 20px;
+}
+
+pagination-controls{
+  margin-top: 20px;
+}
+
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
+
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: var(--si-green) !important;
+  border: transparent;
+  border-radius: 20px;
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: rgba(11, 148, 8, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+:host /deep/.ngx-pagination a:hover{
+  background: rgba(11, 148, 8, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
 }

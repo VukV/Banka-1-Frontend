@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
       },
       error: (error) => {
-        this.popupComponent.openPopup(error)
+        this.popupComponent.openPopup(error.message)
       },
       next: (loginRes) => {
         this.jwt = loginRes.jwtToken

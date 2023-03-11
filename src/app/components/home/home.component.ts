@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
+  showHelp: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {

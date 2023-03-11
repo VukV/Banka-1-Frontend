@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {CurrentUserService} from "../../services/current-user.service";
 import {UserRoleEnum} from "../../model/user-role-enum";
@@ -10,6 +10,11 @@ import {UserRoleEnum} from "../../model/user-role-enum";
 })
 export class AppComponent implements OnInit{
   title = 'si-banka-1-front';
+
+  @HostListener('window:unload')
+  unloadHandler() {
+    this.currentUserService.logoutUnload();
+  }
 
   displayLogout: string = "none";
   isLoggedIn: boolean = false;

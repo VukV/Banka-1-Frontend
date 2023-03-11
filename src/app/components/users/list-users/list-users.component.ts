@@ -1,9 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-
 import {UserPositionEnum} from "../../../model/user-position-enum";
-import {CurrentUserService} from "../../../services/current-user.service";
 import {UserService} from "../../../services/user.service";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {PopupComponent} from "../../popup/popup.component";
 import {UserModel} from "../../../model/user-model";
 
@@ -16,6 +13,17 @@ import {UserModel} from "../../../model/user-model";
 export class ListUsersComponent implements OnInit {
 
   users: UserModel[] = [];
+  allPositions: string[] = Object.values(UserPositionEnum);
+  email: string = "";
+  firstName: string = "";
+  lastName: string = "";
+  position: string = "";
+
+  totalPages: number = 0;
+  currentPage: number = 1;
+  totalUsers: number = 20;
+  page: number = 1;
+
 
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
@@ -23,13 +31,25 @@ export class ListUsersComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-      this.userService.loadAllUsers().subscribe((data) => {
-      this.users = data;
+      this.searchUsers();
+  }
+
+  searchUsers(){
+    this.userService.loadAllUsers(this.firstName, this.lastName, this.email, this.position, this.page-1).subscribe(
+      (data) => {
+        this.users = data.content;
+        this.totalPages = data.totalPages;
+        this.totalUsers = data.totalElements;
       },
-       (error) => {
-        this.popupComponent.openPopup(error.message());
+      (error) => {
+        this.popupComponent.openPopup(error.message);
       }
     )
+  }
+
+  pageChangeEvent(event: number){
+    this.page = event;
+    this.searchUsers();
   }
 
 }
