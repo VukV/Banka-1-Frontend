@@ -115,4 +115,11 @@ export class UserService {
       headers: this.headers
     });
   }
+
+
+  getMyProfile(id: number): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(`${this.usersUrl}/api/my-profile`, {
+      headers: this.headers
+    });
+  }
 }

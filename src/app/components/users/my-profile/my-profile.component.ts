@@ -42,7 +42,7 @@ export class MyProfileComponent implements OnInit {
       return;
     }
     this.id = parseInt(id);
-    this.UserService.getUser(this.id).subscribe({
+    this.UserService.getMyProfile(this.id).subscribe({
       next: (userModel) => {
         this.phone = userModel.phoneNumber;
         this.firstName = userModel.firstName;
@@ -94,6 +94,8 @@ export class MyProfileComponent implements OnInit {
   cancel(): void {
     this.router.navigate(["users"]);
   }
+
+
 
 
 
