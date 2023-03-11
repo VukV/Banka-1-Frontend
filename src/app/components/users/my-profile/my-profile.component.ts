@@ -14,7 +14,7 @@ import {MyProfileService} from "../../../services/my-profile.service";
 export class MyProfileComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
-
+  element = false;
   emailRegex = new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
   jmbgRegex = new RegExp("^[0-9]{13}$");
 
@@ -31,7 +31,7 @@ export class MyProfileComponent implements OnInit {
 
 
 
-  constructor(private MyProfileService: MyProfileService,
+  constructor(private UserService: UserService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -67,10 +67,10 @@ export class MyProfileComponent implements OnInit {
     }
     const position = Object.keys(UserPositionEnum)[Object.values(UserPositionEnum).indexOf(this.position as UserPositionEnum)];
     const roles = this.roles.map(role => Object.keys(UserRoleEnum)[Object.values(UserRoleEnum).indexOf(role as UserRoleEnum)]);
-    this.MyProfileService.updateMyprofile(this.firstName, this.lastName, this.phone)
+    this.UserService.updateMyprofile(this.firstName, this.lastName, this.phone)
       .subscribe({
           next: () => this.router.navigate(["users"]),
-          error: (error) => this.popupComponent.openPopup(`Registrovanje korisnika nije uspelo: ${error.error.message}`)
+          error: (error) => this.popupComponent.openPopup(`Izmene su neuspešne: ${error.error.message}`)
         }
       );
   }

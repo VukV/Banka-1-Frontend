@@ -102,4 +102,17 @@ export class UserService {
       })
     );
   }
+
+  updateMyprofile( phone: string,  firstName: string,
+                   lastName: string)
+  {
+    const userUpdateData = {
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phone,
+    };
+    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/my-profile/update`, userUpdateData, {
+      headers: this.headers
+    });
+  }
 }

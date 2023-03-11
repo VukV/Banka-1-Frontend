@@ -30,28 +30,8 @@ export class MyProfileService{
     });
   }
 
-  updateMyprofile( phone: string,  firstName: string,
-             lastName: string)
-    {
-    const userUpdateData = {
-      firstName: firstName,
-      lastName: lastName,
-      phoneNumber: phone,
-    };
-    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/my-profile/update`, userUpdateData, {
-      headers: this.headers
-    });
-  }
 
-  changePasswordRequest(email: string): Observable<any>{
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append("email",email);
-    return this.httpClient.get<any>( `${this.forgotPasswordUrl}`, {params: queryParams}
-    ).pipe(
-      catchError(err => {
-        return throwError(() => new Error(err.error.message))
-      })
-    )
-  }
+
+
 
 }
