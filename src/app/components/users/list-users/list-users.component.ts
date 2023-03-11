@@ -19,9 +19,9 @@ export class ListUsersComponent implements OnInit {
   lastName: string = "";
   position: string = "";
 
-  totalPages: number = 20;
+  totalPages: number = 0;
   currentPage: number = 1;
-  totalUsers: number = 0;
+  totalUsers: number = 20;
   page: number = 1;
 
 
