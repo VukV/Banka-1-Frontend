@@ -17,7 +17,7 @@
                 <div class="mb-3 password-holder" style="margin-bottom: 10px !important;">
                   <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}"
                          [attr.type]="showPassword ? 'text' : 'password'"
-                         type="password" class="form-control input-field  password-input" id="userpassword" placeholder="Lozinka">
+                         type="password" class="form-control input-field  password-input" id="userpassword" placeholder="Šifra">
                   <i
                     (click)="toggleShowPassword($event)"
                     *ngIf="!showPassword" class="fa fa-eye"

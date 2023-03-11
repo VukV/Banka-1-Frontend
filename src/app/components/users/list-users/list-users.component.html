@@ -6,17 +6,17 @@
   <div class="row form-inline ">
     <form class="row justify-content-center">
       <div class="col-md-2 align-items-center">
-        <input type="email" [(ngModel)]="email" class="form-control" id="email" name="email" placeholder="email">
+        <input type="email" [(ngModel)]="email" class="form-control" id="email" name="email" placeholder="Email">
       </div>
       <div class="col-md-2 align-items-center">
-        <input type="text" [(ngModel)]="firstName" class="form-control" id="ime" name="firstName" placeholder="ime">
+        <input type="text" [(ngModel)]="firstName" class="form-control" id="ime" name="firstName" placeholder="Ime">
       </div>
       <div class="col-md-2 align-items-center">
-        <input type="text" [(ngModel)]="lastName" class="form-control" id="prezime" name="lastName" placeholder="prezime">
+        <input type="text" [(ngModel)]="lastName" class="form-control" id="prezime" name="lastName" placeholder="Prezime">
       </div>
       <div class="col-md-2 align-items-center">
         <select [(ngModel)]="position" class="form-select" id="pozicija" name="position">
-          <option value="">pozicija</option>
+          <option value="">Pozicija</option>
           <option *ngFor="let position of allPositions" value="{{position}}">{{position}}</option>
         </select>
       </div>
