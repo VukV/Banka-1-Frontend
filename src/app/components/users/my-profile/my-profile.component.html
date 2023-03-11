@@ -72,7 +72,8 @@
                   <a class="" size="20" [routerLink]="['/']" style="color: #F1FFF9">Promeni sifru</a>
                 </strong> </i></p>
               </div>
-              <div *ngIf="element == true">
+
+              <div *ngIf="error != ''">
                 <p class="mb-0" style="color: #d70000">
                   poruka o validaciji (inicijalno skriveno)
                 </p>
