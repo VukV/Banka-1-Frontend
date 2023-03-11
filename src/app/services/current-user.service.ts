@@ -38,7 +38,7 @@ export class CurrentUserService {
     }
 
     let decoded = jwtDecode<JwtPayload>(token);
-    return decoded.sub.substring(0,1);
+    return decoded.sub.substring(0,1).toUpperCase();
   }
 
   //metoda proverava da li trenutni korisnik ima prosledjenu rolu
