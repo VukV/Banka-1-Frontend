@@ -12,7 +12,7 @@ import {
 } from "./components/users/reset-password-request/reset-password-request.component";
 import {ResetPasswordComponent} from "./components/users/reset-password/reset-password.component";
 import {ActivatePasswordComponent} from "./components/users/activate-password/activate-password.component";
-import {UserRoleEnum} from "./model/user-role-enum";
+import {UserRoleEnum} from "./model/user/user-role-enum";
 
 const routes: Routes = [
   {

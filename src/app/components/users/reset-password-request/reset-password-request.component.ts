@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PopupComponent} from "../../popup/popup.component";
 import {Router} from "@angular/router";
-import {UserService} from "../../../services/user.service";
+import {UserService} from "../../../services/user/user.service";
 
 @Component({
   selector: 'app-reset-password-request',

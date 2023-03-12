@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import jwtDecode from "jwt-decode";
-import {JwtPayload} from "../model/jwt-payload";
+import {JwtPayload} from "../../model/user/jwt-payload";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -16,13 +16,13 @@ export class CurrentUserService {
 
   //ovu metodu je potrebno pozvati kada login prodje uspesno
   setLogin(jwt: string){
-    localStorage.setItem("jwt", jwt);
+    sessionStorage.setItem("jwt", jwt);
     this.loggedInBehavior.next(true);
   }
 
   //metoda vraca email trenutnog korisnika
   getUserEmail(): string | null{
-    let token = localStorage.getItem("jwt");
+    let token = sessionStorage.getItem("jwt");
     if(token == null){
       return null;
     }
@@ -32,7 +32,7 @@ export class CurrentUserService {
   }
 
   getFirstUserLetter(): string{
-    let token = localStorage.getItem("jwt");
+    let token = sessionStorage.getItem("jwt");
     if(token == null){
       return "";
     }
@@ -43,7 +43,7 @@ export class CurrentUserService {
 
   //metoda proverava da li trenutni korisnik ima prosledjenu rolu
   checkUserRole(role: string): boolean{
-    let token = localStorage.getItem("jwt");
+    let token = sessionStorage.getItem("jwt");
     if(token == null){
       return false;
     }
@@ -54,7 +54,7 @@ export class CurrentUserService {
 
   //vraca sve role trenutnog korisnika
   getUserRoles(): string[]{
-    let token = localStorage.getItem("jwt");
+    let token = sessionStorage.getItem("jwt");
     if(token == null){
       return [];
     }
@@ -64,7 +64,7 @@ export class CurrentUserService {
   }
 
   getToken(): string{
-    return localStorage.getItem("jwt") || "";
+    return sessionStorage.getItem("jwt") || "";
   }
 
   setLoggedInBehavior(loggedIn: boolean){
@@ -72,11 +72,11 @@ export class CurrentUserService {
   }
 
   private getLoginStatus(): boolean{
-    return !!localStorage.getItem("jwt");
+    return !!sessionStorage.getItem("jwt");
   }
 
   hasAnyRoles(): boolean{
-    let token = localStorage.getItem("jwt");
+    let token = sessionStorage.getItem("jwt");
     if(token == null){
       return false;
     }
@@ -86,12 +86,12 @@ export class CurrentUserService {
   }
 
   logout(){
-    localStorage.removeItem("jwt");
+    sessionStorage.removeItem("jwt");
     this.setLoggedInBehavior(false);
     this.router.navigate(['/login']);
   }
 
   logoutUnload(){
-    localStorage.removeItem("jwt");
+    sessionStorage.removeItem("jwt");
   }
 }

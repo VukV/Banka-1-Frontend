@@ -1,12 +1,12 @@
 import {CurrentUserService} from "./current-user.service";
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {UserModel} from "../model/user-model";
+import {environment} from "../../../environments/environment";
+import {UserModel} from "../../model/user/user-model";
 import {catchError, Observable, throwError} from "rxjs";
-import {LogInResponse} from "../model/log-in-response";
-import {LogInRequest} from "../model/log-in-request";
-import {UserPositionEnum} from "../model/user-position-enum";
+import {LogInResponse} from "../../model/user/log-in-response";
+import {LogInRequest} from "../../model/user/log-in-request";
+import {UserPositionEnum} from "../../model/user/user-position-enum";
 
 
 @Injectable({
@@ -18,14 +18,14 @@ export class UserService{
   private forgotPasswordUrl = environment.usersUrl + "/forgot-password"
   private usersUrl = environment.usersUrl;
   private headers = new HttpHeaders({
-    'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+    'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });
 
   constructor(private httpClient: HttpClient, private currentUserService: CurrentUserService) {
     this.currentUserService.isLoggedIn.subscribe((loggedIn) => {
       if(loggedIn){
         this.headers = new HttpHeaders({
-          'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+          'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
         });
       }
     });

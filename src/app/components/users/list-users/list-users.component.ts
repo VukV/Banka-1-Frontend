@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserPositionEnum} from "../../../model/user-position-enum";
-import {UserService} from "../../../services/user.service";
+import {UserPositionEnum} from "../../../model/user/user-position-enum";
+import {UserService} from "../../../services/user/user.service";
 import {PopupComponent} from "../../popup/popup.component";
-import {UserModel} from "../../../model/user-model";
+import {UserModel} from "../../../model/user/user-model";
 
 
 @Component({

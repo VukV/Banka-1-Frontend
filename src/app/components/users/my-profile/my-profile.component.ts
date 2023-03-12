@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PopupComponent} from "../../popup/popup.component";
-import {UserService} from "../../../services/user.service";
+import {UserService} from "../../../services/user/user.service";
 import {Router} from "@angular/router";
-import {UserModel} from "../../../model/user-model";
+import {UserModel} from "../../../model/user/user-model";
 import {Location} from "@angular/common";
 
 @Component({

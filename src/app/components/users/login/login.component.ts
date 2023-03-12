@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CurrentUserService} from "../../../services/current-user.service";
+import {CurrentUserService} from "../../../services/user/current-user.service";
 import {PopupComponent} from "../../popup/popup.component";
 import {Router} from "@angular/router";
-import {UserService} from "../../../services/user.service";
-import {LogInRequest} from "../../../model/log-in-request";
+import {UserService} from "../../../services/user/user.service";
+import {LogInRequest} from "../../../model/user/log-in-request";
 
 @Component({
   selector: 'app-login',
