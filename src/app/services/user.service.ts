@@ -44,7 +44,7 @@ export class UserService {
     });
   }
 
-  updateUser(id: number, email: string, phone: string, password: string, firstName: string,
+  updateUser(id: number, email: string, phone: string, password: any, firstName: string,
              lastName: string, position: string, roles: string[], active: boolean)
     : Observable<UserModel> {
     const userUpdateData = {

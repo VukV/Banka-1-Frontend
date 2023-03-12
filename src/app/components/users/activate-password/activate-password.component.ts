@@ -18,6 +18,7 @@ export class ActivatePasswordComponent implements OnInit {
   passwordEntryForm!: FormGroup;
   userId!: string | null;
 
+  passwordRegex = new RegExp("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.* ).{8,}$");
   errorMessage: string = ''
 
   constructor(private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) {
@@ -37,6 +38,11 @@ export class ActivatePasswordComponent implements OnInit {
   }
 
   onPasswordEntrySubmit() {
+    if (!this.passwordRegex.test(this.passwordEntryForm.value.password)) {
+      this.errorMessage = "Šifra mora da sadrži veliko i malo slovo, broj, specijalni karakter, i da ima 8 karaktera!";
+      return;
+    }
+
     // Proveriti da li se sifre slazu
     if (this.passwordEntryForm.value.password !== this.passwordEntryForm.value.confirmPassword) {
       this.errorMessage = 'Šifre se ne slažu!';
