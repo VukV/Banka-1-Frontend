@@ -27,11 +27,10 @@ export class ResetPasswordRequestComponent implements OnInit {
 
       },
       error: (error) => {
-        this.popupComponent.openPopup(error.message)
+        this.popupComponent.openPopup(error.message);
       },
       next: (any) => {
-        this.popupComponent.openPopup(any.headers.statusCode)
-        console.log(any.headers.statusCode)
+        this.popupComponent.openPopup("Proverite email za detalje o promeni šifre.");
       }
 
     })

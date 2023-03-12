@@ -12,38 +12,36 @@ import {
 } from "./components/users/reset-password-request/reset-password-request.component";
 import {ResetPasswordComponent} from "./components/users/reset-password/reset-password.component";
 import {ActivatePasswordComponent} from "./components/users/activate-password/activate-password.component";
+import {UserRoleEnum} from "./model/user-role-enum";
 
 const routes: Routes = [
-  //TODO: dodaj role u data (dogovor sa backend-om oko rola)
   {
     path: "",
     component: HomeComponent,
-    //canActivate: [LoginGuard],
-    data: {roles: []}
+    canActivate: [LoginGuard]
   },
   {
     path: "users",
     component: ListUsersComponent,
-    //canActivate: [LoginGuard],
-    data: {roles: []}
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
   },
   {
     path: "add-user",
     component: AddUserComponent,
-    //canActivate: [LoginGuard],
-    data: {roles: []}
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
   },
   {
     path: "update-user/:userId",
     component: UpdateUserComponent,
-    //canActivate: [LoginGuard],
-    data: {roles: []}
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
   },
   {
     path: "my-profile",
     component: MyProfileComponent,
-    //canActivate: [LoginGuard],
-    data: {roles: []}
+    canActivate: [LoginGuard]
   },
   {
     path: "login",

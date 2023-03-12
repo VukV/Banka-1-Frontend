@@ -39,14 +39,13 @@ export class LoginComponent implements OnInit {
 
       },
       error: (error) => {
-        this.popupComponent.openPopup(error.message)
+        this.popupComponent.openPopup("Pogrešni kredencijali!");
       },
       next: (loginRes) => {
-        this.jwt = loginRes.jwtToken
-        this.currentUserService.setLogin(this.jwt)
-        this.router.navigate(['/home'])
+        this.jwt = loginRes.jwtToken;
+        this.currentUserService.setLogin(this.jwt);
+        this.router.navigate(['']);
       }
-
     })
   }
 

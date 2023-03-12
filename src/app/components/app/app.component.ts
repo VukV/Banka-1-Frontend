@@ -11,7 +11,7 @@ import {UserRoleEnum} from "../../model/user-role-enum";
 export class AppComponent implements OnInit{
   title = 'si-banka-1-front';
 
-  @HostListener('window:unload')
+  //@HostListener('window:unload')
   unloadHandler() {
     this.currentUserService.logoutUnload();
   }
@@ -27,6 +27,8 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.currentUserService.isLoggedIn.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
+      this.checkRoles();
+      this.getUserLetter();
     });
 
     this.checkRoles();
