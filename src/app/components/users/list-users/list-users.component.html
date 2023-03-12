@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-2 align-items-center">
         <select [(ngModel)]="position" class="form-select" id="pozicija" name="position">
-          <option value="">Pozicija</option>
+          <option [ngValue]="null">Pozicija</option>
           <option *ngFor="let position of allPositions" value="{{position}}">{{position}}</option>
         </select>
       </div>
@@ -57,7 +57,7 @@
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let user of this.users | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalUsers }">
+          <tr *ngFor="let user of this.users | paginate: { itemsPerPage: usersPerPage, currentPage: page, totalItems: totalUsers }">
             <th scope="row">{{ user.id }}</th>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>

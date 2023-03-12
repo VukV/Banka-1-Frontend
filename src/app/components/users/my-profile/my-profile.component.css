@@ -1,45 +1,26 @@
-:root{
-  --si-green: #00B127;
-  --si-white: #F1FFF9;
-  --si-black: #151515;
-  --si-black-transparent: rgba(21, 21, 21, 0.6);
-  --si-red: #d70000;
-}
-
-.form-group{
-
-  margin-bottom: 22px;
-
-}
-
-.dugme{
-  background-color: var(--si-green);
-  color: #fff;
-}
-
-.dugme:hover{
-  float: right;
-  text-align: right;
-  color: #fff;
-  background-color: #007e20;
-}
-
-
-.card bg-black text-white{
-  background-color: var(--si-black);
-  background-image: linear-gradient(0deg, #151515 65%, rgba(0, 177, 39, 0.35) 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  border-radius: 2rem
-}
-
-.card{
-
+form {
+  padding: 4em;
   border: solid 2px;
   border-color: var(--si-green);
-  background-color: var(--si-black);
-  background-image: linear-gradient(0deg, #151515 65%, rgba(0, 177, 39, 0.35) 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  border-radius: 2rem
+  border-radius: 50px;
+}
+
+.myp-text {
+  color: var(--si-green);
+}
+
+h5.error {
+  color: var(--si-red);
+}
+
+.row{
+  margin-bottom: 10px;
+}
+
+.sifra-div{
+  text-decoration: underline;
+}
+
+.sifra-div:hover{
+  cursor: pointer;
 }

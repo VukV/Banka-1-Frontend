@@ -1,26 +1,35 @@
 import {CurrentUserService} from "./current-user.service";
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {UserModel} from "../model/user-model";
+import {environment} from "../../../environments/environment";
+import {UserModel} from "../../model/user/user-model";
 import {catchError, Observable, throwError} from "rxjs";
-import {LogInResponse} from "../model/log-in-response";
-import {LogInRequest} from "../model/log-in-request";
+import {LogInResponse} from "../../model/user/log-in-response";
+import {LogInRequest} from "../../model/user/log-in-request";
+import {UserPositionEnum} from "../../model/user/user-position-enum";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService{
 
   private loginUrl = environment.usersUrl + "/login"
   private forgotPasswordUrl = environment.usersUrl + "/forgot-password"
   private usersUrl = environment.usersUrl;
   private headers = new HttpHeaders({
-    'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+    'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private currentUserService: CurrentUserService) {
+    this.currentUserService.isLoggedIn.subscribe((loggedIn) => {
+      if(loggedIn){
+        this.headers = new HttpHeaders({
+          'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+        });
+      }
+    });
+  }
 
   addUser(email: string, phone: string, jmbg: string, firstName: string, lastName: string, position: string, roles: string[])
   : Observable<UserModel> {
@@ -93,38 +102,42 @@ export class UserService {
     )
   }
 
-  loadAllUsers(firstName: string, lastName: string, email: string, position: string, page: number): Observable<any> {
-    return this.httpClient.post<any>(this.usersUrl + '?page=' + page, {
-      headers: this.headers,
-      params: {
-        "firstName": firstName,
-        "lastName": lastName,
-        "email": email,
-        "position": position
-      }
-  }).pipe(
+  loadAllUsers(firstName: string, lastName: string, email: string, position: any, page: number, size: number): Observable<any> {
+    return this.httpClient.post<any>(this.usersUrl,
+      {
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": email,
+      "position": position
+    },
+      {
+      headers: this.headers, params:{"page": page, "size": size}
+    }
+  ).pipe(
     catchError(err => {
       return throwError(() => new Error(err.error.message));
       })
     );
   }
 
-  updateMyprofile( phone: string,  firstName: string,
-                   lastName: string)
-  {
-    const userUpdateData = {
-      firstName: firstName,
-      lastName: lastName,
-      phoneNumber: phone,
-    };
-    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/my-profile/update`,{firstName,lastName,phone}, {
-      headers: this.headers
-    });
+  updateMyProfile(firstName: string, lastName: string, phone: string) {
+    return this.httpClient.put<UserModel>(`${this.usersUrl}/my-profile/update`,
+      {
+          "firstName": firstName,
+          "lastName": lastName,
+          "phoneNumber": phone
+        },
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
   }
 
-
-  getMyProfile(id: number): Observable<UserModel> {
-    return this.httpClient.get<UserModel>(`${this.usersUrl}/api/my-profile`, {
+  getMyProfile(): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(`${this.usersUrl}/my-profile`, {
       headers: this.headers
     });
   }

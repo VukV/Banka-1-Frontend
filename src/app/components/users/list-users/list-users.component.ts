@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserPositionEnum} from "../../../model/user-position-enum";
-import {UserService} from "../../../services/user.service";
+import {UserPositionEnum} from "../../../model/user/user-position-enum";
+import {UserService} from "../../../services/user/user.service";
 import {PopupComponent} from "../../popup/popup.component";
-import {UserModel} from "../../../model/user-model";
+import {UserModel} from "../../../model/user/user-model";
 
 
 @Component({
@@ -17,12 +17,13 @@ export class ListUsersComponent implements OnInit {
   email: string = "";
   firstName: string = "";
   lastName: string = "";
-  position: string = "";
+  position = null;
 
   totalPages: number = 0;
   currentPage: number = 1;
-  totalUsers: number = 20;
+  totalUsers: number = 0;
   page: number = 1;
+  usersPerPage: number = 6;
 
 
   @ViewChild(PopupComponent)
@@ -35,7 +36,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   searchUsers(){
-    this.userService.loadAllUsers(this.firstName, this.lastName, this.email, this.position, this.page-1).subscribe(
+    this.userService.loadAllUsers(this.firstName, this.lastName, this.email, this.position, this.page-1, this.usersPerPage).subscribe(
       (data) => {
         this.users = data.content;
         this.totalPages = data.totalPages;

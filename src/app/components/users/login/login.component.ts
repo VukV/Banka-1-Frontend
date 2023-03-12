@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CurrentUserService} from "../../../services/current-user.service";
+import {CurrentUserService} from "../../../services/user/current-user.service";
 import {PopupComponent} from "../../popup/popup.component";
 import {Router} from "@angular/router";
-import {UserService} from "../../../services/user.service";
-import {LogInRequest} from "../../../model/log-in-request";
+import {UserService} from "../../../services/user/user.service";
+import {LogInRequest} from "../../../model/user/log-in-request";
 
 @Component({
   selector: 'app-login',
@@ -39,14 +39,13 @@ export class LoginComponent implements OnInit {
 
       },
       error: (error) => {
-        this.popupComponent.openPopup(error.message)
+        this.popupComponent.openPopup("Pogrešni kredencijali!");
       },
       next: (loginRes) => {
-        this.jwt = loginRes.jwtToken
-        this.currentUserService.setLogin(this.jwt)
-        this.router.navigate(['/home'])
+        this.jwt = loginRes.jwtToken;
+        this.currentUserService.setLogin(this.jwt);
+        this.router.navigate(['']);
       }
-
     })
   }
 

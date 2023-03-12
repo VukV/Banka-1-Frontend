@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PopupComponent} from "../../popup/popup.component";
 import {Router} from "@angular/router";
-import {UserService} from "../../../services/user.service";
+import {UserService} from "../../../services/user/user.service";
 
 @Component({
   selector: 'app-reset-password-request',
@@ -27,11 +27,10 @@ export class ResetPasswordRequestComponent implements OnInit {
 
       },
       error: (error) => {
-        this.popupComponent.openPopup(error.message)
+        this.popupComponent.openPopup(error.message);
       },
       next: (any) => {
-        this.popupComponent.openPopup(any.headers.statusCode)
-        console.log(any.headers.statusCode)
+        this.popupComponent.openPopup("Proverite email za detalje o promeni šifre.");
       }
 
     })
