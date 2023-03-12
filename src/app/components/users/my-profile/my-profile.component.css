@@ -24,3 +24,7 @@ h5.error {
 .sifra-div:hover{
   cursor: pointer;
 }
+
+input:disabled{
+  background: #dadada;
+}

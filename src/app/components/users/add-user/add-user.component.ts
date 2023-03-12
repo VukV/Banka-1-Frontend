@@ -16,6 +16,7 @@ export class AddUserComponent implements OnInit {
 
   emailRegex = new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
   jmbgRegex = new RegExp("^[0-9]{13}$");
+  phoneRegex = new RegExp('^((\\+381)|0)6[0-9]{4,8}$');
 
   email: string = "";
   phone: string = "";
@@ -47,8 +48,8 @@ export class AddUserComponent implements OnInit {
       this.error = "Email nije validan!";
       return;
     }
-    if (this.phone == "") {
-      this.error = "Telefon mora biti unet!";
+    if (!this.phoneRegex.test(this.phone)) {
+      this.error = "Telefon nije validan!";
       return;
     }
     if (!this.jmbgRegex.test(this.jmbg)) {

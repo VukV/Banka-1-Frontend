@@ -22,6 +22,7 @@ export class MyProfileComponent implements OnInit {
   position: string = "";
   error: string = "";
 
+  phoneRegex = new RegExp('^((\\+381)|0)6[0-9]{4,8}$');
 
   constructor(private userService: UserService, private location: Location) { }
 
@@ -46,8 +47,8 @@ export class MyProfileComponent implements OnInit {
 
   updateMyProfile(): void {
     this.error = "";
-    if(this.phone == "") {
-      this.error = "Telefon mora biti unet!";
+    if (!this.phoneRegex.test(this.phone)) {
+      this.error = "Telefon nije validan!";
       return;
     }
     if(this.firstName == "") {
