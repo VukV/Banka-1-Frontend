@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
-  showHelp: boolean = true;
+  showHelp: boolean = false;
 
   constructor() { }
 

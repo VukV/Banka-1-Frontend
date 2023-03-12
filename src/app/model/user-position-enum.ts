@@ -1,4 +1,4 @@
 export enum UserPositionEnum{
-  //TODO
-  TESTPOSITION = "Test pozicija"
+  ADMINISTRATOR = "ADMINISTRATOR",
+  EMPLOYEE = "EMPLOYEE"
 }

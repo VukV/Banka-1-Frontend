@@ -15,12 +15,14 @@ export class UpdateUserComponent implements OnInit {
   popupComponent!: PopupComponent;
 
   emailRegex = new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
-  jmbgRegex = new RegExp("^[0-9]{13}$");
+
+  //jedno malo, jedno veliko, broj, specijalni karakter i duzinu od 8 karaktera
+  passwordRegex = new RegExp("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.* ).{8,}$");
 
   id: number = -1;
   email: string = "";
   phone: string = "";
-  password: string = "";
+  password = null;
   firstName: string = "";
   lastName: string = "";
   position: string = "";
@@ -70,12 +72,14 @@ export class UpdateUserComponent implements OnInit {
       this.error = "Email nije validan!";
       return;
     }
+    if(this.password != null){
+      if (!this.passwordRegex.test(this.password)) {
+        this.error = "Šifra mora da sadrži veliko i malo slovo, broj, specijalni karakter, i da ima 8 karaktera!";
+        return;
+      }
+    }
     if (this.phone == "") {
       this.error = "Telefon mora biti unet!";
-      return;
-    }
-    if (!this.jmbgRegex.test(this.password)) {
-      this.error = "JMBG nije validan!";
       return;
     }
     if (this.firstName == "") {
