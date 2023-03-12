@@ -139,6 +139,10 @@ export class UserService{
   getMyProfile(): Observable<UserModel> {
     return this.httpClient.get<UserModel>(`${this.usersUrl}/my-profile`, {
       headers: this.headers
-    });
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
   }
 }

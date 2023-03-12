@@ -18,6 +18,7 @@ export class UpdateUserComponent implements OnInit {
 
   //jedno malo, jedno veliko, broj, specijalni karakter i duzinu od 8 karaktera
   passwordRegex = new RegExp("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.* ).{8,}$");
+  phoneRegex = new RegExp('^((\\+381)|0)6[0-9]{4,8}$');
 
   id: number = -1;
   email: string = "";
@@ -78,8 +79,8 @@ export class UpdateUserComponent implements OnInit {
         return;
       }
     }
-    if (this.phone == "") {
-      this.error = "Telefon mora biti unet!";
+    if (!this.phoneRegex.test(this.phone)) {
+      this.error = "Telefon nije validan!";
       return;
     }
     if (this.firstName == "") {
