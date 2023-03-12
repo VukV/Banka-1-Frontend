@@ -109,4 +109,24 @@ export class UserService {
       })
     );
   }
+
+  updateMyprofile( phone: string,  firstName: string,
+                   lastName: string)
+  {
+    const userUpdateData = {
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phone,
+    };
+    return this.httpClient.put<UserModel>(`${this.usersUrl}/api/my-profile/update`,{firstName,lastName,phone}, {
+      headers: this.headers
+    });
+  }
+
+
+  getMyProfile(id: number): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(`${this.usersUrl}/api/my-profile`, {
+      headers: this.headers
+    });
+  }
 }

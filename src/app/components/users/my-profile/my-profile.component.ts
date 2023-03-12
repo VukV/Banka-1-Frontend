@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {PopupComponent} from "../../popup/popup.component";
+import {UserPositionEnum} from "../../../model/user-position-enum";
+import {UserRoleEnum} from "../../../model/user-role-enum";
+import {UserService} from "../../../services/user.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-profile',
@@ -6,10 +11,97 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-profile.component.css']
 })
 export class MyProfileComponent implements OnInit {
+  @ViewChild(PopupComponent)
+  popupComponent!: PopupComponent;
+  element = false;
+  emailRegex = new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
+  jmbgRegex = new RegExp("^[0-9]{13}$");
 
-  constructor() { }
+  email: string = "";
+  id: number = -1;
+  errorsExists: boolean=false;
+  errorString: string[] = [];
+  phone: string = "";
+  jmbg: string = "";
+  firstName: string = "";
+  lastName: string = "";
+  position: string = "";
+  allPositions: string[] = Object.values(UserPositionEnum);
+  roles: string[] = [];
+  allRoles: string[] = Object.values(UserRoleEnum);
+  error: string = "";
+
+
+  constructor(private UserService: UserService,
+              private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    let id = this.activatedRoute.snapshot.paramMap.get("userId");
+    if (id == null) {
+      this.router.navigate(["users"]);
+      return;
+    }
+    this.id = parseInt(id);
+    this.UserService.getMyProfile(this.id).subscribe({
+      next: (userModel) => {
+        this.phone = userModel.phoneNumber;
+        this.firstName = userModel.firstName;
+        this.lastName = userModel.lastName;
+
+      },
+      error: (error) => this.popupComponent.openPopup(`Nije uspelo dohvatanje logovanog korisnika: ${error.error.message}`)
+    });
   }
+
+
+
+  updateMyprofile(): void {
+    this.errorString=[];
+    this.errorsExists=false;
+    if(this.phone==="" || this.firstName ==="" || this.lastName === "")
+    {
+      this.errorString.push("Morate popuniti  polja!");
+      this.errorsExists=true;
+    }
+    this.error = "";
+    if (!this.emailRegex.test(this.email)) {
+      this.error = "Email nije validan!";
+      return;
+    }
+    if (this.phone == "") {
+      this.error = "Telefon mora biti unet!";
+      return;
+    }
+    if (!this.jmbgRegex.test(this.jmbg)) {
+      this.error = "JMBG nije validan!";
+      return;
+    }
+    if (this.firstName == "") {
+      this.error = "Ime mora biti uneto!";
+      return;
+    }
+    if (this.lastName == "") {
+      this.error = "Prezime mora biti uneto!";
+      return;
+    }
+    if (this.position == "") {
+      this.error = "Pozicija mora biti odabrana!";
+      return;
+    }
+    this.UserService.updateMyprofile(this.firstName, this.lastName, this.phone)
+      .subscribe({
+          next: () => this.router.navigate(["users"]),
+          error: (error) => this.popupComponent.openPopup(`Izmene su neuspešne: ${error.error.message}`)
+        }
+      );
+  }
+
+  cancel(): void {
+    this.router.navigate(["users"]);
+  }
+
+
+
+
 
 }
