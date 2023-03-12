@@ -1,5 +1,6 @@
 form {
   padding: 4em;
+  padding-bottom: 2em;
   border: solid 2px;
   border-color: var(--si-green);
   border-radius: 50px;
