@@ -10,7 +10,7 @@ form {
   color: var(--si-green);
 }
 
-h5.error {
+h6.error {
   color: var(--si-red);
 }
 
