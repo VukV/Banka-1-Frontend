@@ -27,7 +27,7 @@
         <div class="myp-text">Ime</div>
       </div>
       <div class="col-md-3 align-items-center d-flex justify-content-center">
-        <input type="text" [(ngModel)]="firstName" class="form-control" id="firstName" name="firstName" placeholder="Ime">
+        <input type="text" [(ngModel)]="firstName" data-cy="firstName" class="form-control" id="firstName" name="firstName" placeholder="Ime">
       </div>
     </div>
 
@@ -36,7 +36,7 @@
         <div class="myp-text">Prezime</div>
       </div>
       <div class="col-md-3 align-items-center d-flex justify-content-center">
-        <input type="text" [(ngModel)]="lastName" class="form-control" id="lastName" name="lastName" placeholder="Prezime">
+        <input type="text" [(ngModel)]="lastName" data-cy="lastName" class="form-control" id="lastName" name="lastName" placeholder="Prezime">
       </div>
     </div>
 
@@ -45,7 +45,7 @@
         <div class="myp-text">Telefon</div>
       </div>
       <div class="col-md-3 align-items-center d-flex justify-content-center">
-        <input type="text" [(ngModel)]="phone" class="form-control" id="phone" name="phone" placeholder="Telefon">
+        <input type="text" [(ngModel)]="phone" data-cy="phone" class="form-control" id="phone" name="phone" placeholder="Telefon">
       </div>
     </div>
 
@@ -87,13 +87,13 @@
 
     <div class="row d-flex justify-content-end">
       <div class="col-md-3 d-grid align-items-center">
-        <h5 *ngIf="error != ''" class="text-center error mt-3">{{error}}</h5>
+        <h6 *ngIf="error != ''" data-cy="error" class="text-center error mt-3">{{error}}</h6>
       </div>
     </div>
 
     <div class="row d-flex justify-content-end">
       <div class="col-md-3 d-grid align-items-center">
-        <button type="button" class="btn btn-green btn-block rounded-pill" (click)="updateMyProfile()">Promeni</button>
+        <button type="button" data-cy="promeni" class="btn btn-green btn-block rounded-pill" (click)="updateMyProfile()">Promeni</button>
       </div>
     </div>
 
