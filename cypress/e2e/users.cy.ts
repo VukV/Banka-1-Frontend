@@ -1,6 +1,6 @@
 describe('Stranica korisnika', () => {
   beforeEach(() => {
-    cy.login(Cypress.env("email"), Cypress.env("password"));
+    cy.login();
     cy.get('[data-cy="users"]').click();
     cy.url().should('include', 'users');
   })

@@ -47,7 +47,7 @@
       </div>
     </div>
     <h3>Permisije</h3>
-    <div class="row row-cols-1 row-cols-md-3">
+    <div id="permissions" class="row row-cols-1 row-cols-md-3">
       <div *ngFor="let role of allRoles" class="col form-group">
         <input class="form-check-input" type="checkbox" id="{{role}}" name="permission"
                (change)="roleCheckChanged(role, $event)">
@@ -59,12 +59,12 @@
   <br>
   <h5 *ngIf="error != ''" class="text-center error mt-3">{{error}}</h5>
   <div class="row justify-content-center mt-3">
-    <button type="button" class="col-6 col-md-3 btn btn-green btn-block rounded-pill" (click)="addUser()">
+    <button type="button" id="addUser" class="col-6 col-md-3 btn btn-green btn-block rounded-pill" (click)="addUser()">
       Završi
     </button>
   </div>
   <div class="row justify-content-center mt-3">
-    <button type="button" class="col-6 col-md-3 btn btn-outline btn-block rounded-pill" (click)="cancel()">
+    <button type="button" id="cancel" class="col-6 col-md-3 btn btn-outline btn-block rounded-pill" (click)="cancel()">
       Odustani
     </button>
   </div>
