@@ -1,0 +1,77 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold"><a class="green-link" href="/users">Korisnici</a></li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Izmeni korisnika</li>
+    </ol>
+  </nav>
+
+  <br>
+  <h2 class="mt-3 mb-3 fw-bold">Izmeni korisnika</h2>
+
+  <br><br>
+
+  <form class="row justify-content-center">
+    <div class="row row-cols-1 row-cols-md-3">
+      <div class="col mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" [(ngModel)]="email" class="form-control" id="email" name="email" placeholder="Email">
+      </div>
+      <div class="col mb-3">
+        <label for="phone" class="form-label">Telefon</label>
+        <input type="text" [(ngModel)]="phone" class="form-control" id="phone" name="phone" placeholder="Telefon">
+      </div>
+      <div class="col mb-3">
+        <label for="password" class="form-label">Šifra</label>
+        <input type="password" [(ngModel)]="password" class="form-control" id="password" name="password" placeholder="Nova šifra (opciono)">
+      </div>
+      <div class="col mb-3">
+        <label for="firstName" class="form-label">Ime</label>
+        <input type="text" [(ngModel)]="firstName" class="form-control" id="firstName" name="firstName" placeholder="Ime">
+      </div>
+      <div class="col mb-3">
+        <label for="lastName" class="form-label">Prezime</label>
+        <input type="text" [(ngModel)]="lastName" class="form-control" id="lastName" name="lastName" placeholder="Prezime">
+      </div>
+      <div class="col mb-3">
+        <label for="position" class="form-label">Pozicija</label>
+        <select [(ngModel)]="position" class="form-select" id="position" name="position">
+          <option *ngFor="let position of allPositions" value="{{position}}">{{position}}</option>
+        </select>
+      </div>
+      <div class="col mb-3">
+        <input [(ngModel)]="active" type="checkbox" class="form-check-input" id="active" name="active">
+        <label for="active" class="ms-3 form-label">Aktivan</label>
+      </div>
+    </div>
+    <h3>Permisije</h3>
+    <div class="row row-cols-1 row-cols-md-3">
+      <div *ngFor="let role of allRoles" class="col form-group">
+        <input class="form-check-input" type="checkbox" id="{{role}}" name="permission"
+               (change)="roleCheckChanged(role, $event)" [checked]="roles.includes(role)">
+        <label class="ms-3 form-check-label" for="{{role}}">{{role}}</label>
+      </div>
+    </div>
+  </form>
+
+  <br>
+  <h5 *ngIf="error != ''" class="text-center error mt-3">{{error}}</h5>
+  <div class="row justify-content-center mt-3">
+    <button type="button" class="col-6 col-md-3 btn btn-green btn-block rounded-pill" (click)="updateUser()">
+      Sačuvaj izmene
+    </button>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <button type="button" class="col-6 col-md-3 btn btn-outline btn-block rounded-pill" (click)="cancel()">
+      Odustani
+    </button>
+  </div>
+
+  <app-popup></app-popup>
+</div>

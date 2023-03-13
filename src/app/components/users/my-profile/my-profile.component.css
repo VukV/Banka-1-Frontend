@@ -1,0 +1,31 @@
+form {
+  padding: 4em;
+  padding-bottom: 2em;
+  border: solid 2px;
+  border-color: var(--si-green);
+  border-radius: 50px;
+}
+
+.myp-text {
+  color: var(--si-green);
+}
+
+h6.error {
+  color: var(--si-red);
+}
+
+.row{
+  margin-bottom: 10px;
+}
+
+.sifra-div{
+  text-decoration: underline;
+}
+
+.sifra-div:hover{
+  cursor: pointer;
+}
+
+input:disabled{
+  background: #dadada;
+}
