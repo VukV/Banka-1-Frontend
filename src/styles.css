@@ -26,7 +26,7 @@ div, p, h1, h2, h3, h4, h5, h6{
   box-shadow: 0 0 0 3px rgba(11, 148, 8, 0.75);
 }
 
-nav{
+#main-nav{
   background-color: var(--si-black);
 }
 
@@ -57,4 +57,27 @@ nav{
 
   display: flex;
   align-items: center;
+}
+
+.breadcrumb{
+  margin-top: 20px;
+  background-color: rgba(47,210,13,0);
+}
+
+.breadcrumb-item{
+  font-size: 20px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  color: #F1FFF9;
+}
+
+.green-link{
+  color: #F1FFF9;
+  text-decoration: none;
+}
+
+.green-link:hover{
+  color: #00B127;
 }
