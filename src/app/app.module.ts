@@ -16,7 +16,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { PopupComponent } from './components/popup/popup.component';
 import {NgxPaginationModule} from "ngx-pagination";
-import { StockMarketComponent } from './components/stock-market/stock-market/stock-market.component';
 import { StocksComponent } from './components/stock-market/stocks/stocks.component';
 import { ForexComponent } from './components/stock-market/forex/forex.component';
 import { FuturesComponent } from './components/stock-market/futures/futures.component';
@@ -28,8 +27,9 @@ import { TradesComponent } from './components/trades/trades/trades.component';
 import { TradesForexComponent } from './components/trades/trades-forex/trades-forex.component';
 import { CapitalMainComponent } from './components/capital/capital-main/capital-main.component';
 import { CapitalMarginComponent } from './components/capital/capital-margin/capital-margin.component';
-import { CapitalChekingComponent } from './components/capital/capital-cheking/capital-cheking.component';
 import { CapitalCheckingComponent } from './components/capital/capital-checking/capital-checking.component';
+import { MarginPopupComponent } from './components/capital/margin-popup/margin-popup.component';
+import { CheckingPopupComponent } from './components/capital/checking-popup/checking-popup.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,6 @@ import { CapitalCheckingComponent } from './components/capital/capital-checking/
     UpdateUserComponent,
     HomeComponent,
     PopupComponent,
-    StockMarketComponent,
     StocksComponent,
     ForexComponent,
     FuturesComponent,
@@ -56,8 +55,9 @@ import { CapitalCheckingComponent } from './components/capital/capital-checking/
     TradesForexComponent,
     CapitalMainComponent,
     CapitalMarginComponent,
-    CapitalChekingComponent,
-    CapitalCheckingComponent
+    CapitalCheckingComponent,
+    MarginPopupComponent,
+    CheckingPopupComponent
   ],
   imports: [
     BrowserModule,
