@@ -13,12 +13,40 @@ import {
 import {ResetPasswordComponent} from "./components/users/reset-password/reset-password.component";
 import {ActivatePasswordComponent} from "./components/users/activate-password/activate-password.component";
 import {UserRoleEnum} from "./model/user/user-role-enum";
+import {StockMainComponent} from "./components/stock-market/stock-main/stock-main.component";
+import {StocksDetailComponent} from "./components/stock-market/stocks-detail/stocks-detail.component";
+import {ForexDetailComponent} from "./components/stock-market/forex-detail/forex-detail.component";
+import {TradesMainComponent} from "./components/trades/trades-main/trades-main.component";
 
 const routes: Routes = [
   {
-    path: "",
+    path: "help",
     component: HomeComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: "stock-market",
+    component: StockMainComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "stocks-detail/:id",
+    component: StocksDetailComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "forex-detail/:id",
+    component: ForexDetailComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "trades",
+    component: TradesMainComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
   },
   {
     path: "users",

@@ -2,7 +2,7 @@
   <br>
   <h2 class="fw-bold">Početna</h2>
 
-  <div *ngIf="showHelp else home;">
+  <div>
     <!-- NORMAL BUTTONS -->
     <div class="row justify-content-center">
 
@@ -46,26 +46,6 @@
       </div>
     </div>
   </div>
-
-
-  <ng-template #home>
-    <br><br><br>
-    <div class="row justify-content-center">
-      <div class="col-md-4 d-flex justify-content-center align-items-center">
-        <img src="assets/dollar-icon.svg" alt="icon" width="200" height="200">
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-md-4 d-flex justify-content-center align-items-center">
-        <h1 class="fw-bold">RAF BANKA 1</h1>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-md-4 d-flex justify-content-center align-items-center">
-        <h4>Aplikacija u izradi...</h4>
-      </div>
-    </div>
-  </ng-template>
 
   <app-popup></app-popup>
 </div>

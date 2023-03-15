@@ -16,6 +16,20 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { PopupComponent } from './components/popup/popup.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import { StockMarketComponent } from './components/stock-market/stock-market/stock-market.component';
+import { StocksComponent } from './components/stock-market/stocks/stocks.component';
+import { ForexComponent } from './components/stock-market/forex/forex.component';
+import { FuturesComponent } from './components/stock-market/futures/futures.component';
+import { StockMainComponent } from './components/stock-market/stock-main/stock-main.component';
+import { StocksDetailComponent } from './components/stock-market/stocks-detail/stocks-detail.component';
+import { ForexDetailComponent } from './components/stock-market/forex-detail/forex-detail.component';
+import { TradesMainComponent } from './components/trades/trades-main/trades-main.component';
+import { TradesComponent } from './components/trades/trades/trades.component';
+import { TradesForexComponent } from './components/trades/trades-forex/trades-forex.component';
+import { CapitalMainComponent } from './components/capital/capital-main/capital-main.component';
+import { CapitalMarginComponent } from './components/capital/capital-margin/capital-margin.component';
+import { CapitalChekingComponent } from './components/capital/capital-cheking/capital-cheking.component';
+import { CapitalCheckingComponent } from './components/capital/capital-checking/capital-checking.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +43,21 @@ import {NgxPaginationModule} from "ngx-pagination";
     ResetPasswordRequestComponent,
     UpdateUserComponent,
     HomeComponent,
-    PopupComponent
+    PopupComponent,
+    StockMarketComponent,
+    StocksComponent,
+    ForexComponent,
+    FuturesComponent,
+    StockMainComponent,
+    StocksDetailComponent,
+    ForexDetailComponent,
+    TradesMainComponent,
+    TradesComponent,
+    TradesForexComponent,
+    CapitalMainComponent,
+    CapitalMarginComponent,
+    CapitalChekingComponent,
+    CapitalCheckingComponent
   ],
   imports: [
     BrowserModule,
