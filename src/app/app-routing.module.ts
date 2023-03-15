@@ -26,6 +26,12 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
+    path: "",
+    component: StockMainComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
     path: "stock-market",
     component: StockMainComponent,
     canActivate: [LoginGuard],
