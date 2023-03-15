@@ -79,5 +79,15 @@ div, p, h1, h2, h3, h4, h5, h6{
 }
 
 .green-link:hover{
-  color: #00B127;
+  color: var(--si-green);
+}
+
+.btn-outline-primary{
+  border-color: var(--si-green);
+  color: var(--si-green);
+}
+
+.btn-outline.active{
+  background-color: var(--si-green);
+  border-color: #007e20;
 }
