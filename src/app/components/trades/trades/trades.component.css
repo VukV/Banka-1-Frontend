@@ -1,0 +1,70 @@
+:root {
+  --si-green: #00B127;
+  --si-white: #F1FFF9;
+  --si-black: #151515;
+  --si-black-transparent: rgba(21, 21, 21, 0.6);
+  --si-red: #d70000;
+}
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+  background-color: var(--si-black);
+  background-image: linear-gradient(0deg, #151515 65%, rgba(0, 177, 39, 0.35) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+div, p, h1, h2, h3, h4, h5, h6 {
+  color: var(--si-white);
+}
+
+label {
+  color: var(--si-green);
+}
+
+input {
+  margin-top: 5px;
+  color: var(--si-black);
+  border-color: var(--si-white);
+  width: 250px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: var(--si-black-transparent);
+  font: inherit;
+  color: currentColor;
+}
+
+input[type="checkbox"]:checked {
+  appearance: none;
+  background-color: var(--si-green);
+  font: inherit;
+  color: currentColor;
+}
+
+#allornone, #margina {
+  padding: 4px;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  color: var(--si-black);
+  border: 1px solid var(--si-green);
+  border-radius: 5px;
+}
+
+#allornoneLabel, #marginaLabel {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  color: var(--si-white);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: smaller;
+}
+
