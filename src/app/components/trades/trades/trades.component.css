@@ -1,26 +1,3 @@
-:root {
-  --si-green: #00B127;
-  --si-white: #F1FFF9;
-  --si-black: #151515;
-  --si-black-transparent: rgba(21, 21, 21, 0.6);
-  --si-red: #d70000;
-}
-
-* {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-body {
-  background-color: var(--si-black);
-  background-image: linear-gradient(0deg, #151515 65%, rgba(0, 177, 39, 0.35) 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-div, p, h1, h2, h3, h4, h5, h6 {
-  color: var(--si-white);
-}
-
 label {
   color: var(--si-green);
 }
