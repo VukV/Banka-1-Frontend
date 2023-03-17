@@ -11,6 +11,17 @@
     </ol>
   </nav>
 
-  <!-- NASTAVI OVDE -->
+    <div class="row form-inline">
+      <div class="row d-flex justify-content-between">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <button type="button"  class="btn btn-btn-green-noborder me-3 " [ngStyle]="{'border-color': active=='btn1'? '#007e20' : 'transparent', 'color': '#00B127FF' }" (click)="onButtonClick('btn1')">Tekući račun</button>
+          <button type="button"  class="btn btn-btn-green-noborder " [ngStyle]="{'border-color': active=='btn2'? '#007e20' : 'transparent', 'color': '#00B127FF'}" (click)="onButtonClick('btn2')">Maržni račun</button>
+        </div>
+      </div>
+    </div>
 
+  <div class="parent-component" [ngSwitch]="active">
+    <app-capital-checking *ngSwitchCase="'btn1'"></app-capital-checking>
+    <app-capital-margin *ngSwitchCase="'btn2'"></app-capital-margin>
+  </div>
 </div>
