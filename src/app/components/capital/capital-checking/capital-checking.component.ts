@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PregledKapitala, TekuciRacun} from "../../../model/capital-checking";
 
 @Component({
   selector: 'app-capital-checking',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CapitalCheckingComponent implements OnInit {
 
-  constructor() { }
+  racuni: TekuciRacun[] = []
+  valuta: string= ""
+  ukupnor: number=0
+  rezervisano: number=0
+  raspolozivo: number=0
+
+  kapitali: PregledKapitala[] = []
+  tipkapitala: string = ""
+  ukupnok: number = 0
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

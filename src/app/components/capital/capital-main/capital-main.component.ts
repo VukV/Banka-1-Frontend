@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CapitalMainComponent implements OnInit {
 
+  active: string = 'btn1';
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onButtonClick(btn: string){
+    this.active = btn
   }
 
 }
