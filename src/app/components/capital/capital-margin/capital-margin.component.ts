@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CapitalMarginComponent implements OnInit {
 
-  constructor() { }
+
 
   ngOnInit(): void {
   }
