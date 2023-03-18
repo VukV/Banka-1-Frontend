@@ -1,0 +1,13 @@
+.text-color{
+  color: var(--si-green);
+  font-weight: bold;
+}
+
+.toggle1-toggle2-size{
+  width: 100px;
+}
+
+.toggle3-size{
+  width: 210px;
+}
+
