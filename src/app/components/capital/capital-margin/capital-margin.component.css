@@ -1,12 +1,1 @@
-.modal{
-  background: var(--si-black-transparent);
-}
 
-.modal-content{
-  margin-top: 30%;
-  border-radius: 25px;
-  background-color: var(--si-black);
-  box-shadow: 0 0 7px rgba(0, 177, 38, 0.3)  ;
-  -webkit-box-shadow: 0 0 7px rgba(0, 177, 38, 0.3)  ;
-  -moz-box-shadow: 0 0 7px rgba(0, 177, 38, 0.3)  ;
-}
