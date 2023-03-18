@@ -1,1 +1,37 @@
-<p>margin-popup works!</p>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content ">
+      <div class="modal-header py-4 px-4">
+        <h3 class="modal-title"><b>Tekuci racun</b></h3>
+        <button type="button" class="dugme" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()">x</button>
+      </div>
+
+      <div class="modal-body py-3 px-4">
+
+
+        <div class=" justify-content-start mt-2 mb-4">
+          <h4><b>Uplata/Isplata</b></h4>
+        </div>
+        <div class="row my-3">
+          <div class="col-3 ">
+            <div class="myp-text mb-3">Valuta</div>
+            <select name="valuta" id="valute">
+              <option value="dinari">RSD</option>
+              <option value="euri">EURO</option>
+              <option value="dolari">$</option>
+              <option value="marke">KM</option>
+            </select>
+          </div>
+          <div class="col-md-9  ">
+            <div class="myp-text mb-3">Iznos</div>
+            <input type="text"  data-cy="iznos" class="form-control" id="iznos" name="iznos" placeholder="">
+          </div>
+        </div>
+
+        <div class=" d-flex align-items-center justify-content-end">
+          <button type="button" class="btn btn-green rounded-pill mt-4 px-5 mb-4" >Realizuj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

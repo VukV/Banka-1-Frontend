@@ -18,6 +18,7 @@ export class CapitalMarginComponent implements OnInit {
   kapitali: PregledKapitala[] = []
   tipkapitala: string = ""
   ukupnok: number = 0
+  
   constructor() {
   }
 
