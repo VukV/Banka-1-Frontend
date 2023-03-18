@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ForexComponent} from "../forex/forex.component";
 
 @Component({
   selector: 'app-stock-main',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StockMainComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(ForexComponent)
+  forexComponent!: ForexComponent
 
-  ngOnInit(): void {
+  stockType: string
+  flag: boolean
+
+  constructor() {
+    this.stockType = ''
+    this.flag = false
   }
 
+  ngOnInit(): void {
+    this.flag = true
+  }
+
+  setStockType(stockType: string): void{
+    this.stockType = stockType
+  }
+
+  resetFlag(): void{
+    this.flag = false
+  }
 }

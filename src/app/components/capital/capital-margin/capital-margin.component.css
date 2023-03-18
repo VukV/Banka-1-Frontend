@@ -1,1 +1,37 @@
 
+.trtable{
+  color: var(--si-green);
+}
+
+
+.csstable{
+  color: white;
+  table-layout: fixed;
+}
+
+th{
+  font-weight: lighter;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.table-d{
+  color: white;
+  font-weight: 600;
+  table-layout: fixed;
+}
+
+.rectangle{
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 40px;
+  padding-right: 20px;
+  padding-top: 20px;
+  border: 1px solid #00B127;
+  border-radius: 20px;
+}
+
+.users-table-row{
+  margin-top: 20px;
+}

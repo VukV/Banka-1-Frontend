@@ -1,3 +1,73 @@
+<div class="container">
 
+  <div class="row justify-content-center users-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-between">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Maržni račun</h2>
+        </div>
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <button type="button" id="uplata" class="btn btn-outline rounded-pill" [routerLink]="['/uplata']" data-cy="uplata">Uplata/Isplata</button>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around">
+        <table class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>Valuta</th>
+            <th>Ukupno</th>
+            <th>Kredit</th>
+            <th>Maintenance Margin</th>
+            <th>Margin Call</th>
+            <!--          <th></th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <tr *ngFor="let racun of this.racuni ">
+            <!--          <th scope="row">{{ racun.id }}</th>-->
+            <td>{{ racun.valuta }}</td>
+            <td>{{ racun.ukupnom }}</td>
+            <td>{{ racun.kredit }}</td>
+            <td>{{ racun.maintenance }}</td>
+            <td>{{ racun.ukupnom }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
+  <div class="row justify-content-center users-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-between">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Pregled kapitala</h2>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around">
+        <table class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>Tip kapitala</th>
+            <th>Ukupno</th>
+            <!--          <th></th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <tr *ngFor="let kapital of this.kapitali ">
+            <!--          <th scope="row">{{ racun.id }}</th>-->
+            <td>{{ kapital.tipkapitala }}</td>
+            <td>{{ kapital.ukupnok }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
 

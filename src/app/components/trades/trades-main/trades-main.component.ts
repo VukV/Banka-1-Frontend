@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {StocksEnum} from "../../../model/stocks-enum";
 
 @Component({
   selector: 'app-trades-main',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TradesMainComponent implements OnInit {
 
-  constructor() { }
+  enumStocks = StocksEnum;
+  vrAction: string = this.enumStocks.STOCKS;
 
-  ngOnInit(): void {
+  constructor() {
   }
 
+  ngOnInit(): void {
+    console.log(this.vrAction);
+  }
+
+  onSelected() {
+    console.log("Vrednost: " + this.vrAction)
+  }
 }

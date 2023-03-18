@@ -91,3 +91,24 @@ div, p, h1, h2, h3, h4, h5, h6{
   background-color: var(--si-green);
   border-color: #007e20;
 }
+
+.btn-green-noborder{
+  color: var(--si-green);
+}
+.btn-green-noborder:hover{
+  border-color: #007e20;
+  color: var(--si-green);
+}
+
+label.btn.btn-outline-toggle:hover{
+  color: var(--si-green);
+}
+
+.btn-outline-toggle{
+  color: var(--si-white);
+}
+
+.btn-check:checked + label{
+  color: var(--si-green) !important;
+  border-color: var(--si-green) !important;
+}

@@ -1,1 +1,104 @@
-<p>trades works!</p>
+<form [formGroup]="stocksFormGroup"
+      (ngSubmit)="onButtonStocksSubmit()" class="row justify-content-start">
+
+  <div class="row d-flex justify-content-start pt-3">
+    <div class="col-md-3 d-grid ">
+      <label for="action">Akcija</label>
+      <input data-cy="action" class="form-control"
+             formControlName="action" required type="text" id="action" name="action"/>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-start pt-3">
+    <div class="col-md-8 d-grid align-items-center">
+
+      <label for="quantity">Količina</label>
+
+      <div class="row d-flex justify-content-start align-items-center">
+        <div class="col-md-4 d-grid">
+
+          <input data-cy="quantity" class="form-control"
+                 formControlName="quantity" required type="number" id="quantity" name="quantity"/>
+
+        </div>
+
+        <div class="btn-group col-md-8 d-flex px-5 " role="group" aria-label="Basic outlined example">
+
+          <div class="col-md-3 d-grid align-items-lg-start px-2">
+            <input data-cy="btnBuy" type="radio" class="btn-check active" name="options-outlined" id="btnBuy"
+                   autocomplete="off"
+                   [ngClass]="{'active': isBtnBuyActive}" (click)="onClickBuy()" checked="checked">
+            <label class="btn btn-outline-toggle rounded-pill " for="btnBuy">BUY</label>
+
+          </div>
+
+          <div class="col-md-3 d-grid align-items-center px-2">
+
+            <input data-cy="btnSell" type="radio" class="btn-check" name="options-outlined" id="btnSell"
+                   autocomplete="off"
+                   [ngClass]="{'active': isBtnSellActive}" (click)="onClickSell()">
+            <label class="btn btn-outline-toggle rounded-pill" for="btnSell">SELL</label>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row d-flex justify-content-start pt-3">
+    <div class="col-md-8 d-flex ">
+
+      <div class="col-md-4 d-grid">
+        <label for="limit">Limit</label>
+        <input data-cy="limit" type="number" id="limit" name="limit" class="form-control"
+               formControlName="limit" required/>
+      </div>
+
+      <div class="col-md-4 d-grid px-5">
+        <label for="stop">Stop</label>
+        <input data-cy="stop" type="number" id="stop" name="stop" class="form-control"
+               formControlName="stop" required/>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row d-flex justify-content-start pt-3">
+    <div class="btn-group col-md-3 d-flex">
+
+      <div class="col-md-6 d-flex ">
+        <input data-cy="allornone" [class.active]="allornone" (click)="allornone = !allornone" type="checkbox"
+               id="allornone"/>
+        <label for="allornone" id="allornoneLabel">All or none</label>
+      </div>
+      <div class="col-md-6 d-flex ">
+        <input data-cy="margina" [class.active]="margina" (click)="margina = !margina" type="checkbox" id="margina">
+        <label for="margina" id="marginaLabel">Margina</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-start pt-5">
+    <div class="col-md-2 text-start align-items-start">
+      <div *ngIf="errorMessage != ''">
+        <label style="color: red"> {{ errorMessage }} </label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-2 d-grid align-items-center pt-3">
+    <button data-cy="btnSubmit" type="submit" class="btn btn-green btn-block rounded-pill">Naruci</button>
+  </div>
+
+</form>
+
+
+
+
+
+
+
