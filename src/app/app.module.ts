@@ -20,7 +20,7 @@ import { StocksComponent } from './components/stock-market/stocks/stocks.compone
 import { ForexComponent } from './components/stock-market/forex/forex.component';
 import { FuturesComponent } from './components/stock-market/futures/futures.component';
 import { StockMainComponent } from './components/stock-market/stock-main/stock-main.component';
-import { StocksDetailComponent } from './components/stock-market/stocks-detail/stocks-detail.component';
+import { StockDetailComponent } from './components/stock-market/stock-detail/stock-detail.component';
 import { ForexDetailComponent } from './components/stock-market/forex-detail/forex-detail.component';
 import { TradesMainComponent } from './components/trades/trades-main/trades-main.component';
 import { TradesComponent } from './components/trades/trades/trades.component';
@@ -48,7 +48,7 @@ import { CheckingPopupComponent } from './components/capital/checking-popup/chec
     ForexComponent,
     FuturesComponent,
     StockMainComponent,
-    StocksDetailComponent,
+    StockDetailComponent,
     ForexDetailComponent,
     TradesMainComponent,
     TradesComponent,

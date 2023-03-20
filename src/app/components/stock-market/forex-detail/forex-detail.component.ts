@@ -6,10 +6,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forex-detail.component.css']
 })
 export class ForexDetailComponent implements OnInit {
+  currencyFromSymbol: string = "";
+  currencyToSymbol: string = "";
+  exchangeRate: number = -1;
+  bid: number = -1;
+  ask: number = -1;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  refresh(): void {
+    // TODO
+  }
+
+  buy(): void {
+    // TODO
+  }
+
+  sell(): void {
+    // TODO
+  }
+
+  close(): void {
+    // TODO
   }
 
 }
