@@ -1,0 +1,85 @@
+<div class="container mt-3">
+  <h1>{{symbol}} <a class="bi bi-arrow-clockwise ms-2" id="refresh" data-cy="refresh" (click)="refresh()"></a></h1>
+  <hr id="divider1">
+  <div id="stockInfo" class="row row-cols-1 row-cols-md-2 p-3">
+    <div class="col">
+      <h4>{{name}}</h4>
+      <h2 id="price">${{price.toFixed(2)}}</h2>
+      <p id="priceChange" [class.text-red]="priceChangePercentage < 0" [class.text-green]="priceChangePercentage > 0">
+        {{priceChangePercentage}}% - danas
+      </p>
+      <p>Poslednje ažuriranje: <i>{{ lastUpdate | date: "dd MMM yyyy HH:mm"}}</i></p>
+    </div>
+    <div id="chart" class="col">
+      CHART TODO
+    </div>
+  </div>
+  <fieldset id="stockDetails" class="row row-cols-1 row-cols-md-2 mt-3 border rounded-5 p-3">
+    <legend class="float-none w-auto px-2">Details</legend>
+    <div class="col pe-md-4">
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">CHANGE:</p>
+        <p class="float-end my-1" [class.text-red]="priceChange < 0" [class.text-green]="priceChange > 0">
+          ${{priceChange.toFixed(2)}} ({{priceChangePercentage}}%)
+        </p>
+      </div>
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">OPEN:</p>
+        <p class="float-end my-1">${{open}}</p>
+      </div>
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">LOW:</p>
+        <p class="float-end my-1">${{low}}</p>
+      </div>
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">HIGH:</p>
+        <p class="float-end my-1">${{high}}</p>
+      </div>
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">PREVIOUS CLOSE:</p>
+        <p class="float-end my-1">${{previousClose}}</p>
+      </div>
+    </div>
+    <div class="col ps-md-4">
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">DAY RANGE:</p>
+        <p class="float-end my-1">${{dayRangeFrom}} - ${{dayRangeTo}}</p>
+      </div>
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">PRICE VOLUME:</p>
+        <p class="float-end my-1">${{formatter.format(priceVolume) | lowercase}}</p>
+      </div>
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">VOLUME:</p>
+        <p class="float-end my-1">${{formatter.format(volume) | lowercase}}</p>
+      </div>
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">OUTSTANDING SHARES:</p>
+        <p class="float-end my-1">${{formatter.format(outstandingShares) | lowercase}}</p>
+      </div>
+      <div class="stockDetailDiv p-1">
+        <p class="float-start my-1">MARKET CAP:</p>
+        <p class="float-end my-1">${{formatter.format(marketCap) | lowercase}}</p>
+      </div>
+    </div>
+  </fieldset>
+  <div class="row mt-3 justify-content-center justify-content-md-start">
+    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-start">
+      <button type="button" class="btn btn-outline rounded-pill w-75 fs-5 fw-bolder"
+              id="buy" data-cy="buy" (click)="buy()">BUY</button>
+    </div>
+    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-start">
+      <button type="button" class="btn btn-outline rounded-pill w-75 fs-5 fw-bolder"
+              id="sell" data-cy="sell" (click)="sell()">SELL</button>
+    </div>
+    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-start">
+      <button type="button" class="btn btn-outline-light border-top-0 border-start-0 border-end-0"
+              id="seeOptions" data-cy="seeOptions" (click)="seeOptions()">SEE OPTIONS</button>
+    </div>
+    <div class="col-0 col-md-4"></div>
+    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-end">
+      <button type="button" class="btn btn-green rounded-pill w-75 justify-content-end"
+              id="close" data-cy="close" (click)="close()">Close</button>
+    </div>
+  </div>
+</div>
