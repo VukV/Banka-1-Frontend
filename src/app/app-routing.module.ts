@@ -18,6 +18,10 @@ import {StockDetailComponent} from "./components/stock-market/stock-detail/stock
 import {ForexDetailComponent} from "./components/stock-market/forex-detail/forex-detail.component";
 import {TradesMainComponent} from "./components/trades/trades-main/trades-main.component";
 import {CapitalMainComponent} from "./components/capital/capital-main/capital-main.component";
+import {OptionsComponent} from "./components/stock-market/options/options.component";
+import {OrdersComponent} from "./components/orders/orders.component";
+import {CompaniesComponent} from "./components/companies/companies/companies.component";
+import {ContractsComponent} from "./components/contracts/contracts/contracts.component";
 
 const routes: Routes = [
   {
@@ -50,6 +54,12 @@ const routes: Routes = [
     data: {roles: []}
   },
   {
+    path: "options/:id",
+    component: OptionsComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
     path: "trades",
     component: TradesMainComponent,
     canActivate: [LoginGuard],
@@ -58,6 +68,24 @@ const routes: Routes = [
   {
     path: "capital",
     component: CapitalMainComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "orders",
+    component: OrdersComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "companies",
+    component: CompaniesComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "contracts",
+    component: ContractsComponent,
     canActivate: [LoginGuard],
     data: {roles: []}
   },

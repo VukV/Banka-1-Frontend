@@ -30,6 +30,11 @@ import { CapitalMarginComponent } from './components/capital/capital-margin/capi
 import { CapitalCheckingComponent } from './components/capital/capital-checking/capital-checking.component';
 import { MarginPopupComponent } from './components/capital/margin-popup/margin-popup.component';
 import { CheckingPopupComponent } from './components/capital/checking-popup/checking-popup.component';
+import { OptionsComponent } from './components/stock-market/options/options.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { CompaniesComponent } from './components/companies/companies/companies.component';
+import { CreateCompanyPopupComponent } from './components/companies/create-company-popup/create-company-popup.component';
+import { ContractsComponent } from './components/contracts/contracts/contracts.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +62,12 @@ import { CheckingPopupComponent } from './components/capital/checking-popup/chec
     CapitalMarginComponent,
     CapitalCheckingComponent,
     MarginPopupComponent,
-    CheckingPopupComponent
+    CheckingPopupComponent,
+    OptionsComponent,
+    OrdersComponent,
+    CompaniesComponent,
+    CreateCompanyPopupComponent,
+    ContractsComponent
   ],
   imports: [
     BrowserModule,

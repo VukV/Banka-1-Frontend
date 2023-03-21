@@ -2,7 +2,7 @@
   <nav id="main-nav" class="navbar navbar-expand-lg navbar-dark">
 
     <!-- *ngIf="isLoggedIn; else loggedOut" -->
-    <div *ngIf="isLoggedIn; else loggedOut" class="container">
+    <div  class="container">
       <a class="navbar-brand" href="/">
         <img src="assets/dollar-icon.svg" alt="icon" width="50" height="50">
       </a>
@@ -19,6 +19,15 @@
           </li>
           <li class="nav-item">
             <a [routerLink]="'/trades'" class="nav-link active fw-bold" aria-current="page">Trgovina</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="'/orders'" class="nav-link active fw-bold" aria-current="page">Porudžbine</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="'/companies'" class="nav-link active fw-bold" aria-current="page">Kompanije</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="'/contracts'" class="nav-link active fw-bold" aria-current="page">Ugovori</a>
           </li>
           <li *ngIf="isAdmin" class="nav-item">
             <a [routerLink]="'/users'" data-cy="users" class="nav-link active fw-bold" aria-current="page">Korisnici</a>
