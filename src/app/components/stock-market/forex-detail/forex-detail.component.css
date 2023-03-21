@@ -11,6 +11,7 @@
 
 #refresh:hover {
   color: gray;
+  cursor: pointer;
 }
 
 hr {
