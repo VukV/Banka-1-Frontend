@@ -1,0 +1,49 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Berza</li>
+    </ol>
+  </nav>
+
+
+  <br>
+  <h3><b>Berza</b></h3>
+  <br>
+
+<!--  TOGGLE BUTTONS-->
+  <div class="row justify-content-center">
+    <div class="btn-group" role="group" aria-label="Toggle buttons">
+      <div class="col-md-1">
+        <input checked (click)="setStockType('akcije')" data-cy="akcije" type="radio" class="btn-check" name="options" id="option1">
+        <label class="btn btn-outline-toggle rounded-pill text-color toggle1-toggle2-size" for="option1">Akcije</label>
+      </div>
+
+      <div class="col-md-1">
+        <input (click)="setStockType('forex')" data-cy="forex" type="radio" class="btn-check" name="options" id="option2">
+        <label class="btn btn-outline-toggle rounded-pill text-color toggle1-toggle2-size" for="option2">Forex</label>
+      </div>
+
+      <div class="col-md-1">
+        <input (click)="setStockType('terminski ugovori')" data-cy="futures" type="radio" class="btn-check" name="options" id="option3">
+        <label class="btn btn-outline-toggle rounded-pill text-color toggle3-size" for="option3">Terminski ugovori</label>
+      </div>
+    </div>
+  </div>
+
+<!--  SWITCH HANDLING-->
+  <div class="parent-component" [ngSwitch]="stockType">
+    <app-stocks *ngSwitchCase="'akcije'"></app-stocks>
+    <app-forex *ngSwitchCase="'forex'"></app-forex>
+    <app-futures *ngSwitchCase="'terminski ugovori'"></app-futures>
+    <app-stocks *ngSwitchDefault></app-stocks>
+  </div>
+
+</div>
+
+

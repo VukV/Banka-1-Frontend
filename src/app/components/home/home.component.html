@@ -2,7 +2,6 @@
   <br>
   <h2 class="fw-bold">Početna</h2>
 
-  <div *ngIf="showHelp else home;">
     <!-- NORMAL BUTTONS -->
     <div class="row justify-content-center">
 
@@ -17,7 +16,6 @@
       <div class="col-md-3 align-items-center">
         <button type="button" class="btn btn-outline-light rounded-pill">Dugme belo</button>
       </div>
-
     </div>
 
     <br>
@@ -36,7 +34,6 @@
       <div class="col-md-3 d-grid align-items-center">
         <button type="button" class="btn btn-outline-light btn-block rounded-pill">Dugme 2 belo</button>
       </div>
-
     </div>
 
     <br><br>
@@ -45,27 +42,43 @@
         <button type="button" class="btn btn-outline rounded-pill" (click)="openPopupExample()">Otvori popup</button>
       </div>
     </div>
+
+  <br><br>
+
+    <!-- TOGGLE BUTTONS -->
+    <div class="row justify-content-center">
+      <div class="col-md-3 align-items-center">
+        <button type="button" class="btn btn-outline rounded-pill" data-bs-toggle="button">Toggle 1</button>
+      </div>
+      <div class="col-md-3 align-items-center">
+        <button type="button" class="btn btn-outline rounded-pill" data-bs-toggle="button">Toggle 2</button>
+      </div>
+      <div class="col-md-3 align-items-center">
+        <button type="button" class="btn btn-outline rounded-pill" data-bs-toggle="button">Toggle 3</button>
+      </div>
+    </div>
+
+  <br><br>
+
+  <!-- TOGGLE BUTTONS 2 -->
+  <div class="row justify-content-center">
+    <div class="btn-group" role="group" aria-label="Toggle buttons">
+      <div class="col-md-1">
+        <input type="radio" class="btn-check" name="options" id="option1">
+        <label class="btn btn-outline-toggle rounded-pill" for="option1">Toggle 1</label>
+      </div>
+
+      <div class="col-md-1">
+        <input type="radio" class="btn-check" name="options" id="option2">
+        <label class="btn btn-outline-toggle rounded-pill" for="option2">Toggle 2</label>
+      </div>
+
+      <div class="col-md-1">
+        <input type="radio" class="btn-check" name="options" id="option3">
+        <label class="btn btn-outline-toggle rounded-pill" for="option3">Toggle 3</label>
+      </div>
+    </div>
   </div>
-
-
-  <ng-template #home>
-    <br><br><br>
-    <div class="row justify-content-center">
-      <div class="col-md-4 d-flex justify-content-center align-items-center">
-        <img src="assets/dollar-icon.svg" alt="icon" width="200" height="200">
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-md-4 d-flex justify-content-center align-items-center">
-        <h1 class="fw-bold">RAF BANKA 1</h1>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-md-4 d-flex justify-content-center align-items-center">
-        <h4>Aplikacija u izradi...</h4>
-      </div>
-    </div>
-  </ng-template>
 
   <app-popup></app-popup>
 </div>

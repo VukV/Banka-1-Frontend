@@ -1,0 +1,36 @@
+<form>
+  <div class="mb-3">
+    <br>
+    <input type="text"
+           class="form-control input-field"
+           data-cy="oznakaUgovora"
+           id="oznakaUgovora"
+           placeholder="Oznaka terminskog ugovora">
+  </div>
+
+  <div class="btn-position">
+    <button type="button"
+            class="btn btn-green btn-block rounded-pill search-btn"
+            data-cy="search"
+            id="btnSearchByName">
+      Pretraži</button>
+  </div>
+  <br>
+</form>
+
+<div class="row justify-content-center stocks-table-header">
+  <div style="overflow: auto" class="rectangle">
+    <table class="table table-borderless table-d table-position"
+           id="stocks-table">
+      <thead>
+      <tr class="color table-position" id="trTable">
+        <th>Oznaka</th>
+        <th>Cena</th>
+        <th>Berza</th>
+        <th>Poslednje ažuriranje</th>
+      </tr>
+      </thead>
+
+    </table>
+  </div>
+</div>

@@ -16,6 +16,20 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { PopupComponent } from './components/popup/popup.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import { StocksComponent } from './components/stock-market/stocks/stocks.component';
+import { ForexComponent } from './components/stock-market/forex/forex.component';
+import { FuturesComponent } from './components/stock-market/futures/futures.component';
+import { StockMainComponent } from './components/stock-market/stock-main/stock-main.component';
+import { StockDetailComponent } from './components/stock-market/stock-detail/stock-detail.component';
+import { ForexDetailComponent } from './components/stock-market/forex-detail/forex-detail.component';
+import { TradesMainComponent } from './components/trades/trades-main/trades-main.component';
+import { TradesComponent } from './components/trades/trades/trades.component';
+import { TradesForexComponent } from './components/trades/trades-forex/trades-forex.component';
+import { CapitalMainComponent } from './components/capital/capital-main/capital-main.component';
+import { CapitalMarginComponent } from './components/capital/capital-margin/capital-margin.component';
+import { CapitalCheckingComponent } from './components/capital/capital-checking/capital-checking.component';
+import { MarginPopupComponent } from './components/capital/margin-popup/margin-popup.component';
+import { CheckingPopupComponent } from './components/capital/checking-popup/checking-popup.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +43,21 @@ import {NgxPaginationModule} from "ngx-pagination";
     ResetPasswordRequestComponent,
     UpdateUserComponent,
     HomeComponent,
-    PopupComponent
+    PopupComponent,
+    StocksComponent,
+    ForexComponent,
+    FuturesComponent,
+    StockMainComponent,
+    StockDetailComponent,
+    ForexDetailComponent,
+    TradesMainComponent,
+    TradesComponent,
+    TradesForexComponent,
+    CapitalMainComponent,
+    CapitalMarginComponent,
+    CapitalCheckingComponent,
+    MarginPopupComponent,
+    CheckingPopupComponent
   ],
   imports: [
     BrowserModule,
