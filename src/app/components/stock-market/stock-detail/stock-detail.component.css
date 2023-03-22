@@ -7,11 +7,11 @@
 
 #refresh {
   color: var(--si-white);
-  cursor: pointer;
 }
 
 #refresh:hover {
   color: gray;
+  cursor: pointer;
 }
 
 hr {
