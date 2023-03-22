@@ -36,6 +36,9 @@ import { CompaniesComponent } from './components/companies/companies/companies.c
 import { CreateCompanyPopupComponent } from './components/companies/create-company-popup/create-company-popup.component';
 import { ContractsComponent } from './components/contracts/contracts/contracts.component';
 import { AddContractPopupComponent } from './components/contracts/add-contract-popup/add-contract-popup.component';
+import { CompanyDetailsComponent } from './components/companies/company-details/company-details.component';
+import { CheckingTransactionsPopupComponent } from './components/capital/checking-transactions-popup/checking-transactions-popup.component';
+import { MarginTransactionsPopupComponent } from './components/capital/margin-transactions-popup/margin-transactions-popup.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { AddContractPopupComponent } from './components/contracts/add-contract-p
     CompaniesComponent,
     CreateCompanyPopupComponent,
     ContractsComponent,
-    AddContractPopupComponent
+    AddContractPopupComponent,
+    CompanyDetailsComponent,
+    CheckingTransactionsPopupComponent,
+    MarginTransactionsPopupComponent
   ],
   imports: [
     BrowserModule,
