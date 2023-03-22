@@ -22,6 +22,7 @@ import {OptionsComponent} from "./components/stock-market/options/options.compon
 import {OrdersComponent} from "./components/orders/orders.component";
 import {CompaniesComponent} from "./components/companies/companies/companies.component";
 import {ContractsComponent} from "./components/contracts/contracts/contracts.component";
+import {CompanyDetailsComponent} from "./components/companies/company-details/company-details.component";
 
 const routes: Routes = [
   {
@@ -80,6 +81,12 @@ const routes: Routes = [
   {
     path: "companies",
     component: CompaniesComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "company-details/:id",
+    component: CompanyDetailsComponent,
     canActivate: [LoginGuard],
     data: {roles: []}
   },
