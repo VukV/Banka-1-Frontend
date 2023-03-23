@@ -14,4 +14,186 @@
 
   <!-- NASTAVI OVDE -->
 
+  <form [formGroup]="compDetailsFormGroup"
+        (ngSubmit)="onButtonAktiviraj()" class="row justify-content-center">
+
+    <div class="row justify-content-start">
+      <h2 class="mb-3 fw-bold">Podaci</h2>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3">
+      <div class="col mb-3">
+        <label for="naziv" class="form-label">Naziv</label>
+        <input type="name" class="form-control"
+               formControlName="naziv" required data-cy="naziv" id="naziv" name="naziv"
+               placeholder="naziv">
+      </div>
+      <div class="col mb-3">
+        <label for="sifDelatnosti" class="form-label">Šifra delatnosti</label>
+        <input type="number" class="form-control"
+               formControlName="sifDelatnosti" required data-cy="sifDelatnosti" id="sifDelatnosti"
+               name="sifDelatnosti"
+               placeholder="šifra delatnosti">
+      </div>
+      <div class="col mb-3">
+        <label for="maticniBr" class="form-label">Matični broj</label>
+        <input type="number" class="form-control"
+               formControlName="maticniBr" required data-cy="maticniBr" id="maticniBr"
+               name="maticniBr"
+               placeholder="matični broj">
+      </div>
+      <div class="col mb-3">
+        <label for="pib" class="form-label">PIB</label>
+        <input type="number" class="form-control"
+               formControlName="pib" required data-cy="pib" id="pib" name="pib" placeholder="pib">
+      </div>
+      <div class="col mb-3">
+        <label for="adresa" class="form-label">Adresa</label>
+        <input type="text" class="form-control"
+               formControlName="adresa" required data-cy="adresa" id="adresa" name="adresa"
+               placeholder="adresa">
+      </div>
+      <div class="col mb-3">
+        <label for="drzave" class="form-label">Država</label>
+        <select class="form-control"
+                formControlName="drzave" required data-cy="drzave" id="drzave" name="drzave">
+          <option *ngFor="let drzava of drzave" value="{{drzava}}" data-cy="drzava">{{drzava}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mt-3 align-items-end d-flex justify-content-end ">
+      <div class="col mb-3 align-items-end d-grid justify-content-end">
+
+        <div class="row d-flex justify-content-start mt-2 mb-2">
+          <div *ngIf="errorMessage != ''">
+            <label style="color: red"> {{ errorMessage }} </label>
+          </div>
+        </div>
+
+        <button type="submit" id="azuriraj" class="btn btn-outline rounded-pill" data-cy="azuriraj">Ažuriraj
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="row justify-content-center mt-3" id="brdr">
+
+    <div class="row mb-3 p-3 pt-0 d-flex justify-content-between align-items-center">
+      <div class="col-md-6 align-items-center d-flex justify-content-start">
+        <h2 class="fw-bold">Računi</h2>
+      </div>
+      <div class="col-md-6 p align-items-end d-flex justify-content-end">
+        <button type="button" id="dodajRacun" class="btn btn-outline rounded-pill" data-cy="dodajRacun"
+                [routerLink]="['/']">Dodaj
+        </button>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center p-4 ">
+      <table class="table table-borderless table-d ">
+        <thead>
+        <tr class="trtable">
+          <th>#</th>
+          <th>Valuta</th>
+          <th>Banka</th>
+          <th>Broj računa</th>
+          <th>Aktivan</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <tr *ngFor="let racun of this.racuni ">
+          <td>{{ racun.racunId }}</td>
+          <td>{{ racun.valuta }}</td>
+          <td>{{ racun.banka }}</td>
+          <td>{{ racun.brRacuna }}</td>
+          <td>{{ racun.aktivan }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-3" id="brdr2">
+
+    <div class="row mb-3 p-3 pt-0 d-flex justify-content-between align-items-center">
+      <div class="col-md-auto align-items-center d-flex justify-content-start">
+        <h2 class="fw-bold">Ugovori</h2>
+      </div>
+      <div class="col-md-auto p align-items-end d-flex justify-content-end">
+        <button type="button" id="btnDodajUgovor" class="btn btn-outline rounded-pill" data-cy="btnDodajUgovor"
+                [routerLink]="['/']">Dodaj
+        </button>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center p-4">
+      <table class="table table-borderless table-d ">
+        <thead>
+        <tr class="trtable">
+          <th>#</th>
+          <th>Delovodni broj</th>
+          <th>Status</th>
+          <th>Kreiran</th>
+          <th>Izmenjen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <tr *ngFor="let ugovor of this.ugovori">
+          <td>{{ ugovor.ugovorId }}</td>
+          <td>{{ ugovor.delovodniBr }}</td>
+          <td>{{ ugovor.status }}</td>
+          <td>{{ ugovor.kreiran }}</td>
+          <td>{{ ugovor.izmenjen }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center mt-3 mb-3" id="brdr3">
+
+    <div class="row mb-3 p-3 pt-0 d-flex justify-content-between align-items-center">
+      <div class="col-md-auto align-items-center d-flex justify-content-start">
+        <h2 class="fw-bold">Kontakt osobe</h2>
+      </div>
+      <div class="col-md-auto p align-items-end d-flex justify-content-end">
+        <button type="button" id="dodajKontakt" class="btn btn-outline rounded-pill" data-cy="dodajKontakt"
+                [routerLink]="['/']">Dodaj
+        </button>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center p-4">
+      <table class="table table-borderless table-d ">
+        <thead>
+        <tr class="trtable">
+          <th>#</th>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>Email</th>
+          <th>Br. telefona</th>
+          <th>Pozicija</th>
+          <th>Napomena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <tr *ngFor="let kontakt of this.kontakti ">
+          <td>{{ kontakt.kontaktId }}</td>
+          <td>{{ kontakt.ime }}</td>
+          <td>{{ kontakt.prezime }}</td>
+          <td>{{ kontakt.email }}</td>
+          <td>{{ kontakt.brTelefona }}</td>
+          <td>{{ kontakt.pozicija }}</td>
+          <td>{{ kontakt.napomena }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>
