@@ -12,6 +12,41 @@
   </nav>
 
 
-  <!-- NASTAVI OVDE -->
+  <div class="row justify-content-center users-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-between">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Ugovori</h2>
+        </div>
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <button type="button" id="contract" class="btn btn-outline rounded-pill  wider-button" data-cy="addContract" [routerLink]="['/addcontract']">Dodaj</button>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around">
+        <table class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>#</th>
+            <th>Delovodni broj</th>
+            <th>Status</th>
+            <th>Kreiran</th>
+            <th>Izmenjen</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <tr *ngFor="let ugovor of this.contracts ">
+            <td>{{ ugovor.id }}</td>
+            <td>{{ ugovor.delovodniBroj }}</td>
+            <td>{{ ugovor.status }}</td>
+            <td>{{ ugovor.kreiran }}</td>
+            <td>{{ ugovor.izmenjen }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
 </div>

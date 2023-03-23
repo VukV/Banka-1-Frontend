@@ -12,6 +12,43 @@
   </nav>
 
 
-  <!-- NASTAVI OVDE -->
+  <div class="row justify-content-center users-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-between">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Kompanije</h2>
+        </div>
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <button type="button" id="contract" class="btn btn-outline rounded-pill  wider-button" data-cy="addCompany" [routerLink]="['/addcompany']">Dodaj</button>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around">
+        <table class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>#</th>
+            <th>Naziv</th>
+            <th>PIB</th>
+            <th>Šifra</th>
+            <th>Adresa</th>
+            <th>Država</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <tr *ngFor="let kompanija of this.companies ">
+            <td>{{ kompanija.id }}</td>
+            <td>{{ kompanija.naziv}}</td>
+            <td>{{ kompanija.PIB }}</td>
+            <td>{{ kompanija.sifra }}</td>
+            <td>{{ kompanija.adresa }}</td>
+            <td>{{ kompanija.drzava }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
 </div>
