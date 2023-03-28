@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarginTransactionsPopupComponent implements OnInit {
 
-  constructor() { }
+  displayStyle: string = "none"
+  currency: string
 
-  ngOnInit(): void {
+  constructor() {
+    this.currency = "USD"
+  }
+
+  ngOnInit(): void { }
+
+  openPopUp(): void{
+    this.displayStyle = "block"
+  }
+
+  closePopUp(): void{
+    this.displayStyle = "none"
   }
 
 }
