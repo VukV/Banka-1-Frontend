@@ -135,3 +135,12 @@ label.btn.btn-outline-toggle:hover{
   border-radius: 20px;
   border: transparent;
 }
+
+.pagination-div{
+  margin-top: 10px;
+}
+
+.clickable-tr:hover{
+  cursor: pointer;
+  color: var(--si-green);
+}
