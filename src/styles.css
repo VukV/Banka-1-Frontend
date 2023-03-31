@@ -143,4 +143,5 @@ label.btn.btn-outline-toggle:hover{
 .clickable-tr:hover{
   cursor: pointer;
   color: var(--si-green);
+  background: radial-gradient(circle, rgba(0, 177, 39, 0.25) 0%, rgba(0,177,39,0) 100%);
 }
