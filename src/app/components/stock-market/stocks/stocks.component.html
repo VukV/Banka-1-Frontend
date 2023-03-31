@@ -1,22 +1,15 @@
-<form>
-  <div class="mb-3">
-    <br>
-    <input type="text"
-           class="form-control input-field"
-           data-cy="oznakaAkcije"
-           id="oznakaAkcije"
-           placeholder="Oznaka akcije">
-  </div>
-
-  <div class="btn-position">
-    <button type="button"
-            class="btn btn-green btn-block rounded-pill search-btn"
-            data-cy="pretrazi"
-            id="btnSearchByName">
-            Pretraži</button>
-  </div>
+<div>
   <br>
-</form>
+  <form class="row justify-content-start">
+    <div class="col-md-3 align-items-center">
+      <input data-cy="symbol-input" type="text" [(ngModel)]="searchSymbol" class="form-control" id="symbol" name="symbol" placeholder="Oznaka simbola">
+    </div>
+    <div class="col-md-1 align-items-center">
+      <button data-cy="symbol-search" (click)="listStocks()" type="button" class="btn btn-green btn-block rounded-pill" id="dugme">Pretraži</button>
+    </div>
+  </form>
+  <br>
+</div>
 
 <div class="row justify-content-center stocks-table-header">
   <div style="overflow: auto" class="rectangle">
@@ -31,7 +24,33 @@
         <th>Promena (%)</th>
         <th>Poslednje ažuriranje</th>
       </tr>
+      <tr *ngFor="let stock of this.stocks | paginate: { itemsPerPage: stocksPerPage, currentPage: page, totalItems: totalStocks }">
+        <td>{{ stock.symbol }}</td>
+        <td [countUp]="stock.price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+        <td [countUp]="stock.volume" [options]="{ enableScrollSpy: true }">0</td>
+
+        <td style="color: #00B127" *ngIf="stock.priceChange >= 0; else redPrice" [countUp]="stock.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</td>
+        <ng-template #redPrice>
+          <td style="color: #d70000" [countUp]="stock.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</td>
+        </ng-template>
+
+        <td style="color: #00B127" *ngIf="stock.priceChangeInPercentage >= 0; else redPercentage" [countUp]="stock.priceChangeInPercentage" [options]="{ enableScrollSpy: true, decimalPlaces: 3, suffix: '%'}">0</td>
+        <ng-template #redPercentage>
+          <td style="color: #d70000" [countUp]="stock.priceChangeInPercentage" [options]="{ enableScrollSpy: true, decimalPlaces: 3, suffix: '%'}">0</td>
+        </ng-template>
+
+        <td>{{ stock.lastRefresh }}</td>
+      </tr>
       </thead>
     </table>
   </div>
 </div>
+
+<br>
+<div class="row justify-content-center">
+  <div class="col-md-4 d-flex justify-content-center align-items-center">
+    <pagination-controls (pageChange)="pageChangeEvent($event)" nextLabel="Sledeća" previousLabel="Prethodna"></pagination-controls>
+  </div>
+</div>
+
+<app-popup></app-popup>
