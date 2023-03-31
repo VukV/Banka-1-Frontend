@@ -43,13 +43,13 @@ const routes: Routes = [
     data: {roles: []}
   },
   {
-    path: "stock-detail/:id",
+    path: "stock-detail/:symbol",
     component: StockDetailComponent,
     canActivate: [LoginGuard],
     data: {roles: []}
   },
   {
-    path: "forex-detail/:id",
+    path: "forex-detail/:symbol",
     component: ForexDetailComponent,
     canActivate: [LoginGuard],
     data: {roles: []}

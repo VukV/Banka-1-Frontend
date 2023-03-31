@@ -39,6 +39,7 @@ import { AddContractPopupComponent } from './components/contracts/add-contract-p
 import { CompanyDetailsComponent } from './components/companies/company-details/company-details.component';
 import { CheckingTransactionsPopupComponent } from './components/capital/checking-transactions-popup/checking-transactions-popup.component';
 import { MarginTransactionsPopupComponent } from './components/capital/margin-transactions-popup/margin-transactions-popup.component';
+import {CountUpModule} from "ngx-countup";
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { MarginTransactionsPopupComponent } from './components/capital/margin-tr
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CountUpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
