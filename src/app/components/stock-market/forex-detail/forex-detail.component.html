@@ -1,37 +1,43 @@
 <br>
 <div class="container mt-3">
-  <h1>{{currencyFromSymbol}} - {{currencyToSymbol}}
+  <h1 class="fw-bold">{{forex!.fromCurrency.currencyCode}} - {{forex!.toCurrency.currencyCode}}
     <a class="bi bi-arrow-clockwise ms-2" id="refresh" data-cy="refresh" (click)="refresh()"></a>
   </h1>
   <hr id="divider1">
+
   <fieldset id="chartContainer" class="row mt-3 border rounded-5 p-3">
-    <legend class="float-none w-auto px-2">Chart</legend>
+    <legend class="float-none w-auto px-2">Razmena kroz vreme</legend>
     <div id="chart" class="col">
       CHART TODO
     </div>
   </fieldset>
+
   <fieldset id="stockDetails" class="row mt-3 border rounded-5 p-3">
-    <legend class="float-none w-auto px-2">Details</legend>
+    <legend class="float-none w-auto px-2">Detalji</legend>
     <div class="col pe-md-4">
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">FROM:</p>
-        <p class="float-end my-1">{{currencyFromSymbol}}</p>
+        <p class="float-end my-1">{{forex!.fromCurrency.currencyName}} ({{forex!.fromCurrency.currencyCode}})</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">TO:</p>
-        <p class="float-end my-1">{{currencyToSymbol}}</p>
+        <p class="float-end my-1">{{forex!.toCurrency.currencyName}} ({{forex!.toCurrency.currencyCode}})</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">EXCHANGE RATE:</p>
-        <p class="float-end my-1">{{exchangeRate}}</p>
+        <p class="float-end my-1" [countUp]="forex!.exchangeRate" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">BID:</p>
-        <p class="float-end my-1">{{bid}}</p>
+        <p class="float-end my-1" [countUp]="forex!.bidPrice" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">ASK:</p>
-        <p class="float-end my-1">{{ask}}</p>
+        <p class="float-end my-1" [countUp]="forex!.askPrice" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</p>
       </div>
     </div>
   </fieldset>

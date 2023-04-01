@@ -27,7 +27,9 @@ export class ForexDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private stocksService: StocksService, private location: Location) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getForexFromRoute();
+  }
 
   getForexFromRoute(){
     this.route.queryParams.subscribe(
