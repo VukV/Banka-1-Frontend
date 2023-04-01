@@ -27,17 +27,17 @@
 
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">EXCHANGE RATE:</p>
-        <p class="float-end my-1" [countUp]="forex!.exchangeRate" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</p>
+        <p class="float-end my-1" [countUp]="forex!.exchangeRate" [options]="{ enableScrollSpy: true, decimalPlaces: 6}">0</p>
       </div>
 
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">BID:</p>
-        <p class="float-end my-1" [countUp]="forex!.bidPrice" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</p>
+        <p class="float-end my-1" [countUp]="forex!.bidPrice" [options]="{ enableScrollSpy: true, decimalPlaces: 6}">0</p>
       </div>
 
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">ASK:</p>
-        <p class="float-end my-1" [countUp]="forex!.askPrice" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</p>
+        <p class="float-end my-1" [countUp]="forex!.askPrice" [options]="{ enableScrollSpy: true, decimalPlaces: 6}">0</p>
       </div>
     </div>
   </fieldset>

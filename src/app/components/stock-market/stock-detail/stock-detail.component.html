@@ -16,9 +16,7 @@
     </div>
 
     <div id="chart" class="col">
-      <div *ngIf="!loadingTS">
-        <canvas id="stock-chart"></canvas>
-      </div>
+      <canvas id="stock-chart"></canvas>
       <ngx-loading [show]="loadingTS || loadingStock"></ngx-loading>
     </div>
   </div>

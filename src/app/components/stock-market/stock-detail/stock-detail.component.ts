@@ -6,7 +6,9 @@ import {StockTimeSeries} from "../../../model/stocks/stock-time-series";
 import {StocksService} from "../../../services/stocks/stocks.service";
 import {PopupComponent} from "../../popup/popup.component";
 import {Location} from "@angular/common";
-import {Chart} from "chart.js";
+import {Chart, registerables} from "chart.js";
+
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-stocks-detail',
@@ -28,7 +30,7 @@ export class StockDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStockFromRoute();
-    this.initChart();
+    this.getTimeSeries();
   }
 
   getStockFromRoute(){
@@ -40,29 +42,58 @@ export class StockDetailComponent implements OnInit {
   }
 
   initChart(){
-    this.getTimeSeries();
+    let data = [];
+    let labels = [];
 
-    //TODO init chart
-    let myChart = new Chart('stock-chart', {
+    for(let ts in this.stockTimeSeries!.time_series){
+      data.push(this.stockTimeSeries!.time_series[ts].high);
+      labels.push("");
+    }
+
+    new Chart('stock-chart', {
       type: 'line',
       data: {
+        labels: labels,
         datasets: [{
-          label: 'Current Vallue',
-          data: [0, 20, 40, 50],
-          backgroundColor: "rgb(115 185 243 / 65%)",
-          borderColor: "#007ee7",
-          fill: true,
+          label: 'Cena',
+          data: data,
+          borderWidth: 1,
+          borderColor: '#00B127FF',
+        }]
+      },
+      options: {
+        elements:{
+          point: {
+            radius: 0,
+            hoverRadius: 6,
+            hitRadius: 8
+          }
         },
-          {
-            label: 'Invested Amount',
-            data: [0, 20, 40, 60, 80],
-            backgroundColor: "#47a0e8",
-            borderColor: "#007ee7",
-            fill: true,
-          }],
-        labels: ['January 2019', 'February 2019', 'March 2019', 'April 2019']
+        scales: {
+          y: {
+            ticks: {
+              color: "white",
+              font: {
+                size: 18,
+              }
+            },
+            beginAtZero: false
+          }
+        },
+        plugins: {
+          legend: {
+            display: false,
+            labels: {
+              color: 'white',
+              font: {
+                size: 18
+              }
+            }
+          }
+        }
       },
     });
+
   }
 
   getTimeSeries(){
@@ -71,6 +102,8 @@ export class StockDetailComponent implements OnInit {
       (data) => {
         this.stockTimeSeries = data;
         this.loadingTS = false;
+
+        this.initChart();
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
