@@ -49,4 +49,15 @@ export class StocksService {
       )
   }
 
+  getStock(stockId: number): Observable<any>{
+    return this.httpClient.get(this.stocksUrl + "/" + stockId,
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+      })
+    )
+  }
+
 }

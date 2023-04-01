@@ -41,6 +41,7 @@ import { CheckingTransactionsPopupComponent } from './components/capital/checkin
 import { MarginTransactionsPopupComponent } from './components/capital/margin-transactions-popup/margin-transactions-popup.component';
 import {CountUpModule} from "ngx-countup";
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
+import {NgApexchartsModule} from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
       secondaryColour: '#00B127',
       tertiaryColour: '#00B127',
       animationType: ngxLoadingAnimationTypes.wanderingCubes
-    })
+    }),
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

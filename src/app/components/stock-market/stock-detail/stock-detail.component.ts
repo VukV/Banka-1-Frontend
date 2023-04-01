@@ -6,6 +6,7 @@ import {StockTimeSeries} from "../../../model/stocks/stock-time-series";
 import {StocksService} from "../../../services/stocks/stocks.service";
 import {PopupComponent} from "../../popup/popup.component";
 import {Location} from "@angular/common";
+import {Chart} from "chart.js";
 
 @Component({
   selector: 'app-stocks-detail',
@@ -13,24 +14,6 @@ import {Location} from "@angular/common";
   styleUrls: ['./stock-detail.component.css']
 })
 export class StockDetailComponent implements OnInit {
-  formatter = new Intl.NumberFormat("en", { minimumFractionDigits: 1, notation: "compact" });
-
-  symbol: string = "";
-  name: string = "";
-  price: number = -1;
-  priceChangePercentage: number = -1;
-  lastUpdate: Date = new Date();
-  priceChange: number = -1;
-  open: number = -1;
-  low: number = -1;
-  high: number = -1;
-  previousClose: number = -1;
-  dayRangeFrom: number = -1;
-  dayRangeTo: number = -1;
-  priceVolume: number = -1;
-  volume: number = -1;
-  outstandingShares: number = -1;
-  marketCap: number = -1;
 
   loadingTS: boolean = false;
   loadingStock: boolean = false;
@@ -45,7 +28,7 @@ export class StockDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStockFromRoute();
-    this.getTimeSeries();
+    this.initChart();
   }
 
   getStockFromRoute(){
@@ -54,6 +37,32 @@ export class StockDetailComponent implements OnInit {
         this.stock = JSON.parse(params['stockData']);
       }
     )
+  }
+
+  initChart(){
+    this.getTimeSeries();
+
+    //TODO init chart
+    let myChart = new Chart('stock-chart', {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: 'Current Vallue',
+          data: [0, 20, 40, 50],
+          backgroundColor: "rgb(115 185 243 / 65%)",
+          borderColor: "#007ee7",
+          fill: true,
+        },
+          {
+            label: 'Invested Amount',
+            data: [0, 20, 40, 60, 80],
+            backgroundColor: "#47a0e8",
+            borderColor: "#007ee7",
+            fill: true,
+          }],
+        labels: ['January 2019', 'February 2019', 'March 2019', 'April 2019']
+      },
+    });
   }
 
   getTimeSeries(){
@@ -71,7 +80,17 @@ export class StockDetailComponent implements OnInit {
   }
 
   getStockData(){
-
+    this.loadingStock = true;
+    this.stocksService.getStock(this.stock!.id).subscribe(
+      (data) => {
+        this.stock = data;
+        this.loadingStock = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loadingStock = false;
+      }
+    )
   }
 
   refresh(): void {

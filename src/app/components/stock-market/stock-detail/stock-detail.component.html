@@ -14,9 +14,10 @@
 
       <p>Poslednje ažuriranje: <i>{{ stock!.lastRefresh | date: 'dd/MM/yy HH:mm' }}</i></p>
     </div>
+
     <div id="chart" class="col">
       <div *ngIf="!loadingTS">
-        CHART TODO
+        <canvas id="stock-chart"></canvas>
       </div>
       <ngx-loading [show]="loadingTS || loadingStock"></ngx-loading>
     </div>
@@ -29,8 +30,8 @@
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">CHANGE:</p>
         <p class="float-end my-1" style="color: #00B127" *ngIf="stock!.priceChange >= 0; else redPrice" [countUp]="stock!.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3, prefix: '$'}">0</p>
-        <ng-template class="float-end my-1" #redPrice>
-          <p style="color: #d70000" [countUp]="stock!.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3, prefix: '$'}">0</p>
+        <ng-template #redPrice>
+          <p class="float-end my-1" style="color: #d70000" [countUp]="stock!.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3, prefix: '$'}">0</p>
         </ng-template>
       </div>
 

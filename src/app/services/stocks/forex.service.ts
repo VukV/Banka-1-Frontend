@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {catchError, Observable, throwError} from "rxjs";
+import {TimeSeriesQueryEnum} from "../../model/stocks/time-series-query-enum";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,21 @@ export class ForexService {
     );
   }
 
+  getForexTimeSeries(fromCurrency: string, toCurrency: string, timeSeries: TimeSeriesQueryEnum): Observable<any>{
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("timeSeries", timeSeries);
+    queryParams = queryParams.append("fromCurrency", fromCurrency);
+    queryParams = queryParams.append("toCurrency", toCurrency);
+
+    return this.httpClient.get(this.forexUrl,
+      {
+        headers: this.headers,
+        params: queryParams})
+      .pipe(
+        catchError(err => {
+          return throwError(() => new Error(err.error.message))
+        })
+      )
+  }
 
 }

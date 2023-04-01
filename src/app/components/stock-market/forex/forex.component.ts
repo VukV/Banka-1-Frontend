@@ -50,8 +50,10 @@ export class ForexComponent implements OnInit {
     )
   }
 
-  forexDetails(symbolFrom: string, symbolTo: string){
-    this.router.navigate(['forex-detail']);
+  forexDetails(forex: Forex){
+    this.router.navigate(['forex-detail'], {
+      queryParams: { forexData: JSON.stringify(forex) }
+    });
   }
 
   pageChangeEvent(event: number){

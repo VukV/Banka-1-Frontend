@@ -26,7 +26,7 @@
         <th>Poslednje ažuriranje</th>
       </tr>
 
-      <tr *ngFor="let forex of this.forexList | paginate: { itemsPerPage: forexPerPage, currentPage: page, totalItems: totalForex }" (click)="forexDetails(forex.fromCurrency.currencyCode, forex.toCurrency.currencyCode)" class="clickable-tr">
+      <tr *ngFor="let forex of this.forexList | paginate: { itemsPerPage: forexPerPage, currentPage: page, totalItems: totalForex }" (click)="forexDetails(forex)" class="clickable-tr">
         <td>{{ forex.fromCurrency.currencyCode }}</td>
         <td>{{ forex.toCurrency.currencyCode }}</td>
         <td [countUp]="forex.exchangeRate" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</td>
