@@ -12,7 +12,7 @@
 
 body {
   background-color: var(--si-black);
-  background-image: linear-gradient(0deg, #151515 65%, rgba(0, 177, 39, 0.35) 100%);
+  background-image: linear-gradient(0deg, #151515 65%, rgba(0, 177, 39, 0.4) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -134,4 +134,14 @@ label.btn.btn-outline-toggle:hover{
   background: rgba(11, 148, 8, 0.75) !important;
   border-radius: 20px;
   border: transparent;
+}
+
+.pagination-div{
+  margin-top: 10px;
+}
+
+.clickable-tr:hover{
+  cursor: pointer;
+  color: var(--si-green);
+  background: radial-gradient(circle, rgba(0, 177, 39, 0.25) 0%, rgba(0,177,39,0) 100%);
 }

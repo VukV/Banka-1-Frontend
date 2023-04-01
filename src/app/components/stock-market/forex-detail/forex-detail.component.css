@@ -32,3 +32,7 @@ legend {
   border-color: var(--si-white);
   overflow: hidden;
 }
+
+.buttons-div{
+  margin-top: 20px;
+}

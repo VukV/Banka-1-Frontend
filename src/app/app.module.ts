@@ -40,6 +40,7 @@ import { CompanyDetailsComponent } from './components/companies/company-details/
 import { CheckingTransactionsPopupComponent } from './components/capital/checking-transactions-popup/checking-transactions-popup.component';
 import { MarginTransactionsPopupComponent } from './components/capital/margin-transactions-popup/margin-transactions-popup.component';
 import {CountUpModule} from "ngx-countup";
+import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
 
 @NgModule({
   declarations: [
@@ -85,7 +86,14 @@ import {CountUpModule} from "ngx-countup";
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    CountUpModule
+    CountUpModule,
+    NgxLoadingModule.forRoot({
+      backdropBorderRadius: '3px',
+      primaryColour: '#00B127',
+      secondaryColour: '#00B127',
+      tertiaryColour: '#00B127',
+      animationType: ngxLoadingAnimationTypes.wanderingCubes
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
