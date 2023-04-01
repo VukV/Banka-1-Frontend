@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Stock} from "../../../model/stocks/stock";
+import {ActivatedRoute, Router} from "@angular/router";
+import {TimeSeriesQueryEnum} from "../../../model/stocks/time-series-query-enum";
+import {StockTimeSeries} from "../../../model/stocks/stock-time-series";
+import {StocksService} from "../../../services/stocks/stocks.service";
+import {PopupComponent} from "../../popup/popup.component";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-stocks-detail',
@@ -25,20 +32,55 @@ export class StockDetailComponent implements OnInit {
   outstandingShares: number = -1;
   marketCap: number = -1;
 
-  constructor() { }
+  loadingTS: boolean = false;
+  loadingStock: boolean = false;
+  stock: Stock | undefined;
+  stockTimeSeries: StockTimeSeries | undefined;
+  timeSeriesQuery: TimeSeriesQueryEnum = TimeSeriesQueryEnum.DAILY;
 
-  ngOnInit(): void { }
+  @ViewChild(PopupComponent)
+  popupComponent!: PopupComponent;
+
+  constructor(private route: ActivatedRoute, private router: Router, private stocksService: StocksService, private location: Location) { }
+
+  ngOnInit(): void {
+    this.getStockFromRoute();
+    this.getTimeSeries();
+  }
+
+  getStockFromRoute(){
+    this.route.queryParams.subscribe(
+      params => {
+        this.stock = JSON.parse(params['stockData']);
+      }
+    )
+  }
+
+  getTimeSeries(){
+    this.loadingTS = true;
+    this.stocksService.getStockTimeSeries(this.stock!.symbol, this.timeSeriesQuery).subscribe(
+      (data) => {
+        this.stockTimeSeries = data;
+        this.loadingTS = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loadingTS = false;
+      }
+    )
+  }
+
+  getStockData(){
+
+  }
 
   refresh(): void {
-    // TODO
+    this.getStockData();
+    this.getTimeSeries();
   }
 
-  buy(): void {
-    // TODO
-  }
-
-  sell(): void {
-    // TODO
+  buySell(): void {
+    this.router.navigate(['trades']);
   }
 
   seeOptions(): void {
@@ -46,6 +88,7 @@ export class StockDetailComponent implements OnInit {
   }
 
   close(): void {
-    // TODO
+    this.location.back()
   }
+
 }

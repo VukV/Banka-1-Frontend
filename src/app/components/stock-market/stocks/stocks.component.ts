@@ -47,8 +47,10 @@ export class StocksComponent implements OnInit {
     )
   }
 
-  stockDetails(symbol: string){
-    this.router.navigate(['stock-detail', symbol]);
+  stockDetails(stock: Stock){
+    this.router.navigate(['stock-detail'], {
+      queryParams: { stockData: JSON.stringify(stock) }
+    });
   }
 
   pageChangeEvent(event: number){

@@ -24,14 +24,14 @@
         <th>Promena (%)</th>
         <th>Poslednje ažuriranje</th>
       </tr>
-      <tr *ngFor="let stock of this.stocks | paginate: { itemsPerPage: stocksPerPage, currentPage: page, totalItems: totalStocks }" (click)="stockDetails(stock.symbol)" class="clickable-tr">
+      <tr *ngFor="let stock of this.stocks | paginate: { itemsPerPage: stocksPerPage, currentPage: page, totalItems: totalStocks }" (click)="stockDetails(stock)" class="clickable-tr">
         <td>{{ stock.symbol }}</td>
         <td [countUp]="stock.price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
         <td [countUp]="stock.volume" [options]="{ enableScrollSpy: true }">0</td>
 
-        <td style="color: #00B127" *ngIf="stock.priceChange >= 0; else redPrice" [countUp]="stock.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</td>
+        <td style="color: #00B127" *ngIf="stock.priceChange >= 0; else redPrice" [countUp]="stock.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3, prefix: '$'}">0</td>
         <ng-template #redPrice>
-          <td style="color: #d70000" [countUp]="stock.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</td>
+          <td style="color: #d70000" [countUp]="stock.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3, prefix: '$'}">0</td>
         </ng-template>
 
         <td style="color: #00B127" *ngIf="stock.priceChangeInPercentage >= 0; else redPercentage" [countUp]="stock.priceChangeInPercentage" [options]="{ enableScrollSpy: true, decimalPlaces: 3, suffix: '%'}">0</td>

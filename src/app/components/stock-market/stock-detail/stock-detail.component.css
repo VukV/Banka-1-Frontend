@@ -56,3 +56,11 @@ legend {
 .text-green {
   color: var(--si-green);
 }
+
+.buttons-div{
+  margin-top: 20px;
+}
+
+#buy{
+  margin-right: 15px;
+}

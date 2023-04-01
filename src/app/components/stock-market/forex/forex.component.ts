@@ -51,7 +51,7 @@ export class ForexComponent implements OnInit {
   }
 
   forexDetails(symbolFrom: string, symbolTo: string){
-    this.router.navigate(['forex-detail', symbolFrom, symbolTo]);
+    this.router.navigate(['forex-detail']);
   }
 
   pageChangeEvent(event: number){

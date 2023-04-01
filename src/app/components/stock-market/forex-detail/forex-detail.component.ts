@@ -20,11 +20,7 @@ export class ForexDetailComponent implements OnInit {
     // TODO
   }
 
-  buy(): void {
-    // TODO
-  }
-
-  sell(): void {
+  buySell(): void {
     // TODO
   }
 
