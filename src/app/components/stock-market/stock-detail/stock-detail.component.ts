@@ -45,7 +45,6 @@ export class StockDetailComponent implements OnInit {
   }
 
   initChart(dataList: any, labelList: any){
-
     this.stockChart = new Chart('stock-chart', {
       type: 'line',
       data: {
@@ -182,14 +181,13 @@ export class StockDetailComponent implements OnInit {
     if( clickedElement.nodeName === "BUTTON" ) {
 
       let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".active");
-      // if a Button already has Class: .active
+
       if( isCertainButtonAlreadyActive ) {
         isCertainButtonAlreadyActive.classList.remove("active");
       }
 
       clickedElement.className += " active";
     }
-
   }
 
 }
