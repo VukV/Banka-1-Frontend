@@ -21,7 +21,9 @@ export class StockDetailComponent implements OnInit {
   loadingStock: boolean = false;
   stock: Stock | undefined;
   stockTimeSeries: StockTimeSeries | undefined;
-  timeSeriesQuery: TimeSeriesQueryEnum = TimeSeriesQueryEnum.DAILY;
+  timeSeriesQuery: TimeSeriesQueryEnum = TimeSeriesQueryEnum.MONTHLY;
+
+  stockChart: any;
 
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
@@ -31,6 +33,7 @@ export class StockDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getStockFromRoute();
     this.getTimeSeries();
+    this.initChart([], []);
   }
 
   getStockFromRoute(){
@@ -41,22 +44,15 @@ export class StockDetailComponent implements OnInit {
     )
   }
 
-  initChart(){
-    let data = [];
-    let labels = [];
+  initChart(dataList: any, labelList: any){
 
-    for(let ts in this.stockTimeSeries!.time_series){
-      data.push(this.stockTimeSeries!.time_series[ts].high);
-      labels.push("");
-    }
-
-    new Chart('stock-chart', {
+    this.stockChart = new Chart('stock-chart', {
       type: 'line',
       data: {
-        labels: labels,
+        labels: labelList,
         datasets: [{
           label: 'Cena',
-          data: data,
+          data: dataList,
           borderWidth: 1,
           borderColor: '#00B127FF',
         }]
@@ -93,7 +89,6 @@ export class StockDetailComponent implements OnInit {
         }
       },
     });
-
   }
 
   getTimeSeries(){
@@ -103,7 +98,7 @@ export class StockDetailComponent implements OnInit {
         this.stockTimeSeries = data;
         this.loadingTS = false;
 
-        this.initChart();
+        this.updateChart();
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
@@ -126,6 +121,44 @@ export class StockDetailComponent implements OnInit {
     )
   }
 
+  getTSMin(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.FIVE_MIN;
+    this.getTimeSeries();
+  }
+
+  getTSHourly(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.HOUR;
+    this.getTimeSeries();
+  }
+
+  getTSDaily(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.DAILY;
+    this.getTimeSeries();
+  }
+
+  getTSWeekly(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.WEEKLY;
+    this.getTimeSeries();
+  }
+
+  getTSMonthly(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.MONTHLY;
+    this.getTimeSeries();
+  }
+
+  private updateChart(){
+    let data: number[] = [];
+    let labels = [];
+
+    for(let ts in this.stockTimeSeries!.time_series){
+      data.push(this.stockTimeSeries!.time_series[ts].high);
+      labels.push("");
+    }
+
+    this.stockChart.destroy();
+    this.initChart(data, labels);
+  }
+
   refresh(): void {
     this.getStockData();
     this.getTimeSeries();
@@ -141,6 +174,22 @@ export class StockDetailComponent implements OnInit {
 
   close(): void {
     this.location.back()
+  }
+
+  onButtonGroupClick($event: any){
+    let clickedElement = $event.target || $event.srcElement;
+
+    if( clickedElement.nodeName === "BUTTON" ) {
+
+      let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".active");
+      // if a Button already has Class: .active
+      if( isCertainButtonAlreadyActive ) {
+        isCertainButtonAlreadyActive.classList.remove("active");
+      }
+
+      clickedElement.className += " active";
+    }
+
   }
 
 }
