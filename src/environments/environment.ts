@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   usersUrl: "http://localhost:8080/api/users",
-  stocksUrl: "http://localhost:8081/api/stocks"
+  stocksUrl: "http://localhost:8081/api/stocks",
+  forexUrl: "http://localhost:8081/api/forexes"
 };
 
 /*

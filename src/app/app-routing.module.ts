@@ -49,7 +49,7 @@ const routes: Routes = [
     data: {roles: []}
   },
   {
-    path: "forex-detail/:symbol",
+    path: "forex-detail/:symbolFrom/:symbolTo",
     component: ForexDetailComponent,
     canActivate: [LoginGuard],
     data: {roles: []}

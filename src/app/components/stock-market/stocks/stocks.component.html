@@ -39,7 +39,7 @@
           <td style="color: #d70000" [countUp]="stock.priceChangeInPercentage" [options]="{ enableScrollSpy: true, decimalPlaces: 3, suffix: '%'}">0</td>
         </ng-template>
 
-        <td>{{ stock.lastRefresh }}</td>
+        <td>{{ stock.lastRefresh | date: 'dd/MM/yy HH:mm' }}</td>
       </tr>
       </thead>
     </table>

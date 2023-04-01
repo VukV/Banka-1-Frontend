@@ -30,14 +30,28 @@ export class ForexComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.listForex()
   }
 
   listForex(){
     this.loading = true;
+    this.forexService.getForex(this.fromCurrencyCode, this.toCurrencyCode, this.page-1, this.forexPerPage).subscribe(
+      (data) => {
+        this.forexList = data.content;
+        this.totalPages = data.totalPages;
+        this.totalForex = data.totalElements;
+
+        this.loading = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loading = false;
+      }
+    )
   }
 
-  forexDetails(){
-
+  forexDetails(symbolFrom: string, symbolTo: string){
+    this.router.navigate(['forex-detail', symbolFrom, symbolTo]);
   }
 
   pageChangeEvent(event: number){
