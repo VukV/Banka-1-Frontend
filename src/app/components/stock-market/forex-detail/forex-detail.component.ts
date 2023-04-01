@@ -88,6 +88,11 @@ export class ForexDetailComponent implements OnInit {
               }
             },
             beginAtZero: false
+          },
+          x: {
+            ticks: {
+              color: "white"
+            },
           }
         },
         plugins: {
@@ -148,7 +153,7 @@ export class ForexDetailComponent implements OnInit {
 
     for(let ts in this.forexTimeSeries.time_series){
       data.push(this.forexTimeSeries.time_series[ts].high);
-      labels.push("");
+      labels.push(this.forexTimeSeries.time_series[ts].date);
     }
 
     this.forexChart.destroy();

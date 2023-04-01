@@ -73,6 +73,11 @@ export class StockDetailComponent implements OnInit {
               }
             },
             beginAtZero: false
+          },
+          x: {
+            ticks: {
+              color: "white"
+            },
           }
         },
         plugins: {
@@ -151,7 +156,7 @@ export class StockDetailComponent implements OnInit {
 
     for(let ts in this.stockTimeSeries!.time_series){
       data.push(this.stockTimeSeries!.time_series[ts].high);
-      labels.push("");
+      labels.push(this.stockTimeSeries!.time_series[ts].date);
     }
 
     this.stockChart.destroy();
