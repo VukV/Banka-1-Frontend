@@ -1,6 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {MakeOrderRequest} from "../../../model/orders/make-order-request";
+import {ListingTypeEnum} from "../../../model/orders/listing-type-enum";
+import {OrderActionEnum} from "../../../model/orders/order-action-enum";
+import {OrderTypeEnum} from "../../../model/orders/order-type-enum";
+import {OrdersService} from "../../../services/orders/orders.service";
+import {PopupComponent} from "../../popup/popup.component";
 
 @Component({
   selector: 'app-trades',
@@ -12,6 +18,7 @@ export class TradesComponent implements OnInit {
   stocksFormGroup!: FormGroup;
 
   errorMessage!: string;
+  loading: boolean = false;
 
   isBtnSellActive = false;
   isBtnBuyActive = true;
@@ -21,8 +28,14 @@ export class TradesComponent implements OnInit {
   margin = false;
 
   symbol: string = "";
+  orderAction: OrderActionEnum = OrderActionEnum.BUY;
+  orderType: OrderTypeEnum = OrderTypeEnum.MARKET_ORDER;
+  listingType: ListingTypeEnum = ListingTypeEnum.STOCK;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
+  @ViewChild(PopupComponent)
+  popupComponent!: PopupComponent;
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private ordersService: OrdersService) {
   }
 
   ngOnInit(): void {
@@ -40,12 +53,17 @@ export class TradesComponent implements OnInit {
   }
 
   onButtonStocksSubmit() {
-
-    if (this.stocksFormGroup.value.action != null && this.stocksFormGroup.value.action != "" &&
-      this.stocksFormGroup.value.quantity != null && this.stocksFormGroup.value.quantity != "" &&
+    if (this.stocksFormGroup.value.quantity != null && this.stocksFormGroup.value.quantity != "" &&
       this.stocksFormGroup.value.limit != null && this.stocksFormGroup.value.limit != "" &&
       this.stocksFormGroup.value.stop != null && this.stocksFormGroup.value.stop != ""
-    ) {
+    ){
+      if(this.stocksFormGroup.value.quantity < 1){
+        this.errorMessage = 'Neispravan unos količine!';
+        return;
+      }
+
+      this.stocksFormGroup.value.quantity = Math.trunc(this.stocksFormGroup.value.quantity);
+
       if (this.isBtnBuyActive) {
         this.toggleBtnValue = "buy";
       } else if (this.isBtnSellActive) {
@@ -53,24 +71,41 @@ export class TradesComponent implements OnInit {
       }
 
       this.errorMessage = "";
-
-      //POZIV SERVISA KA APIJU; SLANJE PODATAKA NA SERVICE
-
-      this.router.navigate(['/'])
+      this.makeOrder();
     } else {
       this.errorMessage = 'Polja nisu popunjena!';
     }
-
   }
 
   onClickBuy() {
     this.isBtnBuyActive = true;
     this.isBtnSellActive = false;
+    this.orderAction = OrderActionEnum.BUY;
   }
 
   onClickSell() {
     this.isBtnBuyActive = false;
     this.isBtnSellActive = true;
+    this.orderAction = OrderActionEnum.SELL;
+  }
+
+  makeOrder(){
+    this.loading = true;
+
+    let makeOrderRequest = new MakeOrderRequest(this.symbol,  this.listingType, this.stocksFormGroup.value.quantity,
+      this.orderAction, this.orderType, this.stocksFormGroup.value.limit, this.stocksFormGroup.value.stop, this.allOrNone, this.margin
+    );
+
+    this.ordersService.makeOrder(makeOrderRequest).subscribe(
+      () => {
+        this.loading = false;
+        this.router.navigate(['/orders'])
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loading = false;
+      }
+    )
   }
 
 }

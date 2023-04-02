@@ -1,4 +1,4 @@
 export enum ListingTypeEnum{
-  STOCKS = "STOCKS",
+  STOCK = "STOCK",
   FOREX = "FOREX"
 }
