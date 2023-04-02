@@ -53,13 +53,24 @@ export class TradesComponent implements OnInit {
   }
 
   onButtonStocksSubmit() {
-    if (this.stocksFormGroup.value.quantity != null && this.stocksFormGroup.value.quantity != "" &&
-      this.stocksFormGroup.value.limit != null && this.stocksFormGroup.value.limit != "" &&
-      this.stocksFormGroup.value.stop != null && this.stocksFormGroup.value.stop != ""
-    ){
+    if(this.stocksFormGroup.value.quantity != null && this.stocksFormGroup.value.quantity != ""){
       if(this.stocksFormGroup.value.quantity < 1){
         this.errorMessage = 'Neispravan unos količine!';
         return;
+      }
+
+      if(this.stocksFormGroup.value.limit != null && this.stocksFormGroup.value.limit != ""){
+        if(this.stocksFormGroup.value.limit < 0){
+          this.errorMessage = 'Neispravan unos limita!';
+          return;
+        }
+      }
+
+      if(this.stocksFormGroup.value.stop != null && this.stocksFormGroup.value.stop != ""){
+        if(this.stocksFormGroup.value.stop < 0){
+          this.errorMessage = 'Neispravan unos za stop!';
+          return;
+        }
       }
 
       this.stocksFormGroup.value.quantity = Math.trunc(this.stocksFormGroup.value.quantity);
@@ -91,6 +102,17 @@ export class TradesComponent implements OnInit {
 
   makeOrder(){
     this.loading = true;
+
+    if(this.stocksFormGroup.value.limit != null && this.stocksFormGroup.value.limit != "" &&
+      this.stocksFormGroup.value.stop != null && this.stocksFormGroup.value.stop != ""){
+      this.orderType = OrderTypeEnum.STOP_LIMIT_ORDER;
+    }
+    else if(this.stocksFormGroup.value.limit != null && this.stocksFormGroup.value.limit != ""){
+      this.orderType = OrderTypeEnum.LIMIT_ORDER;
+    }
+    else if(this.stocksFormGroup.value.stop != null && this.stocksFormGroup.value.stop != ""){
+      this.orderType = OrderTypeEnum.STOP_ORDER;
+    }
 
     let makeOrderRequest = new MakeOrderRequest(this.symbol,  this.listingType, this.stocksFormGroup.value.quantity,
       this.orderAction, this.orderType, this.stocksFormGroup.value.limit, this.stocksFormGroup.value.stop, this.allOrNone, this.margin
