@@ -22,7 +22,6 @@ import { FuturesComponent } from './components/stock-market/futures/futures.comp
 import { StockMainComponent } from './components/stock-market/stock-main/stock-main.component';
 import { StockDetailComponent } from './components/stock-market/stock-detail/stock-detail.component';
 import { ForexDetailComponent } from './components/stock-market/forex-detail/forex-detail.component';
-import { TradesMainComponent } from './components/trades/trades-main/trades-main.component';
 import { TradesComponent } from './components/trades/trades/trades.component';
 import { TradesForexComponent } from './components/trades/trades-forex/trades-forex.component';
 import { CapitalMainComponent } from './components/capital/capital-main/capital-main.component';
@@ -31,7 +30,7 @@ import { CapitalCheckingComponent } from './components/capital/capital-checking/
 import { MarginPopupComponent } from './components/capital/margin-popup/margin-popup.component';
 import { CheckingPopupComponent } from './components/capital/checking-popup/checking-popup.component';
 import { OptionsComponent } from './components/stock-market/options/options.component';
-import { OrdersComponent } from './components/orders/orders.component';
+import { OrdersComponent } from './components/orders/orders/orders.component';
 import { CompaniesComponent } from './components/companies/companies/companies.component';
 import { CreateCompanyPopupComponent } from './components/companies/create-company-popup/create-company-popup.component';
 import { ContractsComponent } from './components/contracts/contracts/contracts.component';
@@ -41,6 +40,7 @@ import { CheckingTransactionsPopupComponent } from './components/capital/checkin
 import { MarginTransactionsPopupComponent } from './components/capital/margin-transactions-popup/margin-transactions-popup.component';
 import {CountUpModule} from "ngx-countup";
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
+import { OrdersAdminComponent } from './components/orders/orders-admin/orders-admin.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,6 @@ import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
     StockMainComponent,
     StockDetailComponent,
     ForexDetailComponent,
-    TradesMainComponent,
     TradesComponent,
     TradesForexComponent,
     CapitalMainComponent,
@@ -77,7 +76,8 @@ import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
     AddContractPopupComponent,
     CompanyDetailsComponent,
     CheckingTransactionsPopupComponent,
-    MarginTransactionsPopupComponent
+    MarginTransactionsPopupComponent,
+    OrdersAdminComponent
   ],
   imports: [
     BrowserModule,

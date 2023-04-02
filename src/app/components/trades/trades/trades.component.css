@@ -45,3 +45,21 @@ input[type="checkbox"]:checked {
   font-size: smaller;
 }
 
+select {
+  margin-top: 5px;
+  background-color: var(--si-white);
+  color: var(--si-black);
+  width: 200px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+
+.green-border {
+  padding: 50px;
+  padding-bottom: 2em;
+  border: solid 2px;
+  border-color: var(--si-green);
+  border-radius: 70px;
+}
+

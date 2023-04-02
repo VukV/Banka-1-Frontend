@@ -115,7 +115,7 @@ export class ForexDetailComponent implements OnInit {
   }
 
   buySell(): void {
-    this.router.navigate(['trades']);
+    this.router.navigate(['trades-forex', this.forex?.fromCurrency.currencyCode, this.forex?.toCurrency.currencyCode]);
   }
 
   close(): void {

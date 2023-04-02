@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-trades',
@@ -17,10 +17,12 @@ export class TradesComponent implements OnInit {
   isBtnBuyActive = true;
   toggleBtnValue = '';
 
-  allornone = false;
-  margina = false;
+  allOrNone = false;
+  margin = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  symbol: string = "";
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -29,7 +31,12 @@ export class TradesComponent implements OnInit {
       quantity: ['', Validators.required],
       limit: ['', Validators.required],
       stop: ['', Validators.required],
-    })
+    });
+
+    this.route.params.subscribe(params => {
+          this.symbol = params['symbol'];
+          console.log(this.symbol);
+    });
   }
 
   onButtonStocksSubmit() {
@@ -44,15 +51,6 @@ export class TradesComponent implements OnInit {
       } else if (this.isBtnSellActive) {
         this.toggleBtnValue = "sell";
       }
-
-      // console.log("ac " + this.stocksFormGroup.value.action);
-      // console.log("qua " + this.stocksFormGroup.value.quantity);
-      // console.log("lim " + this.stocksFormGroup.value.limit);
-      // console.log("st " + this.stocksFormGroup.value.stop);
-      // console.log("toggBtnv " + this.toggleBtnValue);
-      // console.log("aon " + this.allornone);
-      // console.log("marg " + this.margina);
-
 
       this.errorMessage = "";
 

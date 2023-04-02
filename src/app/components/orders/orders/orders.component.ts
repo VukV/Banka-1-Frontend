@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Order} from "../../model/companies-contract-model";
+import {Order} from "../../../model/companies-contract-model";
 
 @Component({
   selector: 'app-orders',

@@ -169,7 +169,7 @@ export class StockDetailComponent implements OnInit {
   }
 
   buySell(): void {
-    this.router.navigate(['trades']);
+    this.router.navigate(['trades-stocks', this.stock!.symbol]);
   }
 
   seeOptions(): void {
