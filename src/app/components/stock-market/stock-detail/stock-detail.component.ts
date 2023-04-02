@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TimeSeriesQueryEnum} from "../../../model/stocks/time-series-query-enum";
 import {StockTimeSeries} from "../../../model/stocks/stock-time-series";
 import {StocksService} from "../../../services/stocks/stocks.service";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {Location} from "@angular/common";
 import {Chart, registerables} from "chart.js";
 

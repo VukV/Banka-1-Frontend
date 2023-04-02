@@ -120,5 +120,6 @@
 
   <ngx-loading [show]="loading"></ngx-loading>
   <app-popup></app-popup>
+  <app-confirmation-popup (confirmed)="onConfirmEvent($event)"></app-confirmation-popup>
 
 </div>

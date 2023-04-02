@@ -4,9 +4,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {OrderActionEnum} from "../../../model/orders/order-action-enum";
 import {OrderTypeEnum} from "../../../model/orders/order-type-enum";
 import {ListingTypeEnum} from "../../../model/orders/listing-type-enum";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {MakeOrderRequest} from "../../../model/orders/make-order-request";
 import {OrdersService} from "../../../services/orders/orders.service";
+import {ConfirmationPopupComponent} from "../../popup/confirmation-popup/confirmation-popup.component";
 
 @Component({
   selector: 'app-trades-forex',
@@ -32,6 +33,9 @@ export class TradesForexComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
+  @ViewChild(ConfirmationPopupComponent)
+  confirmationPopupComponent!: ConfirmationPopupComponent;
+
   constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private ordersService: OrdersService) {
   }
 
@@ -51,21 +55,37 @@ export class TradesForexComponent implements OnInit {
     });
   }
 
-  onButtonForexSubmit() {
-    if(this.forexFormGroup.value.quantity != null && this.forexFormGroup.value.quantity != "" &&
-      this.forexFormGroup.value.limit != null && this.forexFormGroup.value.limit != "" &&
-      this.forexFormGroup.value.stop != null && this.forexFormGroup.value.stop != ""
-    ){
+  onConfirmEvent(eventData: { confirmed: boolean }){
+    if(eventData.confirmed){
+      this.makeOrder();
+    }
+  }
 
+  onButtonForexSubmit() {
+    if(this.forexFormGroup.value.quantity != null && this.forexFormGroup.value.quantity != ""){
       if(this.forexFormGroup.value.quantity < 1){
         this.errorMessage = 'Neispravan unos količine!';
         return;
       }
 
+      if(this.forexFormGroup.value.limit != null && this.forexFormGroup.value.limit != ""){
+        if(this.forexFormGroup.value.limit < 0){
+          this.errorMessage = 'Neispravan unos limita!';
+          return;
+        }
+      }
+
+      if(this.forexFormGroup.value.stop != null && this.forexFormGroup.value.stop != ""){
+        if(this.forexFormGroup.value.stop < 0){
+          this.errorMessage = 'Neispravan unos za stop!';
+          return;
+        }
+      }
+
       this.forexFormGroup.value.quantity = Math.trunc(this.forexFormGroup.value.quantity);
 
       this.errorMessage = "";
-      this.makeOrder();
+      this.confirmationPopupComponent.openPopup();
     } else {
       this.errorMessage = 'Polja nisu popunjena!';
     }
@@ -74,8 +94,25 @@ export class TradesForexComponent implements OnInit {
   makeOrder(){
     this.loading = true;
 
+    let limit = this.forexFormGroup.value.limit;
+    let stop = this.forexFormGroup.value.stop;
+
+    if(limit != null && limit != "" && stop != null && stop != ""){
+      this.orderType = OrderTypeEnum.STOP_LIMIT_ORDER;
+      limit = null;
+      stop = null;
+    }
+    else if(limit != null && limit != ""){
+      this.orderType = OrderTypeEnum.LIMIT_ORDER;
+      limit = null;
+    }
+    else if(stop != null && stop != ""){
+      this.orderType = OrderTypeEnum.STOP_ORDER;
+      stop = null;
+    }
+
     let makeOrderRequest = new MakeOrderRequest(this.symbol,  this.listingType, this.forexFormGroup.value.quantity,
-      this.orderAction, this.orderType, this.forexFormGroup.value.limit, this.forexFormGroup.value.stop, this.allOrNone, false
+      this.orderAction, this.orderType, limit, stop, this.allOrNone, false
     );
 
     this.ordersService.makeOrder(makeOrderRequest).subscribe(

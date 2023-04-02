@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {PopupComponent} from "../popup/popup.component";
+import {PopupComponent} from "../popup/popup/popup.component";
 
 @Component({
   selector: 'app-home',

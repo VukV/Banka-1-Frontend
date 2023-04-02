@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Forex} from "../../../model/stocks/forex";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {TimeSeriesQueryEnum} from "../../../model/stocks/time-series-query-enum";

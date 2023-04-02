@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ForexService} from "../../../services/stocks/forex.service";
 import {Router} from "@angular/router";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {Forex} from "../../../model/stocks/forex";
 
 @Component({

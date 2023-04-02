@@ -1,0 +1,16 @@
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="d-flex align-items-center justify-content-center">
+          Da li želite da potvrdite trgovinu?
+        </div>
+        <br>
+        <div class="d-flex align-items-center justify-content-center">
+          <button type="button" class="btn btn-green rounded-pill" (click)="confirm()">POTVRDI</button>
+          <button type="button" class="btn btn-outline-light rounded-pill" (click)="cancel()">Odustani</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

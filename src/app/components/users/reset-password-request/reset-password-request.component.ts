@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {Router} from "@angular/router";
 import {UserService} from "../../../services/user/user.service";
 

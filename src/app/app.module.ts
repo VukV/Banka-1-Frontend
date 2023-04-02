@@ -14,7 +14,7 @@ import { UpdateUserComponent } from './components/users/update-user/update-user.
 import { HomeComponent } from './components/home/home.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { PopupComponent } from './components/popup/popup.component';
+import { PopupComponent } from './components/popup/popup/popup.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { StocksComponent } from './components/stock-market/stocks/stocks.component';
 import { ForexComponent } from './components/stock-market/forex/forex.component';
@@ -41,6 +41,7 @@ import { MarginTransactionsPopupComponent } from './components/capital/margin-tr
 import {CountUpModule} from "ngx-countup";
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
 import { OrdersAdminComponent } from './components/orders/orders-admin/orders-admin.component';
+import { ConfirmationPopupComponent } from './components/popup/confirmation-popup/confirmation-popup.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { OrdersAdminComponent } from './components/orders/orders-admin/orders-ad
     CompanyDetailsComponent,
     CheckingTransactionsPopupComponent,
     MarginTransactionsPopupComponent,
-    OrdersAdminComponent
+    OrdersAdminComponent,
+    ConfirmationPopupComponent
   ],
   imports: [
     BrowserModule,

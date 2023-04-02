@@ -6,7 +6,8 @@ import {ListingTypeEnum} from "../../../model/orders/listing-type-enum";
 import {OrderActionEnum} from "../../../model/orders/order-action-enum";
 import {OrderTypeEnum} from "../../../model/orders/order-type-enum";
 import {OrdersService} from "../../../services/orders/orders.service";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
+import {ConfirmationPopupComponent} from "../../popup/confirmation-popup/confirmation-popup.component";
 
 @Component({
   selector: 'app-trades',
@@ -35,6 +36,9 @@ export class TradesComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
+  @ViewChild(ConfirmationPopupComponent)
+  confirmationPopupComponent!: ConfirmationPopupComponent;
+
   constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private ordersService: OrdersService) {
   }
 
@@ -50,6 +54,12 @@ export class TradesComponent implements OnInit {
           this.symbol = params['symbol'];
           console.log(this.symbol);
     });
+  }
+
+  onConfirmEvent(eventData: { confirmed: boolean }){
+    if(eventData.confirmed){
+      this.makeOrder();
+    }
   }
 
   onButtonStocksSubmit() {
@@ -82,7 +92,7 @@ export class TradesComponent implements OnInit {
       }
 
       this.errorMessage = "";
-      this.makeOrder();
+      this.confirmationPopupComponent.openPopup();
     } else {
       this.errorMessage = 'Polja nisu popunjena!';
     }
@@ -103,19 +113,25 @@ export class TradesComponent implements OnInit {
   makeOrder(){
     this.loading = true;
 
-    if(this.stocksFormGroup.value.limit != null && this.stocksFormGroup.value.limit != "" &&
-      this.stocksFormGroup.value.stop != null && this.stocksFormGroup.value.stop != ""){
+    let limit = this.stocksFormGroup.value.limit;
+    let stop = this.stocksFormGroup.value.stop;
+
+    if(limit != null && limit != "" && stop != null && stop != ""){
       this.orderType = OrderTypeEnum.STOP_LIMIT_ORDER;
+      limit = null;
+      stop = null;
     }
-    else if(this.stocksFormGroup.value.limit != null && this.stocksFormGroup.value.limit != ""){
+    else if(limit != null && limit != ""){
       this.orderType = OrderTypeEnum.LIMIT_ORDER;
+      limit = null;
     }
-    else if(this.stocksFormGroup.value.stop != null && this.stocksFormGroup.value.stop != ""){
+    else if(stop != null && stop != ""){
       this.orderType = OrderTypeEnum.STOP_ORDER;
+      stop = null;
     }
 
     let makeOrderRequest = new MakeOrderRequest(this.symbol,  this.listingType, this.stocksFormGroup.value.quantity,
-      this.orderAction, this.orderType, this.stocksFormGroup.value.limit, this.stocksFormGroup.value.stop, this.allOrNone, this.margin
+      this.orderAction, this.orderType, limit, stop, this.allOrNone, this.margin
     );
 
     this.ordersService.makeOrder(makeOrderRequest).subscribe(

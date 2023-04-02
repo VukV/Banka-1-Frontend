@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {CurrentUserService} from "../../../services/user/current-user.service";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {Router} from "@angular/router";
 import {UserService} from "../../../services/user/user.service";
 import {LogInRequest} from "../../../model/user/log-in-request";
