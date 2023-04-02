@@ -13,8 +13,11 @@ export class AppComponent implements OnInit{
 
   displayLogout: string = "none";
   isLoggedIn: boolean = false;
-  isAdmin: boolean = false;
   userLetter: string = "";
+
+  isAdmin: boolean = false;
+  isAgent: boolean = false;
+  isSupervisor: boolean = false;
 
   constructor(private router: Router, private currentUserService: CurrentUserService) {
   }
@@ -36,6 +39,8 @@ export class AppComponent implements OnInit{
 
   checkRoles(){
     this.isAdmin = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_ADMIN);
+    this.isAgent = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_AGENT);
+    this.isSupervisor = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_SUPERVISOR);
   }
 
   getUserLetter(){

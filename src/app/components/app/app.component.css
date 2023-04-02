@@ -18,3 +18,7 @@
 .profile-circle:hover{
   cursor: pointer;
 }
+
+.nav-link:hover{
+  color: var(--si-green);
+}
