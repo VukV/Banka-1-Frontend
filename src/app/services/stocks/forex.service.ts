@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {catchError, Observable, throwError} from "rxjs";
 import {TimeSeriesQueryEnum} from "../../model/stocks/time-series-query-enum";
+import {CurrentUserService} from "../user/current-user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,15 @@ export class ForexService {
     'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private currentUserService: CurrentUserService) {
+    this.currentUserService.isLoggedIn.subscribe((loggedIn) => {
+      if(loggedIn){
+        this.headers = new HttpHeaders({
+          'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+        });
+      }
+    });
+  }
 
   getForex(fromCurrencyCode: string, toCurrencyCode: string, page: number, size: number): Observable<any>{
     return this.httpClient.post(this.forexUrl, {
