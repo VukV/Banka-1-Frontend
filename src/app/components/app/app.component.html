@@ -17,10 +17,10 @@
           <li class="nav-item">
             <a [routerLink]="'/capital'" class="nav-link active fw-bold" aria-current="page">Kapital</a>
           </li>
-          <li *ngIf="isAgent || isAdmin" class="nav-item">
+          <li class="nav-item">
             <a [routerLink]="'/orders'" class="nav-link active fw-bold" aria-current="page">Porudžbine</a>
           </li>
-          <li *ngIf="isAdmin" class="nav-item">
+          <li *ngIf="isAdmin || isSupervisor" class="nav-item">
             <a [routerLink]="'/orders-admin'" class="nav-link active fw-bold" aria-current="page">Upravljanje porudžbinama</a>
           </li>
           <li class="nav-item">
