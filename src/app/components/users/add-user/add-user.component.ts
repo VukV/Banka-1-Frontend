@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserPositionEnum} from "../../../model/user/user-position-enum";
 import {UserRoleEnum} from "../../../model/user/user-role-enum";
 import {UserService} from "../../../services/user/user.service";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {Router} from "@angular/router";
 
 @Component({

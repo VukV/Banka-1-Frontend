@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {TimeSeriesQueryEnum} from "../../model/stocks/time-series-query-enum";
+import {CurrentUserService} from "../user/current-user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,15 @@ export class StocksService {
     'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private currentUserService: CurrentUserService) {
+    this.currentUserService.isLoggedIn.subscribe((loggedIn) => {
+      if(loggedIn){
+        this.headers = new HttpHeaders({
+          'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+        });
+      }
+    });
+  }
 
   getStocks(symbol: string, page: number, size: number): Observable<any>{
     let queryParams = new HttpParams();

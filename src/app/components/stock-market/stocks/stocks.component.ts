@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Stock} from "../../../model/stocks/stock";
 import {StocksService} from "../../../services/stocks/stocks.service";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {Router} from "@angular/router";
 
 @Component({

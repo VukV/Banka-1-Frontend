@@ -16,13 +16,14 @@ import {UserRoleEnum} from "./model/user/user-role-enum";
 import {StockMainComponent} from "./components/stock-market/stock-main/stock-main.component";
 import {StockDetailComponent} from "./components/stock-market/stock-detail/stock-detail.component";
 import {ForexDetailComponent} from "./components/stock-market/forex-detail/forex-detail.component";
-import {TradesMainComponent} from "./components/trades/trades-main/trades-main.component";
 import {CapitalMainComponent} from "./components/capital/capital-main/capital-main.component";
 import {OptionsComponent} from "./components/stock-market/options/options.component";
-import {OrdersComponent} from "./components/orders/orders.component";
+import {OrdersComponent} from "./components/orders/orders/orders.component";
 import {CompaniesComponent} from "./components/companies/companies/companies.component";
 import {ContractsComponent} from "./components/contracts/contracts/contracts.component";
 import {CompanyDetailsComponent} from "./components/companies/company-details/company-details.component";
+import {TradesComponent} from "./components/trades/trades/trades.component";
+import {TradesForexComponent} from "./components/trades/trades-forex/trades-forex.component";
 
 const routes: Routes = [
   {
@@ -61,8 +62,14 @@ const routes: Routes = [
     data: {roles: []}
   },
   {
-    path: "trades",
-    component: TradesMainComponent,
+    path: "trades-stocks/:symbol",
+    component: TradesComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "trades-forex/:fromC/:toC",
+    component: TradesForexComponent,
     canActivate: [LoginGuard],
     data: {roles: []}
   },

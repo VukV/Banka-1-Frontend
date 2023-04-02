@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TimeSeriesQueryEnum} from "../../../model/stocks/time-series-query-enum";
 import {StockTimeSeries} from "../../../model/stocks/stock-time-series";
 import {StocksService} from "../../../services/stocks/stocks.service";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {Location} from "@angular/common";
 import {Chart, registerables} from "chart.js";
 
@@ -73,6 +73,11 @@ export class StockDetailComponent implements OnInit {
               }
             },
             beginAtZero: false
+          },
+          x: {
+            ticks: {
+              color: "white"
+            },
           }
         },
         plugins: {
@@ -151,7 +156,7 @@ export class StockDetailComponent implements OnInit {
 
     for(let ts in this.stockTimeSeries!.time_series){
       data.push(this.stockTimeSeries!.time_series[ts].high);
-      labels.push("");
+      labels.push(this.stockTimeSeries!.time_series[ts].date);
     }
 
     this.stockChart.destroy();
@@ -164,7 +169,7 @@ export class StockDetailComponent implements OnInit {
   }
 
   buySell(): void {
-    this.router.navigate(['trades']);
+    this.router.navigate(['trades-stocks', this.stock!.symbol]);
   }
 
   seeOptions(): void {

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Forex} from "../../../model/stocks/forex";
-import {PopupComponent} from "../../popup/popup.component";
+import {PopupComponent} from "../../popup/popup/popup.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {TimeSeriesQueryEnum} from "../../../model/stocks/time-series-query-enum";
@@ -88,6 +88,11 @@ export class ForexDetailComponent implements OnInit {
               }
             },
             beginAtZero: false
+          },
+          x: {
+            ticks: {
+              color: "white"
+            },
           }
         },
         plugins: {
@@ -110,7 +115,7 @@ export class ForexDetailComponent implements OnInit {
   }
 
   buySell(): void {
-    this.router.navigate(['trades']);
+    this.router.navigate(['trades-forex', this.forex?.fromCurrency.currencyCode, this.forex?.toCurrency.currencyCode]);
   }
 
   close(): void {
@@ -148,7 +153,7 @@ export class ForexDetailComponent implements OnInit {
 
     for(let ts in this.forexTimeSeries.time_series){
       data.push(this.forexTimeSeries.time_series[ts].high);
-      labels.push("");
+      labels.push(this.forexTimeSeries.time_series[ts].date);
     }
 
     this.forexChart.destroy();

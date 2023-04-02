@@ -20,6 +20,16 @@ export class CurrentUserService {
     this.loggedInBehavior.next(true);
   }
 
+  getUserId(): number{
+    let token = sessionStorage.getItem("jwt");
+    if(token == null){
+      return -1;
+    }
+
+    let decoded = jwtDecode<JwtPayload>(token);
+    return decoded.userId;
+  }
+
   //metoda vraca email trenutnog korisnika
   getUserEmail(): string | null{
     let token = sessionStorage.getItem("jwt");
