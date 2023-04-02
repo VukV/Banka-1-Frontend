@@ -14,15 +14,3 @@ export interface Company{
   adresa: string,
   drzava: string
 }
-
-export interface Order{
-  id: number,
-  hartija: string,
-  ukupno: string,
-  simbol: string,
-  kolicina: number,
-  cena: number,
-  status: string,
-  zavrsena: string,
-  modifikacija: any,
-}

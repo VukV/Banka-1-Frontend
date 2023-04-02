@@ -4,6 +4,7 @@ import {CurrentUserService} from "../user/current-user.service";
 import {MakeOrderRequest} from "../../model/orders/make-order-request";
 import {catchError, Observable, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {OrderStatusEnum} from "../../model/orders/order-status-enum";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,36 @@ export class OrdersService {
   makeOrder(makeOrderRequest: MakeOrderRequest): Observable<any>{
     return this.httpClient.post(this.ordersUrl + "/make-order",
         makeOrderRequest,
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  getUserOrders(orderStatus: OrderStatusEnum | null, done: boolean | null, userId: number):Observable<any>{
+    return this.httpClient.post(this.ordersUrl + "/by-user",
+      {
+        "orderStatus": orderStatus,
+        "done": done,
+        "userId": userId
+      },
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  getAllOrders(): Observable<any>{
+    return this.httpClient.post(this.ordersUrl + "/all",
+      {
+        //TODO
+      },
       {
         headers: this.headers
       }).pipe(

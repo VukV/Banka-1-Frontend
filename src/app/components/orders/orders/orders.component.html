@@ -20,8 +20,8 @@
         </div>
         <div class="col-md-auto align-items-center d-flex justify-content-center">
           <a class="bi bi-arrow-clockwise ms-2 me-3" id="refresh" data-cy="refresh" (click)="refresh()"></a>
-          <select id="slc" class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option id="opt" *ngFor="let option of options" value="{{option}}">{{option}}</option></select>
+          <select #orderOptions (change)="onOption(orderOptions.value)" id="slc" class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option class="opt" *ngFor="let option of options" value="{{option}}">{{option}}</option></select>
         </div>
       </div>
       <br>
@@ -43,19 +43,23 @@
           <tbody>
           <tr>
           <tr *ngFor="let order of this.orders ">
-            <td>{{ order.hartija }}</td>
-            <td>{{ order.ukupno}}</td>
-            <td>{{ order.simbol }}</td>
-            <td>{{ order.kolicina }}</td>
-            <td>{{ order.cena }}</td>
-            <td [ngStyle]="{'background-color': order.status == 'Odobrena'? 'green' : 'var(--si-red)'}">{{ order.status }}</td>
-            <td>{{ order.zavrsena }}</td>
-            <td>{{ order.modifikacija }}</td>
+            <td>{{ order.listingType }}</td>
+            <td>{{ order.orderAction }}</td>
+            <td>{{ order.listingSymbol }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.expectedPrice }}</td>
+            <td>{{ order.orderStatus }}</td>
+            <td *ngIf="order.done"> Da </td>
+            <td *ngIf="!order.done"> Ne </td>
+            <td>{{ order.lastModified | date: 'dd/MM/yy HH:mm' }}</td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
 
 </div>

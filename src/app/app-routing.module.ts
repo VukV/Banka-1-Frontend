@@ -24,7 +24,9 @@ import {ContractsComponent} from "./components/contracts/contracts/contracts.com
 import {CompanyDetailsComponent} from "./components/companies/company-details/company-details.component";
 import {TradesComponent} from "./components/trades/trades/trades.component";
 import {TradesForexComponent} from "./components/trades/trades-forex/trades-forex.component";
+import {OrdersAdminComponent} from "./components/orders/orders-admin/orders-admin.component";
 
+//TODO DODAJ ROLE
 const routes: Routes = [
   {
     path: "help",
@@ -82,6 +84,12 @@ const routes: Routes = [
   {
     path: "orders",
     component: OrdersComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "orders-admin",
+    component: OrdersAdminComponent,
     canActivate: [LoginGuard],
     data: {roles: []}
   },
