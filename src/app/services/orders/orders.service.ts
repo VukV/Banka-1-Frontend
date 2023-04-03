@@ -54,14 +54,35 @@ export class OrdersService {
     );
   }
 
-  getAllOrders(): Observable<any>{
+  getAllOrders(orderStatus: OrderStatusEnum | null, done: boolean | null): Observable<any>{
     return this.httpClient.post(this.ordersUrl + "/all",
       {
-        //TODO
+        "orderStatus": orderStatus,
+        "done": done
       },
       {
         headers: this.headers
       }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  approveOrder(orderId: number): Observable<any> {
+    return this.httpClient.post(this.ordersUrl + "/approve/" + orderId, null, {
+      headers: this.headers
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  rejectOrder(orderId: number): Observable<any> {
+    return this.httpClient.post(this.ordersUrl + "/reject/" + orderId, null, {
+      headers: this.headers
+    }).pipe(
       catchError(err => {
         return throwError(() => new Error(err.error.message));
       })
