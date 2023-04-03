@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {LoginGuard} from "./guards/login.guard";
 import {ListUsersComponent} from "./components/users/list-users/list-users.component";
@@ -26,7 +26,7 @@ import {TradesComponent} from "./components/trades/trades/trades.component";
 import {TradesForexComponent} from "./components/trades/trades-forex/trades-forex.component";
 import {OrdersAdminComponent} from "./components/orders/orders-admin/orders-admin.component";
 
-//TODO DODAJ ROLE
+
 const routes: Routes = [
   {
     path: "help",
@@ -91,7 +91,7 @@ const routes: Routes = [
     path: "orders-admin",
     component: OrdersAdminComponent,
     canActivate: [LoginGuard],
-    data: {roles: []}
+    data: {roles: [UserRoleEnum.ROLE_ADMIN, UserRoleEnum.ROLE_SUPERVISOR]}
   },
   {
     path: "companies",
