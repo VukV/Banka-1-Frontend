@@ -18,7 +18,7 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     //OTKOMENTARISATI ZA PRISTUP SVIM STRANICAMA PRILIKOM DEVELOPMENT-A
-    return true;
+    //return true;
 
     //role za svaku rutu su definisane u router-u
     let roles = route.data['roles'];
