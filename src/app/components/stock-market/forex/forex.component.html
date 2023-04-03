@@ -1,33 +1,20 @@
-<form>
-  <div class="mb-3">
-    <br>
-    <input type="text"
-           class="form-control input-field"
-           data-cy="prodajnaValuta"
-           id="prodajnaValuta"
-           placeholder="Prodajna valuta">
-  </div>
-
-  <div class="mb-3">
-    <input type="text"
-           class="form-control input-field kupovna-input"
-           data-cy="kupovnaValuta"
-           id="kupovnaValuta"
-           placeholder="Kupovna valuta">
-  </div>
-
-  <div class="btn-position">
-    <button type="button"
-            class="btn btn-green btn-block rounded-pill search-btn"
-            data-cy="btnSearch"
-            id="btnSearchByName">
-      Pretraži</button>
-  </div>
+<div>
   <br>
+  <form class="row justify-content-start">
+    <div class="col-md-2 align-items-center">
+      <input data-cy="symbol-selling" type="text" [(ngModel)]="fromCurrencyCode" class="form-control" id="sellingCurr" name="sellingCurr" placeholder="Prodajna valuta">
+    </div>
+    <div class="col-md-2 align-items-center">
+      <input data-cy="symbol-buying" type="text" [(ngModel)]="toCurrencyCode" class="form-control" id="buyingCurr" name="buyingCurr" placeholder="Kupovna valuta">
+    </div>
+    <div class="col-md-1 align-items-center">
+      <button data-cy="forex-search" (click)="listForex()" type="button" class="btn btn-green btn-block rounded-pill" id="dugme">Pretraži</button>
+    </div>
+  </form>
+  <br>
+</div>
 
-</form>
-
-<div class="row justify-content-center forex-table-header">
+<div *ngIf="!loading" class="row justify-content-center forex-table-header">
   <div style="overflow: auto" class="rectangle">
     <table class="table table-borderless table-d table-position"
            id="stocks-table">
@@ -38,7 +25,25 @@
         <th>Kurs</th>
         <th>Poslednje ažuriranje</th>
       </tr>
+
+      <tr *ngFor="let forex of this.forexList | paginate: { itemsPerPage: forexPerPage, currentPage: page, totalItems: totalForex }" (click)="forexDetails(forex)" class="clickable-tr">
+        <td>{{ forex.fromCurrency.currencyCode }}</td>
+        <td>{{ forex.toCurrency.currencyCode }}</td>
+        <td [countUp]="forex.exchangeRate" [options]="{ enableScrollSpy: true, decimalPlaces: 3}">0</td>
+        <td>{{ forex.lastRefresh | date: 'dd/MM/yy HH:mm' }}</td>
+      </tr>
       </thead>
+      <tbody>
     </table>
   </div>
+
+  <div class="row justify-content-center pagination-div">
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      <pagination-controls (pageChange)="pageChangeEvent($event)" nextLabel="Sledeća" previousLabel="Prethodna"></pagination-controls>
+    </div>
+  </div>
 </div>
+
+<ngx-loading [show]="loading"></ngx-loading>
+
+<app-popup></app-popup>

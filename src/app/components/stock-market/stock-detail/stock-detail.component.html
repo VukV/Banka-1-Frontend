@@ -1,85 +1,92 @@
+<br>
 <div class="container mt-3">
-  <h1>{{symbol}} <a class="bi bi-arrow-clockwise ms-2" id="refresh" data-cy="refresh" (click)="refresh()"></a></h1>
+  <h1 class="fw-bold">{{ stock!.symbol }} <a class="bi bi-arrow-clockwise ms-2" id="refresh" data-cy="refresh" (click)="refresh()"></a></h1>
   <hr id="divider1">
+
   <div id="stockInfo" class="row row-cols-1 row-cols-md-2 p-3">
     <div class="col">
-      <h4>{{name}}</h4>
-      <h2 id="price">${{price.toFixed(2)}}</h2>
-      <p id="priceChange" [class.text-red]="priceChangePercentage < 0" [class.text-green]="priceChangePercentage > 0">
-        {{priceChangePercentage}}% - danas
-      </p>
-      <p>Poslednje ažuriranje: <i>{{ lastUpdate | date: "dd MMM yyyy HH:mm"}}</i></p>
+      <h2 id="price" [countUp]="stock!.price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</h2>
+
+      <p style="color: #00B127" *ngIf="stock!.priceChangeInPercentage >= 0; else redPercentage" [countUp]="stock!.priceChangeInPercentage" [options]="{ enableScrollSpy: true, decimalPlaces: 3, suffix: '%'}">0</p>
+      <ng-template #redPercentage>
+        <p style="color: #d70000" [countUp]="stock!.priceChangeInPercentage" [options]="{ enableScrollSpy: true, decimalPlaces: 3, suffix: '%'}">0</p>
+      </ng-template>
+
+      <p>Poslednje ažuriranje: <i>{{ stock!.lastRefresh | date: 'dd/MM/yy HH:mm' }}</i></p>
     </div>
+
     <div id="chart" class="col">
-      CHART TODO
+      <div class="d-flex justify-content-end">
+        <div class="btn-group" role="group" (click)="onButtonGroupClick($event)">
+          <button class="btn btn-outline" (click)="getTSMin()">5 min</button>
+          <button class="btn btn-outline" (click)="getTSHourly()">Sat</button>
+          <button class="btn btn-outline" (click)="getTSDaily()">Dan</button>
+          <button class="btn btn-outline" (click)="getTSWeekly()">Nedelja</button>
+          <button class="btn btn-outline active" (click)="getTSMonthly()">Mesec</button>
+        </div>
+      </div>
+      <br>
+
+      <canvas height="120px" id="stock-chart"></canvas>
     </div>
   </div>
+
   <fieldset id="stockDetails" class="row row-cols-1 row-cols-md-2 mt-3 border rounded-5 p-3">
-    <legend class="float-none w-auto px-2">Details</legend>
+    <legend class="float-none w-auto px-2">Detalji</legend>
     <div class="col pe-md-4">
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">CHANGE:</p>
-        <p class="float-end my-1" [class.text-red]="priceChange < 0" [class.text-green]="priceChange > 0">
-          ${{priceChange.toFixed(2)}} ({{priceChangePercentage}}%)
-        </p>
+        <p class="float-end my-1" style="color: #00B127" *ngIf="stock!.priceChange >= 0; else redPrice" [countUp]="stock!.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3, prefix: '$'}">0</p>
+        <ng-template #redPrice>
+          <p class="float-end my-1" style="color: #d70000" [countUp]="stock!.priceChange" [options]="{ enableScrollSpy: true, decimalPlaces: 3, prefix: '$'}">0</p>
+        </ng-template>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">OPEN:</p>
-        <p class="float-end my-1">${{open}}</p>
+        <p class="float-end my-1" [countUp]="stock!.open" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</p>
       </div>
+
       <div class="stockDetailDiv p-1">
-        <p class="float-start my-1">LOW:</p>
-        <p class="float-end my-1">${{low}}</p>
-      </div>
-      <div class="stockDetailDiv p-1">
-        <p class="float-start my-1">HIGH:</p>
-        <p class="float-end my-1">${{high}}</p>
-      </div>
-      <div class="stockDetailDiv p-1">
-        <p class="float-start my-1">PREVIOUS CLOSE:</p>
-        <p class="float-end my-1">${{previousClose}}</p>
+        <p class="float-start my-1">CLOSE:</p>
+        <p class="float-end my-1" [countUp]="stock!.close" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</p>
       </div>
     </div>
+
     <div class="col ps-md-4">
       <div class="stockDetailDiv p-1">
-        <p class="float-start my-1">DAY RANGE:</p>
-        <p class="float-end my-1">${{dayRangeFrom}} - ${{dayRangeTo}}</p>
+        <p class="float-start my-1">LOW:</p>
+        <p class="float-end my-1" [countUp]="stock!.low" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</p>
       </div>
+
       <div class="stockDetailDiv p-1">
-        <p class="float-start my-1">PRICE VOLUME:</p>
-        <p class="float-end my-1">${{formatter.format(priceVolume) | lowercase}}</p>
+        <p class="float-start my-1">HIGH:</p>
+        <p class="float-end my-1" [countUp]="stock!.high" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">VOLUME:</p>
-        <p class="float-end my-1">${{formatter.format(volume) | lowercase}}</p>
-      </div>
-      <div class="stockDetailDiv p-1">
-        <p class="float-start my-1">OUTSTANDING SHARES:</p>
-        <p class="float-end my-1">${{formatter.format(outstandingShares) | lowercase}}</p>
-      </div>
-      <div class="stockDetailDiv p-1">
-        <p class="float-start my-1">MARKET CAP:</p>
-        <p class="float-end my-1">${{formatter.format(marketCap) | lowercase}}</p>
+        <p class="float-end my-1" [countUp]="stock!.volume" [options]="{ enableScrollSpy: true}">0</p>
       </div>
     </div>
   </fieldset>
-  <div class="row mt-3 justify-content-center justify-content-md-start">
-    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-start">
-      <button type="button" class="btn btn-outline rounded-pill w-75 fs-5 fw-bolder"
-              id="buy" data-cy="buy" (click)="buy()">KUPI</button>
-    </div>
-    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-start">
-      <button type="button" class="btn btn-outline rounded-pill w-75 fs-5 fw-bolder"
-              id="sell" data-cy="sell" (click)="sell()">PRODAJ</button>
-    </div>
-    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-start">
-      <button type="button" class="btn btn-outline-light btn-block rounded-pill"
-              id="seeOptions" data-cy="seeOptions" (click)="seeOptions()">VIDI OPCIJE</button>
-    </div>
-    <div class="col-0 col-md-4"></div>
-    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-end">
-      <button type="button" class="btn btn-green rounded-pill w-75 justify-content-end"
-              id="close" data-cy="close" (click)="close()">Nazad</button>
+
+  <div class="row d-flex justify-content-between buttons-div">
+    <span class="col-md-4">
+      <button type="button" class="btn btn-outline rounded-pill fw-bold fs-5"
+                id="buy" data-cy="buy" (click)="buySell()">KUPI/PRODAJ</button>
+      <button type="button" class="btn btn-outline-light btn-block rounded-pill fw-bold fs-5"
+                id="seeOptions" data-cy="seeOptions" (click)="seeOptions()">VIDI OPCIJE</button>
+    </span>
+
+    <div class="col-md-3 d-flex justify-content-end">
+      <button type="button" class="btn btn-green rounded-pill justify-content-end fs-5"
+                id="close" data-cy="close" (click)="close()">Nazad</button>
     </div>
   </div>
+
+  <ngx-loading [show]="loadingTS || loadingStock"></ngx-loading>
+
+  <app-popup></app-popup>
 </div>

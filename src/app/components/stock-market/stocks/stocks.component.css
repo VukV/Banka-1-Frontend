@@ -43,8 +43,29 @@ table {
   width: 100% ;
 }
 th {
-  text-align: center;
+  text-align: left;
   width: 25% ;
 }
 
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
 
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: var(--si-green) !important;
+  border: transparent;
+  border-radius: 20px;
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: rgba(11, 148, 8, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+:host /deep/.ngx-pagination a:hover{
+  background: rgba(11, 148, 8, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}

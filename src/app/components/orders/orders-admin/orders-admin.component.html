@@ -1,0 +1,59 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="../../../../assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Upravljanje porudžbinama</li>
+    </ol>
+  </nav>
+
+  <div class="row justify-content-center users-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-between">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Upravljanje porudžbinama</h2>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around table-responsive">
+        <table style="overflow-x: hidden" class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>Email</th>
+            <th>Hartija</th>
+            <th>Tip</th>
+            <th>Simbol</th>
+            <th>Količina</th>
+            <th>Cena</th>
+            <th>Posl. modifikacija</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <tr *ngFor="let order of this.orders ">
+            <td>{{ order.email }}</td>
+            <td>{{ order.listingType }}</td>
+            <td>{{ order.orderAction }}</td>
+            <td>{{ order.listingSymbol }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.expectedPrice | number:'1.2-2' }}</td>
+            <td>{{ order.lastModified | date: 'dd/MM/yy HH:mm' }}</td>
+            <td><button type="button" id="approve" class="btn btn-green btn-sm rounded-pill" (click)="approveOrder(order.id)">
+              Odobri
+            </button></td>
+            <td><button type="button" id="reject" class="btn btn-outline btn-sm rounded-pill" (click)="rejectOrder(order.id)">
+              Odbij
+            </button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

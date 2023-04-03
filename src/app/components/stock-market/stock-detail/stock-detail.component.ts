@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Stock} from "../../../model/stocks/stock";
+import {ActivatedRoute, Router} from "@angular/router";
+import {TimeSeriesQueryEnum} from "../../../model/stocks/time-series-query-enum";
+import {StockTimeSeries} from "../../../model/stocks/stock-time-series";
+import {StocksService} from "../../../services/stocks/stocks.service";
+import {PopupComponent} from "../../popup/popup/popup.component";
+import {Location} from "@angular/common";
+import {Chart, registerables} from "chart.js";
+
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-stocks-detail',
@@ -6,39 +16,166 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock-detail.component.css']
 })
 export class StockDetailComponent implements OnInit {
-  formatter = new Intl.NumberFormat("en", { minimumFractionDigits: 1, notation: "compact" });
 
-  symbol: string = "";
-  name: string = "";
-  price: number = -1;
-  priceChangePercentage: number = -1;
-  lastUpdate: Date = new Date();
-  priceChange: number = -1;
-  open: number = -1;
-  low: number = -1;
-  high: number = -1;
-  previousClose: number = -1;
-  dayRangeFrom: number = -1;
-  dayRangeTo: number = -1;
-  priceVolume: number = -1;
-  volume: number = -1;
-  outstandingShares: number = -1;
-  marketCap: number = -1;
+  loadingTS: boolean = false;
+  loadingStock: boolean = false;
+  stock: Stock | undefined;
+  stockTimeSeries: StockTimeSeries | undefined;
+  timeSeriesQuery: TimeSeriesQueryEnum = TimeSeriesQueryEnum.MONTHLY;
 
-  constructor() { }
+  stockChart: any;
 
-  ngOnInit(): void { }
+  @ViewChild(PopupComponent)
+  popupComponent!: PopupComponent;
+
+  constructor(private route: ActivatedRoute, private router: Router, private stocksService: StocksService, private location: Location) { }
+
+  ngOnInit(): void {
+    this.getStockFromRoute();
+    this.getTimeSeries();
+    this.initChart([], []);
+  }
+
+  getStockFromRoute(){
+    this.route.queryParams.subscribe(
+      params => {
+        this.stock = JSON.parse(params['stockData']);
+      }
+    )
+  }
+
+  initChart(dataList: any, labelList: any){
+    this.stockChart = new Chart('stock-chart', {
+      type: 'line',
+      data: {
+        labels: labelList,
+        datasets: [{
+          label: 'Cena',
+          data: dataList,
+          borderWidth: 1,
+          borderColor: '#00B127FF',
+        }]
+      },
+      options: {
+        elements:{
+          point: {
+            radius: 0,
+            hoverRadius: 6,
+            hitRadius: 8
+          }
+        },
+        scales: {
+          y: {
+            ticks: {
+              color: "white",
+              font: {
+                size: 18,
+              }
+            },
+            beginAtZero: false
+          },
+          x: {
+            ticks: {
+              color: "white"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false,
+            labels: {
+              color: 'white',
+              font: {
+                size: 18
+              }
+            }
+          }
+        }
+      },
+    });
+  }
+
+  getTimeSeries(){
+    this.loadingTS = true;
+    this.stocksService.getStockTimeSeries(this.stock!.symbol, this.timeSeriesQuery).subscribe(
+      (data) => {
+        this.stockTimeSeries = data;
+        this.loadingTS = false;
+
+        this.updateChart();
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loadingTS = false;
+      }
+    )
+  }
+
+  getStockData(){
+    this.loadingStock = true;
+    this.stocksService.getStock(this.stock!.id).subscribe(
+      (data) => {
+        this.stock = data;
+        this.loadingStock = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loadingStock = false;
+      }
+    )
+  }
+
+  getTSMin(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.FIVE_MIN;
+    this.getTimeSeries();
+  }
+
+  getTSHourly(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.HOUR;
+    this.getTimeSeries();
+  }
+
+  getTSDaily(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.DAILY;
+    this.getTimeSeries();
+  }
+
+  getTSWeekly(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.WEEKLY;
+    this.getTimeSeries();
+  }
+
+  getTSMonthly(){
+    this.timeSeriesQuery = TimeSeriesQueryEnum.MONTHLY;
+    this.getTimeSeries();
+  }
+
+  private updateChart(){
+    let data: number[] = [];
+    let labels = [];
+
+    for(let ts in this.stockTimeSeries!.time_series){
+      data.push(this.stockTimeSeries!.time_series[ts].high);
+      labels.push(this.stockTimeSeries!.time_series[ts].date);
+
+      if(+ts > 50){
+        break;
+      }
+    }
+
+    console.log(labels);
+
+    this.stockChart.destroy();
+    this.initChart(data, labels);
+  }
 
   refresh(): void {
-    // TODO
+    this.getStockData();
+    this.getTimeSeries();
   }
 
-  buy(): void {
-    // TODO
-  }
-
-  sell(): void {
-    // TODO
+  buySell(): void {
+    this.router.navigate(['trades-stocks', this.stock!.symbol]);
   }
 
   seeOptions(): void {
@@ -46,6 +183,22 @@ export class StockDetailComponent implements OnInit {
   }
 
   close(): void {
-    // TODO
+    this.location.back()
   }
+
+  onButtonGroupClick($event: any){
+    let clickedElement = $event.target || $event.srcElement;
+
+    if( clickedElement.nodeName === "BUTTON" ) {
+
+      let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".active");
+
+      if( isCertainButtonAlreadyActive ) {
+        isCertainButtonAlreadyActive.classList.remove("active");
+      }
+
+      clickedElement.className += " active";
+    }
+  }
+
 }

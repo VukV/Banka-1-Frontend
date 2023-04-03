@@ -1,89 +1,107 @@
-<form [formGroup]="forexFormGroup"
-      (ngSubmit)="onButtonForexSubmit()" class="row justify-content-start">
+<div class="container">
 
-  <div class="row d-flex justify-content-start pt-3">
-    <div class="col-md-3 d-flex">
-      <div class="col-md-6 d-grid">
-        <label for="selectedCurrency1">Value</label>
-        <select data-cy="selectedCurrency1" class="form-select mt-2" id="selectedCurrency1"
-                [ngModelOptions]="{standalone: true}"
-                [(ngModel)]="selectedCurrency1">
-          <option data-cy="selectedOCurrency1" *ngFor="let curr of currencyList" [value]="curr">{{curr}}</option>
-        </select>
-      </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Trgovina</li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Forex</li>
+    </ol>
+  </nav>
 
-      <div class="col-md-6 d-grid ">
-        <label for="selectedCurrency2">Value</label>
-        <select data-cy="selectedCurrency2" class="form-select mt-2" id="selectedCurrency2"
-                [ngModelOptions]="{standalone: true}"
-                [(ngModel)]="selectedCurrency2">
-          <option data-cy="selectedOCurrency2" *ngFor="let curr of currencyList" [value]="curr">{{curr}}</option>
-        </select>
+  <div class="row justify-content-start green-border">
+    <div class="row d-flex justify-content-start">
+      <div class="col-md-auto d-grid align-items-center">
+        <h2 class="fw-bold">Trgovina</h2>
       </div>
     </div>
-  </div>
 
-  <div class="row d-flex justify-content-start pt-3">
-    <div class="col-md-8 d-grid align-items-center">
-      <label for="quantity">Količina</label>
+    <form [formGroup]="forexFormGroup"
+          (ngSubmit)="onButtonForexSubmit()" class="row justify-content-start">
 
-      <div class="row d-flex justify-content-start align-items-center">
-        <div class="col-md-4 d-grid">
-          <input data-cy="quantity" class="form-control"
-                 formControlName="quantity" required type="number" id="quantity" name="quantity"/>
+      <div class="row d-flex justify-content-start pt-3">
+        <div class="col-md-auto d-grid currencies">
+          <label for="curr1">Razmena iz</label>
+          <input disabled type="text" [(ngModel)]="selectedCurrency1" class="form-control curr-input" id="curr1" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="col-md-auto d-grid currencies">
+          <label for="curr2">Razmena u</label>
+          <input disabled type="text" [(ngModel)]="selectedCurrency2" class="form-control curr-input" id="curr2" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-start pt-3">
+        <div class="col-md-8 d-grid align-items-center">
+          <label for="quantity">Količina</label>
+
+          <div class="row d-flex justify-content-start align-items-center">
+            <div class="col-md-4 d-grid">
+              <input data-cy="quantity" class="form-control"
+                     formControlName="quantity" required type="number" id="quantity" name="quantity"/>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="row d-flex justify-content-start pt-3">
+        <div class="col-md-8 d-flex ">
+
+          <div class="col-md-4 d-grid">
+            <label for="limit">Limit</label>
+            <input data-cy="limit" type="number" id="limit" name="limit" class="form-control"
+                   formControlName="limit" required/>
+          </div>
+
+          <div class="col-md-4 d-grid px-5">
+            <label for="stop">Stop</label>
+            <input data-cy="stop" type="number" id="stop" name="stop" class="form-control"
+                   formControlName="stop" required/>
+          </div>
         </div>
 
       </div>
-    </div>
 
 
-  </div>
+      <div class="row d-flex justify-content-start pt-3">
+        <div class="btn-group col-md-3 d-flex">
 
-  <div class="row d-flex justify-content-start pt-3">
-    <div class="col-md-8 d-flex ">
+          <div class="col-md-6 d-flex ">
+            <input class="form-check-input" type="checkbox" id="allornone"
+                   (change)="allOrNone = !allOrNone" [checked]="allOrNone">
+            <label for="allornone" id="allornoneLabel">All or none</label>
+          </div>
 
-      <div class="col-md-4 d-grid">
-        <label for="limit">Limit</label>
-        <input data-cy="limit" type="number" id="limit" name="limit" class="form-control"
-               formControlName="limit" required/>
+        </div>
       </div>
 
-      <div class="col-md-4 d-grid px-5">
-        <label for="stop">Stop</label>
-        <input data-cy="stop" type="number" id="stop" name="stop" class="form-control"
-               formControlName="stop" required/>
-      </div>
-    </div>
-
-  </div>
-
-
-  <div class="row d-flex justify-content-start pt-3">
-    <div class="btn-group col-md-3 d-flex">
-
-      <div class="col-md-6 d-flex ">
-        <input data-cy="allornone" [class.active]="allornone" (click)="allornone = !allornone" type="checkbox"
-               id="allornone"/>
-        <label for="allornone" id="allornoneLabel">All or none</label>
+      <div class="row d-flex justify-content-start pt-5">
+        <div class="col-md-6 text-start align-items-start">
+          <div *ngIf="errorMessage != ''">
+            <label style="color: red"> {{ errorMessage }} </label>
+          </div>
+        </div>
       </div>
 
-    </div>
-  </div>
 
-  <div class="row d-flex justify-content-start pt-5">
-    <div class="col-md-2 text-start align-items-start">
-      <div *ngIf="errorMessage != ''">
-        <label style="color: red"> {{ errorMessage }} </label>
+      <div class="col-md-2 d-grid align-items-center pt-3">
+        <button data-cy="btnSubmit" type="submit" class="btn btn-green btn-block rounded-pill">Naruči</button>
       </div>
-    </div>
+
+    </form>
   </div>
 
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
+  <app-confirmation-popup (confirmed)="onConfirmEvent($event)"></app-confirmation-popup>
 
-  <div class="col-md-2 d-grid align-items-center pt-3">
-    <button data-cy="btnSubmit" type="submit" class="btn btn-green btn-block rounded-pill">Naruci</button>
-  </div>
+</div>
 
-</form>
 
 
 

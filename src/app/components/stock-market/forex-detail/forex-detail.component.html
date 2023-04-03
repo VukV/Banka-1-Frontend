@@ -1,52 +1,73 @@
+<br>
 <div class="container mt-3">
-  <h1>{{currencyFromSymbol}} - {{currencyToSymbol}}
+  <h1 class="fw-bold">{{forex!.fromCurrency.currencyCode}} - {{forex!.toCurrency.currencyCode}}
     <a class="bi bi-arrow-clockwise ms-2" id="refresh" data-cy="refresh" (click)="refresh()"></a>
   </h1>
   <hr id="divider1">
+
   <fieldset id="chartContainer" class="row mt-3 border rounded-5 p-3">
-    <legend class="float-none w-auto px-2">Chart</legend>
+    <legend class="float-none w-auto px-2">Razmena kroz vreme</legend>
+
     <div id="chart" class="col">
-      CHART TODO
+      <div class="d-flex justify-content-end">
+        <div class="btn-group" role="group" (click)="onButtonGroupClick($event)">
+          <button class="btn btn-outline" (click)="getTSMin()">5 min</button>
+          <button class="btn btn-outline" (click)="getTSHourly()">Sat</button>
+          <button class="btn btn-outline" (click)="getTSDaily()">Dan</button>
+          <button class="btn btn-outline" (click)="getTSWeekly()">Nedelja</button>
+          <button class="btn btn-outline active" (click)="getTSMonthly()">Mesec</button>
+        </div>
+      </div>
+      <br>
+
+      <canvas height="60px" id="forex-chart"></canvas>
     </div>
   </fieldset>
+
   <fieldset id="stockDetails" class="row mt-3 border rounded-5 p-3">
-    <legend class="float-none w-auto px-2">Details</legend>
+    <legend class="float-none w-auto px-2">Detalji</legend>
     <div class="col pe-md-4">
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">FROM:</p>
-        <p class="float-end my-1">{{currencyFromSymbol}}</p>
+        <p class="float-end my-1">{{forex!.fromCurrency.currencyName}} ({{forex!.fromCurrency.currencyCode}})</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">TO:</p>
-        <p class="float-end my-1">{{currencyToSymbol}}</p>
+        <p class="float-end my-1">{{forex!.toCurrency.currencyName}} ({{forex!.toCurrency.currencyCode}})</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">EXCHANGE RATE:</p>
-        <p class="float-end my-1">{{exchangeRate}}</p>
+        <p class="float-end my-1" [countUp]="forex!.exchangeRate" [options]="{ enableScrollSpy: true, decimalPlaces: 6}">0</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">BID:</p>
-        <p class="float-end my-1">{{bid}}</p>
+        <p class="float-end my-1" [countUp]="forex!.bidPrice" [options]="{ enableScrollSpy: true, decimalPlaces: 6}">0</p>
       </div>
+
       <div class="stockDetailDiv p-1">
         <p class="float-start my-1">ASK:</p>
-        <p class="float-end my-1">{{ask}}</p>
+        <p class="float-end my-1" [countUp]="forex!.askPrice" [options]="{ enableScrollSpy: true, decimalPlaces: 6}">0</p>
       </div>
     </div>
   </fieldset>
-  <div class="row mt-3 justify-content-center justify-content-md-start">
-    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-start">
-      <button type="button" class="btn btn-outline rounded-pill w-75 fs-5 fw-bolder"
-              id="buy" data-cy="buy" (click)="buy()">KUPI</button>
-    </div>
-    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-start">
-      <button type="button" class="btn btn-outline rounded-pill w-75 fs-5 fw-bolder"
-              id="sell" data-cy="sell" (click)="sell()">PRODAJ</button>
-    </div>
-    <div class="col-0 col-md-6"></div>
-    <div class="col-8 my-2 col-md-2 d-flex justify-content-center justify-content-md-end">
-      <button type="button" class="btn btn-green rounded-pill w-75 justify-content-end"
+
+  <div class="row d-flex justify-content-between buttons-div">
+    <span class="col-md-4">
+      <button type="button" class="btn btn-outline rounded-pill fw-bold fs-5"
+              id="buy" data-cy="buy" (click)="buySell()">KUPI/PRODAJ</button>
+    </span>
+
+    <div class="col-md-3 d-flex justify-content-end">
+      <button type="button" class="btn btn-green rounded-pill justify-content-end fs-5"
               id="close" data-cy="close" (click)="close()">Nazad</button>
     </div>
   </div>
+
+  <ngx-loading [show]="loadingTS || loadingForex"></ngx-loading>
+
+  <app-popup></app-popup>
 </div>
+<br>

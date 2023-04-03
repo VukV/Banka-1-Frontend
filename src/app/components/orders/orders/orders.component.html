@@ -1,0 +1,65 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="../../../../assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Porudžbine</li>
+    </ol>
+  </nav>
+
+
+  <div class="row justify-content-center users-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-between">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Porudžbine</h2>
+        </div>
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <a class="bi bi-arrow-clockwise ms-2 me-3" id="refresh" data-cy="refresh" (click)="refresh()"></a>
+          <select #orderOptions (change)="onOption(orderOptions.value)" id="slc" class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option class="opt" *ngFor="let option of options" value="{{option}}">{{option}}</option></select>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around">
+        <table class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>Hartija</th>
+            <th>Tip</th>
+            <th>Simbol</th>
+            <th>Količina</th>
+            <th>Cena</th>
+            <th>Status</th>
+            <th>Završena</th>
+            <th>Posl. modifikacija</th>
+            <th>Opcije</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <tr *ngFor="let order of this.orders ">
+            <td>{{ order.listingType }}</td>
+            <td>{{ order.orderAction }}</td>
+            <td>{{ order.listingSymbol }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.expectedPrice | number:'1.2-2'  }}</td>
+            <td>{{ order.orderStatus }}</td>
+            <td *ngIf="order.done"> Da </td>
+            <td *ngIf="!order.done"> Ne </td>
+            <td>{{ order.lastModified | date: 'dd/MM/yy HH:mm' }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
+
+</div>
