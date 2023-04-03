@@ -67,4 +67,24 @@ export class OrdersService {
       })
     );
   }
+
+  approveOrder(orderId: number): Observable<any> {
+    return this.httpClient.post(this.ordersUrl + "/approve/" + orderId, null, {
+      headers: this.headers
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  rejectOrder(orderId: number): Observable<any> {
+    return this.httpClient.post(this.ordersUrl + "/reject/" + orderId, null, {
+      headers: this.headers
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
 }
