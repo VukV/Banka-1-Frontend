@@ -73,5 +73,7 @@ export class OrdersComponent implements OnInit {
         this.orderStatus = null;
         this.done = null;
     }
+
+    this.getOrders();
   }
 }

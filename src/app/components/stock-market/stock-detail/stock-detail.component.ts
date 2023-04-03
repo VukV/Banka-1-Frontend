@@ -77,7 +77,7 @@ export class StockDetailComponent implements OnInit {
           x: {
             ticks: {
               color: "white"
-            },
+            }
           }
         },
         plugins: {
@@ -157,7 +157,13 @@ export class StockDetailComponent implements OnInit {
     for(let ts in this.stockTimeSeries!.time_series){
       data.push(this.stockTimeSeries!.time_series[ts].high);
       labels.push(this.stockTimeSeries!.time_series[ts].date);
+
+      if(+ts > 50){
+        break;
+      }
     }
+
+    console.log(labels);
 
     this.stockChart.destroy();
     this.initChart(data, labels);

@@ -47,7 +47,7 @@
             <td>{{ order.orderAction }}</td>
             <td>{{ order.listingSymbol }}</td>
             <td>{{ order.quantity }}</td>
-            <td>{{ order.expectedPrice }}</td>
+            <td>{{ order.expectedPrice | number:'1.2-2'  }}</td>
             <td>{{ order.orderStatus }}</td>
             <td *ngIf="order.done"> Da </td>
             <td *ngIf="!order.done"> Ne </td>
