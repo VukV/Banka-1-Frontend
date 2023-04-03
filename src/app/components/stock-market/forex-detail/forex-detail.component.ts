@@ -154,6 +154,10 @@ export class ForexDetailComponent implements OnInit {
     for(let ts in this.forexTimeSeries.time_series){
       data.push(this.forexTimeSeries.time_series[ts].high);
       labels.push(this.forexTimeSeries.time_series[ts].date);
+
+      if(+ts > 100){
+        break;
+      }
     }
 
     this.forexChart.destroy();
