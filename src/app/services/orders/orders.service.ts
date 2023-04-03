@@ -54,10 +54,11 @@ export class OrdersService {
     );
   }
 
-  getAllOrders(): Observable<any>{
+  getAllOrders(orderStatus: OrderStatusEnum | null, done: boolean | null): Observable<any>{
     return this.httpClient.post(this.ordersUrl + "/all",
       {
-        //TODO
+        "orderStatus": orderStatus,
+        "done": done
       },
       {
         headers: this.headers

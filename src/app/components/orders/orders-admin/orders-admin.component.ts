@@ -1,5 +1,4 @@
 import {Component, ViewChild} from '@angular/core';
-import {CurrentUserService} from "../../../services/user/current-user.service";
 import {OrdersService} from "../../../services/orders/orders.service";
 import {OrderStatusEnum} from "../../../model/orders/order-status-enum";
 import {PopupComponent} from "../../popup/popup/popup.component";
@@ -11,23 +10,21 @@ import {PopupComponent} from "../../popup/popup/popup.component";
 })
 export class OrdersAdminComponent {
   orders: any = [];
-  userId: number = -1;
 
   loading: boolean = false;
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
-  constructor(private currentUserService: CurrentUserService, private ordersService: OrdersService) { }
+  constructor(private ordersService: OrdersService) { }
 
   ngOnInit(): void {
-    this.userId = this.currentUserService.getUserId();
     this.getOrders();
   }
 
   getOrders() {
     this.loading = true;
 
-    this.ordersService.getUserOrders(OrderStatusEnum.ON_HOLD, false, this.userId).subscribe(
+    this.ordersService.getAllOrders(OrderStatusEnum.ON_HOLD, false).subscribe(
       (data) => {
         this.orders = data;
         this.loading = false;
