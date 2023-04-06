@@ -1,14 +1,33 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {Stock} from "../../../model/stocks/stock";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TimeSeriesQueryEnum} from "../../../model/stocks/time-series-query-enum";
 import {StockTimeSeries} from "../../../model/stocks/stock-time-series";
 import {StocksService} from "../../../services/stocks/stocks.service";
 import {PopupComponent} from "../../popup/popup/popup.component";
-import {Location} from "@angular/common";
+import {DOCUMENT, Location} from "@angular/common";
 import {Chart, registerables} from "chart.js";
 
 Chart.register(...registerables);
+
+
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexYAxis,
+  ApexXAxis,
+  ApexTitleSubtitle
+} from // @ts-ignore
+ "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  title: ApexTitleSubtitle;
+};
 
 @Component({
   selector: 'app-stocks-detail',
@@ -16,6 +35,12 @@ Chart.register(...registerables);
   styleUrls: ['./stock-detail.component.css']
 })
 export class StockDetailComponent implements OnInit {
+
+  @ViewChild("chart") chart: ChartComponent | any;
+  public chartOptions: Partial<ChartOptions> | any;
+
+  candleData: any = [];
+  chartType: string = "basic";
 
   loadingTS: boolean = false;
   loadingStock: boolean = false;
@@ -28,12 +53,13 @@ export class StockDetailComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
-  constructor(private route: ActivatedRoute, private router: Router, private stocksService: StocksService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private router: Router, private stocksService: StocksService, private location: Location, @Inject(DOCUMENT) document: Document) { }
 
   ngOnInit(): void {
     this.getStockFromRoute();
     this.getTimeSeries();
-    this.initChart([], []);
+    this.initCandleChart([]);
+    this.initChart([],[]);
   }
 
   getStockFromRoute(){
@@ -42,6 +68,42 @@ export class StockDetailComponent implements OnInit {
         this.stock = JSON.parse(params['stockData']);
       }
     )
+  }
+  initCandleChart(candleData: any){
+    console.log(candleData)
+    this.chartOptions = {
+      series: [
+        {
+          name: "candle",
+          data: candleData,
+        }
+      ],
+      chart: {
+        type: "candlestick",
+        height: 350,
+        width: 600,
+        background: "#FF"
+      },
+      title: {
+        text: "",
+        align: "left"
+      },
+      tooltip: {
+        enabled: true,
+        theme: "dark"
+      },
+      theme: {
+        mode: "dark",
+      },
+      xaxis: {
+        type: "category"
+      },
+      yaxis: {
+        tooltip: {
+          enabled: true
+        }
+      }
+    };
   }
 
   initChart(dataList: any, labelList: any){
@@ -102,7 +164,9 @@ export class StockDetailComponent implements OnInit {
         this.stockTimeSeries = data;
         this.loadingTS = false;
 
-        this.updateChart();
+        if(this.chartType == "candle") this.updateCandleChart();
+        else this.updateChart();
+
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
@@ -123,6 +187,20 @@ export class StockDetailComponent implements OnInit {
         this.loadingStock = false;
       }
     )
+  }
+
+  setSelected(){
+    document.getElementById("switchButton")?.classList.remove("active");
+    document.getElementById("monthButton")!.className += " active";
+  }
+
+  toggleChartType(){
+    if(this.chartType == "candle") this.chartType = "basic"
+    else this.chartType = "candle"
+
+    // this.getTSMonthly()
+    document.getElementById("monthButton")!.click()
+    this.setSelected()
   }
 
   getTSMin(){
@@ -148,6 +226,31 @@ export class StockDetailComponent implements OnInit {
   getTSMonthly(){
     this.timeSeriesQuery = TimeSeriesQueryEnum.MONTHLY;
     this.getTimeSeries();
+  }
+
+  private updateCandleChart(){
+    let datum: Date = new Date();
+    let vrednosti: number[] = [];
+    this.candleData = [];
+
+    for(let ts in this.stockTimeSeries!.time_series) {
+      datum = new Date(this.stockTimeSeries!.time_series[ts].date)
+      vrednosti = [parseFloat(String(this.stockTimeSeries!.time_series[ts].open)),
+        parseFloat(String(this.stockTimeSeries!.time_series[ts].high)),
+        parseFloat(String(this.stockTimeSeries!.time_series[ts].low)),
+        parseFloat(String(this.stockTimeSeries!.time_series[ts].close))]
+
+      this.candleData.push({
+        x: datum.toLocaleDateString(),
+        y: vrednosti
+      })
+
+      if(+ts > 50){
+        break;
+      }
+    }
+
+    this.initCandleChart(this.candleData);
   }
 
   private updateChart(){
@@ -187,6 +290,7 @@ export class StockDetailComponent implements OnInit {
   }
 
   onButtonGroupClick($event: any){
+    console.log("aktivan")
     let clickedElement = $event.target || $event.srcElement;
 
     if( clickedElement.nodeName === "BUTTON" ) {
