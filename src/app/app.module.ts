@@ -44,6 +44,7 @@ import {CountUpModule} from "ngx-countup";
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
 import { OrdersAdminComponent } from './components/orders/orders-admin/orders-admin.component';
 import { ConfirmationPopupComponent } from './components/popup/confirmation-popup/confirmation-popup.component';
+import {NgToggleModule} from "ng-toggle-button";
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { ConfirmationPopupComponent } from './components/popup/confirmation-popu
     NgxPaginationModule,
     CountUpModule,
     NgApexchartsModule,
+    NgToggleModule.forRoot(),
     NgxLoadingModule.forRoot({
       backdropBorderRadius: '3px',
       primaryColour: '#00B127',
