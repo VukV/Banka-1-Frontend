@@ -20,6 +20,7 @@ import {
   ApexTitleSubtitle
 } from // @ts-ignore
  "ng-apexcharts";
+import * as ApexCharts from 'apexcharts';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -49,6 +50,7 @@ export class StockDetailComponent implements OnInit {
   timeSeriesQuery: TimeSeriesQueryEnum = TimeSeriesQueryEnum.MONTHLY;
 
   stockChart: any;
+  apexChart: any;
 
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
@@ -58,7 +60,7 @@ export class StockDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getStockFromRoute();
     this.getTimeSeries();
-    this.initCandleChart([]);
+    //this.initCandleChart([]);
     this.initChart([],[]);
   }
 
@@ -69,8 +71,9 @@ export class StockDetailComponent implements OnInit {
       }
     )
   }
+
   initCandleChart(candleData: any){
-    console.log(candleData)
+    console.log('init');
     this.chartOptions = {
       series: [
         {
@@ -164,8 +167,12 @@ export class StockDetailComponent implements OnInit {
         this.stockTimeSeries = data;
         this.loadingTS = false;
 
-        if(this.chartType == "candle") this.updateCandleChart();
-        else this.updateChart();
+        if(this.chartType == "candle"){
+          this.updateCandleChart();
+        }
+        else{
+          this.updateChart();
+        }
 
       },
       (error) => {
@@ -195,12 +202,15 @@ export class StockDetailComponent implements OnInit {
   }
 
   toggleChartType(){
-    if(this.chartType == "candle") this.chartType = "basic"
-    else this.chartType = "candle"
+    if(this.chartType == "candle"){
+      this.chartType = "basic";
+    }
+    else {
+      this.chartType = "candle"
+    }
 
-    // this.getTSMonthly()
     document.getElementById("monthButton")!.click()
-    this.setSelected()
+    // this.setSelected()
   }
 
   getTSMin(){
@@ -250,7 +260,17 @@ export class StockDetailComponent implements OnInit {
       }
     }
 
+
+    try {
+      this.apexChart.destroy();
+    }
+    catch{
+      console.log("No chart to destroy");
+    }
+
     this.initCandleChart(this.candleData);
+    this.apexChart = new ApexCharts(document.querySelector("#candle"), this.chartOptions);
+    this.apexChart.render();
   }
 
   private updateChart(){
@@ -266,7 +286,6 @@ export class StockDetailComponent implements OnInit {
       }
     }
 
-    console.log(labels);
 
     this.stockChart.destroy();
     this.initChart(data, labels);
@@ -290,7 +309,6 @@ export class StockDetailComponent implements OnInit {
   }
 
   onButtonGroupClick($event: any){
-    console.log("aktivan")
     let clickedElement = $event.target || $event.srcElement;
 
     if( clickedElement.nodeName === "BUTTON" ) {
