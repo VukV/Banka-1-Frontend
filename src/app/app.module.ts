@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// @ts-ignore
+import { NgApexchartsModule } from "ng-apexcharts";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/users/login/login.component';
@@ -89,6 +91,7 @@ import { ConfirmationPopupComponent } from './components/popup/confirmation-popu
     ReactiveFormsModule,
     NgxPaginationModule,
     CountUpModule,
+    NgApexchartsModule,
     NgxLoadingModule.forRoot({
       backdropBorderRadius: '3px',
       primaryColour: '#00B127',
