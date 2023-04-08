@@ -3,5 +3,9 @@ h1{
 }
 
 .btn-stock{
-  width: 200px;
+  width: 240px;
+}
+
+p{
+  font-size: 1.2em;
 }
