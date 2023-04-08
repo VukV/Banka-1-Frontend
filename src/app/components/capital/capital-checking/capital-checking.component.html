@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="row justify-content-center users-table-row">
+  <div class="row justify-content-center capital-table-row">
     <div style="overflow: auto" class="rectangle">
       <div class="row col-md-auto me-3 d-flex justify-content-between">
         <div class="col-md-auto align-items-center d-flex justify-content-center">
@@ -19,17 +19,12 @@
             <th>Ukupno</th>
             <th>Rezervisano</th>
             <th>Raspoloživo</th>
-  <!--          <th></th>-->
           </tr>
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let racun of this.racuni ">
-  <!--          <th scope="row">{{ racun.id }}</th>-->
-            <td>{{ racun.valuta }}</td>
-            <td>{{ racun.ukupnor }}</td>
-            <td>{{ racun.rezerivsano }}</td>
-            <td>{{ racun.raspolozivo }}</td>
+          <tr>
+            <th>TODO</th>
           </tr>
           </tbody>
         </table>
@@ -37,7 +32,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-center users-table-row">
+  <div class="row justify-content-center capital-table-row">
     <div style="overflow: auto" class="rectangle">
       <div class="row col-md-auto me-3 d-flex justify-content-between">
         <div class="col-md-auto align-items-center d-flex justify-content-center">
@@ -51,21 +46,22 @@
           <tr class="trtable">
             <th>Tip kapitala</th>
             <th>Ukupno</th>
-            <!--          <th></th>-->
           </tr>
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let kapital of this.kapitali ">
-            <!--          <th scope="row">{{ racun.id }}</th>-->
-            <td>{{ kapital.tipkapitala }}</td>
-            <td>{{ kapital.ukupnok }}</td>
+          <tr>
+            <td></td>
+            <td></td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
+  <ngx-loading [show]="loadingListings || loadingChecking"></ngx-loading>
+  <app-popup></app-popup>
 
 </div>
 

@@ -29,15 +29,9 @@ import {OrdersAdminComponent} from "./components/orders/orders-admin/orders-admi
 
 const routes: Routes = [
   {
-    path: "help",
+    path: "",
     component: HomeComponent,
     canActivate: [LoginGuard]
-  },
-  {
-    path: "",
-    component: StockMainComponent,
-    canActivate: [LoginGuard],
-    data: {roles: []}
   },
   {
     path: "stock-market",

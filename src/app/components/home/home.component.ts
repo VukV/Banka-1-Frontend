@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PopupComponent} from "../popup/popup/popup.component";
+import {AnimationOptions} from "ngx-lottie";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,12 @@ export class HomeComponent implements OnInit {
 
   showHelp: boolean = false;
 
-  constructor() { }
+  options: AnimationOptions = {
+    path: '/assets/lottie/stock-animation.json',
+
+  }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,4 +29,7 @@ export class HomeComponent implements OnInit {
     this.popupComponent.openPopup("Otvoren popup!");
   }
 
+  goToStockMarket(){
+    this.router.navigate(['stock-market']);
+  }
 }

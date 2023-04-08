@@ -45,6 +45,13 @@ import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
 import { OrdersAdminComponent } from './components/orders/orders-admin/orders-admin.component';
 import { ConfirmationPopupComponent } from './components/popup/confirmation-popup/confirmation-popup.component';
 import {NgToggleModule} from "ng-toggle-button";
+import {LottieModule} from "ngx-lottie";
+import player from 'lottie-web'
+
+export function playerFactory() {
+  return player;
+}
+
 
 @NgModule({
   declarations: [
@@ -100,7 +107,8 @@ import {NgToggleModule} from "ng-toggle-button";
       secondaryColour: '#00B127',
       tertiaryColour: '#00B127',
       animationType: ngxLoadingAnimationTypes.wanderingCubes
-    })
+    }),
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

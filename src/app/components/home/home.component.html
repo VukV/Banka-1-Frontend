@@ -1,8 +1,7 @@
 <div class="container">
   <br>
-  <h2 class="fw-bold">Početna</h2>
-
     <!-- NORMAL BUTTONS -->
+    <!--
     <div class="row justify-content-center">
 
       <div class="col-md-3 align-items-center">
@@ -17,10 +16,11 @@
         <button type="button" class="btn btn-outline-light rounded-pill">Dugme belo</button>
       </div>
     </div>
-
     <br>
+    -->
 
     <!-- EXTENDED BUTTONS -->
+    <!--
     <div class="row justify-content-center">
 
       <div class="col-md-3 d-grid align-items-center">
@@ -42,10 +42,11 @@
         <button type="button" class="btn btn-outline rounded-pill" (click)="openPopupExample()">Otvori popup</button>
       </div>
     </div>
-
   <br><br>
+  -->
 
     <!-- TOGGLE BUTTONS -->
+    <!--
     <div class="row justify-content-center">
       <div class="col-md-3 align-items-center">
         <button type="button" class="btn btn-outline rounded-pill" data-bs-toggle="button">Toggle 1</button>
@@ -57,10 +58,11 @@
         <button type="button" class="btn btn-outline rounded-pill" data-bs-toggle="button">Toggle 3</button>
       </div>
     </div>
-
   <br><br>
+  -->
 
   <!-- TOGGLE BUTTONS 2 -->
+  <!--
   <div class="row justify-content-center">
     <div class="btn-group" role="group" aria-label="Toggle buttons">
       <div class="col-md-1">
@@ -77,6 +79,21 @@
         <input type="radio" class="btn-check" name="options" id="option3">
         <label class="btn btn-outline-toggle rounded-pill" for="option3">Toggle 3</label>
       </div>
+    </div>
+  </div>
+  -->
+
+  <div class="row justify-content-center">
+    <div class="col-md-7 align-items-center">
+      <ng-lottie [options]="options" width="700px"></ng-lottie>
+    </div>
+
+    <div class="col-md-5 align-self-center text-center align-items-center">
+      <h1 class="fw-bold">BANKA-1</h1>
+      <p>Dobrodošli na aplikaciju Banke-1! Naša platforma pruža najnovije informacije i alate za trgovinu,
+        analizu tržišta akcija i forex-a i praćenje vašeg portfolija.</p>
+      <br>
+      <button type="button" class="btn-stock btn btn-outline rounded-pill" (click)="goToStockMarket()">Idi na berzu...</button>
     </div>
   </div>
 

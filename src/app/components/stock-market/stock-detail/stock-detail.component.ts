@@ -73,7 +73,6 @@ export class StockDetailComponent implements OnInit {
   }
 
   initCandleChart(candleData: any){
-    console.log('init');
     this.chartOptions = {
       series: [
         {
@@ -196,11 +195,6 @@ export class StockDetailComponent implements OnInit {
     )
   }
 
-  setSelected(){
-    document.getElementById("switchButton")?.classList.remove("active");
-    document.getElementById("monthButton")!.className += " active";
-  }
-
   toggleChartType(){
     if(this.chartType == "candle"){
       this.chartType = "basic";
@@ -210,7 +204,6 @@ export class StockDetailComponent implements OnInit {
     }
 
     document.getElementById("monthButton")!.click()
-    // this.setSelected()
   }
 
   getTSMin(){
