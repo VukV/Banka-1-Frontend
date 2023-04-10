@@ -46,9 +46,11 @@
       "cypress/e2e/[filepath]/**/*.{js,ts}",
       "cypress/e2e/[filepath].{js,ts}",
       "cypress/e2e/tests/**/*.{js,ts}",
-      "cypress/e2e/tests"
+      "cypress/e2e/tests",
+      "cypress/e2e/tests/[filename].ts",
+      "cypress/e2e/tests/[filename]/*.{js,ts}"
     ],
-    "nonGlobalStepDefinitions": true
+    "nonGlobalStepDefinitions": false
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.4",
