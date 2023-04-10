@@ -18,11 +18,12 @@
     "@angular/platform-browser": "^15.2.5",
     "@angular/platform-browser-dynamic": "^15.2.5",
     "@angular/router": "^15.2.5",
+    "@badeball/cypress-cucumber-preprocessor": "^16.0.3",
     "apexcharts": "^3.37.3",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "chart.js": "^4.2.1",
-    "cypress": "^12.7.0",
+    "cypress": "^12.9.0",
     "jwt-decode": "^3.1.2",
     "lottie-web": "^5.10.2",
     "ng-apexcharts": "^1.7.4",
@@ -35,11 +36,28 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
+  "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true
+    },
+    "stepDefinitions": [
+      "cypress/e2e/**/*.{js,ts}",
+      "cypress/e2e/tests/*.{js,ts}",
+      "cypress/e2e/[filepath]/**/*.{js,ts}",
+      "cypress/e2e/[filepath].{js,ts}",
+      "cypress/e2e/tests/**/*.{js,ts}",
+      "cypress/e2e/tests"
+    ],
+    "nonGlobalStepDefinitions": true
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.4",
     "@angular/cli": "~15.2.4",
     "@angular/compiler-cli": "^15.2.5",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "@cypress/webpack-preprocessor": "^5.17.0",
     "@types/jasmine": "~4.0.0",
+    "esbuild": "^0.17.16",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",

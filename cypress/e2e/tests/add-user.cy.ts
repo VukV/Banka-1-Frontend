@@ -6,10 +6,10 @@ describe("Testira nemogućnost posete stranice bez logina", () => {
   })
 })
 
-describe("Testira postojanje dugmeta za dodavanje korisnika na users stranici", () => {
+describe("Testira postojanje dugmeta za dodavanje korisnika na tests stranici", () => {
   it("Prikazuje dugme za dodavanje korisnika", () => {
     cy.login();
-    cy.visit("/users");
+    cy.visit("/tests");
     cy.get("button#addUser").should("be.visible");
   })
 })
@@ -17,7 +17,7 @@ describe("Testira postojanje dugmeta za dodavanje korisnika na users stranici", 
 describe("Testira stranicu za dodavanje korisnika", () => {
   beforeEach(() => {
     cy.login();
-    cy.visit("/users");
+    cy.visit("/tests");
     cy.get("button#addUser").click();
   })
 
@@ -68,7 +68,7 @@ describe("Testira stranicu za dodavanje korisnika", () => {
     cy.get("#lastName").type("Peric");
     cy.get("#position").select("ADMINISTRATOR");
     cy.get("button#addUser").click();
-    cy.url().should("contain", "/users");
+    cy.url().should("contain", "/tests");
     cy.get("table").contains("td", "peraperic@gmail.com");
   })
 })

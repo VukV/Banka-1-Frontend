@@ -6,7 +6,7 @@ import {UserModel} from "../../../model/user/user-model";
 
 
 @Component({
-  selector: 'app-list-users',
+  selector: 'app-list-tests',
   templateUrl: './list-users.component.html',
   styleUrls: ['./list-users.component.css']
 })

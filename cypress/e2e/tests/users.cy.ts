@@ -1,8 +1,8 @@
 describe('Stranica korisnika', () => {
   beforeEach(() => {
     cy.login();
-    cy.get('[data-cy="users"]').click();
-    cy.url().should('include', 'users');
+    cy.get('[data-cy="tests"]').click();
+    cy.url().should('include', 'tests');
   })
 
   it('Inicijalno dohvatanje korisnika', () => {
