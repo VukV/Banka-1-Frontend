@@ -23,7 +23,8 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "chart.js": "^4.2.1",
-    "cypress": "^12.9.0",
+    "cypress": "^9.7.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "jwt-decode": "^3.1.2",
     "lottie-web": "^5.10.2",
     "ng-apexcharts": "^1.7.4",
@@ -37,17 +38,7 @@
     "zone.js": "~0.11.4"
   },
   "cypress-cucumber-preprocessor": {
-    "json": {
-      "enabled": true
-    },
-    "stepDefinitions": [
-      "cypress/e2e/**/*.{js,ts}",
-      "cypress/e2e/tests/*.{js,ts}",
-      "cypress/e2e/[filepath]/**/*.{js,ts}",
-      "cypress/e2e/[filepath].{js,ts}",
-      "cypress/e2e/tests/**/*.{js,ts}",
-      "cypress/e2e/tests"
-    ],
+    "step_definitions": "./e2e/tests/",
     "nonGlobalStepDefinitions": true
   },
   "devDependencies": {

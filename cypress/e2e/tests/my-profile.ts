@@ -1,4 +1,4 @@
-import {Before, Then, When} from '@badeball/cypress-cucumber-preprocessor'
+import {Before, Then, When} from "cypress-cucumber-preprocessor/steps";
 
 //Before se izvrsava pre svakog SCENARIJA
 //Dakle, ne pre when/then metoda, vec pre svakog scenarija
