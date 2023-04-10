@@ -48,7 +48,13 @@
       "cypress/e2e/tests/**/*.{js,ts}",
       "cypress/e2e/tests"
     ],
-    "nonGlobalStepDefinitions": true
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": "true",
+      "outputFolder": "cypress/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.4",
