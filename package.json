@@ -50,7 +50,8 @@
       "cypress/e2e/tests/[filename].ts",
       "cypress/e2e/tests/[filename]/*.{js,ts}"
     ],
-    "nonGlobalStepDefinitions": false
+    "nonGlobalStepDefinitions": true,
+    "nonGlobalStepBaseDir": "cypress/e2e/tests"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.4",
