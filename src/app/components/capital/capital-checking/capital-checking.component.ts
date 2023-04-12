@@ -56,4 +56,24 @@ export class CapitalCheckingComponent implements OnInit {
     })
   }
 
+  openDetailsListings(listingType: ListingTypeEnum){
+    let filteredListings = this.listingsAll.filter((listing) => {
+      return listing.listingType == listingType;
+    });
+
+    //grupise porudzbine po simbolu
+    let groupedBySymbol = filteredListings.reduce((acc: { [key: string]: number }, curr: Listing) => {
+      if (!acc[curr.symbol]) {
+        acc[curr.symbol] = curr.quantity;
+      } else {
+        acc[curr.symbol] += curr.quantity;
+      }
+      return acc;
+    }, {});
+
+    console.log(groupedBySymbol);
+
+    //TODO open popup
+  }
+
 }
