@@ -5,6 +5,7 @@ import {PopupComponent} from "../../popup/popup/popup.component";
 import {CapitalService} from "../../../services/capital/capital.service";
 import {CurrentUserService} from "../../../services/user/current-user.service";
 import {ListingTypeEnum} from "../../../model/orders/listing-type-enum";
+import {ListingsPopupComponent} from "../listings-popup/listings-popup.component";
 
 @Component({
   selector: 'app-capital-checking',
@@ -22,6 +23,9 @@ export class CapitalCheckingComponent implements OnInit {
 
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
+
+  @ViewChild(ListingsPopupComponent)
+  listingsPopupComponent!: ListingsPopupComponent;
 
   constructor(private capitalService: CapitalService, private currentUserService: CurrentUserService) {
   }
@@ -73,7 +77,7 @@ export class CapitalCheckingComponent implements OnInit {
 
     console.log(groupedBySymbol);
 
-    //TODO open popup
+    this.listingsPopupComponent.openPopUp(groupedBySymbol);
   }
 
 }

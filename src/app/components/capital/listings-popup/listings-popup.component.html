@@ -1,0 +1,30 @@
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-content ">
+      <div class="modal-header py-4 px-4">
+        <h3 class="modal-title"><b>Pregled kapitala</b></h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closePopUp()">x</button>
+      </div>
+
+      <div class="modal-body py-3 px-4">
+
+        <div class="row justify-content-center transaction-table-header">
+          <table class="table table-borderless table-d table-position"
+                 id="transaction-table">
+            <thead>
+            <tr class="color table-position" id="trTable">
+              <th>Simbol</th>
+              <th>Količina</th>
+            </tr>
+            <tr *ngFor="let listing of listings | keyvalue">
+              <td>{{ listing.key }}</td>
+              <td>{{ listing.value }}</td>
+            </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
