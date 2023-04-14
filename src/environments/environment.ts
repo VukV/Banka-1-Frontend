@@ -8,7 +8,7 @@ export const environment = {
   stocksUrl: "http://localhost:8081/api/stocks",
   forexUrl: "http://localhost:8081/api/forexes",
   ordersUrl: "http://localhost:8081/api/orders",
-  capitalUrl: "http://localhost:8081/api/"
+  capitalUrl: "http://localhost:8080/api/user-listings"
 };
 
 /*

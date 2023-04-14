@@ -7,7 +7,7 @@
           <h2 class="row fw-bold">Tekući račun</h2>
         </div>
         <div class="col-md-auto align-items-center d-flex justify-content-center">
-          <button type="button" id="uplata" class="btn btn-outline rounded-pill" data-cy="uplata" [routerLink]="['/uplata']">Uplata/Isplata</button>
+          <button type="button" id="uplata" class="btn btn-outline rounded-pill" data-cy="uplata">Uplata/Isplata</button>
         </div>
       </div>
       <br>
@@ -24,7 +24,7 @@
           <tbody>
           <tr>
           <tr>
-            <th>TODO</th>
+            <td></td>
           </tr>
           </tbody>
         </table>
@@ -50,9 +50,12 @@
           </thead>
           <tbody>
           <tr>
-          <tr>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let listing of listingSum">
+            <td>{{ listing.listingType }}</td>
+            <td>{{ listing.quantity }}</td>
+            <td>
+              <button type="button" class="btn btn-outline rounded-pill" (click)="openDetailsListings(listing.listingType)">Vidi detalje</button>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -62,6 +65,7 @@
 
   <ngx-loading [show]="loadingListings || loadingChecking"></ngx-loading>
   <app-popup></app-popup>
+  <app-listings-popup></app-listings-popup>
 
 </div>
 

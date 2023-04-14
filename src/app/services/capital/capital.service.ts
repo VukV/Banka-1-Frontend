@@ -10,7 +10,6 @@ import {Listing} from "../../model/capital/listing";
 })
 export class CapitalService {
 
-  //TODO
   private capitalUrl = environment.capitalUrl;
   private headers = new HttpHeaders({
     'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")

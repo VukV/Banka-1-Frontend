@@ -46,7 +46,8 @@ import { OrdersAdminComponent } from './components/orders/orders-admin/orders-ad
 import { ConfirmationPopupComponent } from './components/popup/confirmation-popup/confirmation-popup.component';
 import {NgToggleModule} from "ng-toggle-button";
 import {LottieModule} from "ngx-lottie";
-import player from 'lottie-web'
+import player from 'lottie-web';
+import { ListingsPopupComponent } from './components/capital/listings-popup/listings-popup.component'
 
 export function playerFactory() {
   return player;
@@ -89,7 +90,8 @@ export function playerFactory() {
     CheckingTransactionsPopupComponent,
     MarginTransactionsPopupComponent,
     OrdersAdminComponent,
-    ConfirmationPopupComponent
+    ConfirmationPopupComponent,
+    ListingsPopupComponent
   ],
   imports: [
     BrowserModule,

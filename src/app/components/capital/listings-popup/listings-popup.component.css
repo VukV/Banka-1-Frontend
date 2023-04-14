@@ -1,0 +1,65 @@
+.modal{
+  background: var(--si-black-transparent);
+}
+
+.modal-content{
+  border-radius: 25px;
+  background-color: var(--si-black);
+  border: 1px solid var(--si-green);
+  width: 1100px;
+
+}
+
+.modal-dialog {
+  min-width: 1100px !important;
+}
+
+.myp-text {
+  color: var(--si-green);
+}
+
+select{
+  border: 1px solid #ccc;
+  border-radius: 0px !important;
+  padding-left: 5px;
+  padding: 20px 10px;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  background-color:black;
+  background-image: none;
+  border: 1px solid #ffffff;
+}
+
+.btn-close{
+  border-radius: 50%;
+  border: 1px solid #f5f5f5;
+  background: transparent;
+  color:#f5f5f5 ;
+  padding: 8px;
+  height: 30px;
+  width: 30px;
+  line-height: 8px;
+}
+
+.transaction-table-header{
+  margin-top: 20px;
+}
+
+.table-d{
+  color: white;
+  font-weight: 600;
+}
+
+.color{
+  color: var(--si-green);
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+th {
+  text-align: left;
+  width: 25% ;
+}
