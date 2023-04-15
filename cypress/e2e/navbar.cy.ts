@@ -33,7 +33,7 @@
 
 describe('Navigacija linkovi', () => {
   beforeEach(() => {
-
+    cy.login();
     // Visit the homepage before each test case
     cy.visit('/http://localhost:4200');
   });
@@ -81,6 +81,7 @@ describe('Navigacija linkovi', () => {
 
 describe('Profilna slika navigacija', () => {
   beforeEach(() => {
+    cy.login();
     cy.visit('/');
   });
 
