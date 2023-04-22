@@ -16,15 +16,15 @@
           <thead>
           <tr class="trtable">
             <th>Valuta</th>
-            <th>Ukupno</th>
-            <th>Rezervisano</th>
-            <th>Raspoloživo</th>
+            <th>Stanje</th>
+            <th>Dnevni limit</th>
           </tr>
           </thead>
           <tbody>
           <tr>
-          <tr>
-            <td></td>
+            <td>{{ bankAccount?.currencyCode }}</td>
+            <td [countUp]="accountBalance" [options]="{ decimalPlaces: 3}">0</td>
+            <td [countUp]="dailyLimit" [options]="{ decimalPlaces: 3}">0</td>
           </tr>
           </tbody>
         </table>
