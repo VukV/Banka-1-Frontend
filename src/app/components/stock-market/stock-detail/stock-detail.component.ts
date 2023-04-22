@@ -294,7 +294,7 @@ export class StockDetailComponent implements OnInit {
   }
 
   seeOptions(): void {
-    // TODO
+    this.router.navigate(['options', this.stock!.symbol]);
   }
 
   close(): void {
