@@ -18,11 +18,11 @@ describe("Testira stock-market stranicu.", () => {
 
   it('Proverava da li je tabela akcija prazna.', () => {
     cy.visit("/stock-market")
-    cy.get('[data-cy="forex"]').click({force: true}).wait(1000)
+    cy.get('[data-cy="forex"]', {timeout: 10000}).click({force: true})//.wait(1000)
     cy.get('[data-cy="akcije"]').click({force: true})
     cy.get('[data-cy="stocks-table"]').should('exist')
-    cy.wait(3000) //Wait for the table to load
-    cy.get('[data-cy="stocks-table"] .clickable-tr').should("exist");
+    //cy.wait(3000) //Wait for the table to load
+    cy.get('[data-cy="stocks-table"] .clickable-tr', {timeout: 10000}).should("exist");
   });
 
 

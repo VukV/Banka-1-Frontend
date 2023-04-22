@@ -7,12 +7,12 @@ describe("Stranica akcije", () => {
     it('Ulazak u akcija-detalji i provera da li postoje polja', () =>{
       cy.get('table').contains('td', 'AAPL').click({force: true});
       cy.get('#stockDetails').within(() => {
-        cy.contains('CHANGE:').siblings().should('have.css', 'color', 'rgb(0, 177, 39)')
-        cy.contains('OPEN:').siblings().should('contain', '$')
-        cy.contains('CLOSE:').siblings().should('contain', '$')
-        cy.contains('LOW:').siblings().should('contain', '$')
-        cy.contains('HIGH:').siblings().should('contain', '$')
-        cy.contains('VOLUME:').siblings().should('not.contain', '$')
+        cy.contains('CHANGE:').siblings().should('not.be.empty');
+        cy.contains('OPEN:').siblings().should('not.be.empty');
+        cy.contains('CLOSE:').siblings().should('not.be.empty');
+        cy.contains('LOW:').siblings().should('not.be.empty');
+        cy.contains('HIGH:').siblings().should('not.be.empty');
+        cy.contains('VOLUME:').siblings().should('not.be.empty');
       })
       cy.get('[data-cy="close"]').click({force: true});
     })

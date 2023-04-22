@@ -34,47 +34,38 @@
 describe('Navigacija linkovi', () => {
   beforeEach(() => {
     cy.login();
-    // Visit the homepage before each test case
-    cy.visit('/http://localhost:4200');
+    cy.visit('/');
   });
 
   it('Navigates to Berza', () => {
-
-    cy.get('Berza').click();
-
-    cy.url().should('include', '/');
+    cy.get('[data-cy="stock-market"]').click();
+    cy.url().should('contain', '/stock-market');
   });
 
   it('Navigates to Kapital', () => {
-    cy.get('Kapital').click();
-
-    cy.url().should('include', '/capital');
+    cy.get('[data-cy="capital"]').click();
+    cy.url().should('contain', '/capital');
   });
 
   it('Navigates to Porudžbine', () => {
-    cy.get('Porudžbine').click();
-
-    cy.url().should('include', '/orders');
+    cy.get('[data-cy="orders"]').click();
+    cy.url().should('contain', '/orders');
   });
 
   it('Navigates to Kompanije', () => {
-    cy.get('Kompanije').click();
-
-    cy.url().should('include', '/companies');
+    cy.get('[data-cy="companies"]').click();
+    cy.url().should('contain', '/companies');
   });
 
   it('Navigates to Ugovori', () => {
-    cy.get('Ugovori').click();
-
-    cy.url().should('include', '/contracts');
+    cy.get('[data-cy="contracts"]').click();
+    cy.url().should('contain', '/contracts');
   });
 
   it('Navigates to Korisnici', () => {
-    cy.get('Korisnici').click();
-
-    cy.url().should('include', '/users');
+    cy.get('[data-cy="users"]').click();
+    cy.url().should('contain', '/users');
   });
-
 
 });
 
@@ -86,22 +77,11 @@ describe('Profilna slika navigacija', () => {
   });
 
   it('Navigiraj do my-profile stranice', () => {
-    cy.get('assets/dollar-icon.svg').click();
-    cy.url().should('include', '/my-profile');
+    cy.get('[data-cy="my-profile"]').click();
+    cy.url().should('contain', '/my-profile');
   });
 });
 
-/*
-
-            cy.contains('assets/dollar-icon.svg').click()
-            cy.get('[data-cy="buy"]').find('assets/dollar-icon.svg').should('eq', '/my-profile')
-            cy.go('back')
-
-          });
-        })
-
-
- */
 
 describe('Logout', () => {
   beforeEach(() => {
@@ -109,13 +89,8 @@ describe('Logout', () => {
   })
 
   it('is redirected to the login page on log out', () => {
-    cy.get('[data-cy="logout"]')
-      .click()
-    cy.url()
-      .should('be.equal', '/login')
-    Cypress.session.clearCurrentSessionData()
-    cy.clearCookie('jwt')
-
+    cy.get('[data-cy="logout"]').click()
+    cy.url().should('contain', '/login')
   })
 })
 
@@ -123,7 +98,6 @@ describe('Logout', () => {
 describe('Kontrola pristupa', () => {
   it('Redirekt na login stranu kada nismo logovani ', () => {
 
-    cy.clearCookies();
     cy.visit('/capital');
     cy.url().should('include', '/login');
 
