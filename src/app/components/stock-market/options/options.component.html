@@ -12,7 +12,50 @@
     </ol>
   </nav>
 
+  <br>
+  <div class="row justify-content-start">
+    <div class="col-md-2 align-items-center">
+      <label class="text" for="validDate">Datum isteka</label>
+      <input id="validDate" class="form-control" type="date" />
+    </div>
+  </div>
 
-  <!-- NASTAVI OVDE -->
+  <div class="row justify-content-center capital-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-evenly">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Calls</h2>
+        </div>
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Puts</h2>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around">
+        <table class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>Last</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>OI</th>
+            <th class="fw-bold">Strike</th>
+            <th>Last</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>OI</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <app-popup></app-popup>
 
 </div>
