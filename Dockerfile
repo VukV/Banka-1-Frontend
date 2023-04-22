@@ -1,12 +1,25 @@
-FROM node:16
-RUN npm install -g @angular/cli
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
+FROM node:latest as build
+WORKDIR /usr/local/app
+COPY ./ /usr/local/app/
 RUN npm install
-COPY . .
-EXPOSE 4200
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+ARG configuration
+RUN npm run build -- --configuration=$configuration
 
 
-# docker build -t si-banka-1/frontend .
-# docker run -p 4200:4200 <image-id>
+FROM nginx:latest as prod
+COPY --from=build /usr/local/app/dist/si-banka-1-front /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+
+# docker build -t banka-1/frontend .
+# docker run -p 4200:80 <image-id>
+
+# docker images (lista sve image)
+
+# docker login harbor.k8s.elab.rs -u <username>
+
+# docker build -t harbor.k8s.elab.rs/banka-1/frontend:latest .
+# docker push harbor.k8s.elab.rs/banka-1/frontend:latest
+
+# docker pull harbor.k8s.elab.rs/banka-1/frontend:latest

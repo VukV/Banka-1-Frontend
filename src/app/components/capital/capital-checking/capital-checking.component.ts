@@ -42,6 +42,7 @@ export class CapitalCheckingComponent implements OnInit {
         this.listingsAll = data;
         this.sumListings(data);
         this.loadingListings = false;
+        console.log(data);
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
@@ -66,18 +67,18 @@ export class CapitalCheckingComponent implements OnInit {
     });
 
     //grupise porudzbine po simbolu
-    let groupedBySymbol = filteredListings.reduce((acc: { [key: string]: number }, curr: Listing) => {
-      if (!acc[curr.symbol]) {
-        acc[curr.symbol] = curr.quantity;
-      } else {
-        acc[curr.symbol] += curr.quantity;
-      }
-      return acc;
-    }, {});
+    // let groupedBySymbol = filteredListings.reduce((acc: { [key: string]: number }, curr: Listing) => {
+    //   if (!acc[curr.symbol]) {
+    //     acc[curr.symbol] = curr.quantity;
+    //   } else {
+    //     acc[curr.symbol] += curr.quantity;
+    //   }
+    //   return acc;
+    // }, {});
 
-    console.log(groupedBySymbol);
+    //console.log(groupedBySymbol);
 
-    this.listingsPopupComponent.openPopUp(groupedBySymbol);
+    this.listingsPopupComponent.openPopUp(filteredListings);
   }
 
 }

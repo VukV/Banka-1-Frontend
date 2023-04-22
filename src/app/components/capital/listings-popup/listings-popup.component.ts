@@ -9,14 +9,14 @@ import {Listing} from "../../../model/capital/listing";
 export class ListingsPopupComponent implements OnInit{
 
   displayStyle: string = "none"
-  listings: any[] = [];
+  listings: Listing[] = [];
 
   constructor() {
   }
 
   ngOnInit(): void { }
 
-  openPopUp(listings: any): void{
+  openPopUp(listings: Listing[]): void{
     this.listings = listings;
     this.displayStyle = "block"
   }

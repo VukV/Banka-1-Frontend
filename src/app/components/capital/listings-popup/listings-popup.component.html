@@ -16,9 +16,9 @@
               <th>Simbol</th>
               <th>Količina</th>
             </tr>
-            <tr *ngFor="let listing of listings | keyvalue">
-              <td>{{ listing.key }}</td>
-              <td>{{ listing.value }}</td>
+            <tr *ngFor="let listing of listings">
+              <td>{{ listing.symbol }}</td>
+              <td>{{ listing.quantity }}</td>
             </tr>
             </thead>
           </table>

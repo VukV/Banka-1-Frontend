@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
 
       },
       error: (error) => {
+        this.loading = false;
         this.popupComponent.openPopup("Pogrešni kredencijali!");
       },
       next: (loginRes) => {
