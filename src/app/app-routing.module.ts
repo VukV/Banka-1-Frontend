@@ -70,6 +70,12 @@ const routes: Routes = [
     data: {roles: []}
   },
   {
+    path: "options/:symbol",
+    component: OptionsComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
     path: "capital",
     component: CapitalMainComponent,
     canActivate: [LoginGuard],

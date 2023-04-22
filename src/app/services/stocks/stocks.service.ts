@@ -69,4 +69,15 @@ export class StocksService {
     )
   }
 
+  getOptions(): Observable<any>{
+    return this.httpClient.get(this.stocksUrl + "/", //TODO
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+      })
+    )
+  }
+
 }
