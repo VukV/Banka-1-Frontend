@@ -17,6 +17,8 @@ CMD ["nginx", "-g", "daemon off;"]
 
 # docker images (lista sve image)
 
+# docker login harbor.k8s.elab.rs -u <username>
+
 # docker build -t harbor.k8s.elab.rs/banka-1/frontend:latest .
 # docker push harbor.k8s.elab.rs/banka-1/frontend:latest
 
