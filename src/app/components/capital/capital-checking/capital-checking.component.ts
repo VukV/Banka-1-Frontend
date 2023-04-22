@@ -6,6 +6,8 @@ import {CapitalService} from "../../../services/capital/capital.service";
 import {CurrentUserService} from "../../../services/user/current-user.service";
 import {ListingTypeEnum} from "../../../model/orders/listing-type-enum";
 import {ListingsPopupComponent} from "../listings-popup/listings-popup.component";
+import {UserService} from "../../../services/user/user.service";
+import {BankAccount} from "../../../model/capital/bank-account";
 
 @Component({
   selector: 'app-capital-checking',
@@ -18,6 +20,10 @@ export class CapitalCheckingComponent implements OnInit {
   listingsAll: Listing[] = [];
   listingSum: ListingSum[] = [];
 
+  bankAccount: BankAccount | undefined;
+  accountBalance: number = -1;
+  dailyLimit: number = -1;
+
   loadingListings: boolean = false;
   loadingChecking: boolean = false;
 
@@ -27,12 +33,13 @@ export class CapitalCheckingComponent implements OnInit {
   @ViewChild(ListingsPopupComponent)
   listingsPopupComponent!: ListingsPopupComponent;
 
-  constructor(private capitalService: CapitalService, private currentUserService: CurrentUserService) {
+  constructor(private capitalService: CapitalService, private currentUserService: CurrentUserService, private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.userId = this.currentUserService.getUserId();
     this.getUserListings();
+    this.getBankAccount();
   }
 
   getUserListings(){
@@ -42,11 +49,26 @@ export class CapitalCheckingComponent implements OnInit {
         this.listingsAll = data;
         this.sumListings(data);
         this.loadingListings = false;
-        console.log(data);
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
         this.loadingListings = false;
+      }
+    )
+  }
+
+  getBankAccount(){
+    this.loadingChecking = true;
+    this.userService.getUser(this.userId).subscribe(
+      (data) => {
+        this.bankAccount = data.bankAccount;
+        this.accountBalance = this.bankAccount.accountBalance;
+        this.dailyLimit = this.bankAccount.dailyLimit;
+        this.loadingChecking = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loadingChecking = false;
       }
     )
   }
