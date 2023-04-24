@@ -48,6 +48,7 @@ import {NgToggleModule} from "ng-toggle-button";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
 import { ListingsPopupComponent } from './components/capital/listings-popup/listings-popup.component'
+import {DatePipe} from "@angular/common";
 
 export function playerFactory() {
   return player;
@@ -112,7 +113,7 @@ export function playerFactory() {
     }),
     LottieModule.forRoot({ player: playerFactory })
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

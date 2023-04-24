@@ -12,15 +12,16 @@
     </ol>
   </nav>
 
-  <br>
   <div class="row justify-content-start">
     <div class="col-md-2 align-items-center">
       <label class="text" for="validDate">Datum isteka</label>
-      <input id="validDate" class="form-control" type="date" />
+      <input id="validDate" class="form-control" type="date"
+             [ngModel] ="expirationDate | date:'yyyy-MM-dd'"
+             (ngModelChange)="expirationDate = $event; getOptions()" />
     </div>
   </div>
 
-  <div class="row justify-content-center capital-table-row">
+  <div class="row justify-content-center capital-table-row mt-3">
     <div style="overflow: auto" class="rectangle">
       <div class="row col-md-auto me-3 d-flex justify-content-evenly">
         <div class="col-md-auto align-items-center d-flex justify-content-center">
@@ -35,20 +36,28 @@
         <table class="table table-borderless table-d ">
           <thead>
           <tr class="trtable">
-            <th>Last</th>
+            <th>Price</th>
             <th>Bid</th>
             <th>Ask</th>
             <th>OI</th>
             <th class="fw-bold">Strike</th>
-            <th>Last</th>
+            <th>Price</th>
             <th>Bid</th>
             <th>Ask</th>
             <th>OI</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td></td>
+          <tr *ngFor="let optionPair of optionPairs">
+            <td [countUp]="optionPair[0].price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[0].bid" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[0].ask" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[0].openInterest" [options]="{ enableScrollSpy: true, decimalPlaces: 0}">0</td>
+            <td class="fw-bold" [countUp]="optionPair[0].strike" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[1].price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[1].bid" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[1].ask" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[1].openInterest" [options]="{ enableScrollSpy: true, decimalPlaces: 0}">0</td>
           </tr>
           </tbody>
         </table>
