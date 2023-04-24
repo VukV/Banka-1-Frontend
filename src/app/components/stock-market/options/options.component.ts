@@ -4,6 +4,7 @@ import {PopupComponent} from "../../popup/popup/popup.component";
 import {StocksService} from "../../../services/stocks/stocks.service";
 import {Option} from "../../../model/stocks/stock";
 import {OptionTypeEnum} from "../../../model/stocks/option-type-enum";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-options',
@@ -20,7 +21,7 @@ export class OptionsComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
-  constructor(private route: ActivatedRoute, private stocksService: StocksService) { }
+  constructor(private route: ActivatedRoute, private stocksService: StocksService, private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -50,6 +51,10 @@ export class OptionsComponent implements OnInit {
         this.loading = false;
       }
     )
+  }
+
+  backClick(){
+    this.location.back();
   }
 
 }
