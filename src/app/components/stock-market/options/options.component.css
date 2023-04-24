@@ -34,6 +34,16 @@ th{
   border-radius: 40px;
 }
 
-.capital-table-row{
-  margin-top: 20px;
+.nav-tabs {
+  border: none;
+}
+
+.nav-link {
+  color: var(--si-green);
+  border: none;
+}
+
+.nav-link.active {
+  color: var(--si-white);
+  background-color: var(--si-green);
 }
