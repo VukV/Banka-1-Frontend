@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   showPassword: boolean
   loginReq: LogInRequest | undefined
 
+  loading: boolean = false;
+
   constructor(private currentUserService: CurrentUserService, private userservice: UserService, router: Router) {
     this.email = ''
     this.password = ''
@@ -34,16 +36,19 @@ export class LoginComponent implements OnInit {
 
 
   startRequest(loginReq: LogInRequest){
+    this.loading = true;
     this.userservice.logUserIn(loginReq).subscribe({
       complete: () => {
 
       },
       error: (error) => {
+        this.loading = false;
         this.popupComponent.openPopup("Pogrešni kredencijali!");
       },
       next: (loginRes) => {
         this.jwt = loginRes.jwtToken;
         this.currentUserService.setLogin(this.jwt);
+        this.loading = false;
         this.router.navigate(['']);
       }
     })

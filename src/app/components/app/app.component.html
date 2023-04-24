@@ -12,29 +12,29 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Berza</a>
+            <a [routerLink]="'/stock-market'" data-cy="stock-market" class="nav-link active fw-bold" aria-current="page">Berza</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="'/capital'" class="nav-link active fw-bold" aria-current="page">Kapital</a>
+            <a [routerLink]="'/capital'" data-cy="capital" class="nav-link active fw-bold" aria-current="page">Kapital</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="'/orders'" class="nav-link active fw-bold" aria-current="page">Porudžbine</a>
+            <a [routerLink]="'/orders'" data-cy="orders" class="nav-link active fw-bold" aria-current="page">Porudžbine</a>
           </li>
           <li *ngIf="isAdmin || isSupervisor" class="nav-item">
             <a [routerLink]="'/orders-admin'" class="nav-link active fw-bold" aria-current="page">Upravljanje porudžbinama</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="'/companies'" class="nav-link active fw-bold" aria-current="page">Kompanije</a>
+            <a [routerLink]="'/companies'" data-cy="companies" class="nav-link active fw-bold" aria-current="page">Kompanije</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="'/contracts'" class="nav-link active fw-bold" aria-current="page">Ugovori</a>
+            <a [routerLink]="'/contracts'" data-cy="contracts" class="nav-link active fw-bold" aria-current="page">Ugovori</a>
           </li>
           <li *ngIf="isAdmin" class="nav-item">
-            <a [routerLink]="'/users'" data-cy="users" class="nav-link active fw-bold" aria-current="page">Korisnici</a>
+            <a [routerLink]="'/users'"  data-cy="users" class="nav-link active fw-bold" aria-current="page">Korisnici</a>
           </li>
         </ul>
         <div class="d-flex">
-          <button type="button" class="btn btn-outline-light rounded-pill" (click)="logout()">Logout</button>
+          <button type="button" class="btn btn-outline-light rounded-pill" (click)="logout()" data-cy="logout">Logout</button>
           <div class="profile-circle" (click)="goToMyProfile()" data-cy="my-profile"> {{ userLetter }} </div>
         </div>
       </div>

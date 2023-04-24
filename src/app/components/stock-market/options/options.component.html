@@ -7,12 +7,71 @@
           <img src="assets/home.svg" alt="icon" width="30" height="30">
         </a>
       </li>
-      <li class="breadcrumb-item fw-bold"><a class="green-link" href="/users">Berza</a></li>
+      <li class="breadcrumb-item fw-bold"><a class="green-link" href="/stock-market">Berza</a></li>
       <li class="breadcrumb-item fw-bold" aria-current="page">Opcije</li>
     </ol>
   </nav>
 
+  <div class="row justify-content-start">
+    <div class="col-md-2 align-items-center">
+      <label class="text" for="validDate">Datum isteka</label>
+      <input id="validDate" class="form-control" type="date"
+             [ngModel] ="expirationDate | date:'yyyy-MM-dd'"
+             (ngModelChange)="expirationDate = $event; getOptions()" />
+    </div>
+  </div>
 
-  <!-- NASTAVI OVDE -->
+  <div class="row justify-content-center capital-table-row mt-3">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-evenly">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Calls</h2>
+        </div>
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Puts</h2>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around">
+        <table class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>Price</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>OI</th>
+            <th class="fw-bold">Strike</th>
+            <th>Price</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>OI</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let optionPair of optionPairs">
+            <td [countUp]="optionPair[0].price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[0].bid" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[0].ask" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[0].openInterest" [options]="{ enableScrollSpy: true, decimalPlaces: 0}">0</td>
+            <td class="fw-bold" [countUp]="optionPair[0].strike" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[1].price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[1].bid" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[1].ask" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="optionPair[1].openInterest" [options]="{ enableScrollSpy: true, decimalPlaces: 0}">0</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="row justify-content-end">
+    <div class="col-md-auto align-items-center">
+      <button type="button" class="btn btn-outline rounded-pill" (click)="backClick()">Nazad</button>
+    </div>
+  </div>
+
+  <app-popup></app-popup>
 
 </div>

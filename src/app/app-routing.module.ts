@@ -29,15 +29,9 @@ import {OrdersAdminComponent} from "./components/orders/orders-admin/orders-admi
 
 const routes: Routes = [
   {
-    path: "help",
+    path: "",
     component: HomeComponent,
     canActivate: [LoginGuard]
-  },
-  {
-    path: "",
-    component: StockMainComponent,
-    canActivate: [LoginGuard],
-    data: {roles: []}
   },
   {
     path: "stock-market",
@@ -58,12 +52,6 @@ const routes: Routes = [
     data: {roles: []}
   },
   {
-    path: "options/:id",
-    component: OptionsComponent,
-    canActivate: [LoginGuard],
-    data: {roles: []}
-  },
-  {
     path: "trades-stocks/:symbol",
     component: TradesComponent,
     canActivate: [LoginGuard],
@@ -72,6 +60,12 @@ const routes: Routes = [
   {
     path: "trades-forex/:fromC/:toC",
     component: TradesForexComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "options/:symbol",
+    component: OptionsComponent,
     canActivate: [LoginGuard],
     data: {roles: []}
   },

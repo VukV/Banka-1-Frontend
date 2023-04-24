@@ -4,6 +4,8 @@ import {catchError, Observable, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {TimeSeriesQueryEnum} from "../../model/stocks/time-series-query-enum";
 import {CurrentUserService} from "../user/current-user.service";
+import {Option} from "../../model/stocks/stock";
+import {DatePipe} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +13,12 @@ import {CurrentUserService} from "../user/current-user.service";
 export class StocksService {
 
   private stocksUrl = environment.stocksUrl;
+  private optionsUrl = environment.optionsUrl;
   private headers = new HttpHeaders({
     'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });
 
-  constructor(private httpClient: HttpClient, private currentUserService: CurrentUserService) {
+  constructor(private httpClient: HttpClient, private currentUserService: CurrentUserService, private datePipe: DatePipe) {
     this.currentUserService.isLoggedIn.subscribe((loggedIn) => {
       if(loggedIn){
         this.headers = new HttpHeaders({
@@ -60,6 +63,21 @@ export class StocksService {
 
   getStock(stockId: number): Observable<any>{
     return this.httpClient.get(this.stocksUrl + "/" + stockId,
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+      })
+    )
+  }
+
+  getOptions(expirationDate: Date | null, symbol: string): Observable<any> {
+    return this.httpClient.post<Option[]>(this.optionsUrl,
+      {
+        expirationDate: this.datePipe.transform(expirationDate, "yyyy-MM-dd"),
+        symbol: symbol
+      },
       {
         headers: this.headers
       }).pipe(

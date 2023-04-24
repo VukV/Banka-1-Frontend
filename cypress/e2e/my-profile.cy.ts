@@ -1,6 +1,6 @@
 describe('Stranica moj profil', () => {
    beforeEach(() => {
-     cy.login(Cypress.env("email"), Cypress.env("password"));
+     cy.login();
      cy.get('[data-cy="my-profile"]').click();
      cy.url().should('include', 'my-profile');
    })

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// @ts-ignore
+import { NgApexchartsModule } from "ng-apexcharts";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/users/login/login.component';
@@ -42,6 +44,16 @@ import {CountUpModule} from "ngx-countup";
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
 import { OrdersAdminComponent } from './components/orders/orders-admin/orders-admin.component';
 import { ConfirmationPopupComponent } from './components/popup/confirmation-popup/confirmation-popup.component';
+import {NgToggleModule} from "ng-toggle-button";
+import {LottieModule} from "ngx-lottie";
+import player from 'lottie-web';
+import { ListingsPopupComponent } from './components/capital/listings-popup/listings-popup.component'
+import {DatePipe} from "@angular/common";
+
+export function playerFactory() {
+  return player;
+}
+
 
 @NgModule({
   declarations: [
@@ -79,7 +91,8 @@ import { ConfirmationPopupComponent } from './components/popup/confirmation-popu
     CheckingTransactionsPopupComponent,
     MarginTransactionsPopupComponent,
     OrdersAdminComponent,
-    ConfirmationPopupComponent
+    ConfirmationPopupComponent,
+    ListingsPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -89,15 +102,18 @@ import { ConfirmationPopupComponent } from './components/popup/confirmation-popu
     ReactiveFormsModule,
     NgxPaginationModule,
     CountUpModule,
+    NgApexchartsModule,
+    NgToggleModule.forRoot(),
     NgxLoadingModule.forRoot({
       backdropBorderRadius: '3px',
       primaryColour: '#00B127',
       secondaryColour: '#00B127',
       tertiaryColour: '#00B127',
       animationType: ngxLoadingAnimationTypes.wanderingCubes
-    })
+    }),
+    LottieModule.forRoot({ player: playerFactory })
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

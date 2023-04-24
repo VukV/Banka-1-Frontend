@@ -99,16 +99,12 @@ export class TradesForexComponent implements OnInit {
 
     if(limit != null && limit != "" && stop != null && stop != ""){
       this.orderType = OrderTypeEnum.STOP_LIMIT_ORDER;
-      limit = null;
-      stop = null;
     }
     else if(limit != null && limit != ""){
       this.orderType = OrderTypeEnum.LIMIT_ORDER;
-      limit = null;
     }
     else if(stop != null && stop != ""){
       this.orderType = OrderTypeEnum.STOP_ORDER;
-      stop = null;
     }
 
     let makeOrderRequest = new MakeOrderRequest(this.symbol,  this.listingType, this.forexFormGroup.value.quantity,

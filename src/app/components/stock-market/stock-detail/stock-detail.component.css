@@ -78,3 +78,19 @@ legend {
   width: 210px;
 }
 
+.form-check-input:checked {
+  background-color: var(--si-green);
+  border-color: #d5d5d5;
+}
+
+.form-switch .form-check-input {
+  background-color: #F1FFF9;
+}
+.form-switch .form-check-input:focus {
+
+  background-color: var(--si-green);
+}
+
+.details-label{
+  margin-right: 10px;
+}
