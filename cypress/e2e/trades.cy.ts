@@ -12,7 +12,6 @@ describe('Testiranje stocks', () => {
     cy.get('[data-cy="limit"]').type('1100');
     cy.get('[data-cy="stop"]').type('900');
     cy.get('[data-cy="btnAllOrNone"]').check();
-    cy.get('[data-cy="btnMargina"]').check();
     cy.get('[data-cy="btnSubmit"]').click();
     cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
 
@@ -25,7 +24,6 @@ describe('Testiranje stocks', () => {
     cy.get('[data-cy="limit"]').type('1100');
     cy.get('[data-cy="stop"]').type('900');
     cy.get('[data-cy="btnAllOrNone"]').check();
-    cy.get('[data-cy="btnMargina"]').check();
     cy.get('[data-cy="btnSubmit"]').click();
     cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
 
@@ -63,33 +61,30 @@ describe('Testiranje stocks', () => {
 
     cy.url().should('include', '/orders');
   });
-  it('Uspešna prodaja bez limit i stop vrednosti sa čekboksom margina', () => {
+  it('Uspešna prodaja bez limit i stop vrednosti', () => {
     cy.get('[data-cy="quantity"]').type('5');
 
     cy.get('[data-cy="btnBuy"]').click({force: true});
-    cy.get('[data-cy="btnMargina"]').check();
     cy.get('[data-cy="btnSubmit"]').click();
     cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
 
     cy.url().should('include', '/orders');
   });
-  it('Uspešna prodaja bez limit vrednosti sa čekboksom margina', () => {
+  it('Uspešna prodaja bez limit vrednosti', () => {
     cy.get('[data-cy="quantity"]').type('5');
     cy.get('[data-cy="stop"]').type('900');
 
     cy.get('[data-cy="btnBuy"]').click({force: true});
-    cy.get('[data-cy="btnMargina"]').check();
     cy.get('[data-cy="btnSubmit"]').click();
     cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
 
     cy.url().should('include', '/orders');
   });
-  it('Uspešna prodaja bez stop vrednosti sa čekboksom margina', () => {
+  it('Uspešna prodaja bez stop vrednosti', () => {
     cy.get('[data-cy="quantity"]').type('5');
     cy.get('[data-cy="limit"]').type('1100');
 
     cy.get('[data-cy="btnBuy"]').click({force: true});
-    cy.get('[data-cy="btnMargina"]').check();
     cy.get('[data-cy="btnSubmit"]').click();
     cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
 
@@ -110,7 +105,6 @@ describe('Testiranje stocks', () => {
     cy.get('[data-cy="quantity"]').type('3');
     cy.get('[data-cy="limit"]').type('1100');
     cy.get('[data-cy="stop"]').type('900');
-    cy.get('[data-cy="btnMargina"]').check();
 
 
     cy.get('[data-cy="btnSell"]').click({force: true});
@@ -119,18 +113,7 @@ describe('Testiranje stocks', () => {
 
     cy.url().should('include', '/orders');
   });
-  it('Uspešna prodaja bez margina čekboksa', () => {
-    cy.get('[data-cy="quantity"]').type('3');
-    cy.get('[data-cy="limit"]').type('1100');
-    cy.get('[data-cy="stop"]').type('900');
-    cy.get('[data-cy="btnAllOrNone"]').check();
 
-    cy.get('[data-cy="btnSell"]').click({force: true});
-    cy.get('[data-cy="btnSubmit"]').click({force: true});
-    cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
-
-    cy.url().should('include', '/orders');
-  });
   it('Forma ne dozvoljava unose koji nisu brojčani', () => {
     cy.get('[data-cy="quantity"]').type('abc');
 
@@ -155,7 +138,6 @@ describe('Testiranje prodaje', () => {
     cy.get('[data-cy="stop"]').type('900');
 
     cy.get('[data-cy="btnAllOrNone"]').check();
-    cy.get('[data-cy="btnMargina"]').check();
     cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
 
     cy.url().should('include', '/trades-stocks');
@@ -167,7 +149,6 @@ describe('Testiranje prodaje', () => {
     cy.get('[data-cy="limit"]').type('1100');
     cy.get('[data-cy="stop"]').type('900');
     cy.get('[data-cy="btnAllOrNone"]').check();
-    cy.get('[data-cy="btnMargina"]').check();
     cy.get('[data-cy="btnSubmit"]').click();
     cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
 
@@ -205,38 +186,18 @@ describe('Testiranje prodaje', () => {
 
     cy.url().should('include', '/orders');
   });
-  it('Uspešna prodaja bez limit i stop vrednosti sa čekboksom margina', () => {
-    cy.get('[data-cy="quantity"]').type('5');
 
-    cy.get('[data-cy="btnSell"]').click({force: true});
-    cy.get('[data-cy="btnMargina"]').check();
-    cy.get('[data-cy="btnSubmit"]').click();
-    cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
-
-    cy.url().should('include', '/orders');
-  });
-  it('Uspešna prodaja bez limit vrednosti sa čekboksom margina', () => {
+  it('Uspešna prodaja bez limit vrednosti', () => {
     cy.get('[data-cy="quantity"]').type('5');
     cy.get('[data-cy="stop"]').type('900');
 
     cy.get('[data-cy="btnSell"]').click({force: true});
-    cy.get('[data-cy="btnMargina"]').check();
     cy.get('[data-cy="btnSubmit"]').click();
     cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
 
     cy.url().should('include', '/orders');
   });
-  it('Uspešna prodaja bez stop vrednosti sa čekboksom margina', () => {
-    cy.get('[data-cy="quantity"]').type('5');
-    cy.get('[data-cy="limit"]').type('1100');
 
-    cy.get('[data-cy="btnSell"]').click({force: true});
-    cy.get('[data-cy="btnMargina"]').check();
-    cy.get('[data-cy="btnSubmit"]').click();
-    cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
-
-    cy.url().should('include', '/orders');
-  });
   it('Uspešna prodaja bez čekboksova', () => {
     cy.get('[data-cy="quantity"]').type('3');
     cy.get('[data-cy="limit"]').type('1100');
@@ -248,30 +209,7 @@ describe('Testiranje prodaje', () => {
 
     cy.url().should('include', '/orders');
   });
-  it('Uspešna prodaja bez all or none čekboksa', () => {
-    cy.get('[data-cy="quantity"]').type('3');
-    cy.get('[data-cy="limit"]').type('1100');
-    cy.get('[data-cy="stop"]').type('900');
-    cy.get('[data-cy="btnMargina"]').check();
 
-    cy.get('[data-cy="btnSell"]').click({force: true});
-    cy.get('[data-cy="btnSubmit"]').click({force: true});
-    cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
-
-    cy.url().should('include', '/orders');
-  });
-  it('Uspešna prodaja bez margina čekboksa', () => {
-    cy.get('[data-cy="quantity"]').type('3');
-    cy.get('[data-cy="limit"]').type('1100');
-    cy.get('[data-cy="stop"]').type('900');
-    cy.get('[data-cy="btnAllOrNone"]').check();
-
-    cy.get('[data-cy="btnSell"]').click({force: true});
-    cy.get('[data-cy="btnSubmit"]').click({force: true});
-    cy.get('[data-cy="btnConfirmPopUp"]').click({force: true});
-
-    cy.url().should('include', '/orders');
-  });
 
   it('Forma ne dozvoljava unose koji nisu brojčani', () => {
     cy.get('[data-cy="quantity"]').type('abc');

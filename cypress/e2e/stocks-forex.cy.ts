@@ -13,7 +13,7 @@ describe("Testira stock-market stranicu.", () => {
   it('Proverava da li je tabela forex prazna.', () => {
     cy.visit("/stock-market")
     cy.get('[data-cy="forex"]').click({force: true})
-    cy.get('[data-cy="forex-table"] tbody').should('have.length.gt', 0);
+    cy.get('[data-cy="forex-table"] tbody').should('have.length.greaterThan', 0);
   });
 
   it('Proverava da li je tabela akcija prazna.', () => {
