@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-center capital-table-row mt-3">
+  <div *ngIf="optionPairs.length > 0; else noData" class="row justify-content-center capital-table-row mt-3">
     <div style="overflow: auto" class="rectangle">
       <div class="row col-md-auto me-3 d-flex justify-content-evenly">
         <div class="col-md-auto align-items-center d-flex justify-content-center">
@@ -64,6 +64,11 @@
       </div>
     </div>
   </div>
+
+  <ng-template #noData>
+    <br>
+    Nema traženih podataka.
+  </ng-template>
 
   <br>
   <div class="row justify-content-end">
