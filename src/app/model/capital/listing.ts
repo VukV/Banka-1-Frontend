@@ -4,7 +4,8 @@ export interface Listing{
   id: number,
   listingType: ListingTypeEnum,
   symbol: string,
-  quantity: number
+  quantity: number,
+  price: number
 }
 
 export interface ListingSum{
