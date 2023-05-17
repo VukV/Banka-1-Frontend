@@ -103,4 +103,16 @@ export class ContractsService {
     );
   }
 
+  finaliseContract(formData: FormData): Observable<any>{
+    return this.httpClient.post(this.contractsFinalisedUrl ,
+      formData,
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
 }

@@ -7,13 +7,15 @@
         </div>
         <br>
         <div class="d-flex align-items-center justify-content-center">
-          <input class="update-btn col-6 col-md-6" type="file" (change)="onFileSelected($event)">
+          <input class="update-btn col-6 col-md-6" type="file" accept="application/pdf" (change)="onFileSelected($event)">
         </div>
         <br>
         <div class="d-flex align-items-center justify-content-center">
           <button data-cy="btnConfirmPopUp" type="button" class="btn btn-green rounded-pill" (click)="finaliseContract()">FINALIZUJ</button>
           <button type="button" class="btn btn-outline-light rounded-pill" (click)="cancel()">Odustani</button>
         </div>
+
+        <h5 *ngIf="error != ''" class="text-center error mt-3">{{ error }}</h5>
       </div>
     </div>
   </div>

@@ -10,6 +10,11 @@ import {Router} from "@angular/router";
 export class FinaliseContractPopupComponent {
 
   selectedFile: File | null = null;
+  contractId: string = "";
+  referenceNumber: string = "";
+
+  loading: boolean = false;
+  error: string = "";
   displayStyle = "none";
 
   constructor(private contractsService: ContractsService, private router: Router) {
@@ -27,10 +32,31 @@ export class FinaliseContractPopupComponent {
   }
 
   finaliseContract(){
-    //TODO check if pdf format
-    //TODO upload
+    this.error = "";
 
-    //todo on success -> returnToContracts
+    if(this.selectedFile){
+      if(this.selectedFile.type != 'application/pdf'){
+        this.error = 'Odabrani fajl nije PDF.'
+      }
+
+      this.loading = true;
+
+      const formData = new FormData();
+      formData.append('contractId', this.contractId);
+      formData.append('referenceNumber', this.referenceNumber);
+      formData.append('contractFile', this.selectedFile, this.selectedFile.name);
+
+      this.contractsService.finaliseContract(formData).subscribe(
+        () => {
+          this.loading = false;
+          this.returnToContracts();
+        },
+        (error) => {
+          this.error = error.message;
+          this.loading = false;
+        }
+      );
+    }
   }
 
   returnToContracts(){
@@ -41,7 +67,9 @@ export class FinaliseContractPopupComponent {
     this.displayStyle = "none";
   }
 
-  openPopup(){
+  openPopup(contractId: string, referenceNumber: string){
+    this.contractId = contractId;
+    this.referenceNumber = referenceNumber;
     this.displayStyle = "block";
   }
 

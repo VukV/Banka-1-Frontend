@@ -12,3 +12,7 @@
 .btn{
   margin: 10px;
 }
+
+h5.error {
+  color: var(--si-red);
+}

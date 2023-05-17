@@ -131,7 +131,7 @@ export class UpdateContractComponent implements OnInit{
   }
 
   finaliseContract(){
-    this.finaliseContractPopupComponent.openPopup();
+    this.finaliseContractPopupComponent.openPopup(this.contractId, this.referenceNumber);
   }
 
   cancel(){
