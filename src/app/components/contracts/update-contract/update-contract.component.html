@@ -84,12 +84,12 @@
     <button type="button" class="update-btn col-6 col-md-3 btn btn-outline btn-block rounded-pill" (click)="updateContract()">
       Izmeni
     </button>
-    <button type="button" class="update-btn col-6 col-md-3 btn btn-green btn-block rounded-pill" (click)="finaliseContract()">
+    <button *ngIf="isSupervisor || isAdmin" type="button" class="update-btn col-6 col-md-3 btn btn-green btn-block rounded-pill" (click)="finaliseContract()">
       Finalizuj
     </button>
   </div>
   <div class="row justify-content-center mt-3">
-    <button type="button" class="update-btn col-6 col-md-3 btn btn-outline-danger btn-block rounded-pill" (click)="deleteContract()">
+    <button *ngIf="isSupervisor || isAdmin" type="button" class="update-btn col-6 col-md-3 btn btn-outline-danger btn-block rounded-pill" (click)="deleteContract()">
       Obriši
     </button>
     <button type="button" class="update-btn col-6 col-md-3 btn btn-outline-light btn-block rounded-pill" (click)="cancel()">

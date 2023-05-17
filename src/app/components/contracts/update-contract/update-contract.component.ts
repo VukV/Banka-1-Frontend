@@ -4,6 +4,8 @@ import {ContractStatus, Transaction, TransactionAction} from "../../../model/con
 import {ActivatedRoute, Router} from "@angular/router";
 import {ContractsService} from "../../../services/contracts/contracts.service";
 import {ContractRequest} from "../../../model/contracts/contract-request";
+import {UserRoleEnum} from "../../../model/user/user-role-enum";
+import {CurrentUserService} from "../../../services/user/current-user.service";
 
 @Component({
   selector: 'app-update-contract',
@@ -37,10 +39,17 @@ export class UpdateContractComponent implements OnInit{
   loading: boolean = false;
   error: string = "";
 
-  constructor(private router: Router, private route: ActivatedRoute, private contractsService: ContractsService) {
+  userId: number = -1;
+  isAdmin: boolean = false;
+  isSupervisor: boolean = false;
+
+  constructor(private currentUserService: CurrentUserService, private router: Router, private route: ActivatedRoute, private contractsService: ContractsService) {
   }
 
   ngOnInit(): void {
+    this.userId = this.currentUserService.getUserId();
+    this.checkRoles();
+
     this.route.params.subscribe(params => {
       this.contractId = params['contractId'];
       this.getContract();
@@ -168,6 +177,11 @@ export class UpdateContractComponent implements OnInit{
     }
 
     return true;
+  }
+
+  private checkRoles(){
+    this.isAdmin = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_ADMIN);
+    this.isSupervisor = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_SUPERVISOR);
   }
 
 }
