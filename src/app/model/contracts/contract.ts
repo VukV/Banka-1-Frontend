@@ -14,7 +14,8 @@ export interface Transaction {
   action: TransactionAction,
   symbol: string,
   quantity: number,
-  price: number
+  price: number,
+  ngId: number
 }
 
 export enum ContractStatus {
