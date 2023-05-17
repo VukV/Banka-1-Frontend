@@ -6,6 +6,8 @@ import {ContractsService} from "../../../services/contracts/contracts.service";
 import {ContractRequest} from "../../../model/contracts/contract-request";
 import {UserRoleEnum} from "../../../model/user/user-role-enum";
 import {CurrentUserService} from "../../../services/user/current-user.service";
+import {ConfirmationPopupComponent} from "../../popup/confirmation-popup/confirmation-popup.component";
+import {FinaliseContractPopupComponent} from "../finalise-contract-popup/finalise-contract-popup.component";
 
 @Component({
   selector: 'app-update-contract',
@@ -16,6 +18,9 @@ export class UpdateContractComponent implements OnInit{
 
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
+
+  @ViewChild(FinaliseContractPopupComponent)
+  finaliseContractPopupComponent!: FinaliseContractPopupComponent;
 
   contractId: string = "";
   companyId: number = -1;
@@ -126,7 +131,7 @@ export class UpdateContractComponent implements OnInit{
   }
 
   finaliseContract(){
-
+    this.finaliseContractPopupComponent.openPopup();
   }
 
   cancel(){

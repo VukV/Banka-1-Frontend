@@ -1,0 +1,21 @@
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="d-flex align-items-center justify-content-center">
+          <h5>Odaberite fajl ugovora:</h5>
+        </div>
+        <br>
+        <div class="d-flex align-items-center justify-content-center">
+          <input class="update-btn col-6 col-md-6" type="file" (change)="onFileSelected($event)">
+        </div>
+        <br>
+        <div class="d-flex align-items-center justify-content-center">
+          <button data-cy="btnConfirmPopUp" type="button" class="btn btn-green rounded-pill" (click)="finaliseContract()">FINALIZUJ</button>
+          <button type="button" class="btn btn-outline-light rounded-pill" (click)="cancel()">Odustani</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

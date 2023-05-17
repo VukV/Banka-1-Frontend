@@ -50,6 +50,7 @@ import { ListingsPopupComponent } from './components/capital/listings-popup/list
 import {DatePipe} from "@angular/common";
 import { AddContractComponent } from './components/contracts/add-contract/add-contract.component';
 import { UpdateContractComponent } from './components/contracts/update-contract/update-contract.component';
+import { FinaliseContractPopupComponent } from './components/contracts/finalise-contract-popup/finalise-contract-popup.component';
 
 export function playerFactory() {
   return player;
@@ -94,7 +95,8 @@ export function playerFactory() {
     ConfirmationPopupComponent,
     ListingsPopupComponent,
     AddContractComponent,
-    UpdateContractComponent
+    UpdateContractComponent,
+    FinaliseContractPopupComponent
   ],
   imports: [
     BrowserModule,
