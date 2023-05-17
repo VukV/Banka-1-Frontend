@@ -49,6 +49,7 @@ import player from 'lottie-web';
 import { ListingsPopupComponent } from './components/capital/listings-popup/listings-popup.component'
 import {DatePipe} from "@angular/common";
 import { AddContractComponent } from './components/contracts/add-contract/add-contract.component';
+import { UpdateContractComponent } from './components/contracts/update-contract/update-contract.component';
 
 export function playerFactory() {
   return player;
@@ -92,7 +93,8 @@ export function playerFactory() {
     OrdersAdminComponent,
     ConfirmationPopupComponent,
     ListingsPopupComponent,
-    AddContractComponent
+    AddContractComponent,
+    UpdateContractComponent
   ],
   imports: [
     BrowserModule,

@@ -36,7 +36,6 @@ export class AddContractComponent implements OnInit{
   loading: boolean = false;
   error: string = "";
 
-
   constructor(private router: Router, private contractsService: ContractsService) {
   }
 

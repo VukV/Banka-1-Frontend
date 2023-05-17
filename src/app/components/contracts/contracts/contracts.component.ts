@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PopupComponent} from "../../popup/popup/popup.component";
 import {CurrentUserService} from "../../../services/user/current-user.service";
-import {OrdersService} from "../../../services/orders/orders.service";
 import {ContractsService} from "../../../services/contracts/contracts.service";
 import {UserRoleEnum} from "../../../model/user/user-role-enum";
 import {Contract, ContractStatus} from "../../../model/contracts/contract";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-contracts',
@@ -25,7 +25,7 @@ export class ContractsComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
-  constructor(private currentUserService: CurrentUserService, private contractsService: ContractsService) { }
+  constructor(private currentUserService: CurrentUserService, private contractsService: ContractsService, private router: Router) { }
 
   ngOnInit(): void {
     this.userId = this.currentUserService.getUserId();
@@ -88,6 +88,14 @@ export class ContractsComponent implements OnInit {
         this.popupComponent.openPopup(error.message);
       }
     );
+  }
+
+  openUpdateContract(contract: Contract){
+    if(contract.status == ContractStatus.FINAL){
+      this.popupComponent.openPopup("Finalizovan ugovor ne može da se menja.");
+      return;
+    }
+    this.router.navigate(["contracts/update/" + contract._id]);
   }
 
   private checkRoles(){

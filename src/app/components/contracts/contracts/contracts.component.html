@@ -36,13 +36,13 @@
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let contract of contracts">
+          <tr *ngFor="let contract of contracts" (click)="openUpdateContract(contract)" class="clickable-tr">
             <td>{{ contract.referenceNumber }}</td>
             <td>{{ contract.status }}</td>
             <td>{{ contract.createdDateTime | date: 'dd/MM/yy HH:mm' }}</td>
             <td>{{ contract.modifiedDateTime | date: 'dd/MM/yy HH:mm' }}</td>
-            <td *ngIf="contract.status == contractFinal">
-              <button type="button" class="btn btn-outline rounded-pill" (click)="downloadContract(contract._id)">
+            <td>
+              <button *ngIf="contract.status == contractFinal" type="button" class="btn btn-outline rounded-pill" (click)="downloadContract(contract._id)">
                 <i class="bi bi-download" id="download" data-cy="download"></i>
               </button>
             </td>

@@ -26,6 +26,7 @@ import {TradesComponent} from "./components/trades/trades/trades.component";
 import {TradesForexComponent} from "./components/trades/trades-forex/trades-forex.component";
 import {OrdersAdminComponent} from "./components/orders/orders-admin/orders-admin.component";
 import {AddContractComponent} from "./components/contracts/add-contract/add-contract.component";
+import {UpdateContractComponent} from "./components/contracts/update-contract/update-contract.component";
 
 
 const routes: Routes = [
@@ -109,6 +110,12 @@ const routes: Routes = [
   {
     path: "contracts/create",
     component: AddContractComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "contracts/update/:contractId",
+    component: UpdateContractComponent,
     canActivate: [LoginGuard],
     data: {roles: []}
   },
