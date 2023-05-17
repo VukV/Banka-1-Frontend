@@ -19,7 +19,7 @@
           <h2 class="row fw-bold">Ugovori</h2>
         </div>
         <div class="col-md-auto align-items-center d-flex justify-content-center">
-          <button type="button" id="contract" class="btn btn-outline rounded-pill  wider-button" data-cy="addContract" [routerLink]="['/addcontract']">Dodaj</button>
+          <button type="button" id="contract" class="btn btn-outline rounded-pill  wider-button" data-cy="addContract" [routerLink]="['/contracts/create']">Dodaj</button>
         </div>
       </div>
       <br>
@@ -27,26 +27,33 @@
         <table class="table table-borderless table-d ">
           <thead>
           <tr class="trtable">
-            <th>#</th>
             <th>Delovodni broj</th>
             <th>Status</th>
             <th>Kreiran</th>
             <th>Izmenjen</th>
+            <th>Preuzmi</th>
           </tr>
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let ugovor of this.contracts ">
-            <td>{{ ugovor.id }}</td>
-            <td>{{ ugovor.delovodniBroj }}</td>
-            <td>{{ ugovor.status }}</td>
-            <td>{{ ugovor.kreiran }}</td>
-            <td>{{ ugovor.izmenjen }}</td>
+          <tr *ngFor="let contract of contracts">
+            <td>{{ contract.referenceNumber }}</td>
+            <td>{{ contract.status }}</td>
+            <td>{{ contract.createdDateTime | date: 'dd/MM/yy HH:mm' }}</td>
+            <td>{{ contract.modifiedDateTime | date: 'dd/MM/yy HH:mm' }}</td>
+            <td *ngIf="contract.status == contractFinal">
+              <button type="button" class="btn btn-outline rounded-pill" (click)="downloadContract(contract._id)">
+                <i class="bi bi-download" id="download" data-cy="download"></i>
+              </button>
+            </td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
 
 </div>

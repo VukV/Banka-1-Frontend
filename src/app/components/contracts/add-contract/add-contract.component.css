@@ -1,0 +1,14 @@
+form {
+  padding: 2rem;
+  border: solid 2px;
+  border-color: var(--si-green);
+  border-radius: 50px;
+}
+
+label {
+  color: var(--si-green);
+}
+
+h5.error {
+  color: var(--si-red);
+}

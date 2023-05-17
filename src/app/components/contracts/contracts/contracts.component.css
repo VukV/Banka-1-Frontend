@@ -40,3 +40,7 @@ th{
   width: 180px;
   text-align: center;
 }
+
+td {
+  vertical-align: middle;
+}
