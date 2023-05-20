@@ -4,6 +4,7 @@ import {PopupComponent} from "../../popup/popup/popup.component";
 import {Router} from "@angular/router";
 import {ContractsService} from "../../../services/contracts/contracts.service";
 import {ContractRequest} from "../../../model/contracts/contract-request";
+import {StocksService} from "../../../services/stocks/stocks.service";
 
 @Component({
   selector: 'app-add-contract',
@@ -30,16 +31,16 @@ export class AddContractComponent implements OnInit{
   transactionActions: string[] = Object.values(TransactionAction);
   transactionId: number = 0;
 
-  //TODO fetch stocks and get symbols only
   stockSymbols: string[] = [];
 
   loading: boolean = false;
   error: string = "";
 
-  constructor(private router: Router, private contractsService: ContractsService) {
+  constructor(private router: Router, private contractsService: ContractsService, private stocksService: StocksService) {
   }
 
   ngOnInit(): void {
+    this.getStockSymbols();
   }
 
   addContract(){
@@ -95,7 +96,7 @@ export class AddContractComponent implements OnInit{
     this.transactionId++;
     this.transactions.push({
       action: TransactionAction.BUY,
-      symbol: '',
+      symbol: this.stockSymbols[0],
       quantity: 0,
       price: 0,
       ngId: this.transactionId
@@ -105,6 +106,20 @@ export class AddContractComponent implements OnInit{
   removeTransaction(transactionId: number){
     const index = this.transactions.findIndex((transaction) => transaction.ngId === transactionId);
     this.transactions.splice(index, 1);
+  }
+
+  getStockSymbols(){
+    this.loading = true;
+    this.stocksService.getAllStockSymbols().subscribe(
+      (data) => {
+        this.stockSymbols = data;
+        this.loading = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loading = false;
+      }
+    );
   }
 
   private returnToContracts(){

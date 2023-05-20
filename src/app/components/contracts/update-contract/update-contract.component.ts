@@ -8,6 +8,7 @@ import {UserRoleEnum} from "../../../model/user/user-role-enum";
 import {CurrentUserService} from "../../../services/user/current-user.service";
 import {ConfirmationPopupComponent} from "../../popup/confirmation-popup/confirmation-popup.component";
 import {FinaliseContractPopupComponent} from "../finalise-contract-popup/finalise-contract-popup.component";
+import {StocksService} from "../../../services/stocks/stocks.service";
 
 @Component({
   selector: 'app-update-contract',
@@ -38,7 +39,6 @@ export class UpdateContractComponent implements OnInit{
   transactionActions: string[] = Object.values(TransactionAction);
   transactionId: number = 0;
 
-  //TODO fetch stocks and get symbols only
   stockSymbols: string[] = [];
 
   loading: boolean = false;
@@ -48,7 +48,7 @@ export class UpdateContractComponent implements OnInit{
   isAdmin: boolean = false;
   isSupervisor: boolean = false;
 
-  constructor(private currentUserService: CurrentUserService, private router: Router, private route: ActivatedRoute, private contractsService: ContractsService) {
+  constructor(private currentUserService: CurrentUserService, private router: Router, private route: ActivatedRoute, private contractsService: ContractsService, private stocksService: StocksService) {
   }
 
   ngOnInit(): void {
@@ -59,6 +59,8 @@ export class UpdateContractComponent implements OnInit{
       this.contractId = params['contractId'];
       this.getContract();
     });
+
+    this.getStockSymbols();
   }
 
   private getContract(){
@@ -146,7 +148,7 @@ export class UpdateContractComponent implements OnInit{
     this.transactionId++;
     this.transactions.push({
       action: TransactionAction.BUY,
-      symbol: '',
+      symbol: this.stockSymbols[0],
       quantity: 0,
       price: 0,
       ngId: this.transactionId
@@ -187,6 +189,20 @@ export class UpdateContractComponent implements OnInit{
   private checkRoles(){
     this.isAdmin = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_ADMIN);
     this.isSupervisor = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_SUPERVISOR);
+  }
+
+  getStockSymbols(){
+    this.loading = true;
+    this.stocksService.getAllStockSymbols().subscribe(
+      (data) => {
+        this.stockSymbols = data;
+        this.loading = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loading = false;
+      }
+    );
   }
 
 }
