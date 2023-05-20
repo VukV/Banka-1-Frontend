@@ -63,7 +63,7 @@ export class CapitalCheckingComponent implements OnInit {
       (data) => {
         this.bankAccount = data.bankAccount;
         this.accountBalance = this.bankAccount.accountBalance;
-        this.dailyLimit = this.bankAccount.dailyLimit;
+        this.dailyLimit = data.dailyLimit;
         this.loadingChecking = false;
       },
       (error) => {
