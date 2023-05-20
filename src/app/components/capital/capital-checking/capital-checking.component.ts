@@ -75,6 +75,7 @@ export class CapitalCheckingComponent implements OnInit {
 
   private sumListings(listingsData: Listing[]){
     let listingTypes = Object.values(ListingTypeEnum);
+
     listingTypes.forEach(value => {
       let valueSum = listingsData.filter(listing => listing.listingType === value)
         .reduce((sum, current) => sum + current.quantity, 0);
@@ -87,18 +88,6 @@ export class CapitalCheckingComponent implements OnInit {
     let filteredListings = this.listingsAll.filter((listing) => {
       return listing.listingType == listingType;
     });
-
-    //grupise porudzbine po simbolu
-    // let groupedBySymbol = filteredListings.reduce((acc: { [key: string]: number }, curr: Listing) => {
-    //   if (!acc[curr.symbol]) {
-    //     acc[curr.symbol] = curr.quantity;
-    //   } else {
-    //     acc[curr.symbol] += curr.quantity;
-    //   }
-    //   return acc;
-    // }, {});
-
-    //console.log(groupedBySymbol);
 
     this.listingsPopupComponent.openPopUp(filteredListings);
   }
