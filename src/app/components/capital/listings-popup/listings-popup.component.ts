@@ -43,7 +43,7 @@ export class ListingsPopupComponent implements OnInit{
           listing.price = listing.quantity * data.price;
         },
         (error) => {
-          errorOccurred = true
+          errorOccurred = true;
         }
       )
     }
