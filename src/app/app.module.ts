@@ -36,7 +36,6 @@ import { OrdersComponent } from './components/orders/orders/orders.component';
 import { CompaniesComponent } from './components/companies/companies/companies.component';
 import { CreateCompanyPopupComponent } from './components/companies/create-company-popup/create-company-popup.component';
 import { ContractsComponent } from './components/contracts/contracts/contracts.component';
-import { AddContractPopupComponent } from './components/contracts/add-contract-popup/add-contract-popup.component';
 import { CompanyDetailsComponent } from './components/companies/company-details/company-details.component';
 import { CheckingTransactionsPopupComponent } from './components/capital/checking-transactions-popup/checking-transactions-popup.component';
 import { MarginTransactionsPopupComponent } from './components/capital/margin-transactions-popup/margin-transactions-popup.component';
@@ -49,6 +48,9 @@ import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
 import { ListingsPopupComponent } from './components/capital/listings-popup/listings-popup.component'
 import {DatePipe} from "@angular/common";
+import { AddContractComponent } from './components/contracts/add-contract/add-contract.component';
+import { UpdateContractComponent } from './components/contracts/update-contract/update-contract.component';
+import { FinaliseContractPopupComponent } from './components/contracts/finalise-contract-popup/finalise-contract-popup.component';
 
 export function playerFactory() {
   return player;
@@ -86,13 +88,15 @@ export function playerFactory() {
     CompaniesComponent,
     CreateCompanyPopupComponent,
     ContractsComponent,
-    AddContractPopupComponent,
     CompanyDetailsComponent,
     CheckingTransactionsPopupComponent,
     MarginTransactionsPopupComponent,
     OrdersAdminComponent,
     ConfirmationPopupComponent,
-    ListingsPopupComponent
+    ListingsPopupComponent,
+    AddContractComponent,
+    UpdateContractComponent,
+    FinaliseContractPopupComponent
   ],
   imports: [
     BrowserModule,
