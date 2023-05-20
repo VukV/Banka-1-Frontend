@@ -1,10 +1,3 @@
-export interface Contract{
-  id: number,
-  delovodniBroj: string,
-  status: string,
-  kreiran: any,
-  izmenjen: any
-}
 
 export interface Company{
   id: number,
