@@ -58,6 +58,16 @@ export class ContractsService {
     );
   }
 
+  getContractByCompany(companyId: number): Observable<any> {
+    return this.httpClient.get(this.contractsUrl + '/company-contracts/' + companyId, {
+      headers: this.headers
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
   createContract(createContractRequest: ContractRequest): Observable<any> {
     return this.httpClient.post(this.contractsUrl,
       createContractRequest,
