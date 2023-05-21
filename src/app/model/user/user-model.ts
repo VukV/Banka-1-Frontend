@@ -12,5 +12,6 @@ export interface UserModel {
   phoneNumber: string,
   roles: UserRoleEnum[],
   active: boolean,
+  dailyLimit: number,
   bankAccount: BankAccount
 }

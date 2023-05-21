@@ -8,3 +8,11 @@
   background-color: var(--si-black);
   border-color: #007e20;
 }
+
+.btn{
+  margin: 10px;
+}
+
+h5.error {
+  color: var(--si-red);
+}
