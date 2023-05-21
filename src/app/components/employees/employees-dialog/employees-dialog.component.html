@@ -1,0 +1,34 @@
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="close-container">
+        <button type="button" class="close" aria-label="Close" (click)="closePopup()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <h5>Employee: {{employeeName}} {{employeeLastName}}</h5>
+      <div class="modal-body">
+        <div class="form-group d-flex flex-column align-items-center justify-content-center mt-3">
+          <div class="range-container">
+            <span class="min-label">0</span>
+            <input type="range" id="range" name="range" min="0" max={{dailyLimit}} [(ngModel)]="selectedValue">
+            <span class="max-label">{{dailyLimit}}</span>
+          </div>
+          <div class="value-container">
+            <span class="value-label">Selected value: </span>
+            <span class="value" style="color: var(--si-green)">{{selectedValue}}</span>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-items-center justify-content-center mt-3">
+          <button class="btn btn-outline rounded-pill mb-2" type="button" (click)="setDailyLimit(employeeId, selectedValue)">Submit</button>
+          <p>or</p>
+          <button class="btn btn-outline rounded-pill mb-2" type="button" (click)="resetDailyLimit(employeeId)">Reset</button>
+          <p class="comment">*you will be resetting your limit to initial value</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-popup></app-popup>
+</div>
+
+

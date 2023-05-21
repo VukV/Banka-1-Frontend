@@ -49,6 +49,8 @@ import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
 import { ListingsPopupComponent } from './components/capital/listings-popup/listings-popup.component'
 import {DatePipe} from "@angular/common";
+import { EmployeesComponent } from './components/employees/employees-list/employees.component';
+import { EmployeesDialogComponent } from './components/employees/employees-dialog/employees-dialog.component';
 
 export function playerFactory() {
   return player;
@@ -92,7 +94,9 @@ export function playerFactory() {
     MarginTransactionsPopupComponent,
     OrdersAdminComponent,
     ConfirmationPopupComponent,
-    ListingsPopupComponent
+    ListingsPopupComponent,
+    EmployeesComponent,
+    EmployeesDialogComponent
   ],
   imports: [
     BrowserModule,
