@@ -25,6 +25,7 @@ import {CompanyDetailsComponent} from "./components/companies/company-details/co
 import {TradesComponent} from "./components/trades/trades/trades.component";
 import {TradesForexComponent} from "./components/trades/trades-forex/trades-forex.component";
 import {OrdersAdminComponent} from "./components/orders/orders-admin/orders-admin.component";
+import {EmployeesComponent} from "./components/employees/employees-list/employees.component";
 import {AddContractComponent} from "./components/contracts/add-contract/add-contract.component";
 import {UpdateContractComponent} from "./components/contracts/update-contract/update-contract.component";
 
@@ -86,6 +87,12 @@ const routes: Routes = [
   {
     path: "orders-admin",
     component: OrdersAdminComponent,
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_ADMIN, UserRoleEnum.ROLE_SUPERVISOR]}
+  },
+  {
+    path: "employees",
+    component: EmployeesComponent,
     canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_ADMIN, UserRoleEnum.ROLE_SUPERVISOR]}
   },

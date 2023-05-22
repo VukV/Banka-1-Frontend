@@ -1,0 +1,61 @@
+<script src="../../../model/user/user-model.ts"></script>
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="../../../../assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Zaposleni</li>
+    </ol>
+  </nav>
+
+  <div class="row form-inline">
+
+    <div class="row justify-content-center users-table-row">
+      <div style="overflow: auto" class="rectangle">
+        <div class="row col-md-auto me-3 d-flex justify-content-between">
+          <div class="col-md-auto align-items-center d-flex justify-content-center">
+            <h2 class="row fw-bold">Zaposleni</h2>
+          </div>
+        </div>
+        <br>
+        <div class="d-flex justify-content-around">
+          <table class="table table-borderless table-d ">
+            <thead>
+            <tr class="trtable">
+              <th>#</th>
+              <th>Ime</th>
+              <th>Prezime</th>
+              <th>Dnevni limit</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <tr *ngFor="let employee of this.employees | paginate: { itemsPerPage: usersPerPage, currentPage: page, totalItems: totalUsers}; let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{ employee.firstName}}</td>
+                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.dailyLimit}}</td>
+                <td><button type="button" class="btn btn-outline-light rounded-pill" (click)="openDialog(employee.firstName, employee.lastName, employee.dailyLimit, employee.id)" style="display: block; margin: auto; margin-top: -8px ">Izmeni limit</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      <pagination-controls (pageChange)="pageChangeEvent($event)" nextLabel="Sledeća" previousLabel="Prethodna"></pagination-controls>
+    </div>
+  </div>
+
+
+  <app-employees-dialog></app-employees-dialog>
+  <app-popup></app-popup>
+</div>

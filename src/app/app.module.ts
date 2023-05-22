@@ -48,6 +48,8 @@ import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
 import { ListingsPopupComponent } from './components/capital/listings-popup/listings-popup.component'
 import {DatePipe} from "@angular/common";
+import { EmployeesComponent } from './components/employees/employees-list/employees.component';
+import { EmployeesDialogComponent } from './components/employees/employees-dialog/employees-dialog.component';
 import { AddContractComponent } from './components/contracts/add-contract/add-contract.component';
 import { UpdateContractComponent } from './components/contracts/update-contract/update-contract.component';
 import { FinaliseContractPopupComponent } from './components/contracts/finalise-contract-popup/finalise-contract-popup.component';
@@ -94,6 +96,8 @@ export function playerFactory() {
     OrdersAdminComponent,
     ConfirmationPopupComponent,
     ListingsPopupComponent,
+    EmployeesComponent,
+    EmployeesDialogComponent
     AddContractComponent,
     UpdateContractComponent,
     FinaliseContractPopupComponent
