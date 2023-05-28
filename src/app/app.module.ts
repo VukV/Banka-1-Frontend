@@ -97,7 +97,7 @@ export function playerFactory() {
     ConfirmationPopupComponent,
     ListingsPopupComponent,
     EmployeesComponent,
-    EmployeesDialogComponent
+    EmployeesDialogComponent,
     AddContractComponent,
     UpdateContractComponent,
     FinaliseContractPopupComponent
