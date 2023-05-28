@@ -28,6 +28,7 @@ import {OrdersAdminComponent} from "./components/orders/orders-admin/orders-admi
 import {EmployeesComponent} from "./components/employees/employees-list/employees.component";
 import {AddContractComponent} from "./components/contracts/add-contract/add-contract.component";
 import {UpdateContractComponent} from "./components/contracts/update-contract/update-contract.component";
+import {CreateCompanyPopupComponent} from "./components/companies/create-company-popup/create-company-popup.component";
 
 
 const routes: Routes = [
@@ -105,6 +106,12 @@ const routes: Routes = [
   {
     path: "company-details/:id",
     component: CompanyDetailsComponent,
+    canActivate: [LoginGuard],
+    data: {roles: []}
+  },
+  {
+    path: "create-company-popup",
+    component: CreateCompanyPopupComponent,
     canActivate: [LoginGuard],
     data: {roles: []}
   },

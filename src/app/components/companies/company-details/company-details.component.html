@@ -15,7 +15,7 @@
   <!-- NASTAVI OVDE -->
 
   <form [formGroup]="compDetailsFormGroup"
-        (ngSubmit)="onButtonAktiviraj()" class="row justify-content-center">
+        (ngSubmit)="onButtonAzuriraj()" class="row justify-content-center">
 
     <div class="row justify-content-start">
       <h2 class="mb-3 fw-bold">Podaci</h2>
@@ -23,7 +23,7 @@
     <div class="row row-cols-1 row-cols-md-3">
       <div class="col mb-3">
         <label for="naziv" class="form-label">Naziv</label>
-        <input type="name" class="form-control"
+        <input type="text" class="form-control"
                formControlName="naziv" required data-cy="naziv" id="naziv" name="naziv"
                placeholder="naziv">
       </div>
@@ -37,14 +37,14 @@
       <div class="col mb-3">
         <label for="maticniBr" class="form-label">Matični broj</label>
         <input type="number" class="form-control"
-               formControlName="maticniBr" required data-cy="maticniBr" id="maticniBr"
+               formControlName="maticniBr" readonly required data-cy="maticniBr" id="maticniBr"
                name="maticniBr"
                placeholder="matični broj">
       </div>
       <div class="col mb-3">
         <label for="pib" class="form-label">PIB</label>
         <input type="number" class="form-control"
-               formControlName="pib" required data-cy="pib" id="pib" name="pib" placeholder="pib">
+               formControlName="pib" required readonly data-cy="pib" id="pib" name="pib" placeholder="pib">
       </div>
       <div class="col mb-3">
         <label for="adresa" class="form-label">Adresa</label>
@@ -52,13 +52,7 @@
                formControlName="adresa" required data-cy="adresa" id="adresa" name="adresa"
                placeholder="adresa">
       </div>
-      <div class="col mb-3">
-        <label for="drzave" class="form-label">Država</label>
-        <select class="form-control"
-                formControlName="drzave" required data-cy="drzave" id="drzave" name="drzave">
-          <option *ngFor="let drzava of drzave" value="{{drzava}}" data-cy="drzava">{{drzava}}</option>
-        </select>
-      </div>
+
     </div>
 
     <div class="row mt-3 align-items-end d-flex justify-content-end ">
@@ -70,8 +64,13 @@
           </div>
         </div>
 
-        <button type="submit" id="azuriraj" class="btn btn-outline rounded-pill" data-cy="azuriraj">Ažuriraj
-        </button>
+        <div class="row mt-3 align-items-end d-flex justify-content-end mr-3">
+          <button type="button" id="obrisi" class="btn btn-outline rounded-pill" data-cy="obrisi"
+                  (click)="deleteCompany()">Obiši
+          </button>
+
+          <button type="submit" id="azuriraj" class="btn btn-outline rounded-pill" data-cy="azuriraj">Ažuriraj</button>
+        </div>
       </div>
     </div>
 
@@ -103,7 +102,7 @@
         </thead>
         <tbody>
         <tr>
-        <tr *ngFor="let racun of this.racuni ">
+        <tr *ngFor="let racun of this.accounts ">
           <td>{{ racun.racunId }}</td>
           <td>{{ racun.valuta }}</td>
           <td>{{ racun.banka }}</td>
@@ -141,7 +140,7 @@
         </thead>
         <tbody>
         <tr>
-        <tr *ngFor="let ugovor of this.ugovori">
+        <tr *ngFor="let ugovor of this.contracts">
           <td>{{ ugovor.ugovorId }}</td>
           <td>{{ ugovor.delovodniBr }}</td>
           <td>{{ ugovor.status }}</td>
@@ -196,4 +195,7 @@
     </div>
 
   </div>
+
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
 </div>
