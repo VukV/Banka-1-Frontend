@@ -14,6 +14,7 @@ export class StocksService {
 
   private stocksUrl = environment.stocksUrl;
   private optionsUrl = environment.optionsUrl;
+  private optionsTradeUrl = environment.ordersUrl;
   private headers = new HttpHeaders({
     'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });
@@ -81,21 +82,6 @@ export class StocksService {
         return throwError(() => new Error(err.error.message))
       })
     );
-  }
-
-  getOptions(expirationDate: Date | null, symbol: string): Observable<any> {
-    return this.httpClient.post<Option[]>(this.optionsUrl,
-      {
-        expirationDate: this.datePipe.transform(expirationDate, "yyyy-MM-dd"),
-        symbol: symbol
-      },
-      {
-        headers: this.headers
-      }).pipe(
-      catchError(err => {
-        return throwError(() => new Error(err.error.message))
-      })
-    )
   }
 
   getAllStockSymbols(): Observable<any> {

@@ -19,21 +19,27 @@
              [ngModel] ="expirationDate | date:'yyyy-MM-dd'"
              (ngModelChange)="expirationDate = $event; getOptions()" />
     </div>
-  </div>
-
-  <div *ngIf="optionPairs.length > 0; else noData" class="row justify-content-center capital-table-row mt-3">
-    <div style="overflow: auto" class="rectangle">
-      <div class="row col-md-auto me-3 d-flex justify-content-evenly">
-        <div class="col-md-auto align-items-center d-flex justify-content-center">
-          <h2 class="row fw-bold">Calls</h2>
+    <div class="col-md-auto d-flex align-items-end">
+      <div class="btn-group" role="group" aria-label="Toggle buttons">
+        <div class="col-md-auto">
+          <input checked (click)="setOptionCalls()" data-cy="call-set" type="radio" class="btn-check" name="options" id="option1">
+          <label class="btn btn-outline-toggle rounded-pill text-color toggle1-toggle2-size" for="option1">Calls</label>
         </div>
-        <div class="col-md-auto align-items-center d-flex justify-content-center">
-          <h2 class="row fw-bold">Puts</h2>
+        <div class="col-md-auto">
+          <input (click)="setOptionPuts()" data-cy="put-set" type="radio" class="btn-check" name="options" id="option2">
+          <label class="btn btn-outline-toggle rounded-pill text-color toggle1-toggle2-size" for="option2">Puts</label>
         </div>
       </div>
-      <br>
-      <div class="d-flex justify-content-around">
-        <table class="table table-borderless table-d ">
+    </div>
+  </div>
+
+
+  <br>
+  <div *ngIf="options.length > 0; else noData"  class="row justify-content-center rectangle">
+    <div class="row">
+      <div class="table-responsive col-md-auto">
+        <h2>{{ optionHeader }}</h2>
+        <table class="table table-borderless table-d">
           <thead>
           <tr class="trtable">
             <th>Price</th>
@@ -41,28 +47,21 @@
             <th>Ask</th>
             <th>OI</th>
             <th class="fw-bold">Strike</th>
-            <th>Price</th>
-            <th>Bid</th>
-            <th>Ask</th>
-            <th>OI</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let optionPair of optionPairs">
-            <td [countUp]="optionPair[0].price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
-            <td [countUp]="optionPair[0].bid" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
-            <td [countUp]="optionPair[0].ask" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
-            <td [countUp]="optionPair[0].openInterest" [options]="{ enableScrollSpy: true, decimalPlaces: 0}">0</td>
-            <td class="fw-bold" [countUp]="optionPair[0].strike" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
-            <td [countUp]="optionPair[1].price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
-            <td [countUp]="optionPair[1].bid" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
-            <td [countUp]="optionPair[1].ask" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
-            <td [countUp]="optionPair[1].openInterest" [options]="{ enableScrollSpy: true, decimalPlaces: 0}">0</td>
+          <tr *ngFor="let option of options" class="clickable-tr" (click)="openTradeOption(option)">
+            <td [countUp]="option.price" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="option.bid" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="option.ask" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
+            <td [countUp]="option.openInterest" [options]="{ enableScrollSpy: true, decimalPlaces: 0}">0</td>
+            <td class="fw-bold" [countUp]="option.strike" [options]="{ enableScrollSpy: true, prefix: '$', decimalPlaces: 3}">0</td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
+
   </div>
 
   <ng-template #noData>
@@ -78,5 +77,6 @@
   </div>
 
   <app-popup></app-popup>
+  <app-option-trade-popup></app-option-trade-popup>
 
 </div>

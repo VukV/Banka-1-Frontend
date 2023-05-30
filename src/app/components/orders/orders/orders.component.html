@@ -12,7 +12,7 @@
   </nav>
 
 
-  <div class="row justify-content-center users-table-row">
+  <div class="row justify-content-center my-table-row">
     <div style="overflow: auto" class="rectangle">
       <div class="row col-md-auto me-3 d-flex justify-content-between">
         <div class="col-md-auto align-items-center d-flex justify-content-center">
@@ -21,7 +21,7 @@
         <div class="col-md-auto align-items-center d-flex justify-content-center">
           <a class="bi bi-arrow-clockwise ms-2 me-3" id="refresh" data-cy="refresh" (click)="refresh()"></a>
           <select #orderOptions (change)="onOption(orderOptions.value)" id="slc" class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option class="opt" *ngFor="let option of options" value="{{option}}">{{option}}</option></select>
+            <option class="opt" *ngFor="let option of optionsForOrders" value="{{option}}">{{option}}</option></select>
         </div>
       </div>
       <br>
@@ -58,7 +58,46 @@
     </div>
   </div>
 
-  <ngx-loading [show]="loading"></ngx-loading>
+  <br>
+  <div class="row justify-content-center my-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <div class="row col-md-auto me-3 d-flex justify-content-between">
+        <div class="col-md-auto align-items-center d-flex justify-content-center">
+          <h2 class="row fw-bold">Opcije</h2>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-around">
+        <table class="table table-borderless table-d ">
+          <thead>
+          <tr class="trtable">
+            <th>AAA</th>
+            <th>Cena</th>
+            <th>Datum</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <tr *ngFor="let option of this.options ">
+            <td>{{ option.code }}</td>
+            <td>{{ option.bettingPrice }}</td>
+            <td>{{ option.date | date: 'dd/MM/yy HH:mm' }}</td>
+            <td>
+              <button type="button" class="btn btn-green rounded-pill" (click)="finalizeOption(option.id)">Završi</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-outline-light rounded-pill" (click)="rejectOption(option.id)">Odbaci</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <ngx-loading [show]="loading || loadingOptions"></ngx-loading>
   <app-popup></app-popup>
 
 </div>
