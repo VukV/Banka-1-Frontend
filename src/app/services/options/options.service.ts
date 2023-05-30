@@ -41,4 +41,49 @@ export class OptionsService {
       })
     )
   }
+
+  tradeOption(optionId: number, date: Date, price: number): Observable<any>{
+    return this.httpClient.post(this.optionsTradeUrl + '/option/bet/' + optionId, {
+      bet: price,
+      date: date
+      },
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+      })
+    )
+  }
+
+  getMyOptions(): Observable<any>{
+    return this.httpClient.get(this.optionsTradeUrl + '/options/myBets', {
+      headers: this.headers
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+      })
+    )
+  }
+
+  rejectOption(id: number): Observable<any>{
+    return this.httpClient.delete(this.optionsTradeUrl + '/option/reject/' + id, {
+      headers: this.headers
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+      })
+    )
+  }
+
+  finaliseOption(id: number): Observable<any>{
+    return this.httpClient.post(this.optionsTradeUrl + '/options/finish-bet/' + id, {},{
+      headers: this.headers
+    }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message))
+      })
+    )
+  }
+
 }

@@ -53,6 +53,7 @@ import { EmployeesDialogComponent } from './components/employees/employees-dialo
 import { AddContractComponent } from './components/contracts/add-contract/add-contract.component';
 import { UpdateContractComponent } from './components/contracts/update-contract/update-contract.component';
 import { FinaliseContractPopupComponent } from './components/contracts/finalise-contract-popup/finalise-contract-popup.component';
+import { OptionTradePopupComponent } from './components/stock-market/option-trade-popup/option-trade-popup.component';
 
 export function playerFactory() {
   return player;
@@ -100,7 +101,8 @@ export function playerFactory() {
     EmployeesDialogComponent,
     AddContractComponent,
     UpdateContractComponent,
-    FinaliseContractPopupComponent
+    FinaliseContractPopupComponent,
+    OptionTradePopupComponent
   ],
   imports: [
     BrowserModule,

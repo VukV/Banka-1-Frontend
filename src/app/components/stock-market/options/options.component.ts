@@ -6,6 +6,7 @@ import {Option} from "../../../model/stocks/stock";
 import {OptionTypeEnum} from "../../../model/stocks/option-type-enum";
 import {Location} from "@angular/common";
 import {OptionsService} from "../../../services/options/options.service";
+import {OptionTradePopupComponent} from "../option-trade-popup/option-trade-popup.component";
 
 @Component({
   selector: 'app-options',
@@ -27,6 +28,9 @@ export class OptionsComponent implements OnInit {
 
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
+
+  @ViewChild(OptionTradePopupComponent)
+  optionsTradePopup!: OptionTradePopupComponent;
 
   constructor(private route: ActivatedRoute, private optionsService: OptionsService, private location: Location) { }
 
@@ -73,7 +77,7 @@ export class OptionsComponent implements OnInit {
   }
 
   openTradeOption(option: Option){
-
+    this.optionsTradePopup.openPopup(option);
   }
 
   backClick(){
