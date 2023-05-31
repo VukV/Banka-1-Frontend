@@ -1,9 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Company} from "../../../model/companies/Company";
+import {Company} from "../../../model/companies/company";
 import {CompaniesService} from "../../../services/companies/companies.service";
 import {Router} from "@angular/router";
 import {PopupComponent} from "../../popup/popup/popup.component";
 import {CreateCompanyPopupComponent} from "../create-company-popup/create-company-popup.component";
+import {CreateContactPopupComponent} from "../create-contact-popup/create-contact-popup.component";
+import {CreateAccountPopupComponent} from "../create-account-popup/create-account-popup.component";
+import {ContactDetailsPopupComponent} from "../contact-details-popup/contact-details-popup.component";
+import {AccountDetailsPopupComponent} from "../account-details-popup/account-details-popup.component";
 
 
 @Component({
@@ -56,7 +60,10 @@ export class CompaniesComponent implements OnInit {
     this.router.navigate(['company-details/' + kompanija._id])
   }
 
+
   createCompany() {
     this.createCompanyPopupComponent.openPopup("Kreiranje Kompanije")
   }
+
+
 }

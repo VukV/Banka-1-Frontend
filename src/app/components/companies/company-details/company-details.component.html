@@ -66,7 +66,7 @@
 
         <div class="row mt-3 align-items-end d-flex justify-content-end mr-3">
           <button type="button" id="obrisi" class="btn btn-outline rounded-pill" data-cy="obrisi"
-                  (click)="deleteCompany()">Obiši
+                  (click)="deleteCompany()">Obriši
           </button>
 
           <button type="submit" id="azuriraj" class="btn btn-outline rounded-pill" data-cy="azuriraj">Ažuriraj</button>
@@ -84,7 +84,7 @@
       </div>
       <div class="col-md-6 p align-items-end d-flex justify-content-end">
         <button type="button" id="dodajRacun" class="btn btn-outline rounded-pill" data-cy="dodajRacun"
-                [routerLink]="['/']">Dodaj
+                (click)="openCreateAccountPopup()">Dodaj
         </button>
       </div>
     </div>
@@ -102,12 +102,12 @@
         </thead>
         <tbody>
         <tr>
-        <tr *ngFor="let racun of this.accounts ">
-          <td>{{ racun.racunId }}</td>
-          <td>{{ racun.valuta }}</td>
-          <td>{{ racun.banka }}</td>
-          <td>{{ racun.brRacuna }}</td>
-          <td>{{ racun.aktivan }}</td>
+        <tr *ngFor="let racun of this.racuni" (click)="openAccountDetails(racun)">
+          <td>{{ racun._id }}</td>
+          <td>{{ racun.companyId }}</td>
+          <td>{{ racun.accountNumber }}</td>
+          <td>{{ racun.bankName }}</td>
+          <td>{{ racun.type }}</td>
         </tr>
         </tbody>
       </table>
@@ -161,34 +161,41 @@
       </div>
       <div class="col-md-auto p align-items-end d-flex justify-content-end">
         <button type="button" id="dodajKontakt" class="btn btn-outline rounded-pill" data-cy="dodajKontakt"
-                [routerLink]="['/']">Dodaj
+                (click)="openCreateContactPopup()">Dodaj
         </button>
       </div>
     </div>
-
+    <br>
+    <br>
+    <div class="col-md-2 align-items-center">
+      <input type="text" class="form-control" id="searchContact" name="searchContact" [ngModel]="contactId" placeholder="Id kontakta">
+    </div>
+    <div class="col-md-1 align-items-center">
+      <button (click)="contactId ? listContactsById() : requiredFieldError()" type="button" class="btn btn-green btn-block rounded-pill" id="dugme">
+        Pretraži
+      </button>
+    </div>
     <div class="row d-flex justify-content-center p-4">
       <table class="table table-borderless table-d ">
         <thead>
         <tr class="trtable">
           <th>#</th>
-          <th>Ime</th>
-          <th>Prezime</th>
-          <th>Email</th>
+          <th>Ime i prezime</th>
           <th>Br. telefona</th>
+          <th>Email</th>
           <th>Pozicija</th>
           <th>Napomena</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-        <tr *ngFor="let kontakt of this.kontakti ">
-          <td>{{ kontakt.kontaktId }}</td>
-          <td>{{ kontakt.ime }}</td>
-          <td>{{ kontakt.prezime }}</td>
+        <tr *ngFor="let kontakt of this.kontakti" (click)="openContactDetails(kontakt)" >
+          <td>{{ kontakt._id }}</td>
+          <td>{{ kontakt.fullName}}</td>
+          <td>{{ kontakt.phoneNumber }}</td>
           <td>{{ kontakt.email }}</td>
-          <td>{{ kontakt.brTelefona }}</td>
-          <td>{{ kontakt.pozicija }}</td>
-          <td>{{ kontakt.napomena }}</td>
+          <td>{{ kontakt.position }}</td>
+          <td>{{ kontakt.note }}</td>
         </tr>
         </tbody>
       </table>
@@ -196,6 +203,11 @@
 
   </div>
 
-  <ngx-loading [show]="loading"></ngx-loading>
   <app-popup></app-popup>
+  <app-create-contact-popup></app-create-contact-popup>
+  <app-contact-details></app-contact-details>
+  <app-account-details-popup></app-account-details-popup>
+  <app-create-account-popup></app-create-account-popup>
+
+  <ngx-loading [show]="loading"></ngx-loading>
 </div>
