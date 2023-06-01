@@ -57,6 +57,8 @@ import { ContactDetailsPopupComponent } from './components/companies/contact-det
 import { CreateContactPopupComponent} from "./components/companies/create-contact-popup/create-contact-popup.component";
 import { CreateAccountPopupComponent } from './components/companies/create-account-popup/create-account-popup.component';
 import { AccountDetailsPopupComponent} from "./components/companies/account-details-popup/account-details-popup.component";
+import { OptionTradePopupComponent } from './components/stock-market/option-trade-popup/option-trade-popup.component';
+
 
 export function playerFactory() {
   return player;
@@ -108,7 +110,8 @@ export function playerFactory() {
     CreateContactPopupComponent,
     ContactDetailsPopupComponent,
     AccountDetailsPopupComponent,
-    CreateAccountPopupComponent
+    CreateAccountPopupComponent,
+    OptionTradePopupComponent
   ],
   imports: [
     BrowserModule,
