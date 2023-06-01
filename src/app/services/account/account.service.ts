@@ -37,14 +37,13 @@ export class AccountService {
     );
   }
 
-  createAccount(companyId: string, accountNumber: string,
-                bankName: string, type: string): Observable<any> {
+  createAccount(companyId: string, accountNumber: string, bankName: string, type: string): Observable<any> {
     return this.httpClient.post(this.accountsUrl,
       {
-        companyId,
-        accountNumber,
-        bankName,
-        type
+        companyId: companyId,
+        accountNumber: accountNumber,
+        bankName: bankName,
+        type: type
       },
       {
         headers: this.headers

@@ -8,19 +8,12 @@
       </div>
 
       <form (ngSubmit)="callDeleteOrUpdate()" [formGroup]="contactDetailsGroup">
-      <div class="modal-body py-3 px-4">
-        <div class="myp-text mb-3">Kompanija</div>
-        <div class="col-md-9 align-items-center d-flex justify-content-center">
-          <input class="form-control" data-cy="companyId" id="companyId" name="companyId" placeholder="" type="text"
-                 [formControlName]="'companyId'" >
-        </div>
-      </div>
 
       <div class="modal-body py-3 px-4">
         <div class="myp-text mb-3">Ime i prezime</div>
         <div class="col-md-9 align-items-center d-flex justify-content-center">
           <input class="form-control" data-cy="fullName" id="fullName" name="fullName" placeholder="" type="text"
-                 [formControlName]="'fullName'" required>
+                 [formControlName]="'fullName'" [(ngModel)]="fullName" required>
         </div>
       </div>
 
@@ -28,7 +21,7 @@
         <div class="myp-text mb-3">Broj telefona</div>
         <div class="col-md-9 align-items-center d-flex justify-content-center">
           <input class="form-control" data-cy="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="" type="text"
-                 [formControlName]="'phoneNumber'" required>
+                 [formControlName]="'phoneNumber'" [(ngModel)]="phoneNumber" required>
         </div>
       </div>
 
@@ -36,7 +29,7 @@
         <div class="myp-text mb-3">E-mail adresa</div>
         <div class="col-md-9 align-items-center d-flex justify-content-center">
           <input class="form-control" data-cy="email" id="email" name="email" placeholder="" type="text"
-                 [formControlName]="'email'" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+                 [formControlName]="'email'" [(ngModel)]="email" required>
         </div>
       </div>
 
@@ -44,7 +37,7 @@
         <div class="myp-text mb-3">Pozicija u kompaniji</div>
         <div class="col-md-9 align-items-center d-flex justify-content-center">
           <input class="form-control" data-cy="position" id="position" name="position" placeholder="" type="text"
-                 [formControlName]="'position'" required>
+                 [formControlName]="'position'" [(ngModel)]="position" required>
         </div>
       </div>
 
@@ -52,14 +45,14 @@
         <div class="myp-text mb-3">Napomena</div>
         <div class="col-md-9 align-items-center  justify-content-center">
           <input class="form-control" data-cy="note" id="note" name="note" placeholder="" type="text"
-                 [formControlName]="'note'" required>
+                 [formControlName]="'note'" [(ngModel)]="note">
         </div>
       </div>
 
         <div class="validator">
               <span *ngIf="contactDetailsGroup.get('companyId')?.errors || contactDetailsGroup.get('fullName')?.errors
                     || contactDetailsGroup.get('phoneNumber')?.errors || contactDetailsGroup.get('email')?.errors
-                    || contactDetailsGroup.get('position')?.errors || contactDetailsGroup.get('note')?.errors">
+                    || contactDetailsGroup.get('position')?.errors">
                 Sva polja su obavezna.</span>
         </div>
 
@@ -70,7 +63,7 @@
       </form>
 
       <div class=" d-flex align-items-center justify-content-center">
-        <button class="btn btn-green rounded-pill mt-4 px-5 mb-4  m-lg-2" type="submit"
+        <button class="btn btn-outline-danger btn-block rounded-pill mt-4 px-5 mb-4  m-lg-2" type="submit"
                 [disabled]="contactDetailsGroup.invalid || contactDetailsGroup.get('email')?.invalid"
                 (click)="onButtonClick('delete')">Obriši</button>
         <button class="btn btn-green rounded-pill mt-4 px-5 mb-4  m-lg-2" type="submit"

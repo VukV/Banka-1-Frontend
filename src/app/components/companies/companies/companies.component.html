@@ -53,7 +53,6 @@
         <table class="table table-borderless table-d ">
           <thead>
           <tr class="trtable">
-            <th>#</th>
             <th>Naziv</th>
             <th>Matični broj</th>
             <th>PIB</th>
@@ -63,8 +62,7 @@
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let kompanija of this.companies " (click)="companyDetails(this.kompanija)">
-            <td>{{ kompanija._id }}</td>
+          <tr *ngFor="let kompanija of this.companies " (click)="companyDetails(this.kompanija)" class="clickable-tr">
             <td>{{ kompanija.name}}</td>
             <td>{{ kompanija.registrationNumber }}</td>
             <td>{{kompanija.taxNumber}}</td>

@@ -29,12 +29,11 @@ export class CreateContactPopupComponent {
 
   ngOnInit(): void {
     this.createContactGroup = this.formBuilder.group({
-      companyId: ['', Validators.required],
       fullName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern("pattern=\"^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$\"")]],
+      email: ['', [Validators.required, Validators.pattern("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")]],
       position: ['', Validators.required],
-      note: ['', Validators.required]
+      note: ['']
     });
   }
 
@@ -55,13 +54,14 @@ export class CreateContactPopupComponent {
     }else{
       this.loading = true
       this.contactsService.createContact(companyId, fullName, phoneNumber, email, position, note).subscribe(
-        (data) => {
-          this.loading = false
-          this.closePopup()
+        () => {
+          this.loading = false;
+          this.closePopup();
+          window.location.reload();
         },
         (error) => {
           this.popupComponent.openPopup(error.message);
-          this.loading = false
+          this.loading = false;
         }
       )
     }

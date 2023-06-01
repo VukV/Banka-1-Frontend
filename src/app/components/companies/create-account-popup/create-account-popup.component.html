@@ -9,18 +9,10 @@
 
       <form (ngSubmit)="createAccount(companyId, accountNumber, bankName, type)" [formGroup]="createAccountGroup">
       <div class="modal-body py-3 px-4">
-        <div class="myp-text mb-3">Kompanija</div>
-        <div class="col-md-9 align-items-center d-flex justify-content-center">
-          <input class="form-control" data-cy="companyId" id="companyId" name="companyId" placeholder="" type="text"
-                 [formControlName]="'companyId'" required>
-        </div>
-      </div>
-
-      <div class="modal-body py-3 px-4">
         <div class="myp-text mb-3">Broj računa</div>
         <div class="col-md-9 align-items-center d-flex justify-content-center">
           <input class="form-control" data-cy="accountNumber" id="accountNumber" name="accountNumber" placeholder="" type="text"
-                 [formControlName]="'accountNumber'" required>
+                 [formControlName]="'accountNumber'" [(ngModel)]="accountNumber" required>
         </div>
       </div>
 
@@ -28,15 +20,16 @@
         <div class="myp-text mb-3">Banka</div>
         <div class="col-md-9 align-items-center d-flex justify-content-center">
           <input class="form-control" data-cy="bankName" id="bankName" name="bankName" placeholder="" type="text"
-                 [formControlName]="'bankName'" required>
+                 [formControlName]="'bankName'" [(ngModel)]="bankName" required>
         </div>
       </div>
 
       <div class="modal-body py-3 px-4">
         <div class="myp-text mb-3">Tip računa</div>
         <div class="col-md-9 align-items-center d-flex justify-content-center">
-          <input class="form-control" data-cy="type" id="type" name="type" placeholder="" type="text"
-                 [formControlName]="'type'" required>
+          <select [(ngModel)]="type" class="form-select" id="type" name="type" [formControlName]="'type'" required>
+            <option *ngFor="let type of allTypes" value="{{type}}">{{type}}</option>
+          </select>
         </div>
       </div>
 

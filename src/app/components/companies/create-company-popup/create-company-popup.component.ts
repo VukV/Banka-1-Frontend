@@ -22,10 +22,6 @@ export class CreateCompanyPopupComponent implements OnInit {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
-  @ViewChild(ConfirmationPopupComponent)
-  confirmationPopupComponent!: ConfirmationPopupComponent;
-
-
   constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private companyService: CompaniesService) {
 
   }
@@ -91,18 +87,12 @@ export class CreateCompanyPopupComponent implements OnInit {
       }
 
       this.errorMessage = "";
-      this.confirmationPopupComponent.openPopup();
+      this.createCompany();
 
     } else {
       this.errorMessage = 'Polja nisu popunjena!';
     }
 
-  }
-
-  onConfirmEvent(eventData: { confirmed: boolean }) {
-    if (eventData.confirmed) {
-      this.createCompany();
-    }
   }
 
   createCompany() {
