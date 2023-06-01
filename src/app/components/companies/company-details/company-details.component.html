@@ -29,21 +29,21 @@
       </div>
       <div class="col mb-3">
         <label for="sifDelatnosti" class="form-label">Šifra delatnosti</label>
-        <input type="number" class="form-control"
+        <input type="text" class="form-control"
                formControlName="sifDelatnosti" required data-cy="sifDelatnosti" id="sifDelatnosti"
                name="sifDelatnosti"
                placeholder="šifra delatnosti">
       </div>
       <div class="col mb-3">
         <label for="maticniBr" class="form-label">Matični broj</label>
-        <input type="number" class="form-control"
+        <input type="text" class="form-control"
                formControlName="maticniBr" readonly required data-cy="maticniBr" id="maticniBr"
                name="maticniBr"
-               placeholder="matični broj">
+               placeholder="matični broj" [disabled]="true">
       </div>
       <div class="col mb-3">
         <label for="pib" class="form-label">PIB</label>
-        <input type="number" class="form-control"
+        <input type="text" class="form-control" [disabled]="true"
                formControlName="pib" required readonly data-cy="pib" id="pib" name="pib" placeholder="pib">
       </div>
       <div class="col mb-3">
@@ -65,7 +65,7 @@
         </div>
 
         <div class="row mt-3 align-items-end d-flex justify-content-end mr-3">
-          <button type="button" id="obrisi" class="btn btn-outline rounded-pill" data-cy="obrisi"
+          <button type="button" id="obrisi" class="btn btn-outline-danger btn-block rounded-pill" data-cy="obrisi"
                   (click)="deleteCompany()">Obriši
           </button>
 
@@ -93,21 +93,23 @@
       <table class="table table-borderless table-d ">
         <thead>
         <tr class="trtable">
-          <th>#</th>
-          <th>Valuta</th>
           <th>Banka</th>
           <th>Broj računa</th>
           <th>Aktivan</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
         <tr>
-        <tr *ngFor="let racun of this.racuni" (click)="openAccountDetails(racun)">
-          <td>{{ racun._id }}</td>
-          <td>{{ racun.companyId }}</td>
+        <tr *ngFor="let racun of this.racuni">
           <td>{{ racun.accountNumber }}</td>
           <td>{{ racun.bankName }}</td>
           <td>{{ racun.type }}</td>
+          <td>
+            <button type="button" class="update-btn col-6 col-md-3 btn btn-outline-danger btn-block rounded-pill" (click)="deleteAccount(racun._id)">
+              Obriši
+            </button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -122,7 +124,7 @@
       </div>
       <div class="col-md-auto p align-items-end d-flex justify-content-end">
         <button type="button" id="btnDodajUgovor" class="btn btn-outline rounded-pill" data-cy="btnDodajUgovor"
-                [routerLink]="['/']">Dodaj
+                [routerLink]="['/contracts/create']">Dodaj
         </button>
       </div>
     </div>
@@ -131,7 +133,6 @@
       <table class="table table-borderless table-d ">
         <thead>
         <tr class="trtable">
-          <th>#</th>
           <th>Delovodni broj</th>
           <th>Status</th>
           <th>Kreiran</th>
@@ -141,11 +142,10 @@
         <tbody>
         <tr>
         <tr *ngFor="let ugovor of this.contracts">
-          <td>{{ ugovor.ugovorId }}</td>
-          <td>{{ ugovor.delovodniBr }}</td>
+          <td>{{ ugovor.referenceNumber }}</td>
           <td>{{ ugovor.status }}</td>
-          <td>{{ ugovor.kreiran }}</td>
-          <td>{{ ugovor.izmenjen }}</td>
+          <td>{{ ugovor.createdDateTime }}</td>
+          <td>{{ ugovor.modifiedDateTime }}</td>
         </tr>
         </tbody>
       </table>
@@ -167,6 +167,7 @@
     </div>
     <br>
     <br>
+    <!--
     <div class="col-md-2 align-items-center">
       <input type="text" class="form-control" id="searchContact" name="searchContact" [ngModel]="contactId" placeholder="Id kontakta">
     </div>
@@ -175,11 +176,11 @@
         Pretraži
       </button>
     </div>
+    -->
     <div class="row d-flex justify-content-center p-4">
       <table class="table table-borderless table-d ">
         <thead>
         <tr class="trtable">
-          <th>#</th>
           <th>Ime i prezime</th>
           <th>Br. telefona</th>
           <th>Email</th>
@@ -189,8 +190,7 @@
         </thead>
         <tbody>
         <tr>
-        <tr *ngFor="let kontakt of this.kontakti" (click)="openContactDetails(kontakt)" >
-          <td>{{ kontakt._id }}</td>
+        <tr *ngFor="let kontakt of this.kontakti" (click)="openContactDetails(kontakt)" class="clickable-tr">
           <td>{{ kontakt.fullName}}</td>
           <td>{{ kontakt.phoneNumber }}</td>
           <td>{{ kontakt.email }}</td>

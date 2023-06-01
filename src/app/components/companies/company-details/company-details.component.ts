@@ -12,6 +12,7 @@ import {CreateAccountPopupComponent} from "../create-account-popup/create-accoun
 import {ActivatedRoute, Router} from "@angular/router";
 import {Company} from "../../../model/companies/company";
 import {CompaniesService} from "../../../services/companies/companies.service";
+import {Contract} from "../../../model/contracts/contract";
 
 @Component({
   selector: 'app-company-details',
@@ -24,7 +25,7 @@ export class CompanyDetailsComponent implements OnInit {
   contactId: string = ""
   company: Company | undefined;
   accounts: any[] = [];
-  contracts: any[] = [];
+  contracts: Contract[] = [];
   kontakti: ContactsResponse[] = [];
   racuni: Account[] = [];
 
@@ -227,5 +228,18 @@ export class CompanyDetailsComponent implements OnInit {
     this.popupComponent.openPopup("Unesite id kontakta.")
   }
 
+  deleteAccount(accountId: string){
+    this.loading = true;
+    this.accountService.deleteAccount(accountId).subscribe(
+      () => {
+        this.loading = false;
+        //this.getAccounts();
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loading = false;
+      }
+    )
+  }
 
 }

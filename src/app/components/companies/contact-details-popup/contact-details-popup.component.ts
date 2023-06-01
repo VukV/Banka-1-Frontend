@@ -33,12 +33,11 @@ export class ContactDetailsPopupComponent {
 
   ngOnInit(): void {
     this.contactDetailsGroup = this.formBuilder.group({
-      companyId: ['', Validators.required],
       fullName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      email: ['',[ Validators.required, Validators.pattern("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")]],
+      email: ['',[ Validators.required, Validators.pattern("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")]],
       position: ['', Validators.required],
-      note: ['', Validators.required]
+      note: ['']
     });
   }
 
@@ -55,8 +54,9 @@ export class ContactDetailsPopupComponent {
     this.contactsService.updateContact(this.contactId, this.fullName,
       this.phoneNumber, this.email, this.position, this.note ).subscribe(
       (data) => {
-        this.loading = false
-        this.popupComponent.closePopup()
+        this.loading = false;
+        this.closePopup();
+        window.location.reload();
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
@@ -70,7 +70,8 @@ export class ContactDetailsPopupComponent {
     this.contactsService.deleteContact(this.contactId).subscribe(
       (data) => {
         this.loading = false;
-        this.popupComponent.closePopup()
+        this.closePopup();
+        window.location.reload();
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
@@ -90,10 +91,10 @@ export class ContactDetailsPopupComponent {
       this.popupComponent.openPopup("Sva polja su obavezna.");
     }else{
       if(flag === 'delete'){
-        this.deleteContact()
+        this.deleteContact();
       }
       if(flag === 'update') {
-        this.updateContact()
+        this.updateContact();
       }
     }
 

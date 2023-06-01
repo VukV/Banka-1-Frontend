@@ -4,6 +4,8 @@ import {PopupComponent} from "../../popup/popup/popup.component";
 import {ContactsService} from "../../../services/contacts/contacts.service";
 import {AccountService} from "../../../services/account/account.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserPositionEnum} from "../../../model/user/user-position-enum";
+import {AccountType} from "../../../model/account/account";
 
 @Component({
   selector: 'app-create-account-popup',
@@ -16,6 +18,7 @@ export class CreateAccountPopupComponent {
   accountNumber: string = ""
   bankName: string = ""
   type: string = ""
+  allTypes: string[] = Object.values(AccountType);
   displayStyle = "none"
   loading: boolean = false
   createAccountGroup!: FormGroup
@@ -28,7 +31,6 @@ export class CreateAccountPopupComponent {
 
   ngOnInit(): void {
     this.createAccountGroup = this.formBuilder.group({
-      companyId: ['', Validators.required],
       accountNumber: ['', Validators.required],
       bankName: ['', Validators.required],
       type: ['', Validators.required]
@@ -44,25 +46,23 @@ export class CreateAccountPopupComponent {
     this.displayStyle = "none"
   }
 
-  createAccount(companyId: string, accountNumber: string,
-                bankName: string, type: string){
-
+  createAccount(companyId: string, accountNumber: string, bankName: string, type: string){
     if(this.createAccountGroup.invalid){
       this.popupComponent.openPopup("Sva polja su obavezna.");
     }else{
       this.loading = true
       this.accountService.createAccount(companyId, accountNumber, bankName, type).subscribe(
-        (data) => {
-          this.loading = false
-          this.closePopup()
+        () => {
+          this.loading = false;
+          this.closePopup();
+          window.location.reload();
         },
         (error) => {
           this.popupComponent.openPopup(error.message);
-          this.loading = false
+          this.loading = false;
         }
       )
     }
-
   }
 
 
