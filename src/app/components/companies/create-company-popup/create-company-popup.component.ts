@@ -5,7 +5,7 @@ import {OrdersService} from "../../../services/orders/orders.service";
 import {CompaniesService} from "../../../services/companies/companies.service";
 import {PopupComponent} from "../../popup/popup/popup.component";
 import {ConfirmationPopupComponent} from "../../popup/confirmation-popup/confirmation-popup.component";
-import {Company} from "../../../model/companies/Company";
+import {Company} from "../../../model/companies/company";
 
 @Component({
   selector: 'app-create-company-popup',
