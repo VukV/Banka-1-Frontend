@@ -1,0 +1,27 @@
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="d-flex align-items-center justify-content-center">
+          <h5>Trgovina opcijom {{ optionSymbol }}</h5>
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+          <h6>Strike vrednost: ${{ optionStrike }}</h6>
+        </div>
+        <br>
+        <div class="d-flex align-items-center justify-content-center">
+          <input [(ngModel)]="selectedPrice" type="number" class="form-control option-trade-input" placeholder="Cena" aria-label="Cena">
+          <input class="form-control" type="date" [ngModel]="selectedDate | date:'yyyy-MM-dd'" (ngModelChange)="selectedDate = $event;"/>
+        </div>
+        <br>
+        <div class="d-flex align-items-center justify-content-center">
+          <button data-cy="btnConfirmPopUp" type="button" class="btn btn-green rounded-pill" (click)="trade()">TRGUJ</button>
+          <button type="button" class="btn btn-outline-light rounded-pill" (click)="cancel()">Odustani</button>
+        </div>
+
+        <h5 *ngIf="error != ''" class="text-center error mt-3">{{ error }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
