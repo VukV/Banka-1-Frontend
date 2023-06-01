@@ -14,12 +14,38 @@
 
   <div class="row justify-content-center users-table-row">
     <div style="overflow: auto" class="rectangle">
+
+      <div class="row form-inline ">
+        <form class="row justify-content-center">
+          <div class="col-md-2 align-items-center">
+            <input type="email" [(ngModel)]="name" class="form-control" id="name" name="name" placeholder="Naziv">
+          </div>
+          <div class="col-md-2 align-items-center">
+            <input type="text" [(ngModel)]="registrationNumber" class="form-control" id="registrationNumber"
+                   name="registrationNumber" placeholder="Maticni Broj">
+          </div>
+          <div class="col-md-2 align-items-center">
+            <input type="text" [(ngModel)]="taxNumber" class="form-control" id="taxNumber" name="taxNumber"
+                   placeholder="PIB">
+          </div>
+
+          <div class="col-md-1 align-items-center">
+            <button (click)="listCompanies()" type="button" class="btn btn-green btn-block rounded-pill" id="dugme">
+              Pretraži
+            </button>
+          </div>
+        </form>
+      </div>
+      <br>
+      <br>
       <div class="row col-md-auto me-3 d-flex justify-content-between">
         <div class="col-md-auto align-items-center d-flex justify-content-center">
           <h2 class="row fw-bold">Kompanije</h2>
         </div>
         <div class="col-md-auto align-items-center d-flex justify-content-center">
-          <button type="button" id="contract" class="btn btn-outline rounded-pill  wider-button" data-cy="addCompany" [routerLink]="['/addcompany']">Dodaj</button>
+          <button type="button" id="contract" class="btn btn-outline rounded-pill  wider-button" data-cy="addCompany"
+                  (click)="createCompany()">Dodaj
+          </button>
         </div>
       </div>
       <br>
@@ -27,28 +53,33 @@
         <table class="table table-borderless table-d ">
           <thead>
           <tr class="trtable">
-            <th>#</th>
             <th>Naziv</th>
+            <th>Matični broj</th>
             <th>PIB</th>
             <th>Šifra</th>
             <th>Adresa</th>
-            <th>Država</th>
           </tr>
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let kompanija of this.companies ">
-            <td>{{ kompanija.id }}</td>
-            <td>{{ kompanija.naziv}}</td>
-            <td>{{ kompanija.PIB }}</td>
-            <td>{{ kompanija.sifra }}</td>
-            <td>{{ kompanija.adresa }}</td>
-            <td>{{ kompanija.drzava }}</td>
+          <tr *ngFor="let kompanija of this.companies " (click)="companyDetails(this.kompanija)" class="clickable-tr">
+            <td>{{ kompanija.name}}</td>
+            <td>{{ kompanija.registrationNumber }}</td>
+            <td>{{kompanija.taxNumber}}</td>
+            <td>{{ kompanija.activityCode }}</td>
+            <td>{{ kompanija.address }}</td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
+
   </div>
+
+  <app-popup></app-popup>
+  <app-create-company-popup></app-create-company-popup>
+<!--  TEST-->
+  <app-contact-details></app-contact-details>
+  <ngx-loading [show]="loading"></ngx-loading>
 
 </div>

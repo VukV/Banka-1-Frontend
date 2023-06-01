@@ -24,6 +24,10 @@ th{
   text-overflow: ellipsis;
 }
 
+tr {
+  vertical-align: middle;
+}
+
 .table-d{
   color: var(--si-white);
   font-weight: 600;
@@ -41,4 +45,7 @@ th{
   width: 150px;
 }
 
+#obrisi {
+  margin-right: 10px;
+}
 

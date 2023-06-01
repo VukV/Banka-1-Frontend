@@ -1,0 +1,58 @@
+<div [ngStyle]="{'display':displayStyle}" class="modal" role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content ">
+
+      <div class="modal-header py-4 px-4">
+        <h3 class="modal-title"><b>Detalji o računu</b></h3>
+        <button type="button" class="dugme" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()">x</button>
+      </div>
+
+      <form (ngSubmit)="deleteAccount(account._id)" [formGroup]="accountDetailsGroup">
+      <div class="modal-body py-3 px-4">
+        <div class="myp-text mb-3">Kompanija</div>
+        <div class="col-md-9 align-items-center d-flex justify-content-center">
+          <input class="form-control" data-cy="companyId" id="companyId" name="companyId" placeholder="" type="text"
+                 [formControlName]="'companyId'" readonly>
+        </div>
+      </div>
+
+      <div class="modal-body py-3 px-4">
+        <div class="myp-text mb-3">Broj računa</div>
+        <div class="col-md-9 align-items-center d-flex justify-content-center">
+          <input class="form-control" data-cy="accountNumber" id="accountNumber" name="accountNumber" placeholder="" type="text"
+                 [formControlName]="'accountNumber'" required>
+        </div>
+      </div>
+
+      <div class="modal-body py-3 px-4">
+        <div class="myp-text mb-3">Banka</div>
+        <div class="col-md-9 align-items-center d-flex justify-content-center">
+          <input class="form-control" data-cy="bankName" id="bankName" name="bankName" placeholder="" type="text"
+                 [formControlName]="'bankName'" required>
+        </div>
+      </div>
+
+      <div class="modal-body py-3 px-4">
+        <div class="myp-text mb-3">Tip računa</div>
+        <div class="col-md-9 align-items-center d-flex justify-content-center">
+          <input class="form-control" data-cy="type" id="type" name="type" placeholder="" type="text"
+                 [formControlName]="'type'" required>
+        </div>
+      </div>
+
+        <div class="validator">
+              <span *ngIf="accountDetailsGroup.get('companyId')?.errors || accountDetailsGroup.get('accountNumber')?.errors
+                  || accountDetailsGroup.get('bankName')?.errors || accountDetailsGroup.get('type')?.errors">Sva polja su obavezna.</span>
+        </div>
+      </form>
+
+
+        <div class=" d-flex align-items-center justify-content-center">
+        <button class="btn btn-green rounded-pill mt-4 px-5 mb-4  m-lg-2" type="submit"
+                [disabled]="accountDetailsGroup.invalid">Obriši</button>
+      </div>
+
+    </div>
+  </div>
+  <ngx-loading [show]="loading"></ngx-loading>
+</div>
