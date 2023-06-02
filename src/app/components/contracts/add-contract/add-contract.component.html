@@ -22,7 +22,7 @@
       <div class="col-md-3 align-items-center justify-content-center">
         <label for="company" class="form-label">Kompanija</label>
         <select [(ngModel)]="companyId" class="form-select" id="company" name="company">
-          <option *ngFor="let company of companies" value="{{company.id}}">{{company.name}}</option>
+          <option *ngFor="let company of companies" value="{{company._id}}">{{company.name}}</option>
         </select>
       </div>
       <div class="col-md-3 align-items-center justify-content-center">

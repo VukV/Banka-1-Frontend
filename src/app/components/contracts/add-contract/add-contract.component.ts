@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {ContractsService} from "../../../services/contracts/contracts.service";
 import {ContractRequest} from "../../../model/contracts/contract-request";
 import {StocksService} from "../../../services/stocks/stocks.service";
+import {Company} from "../../../model/companies/company";
+import {CompaniesService} from "../../../services/companies/companies.service";
 
 @Component({
   selector: 'app-add-contract',
@@ -21,12 +23,7 @@ export class AddContractComponent implements OnInit{
   description: string = "";
   transactions: Transaction[] = [];
 
-  //TODO fetch companies
-  company = {
-    name: "Test",
-    id: 1
-  }
-  companies: any[] = [this.company];
+  companies: Company[] = [];
 
   transactionActions: string[] = Object.values(TransactionAction);
   transactionId: number = 0;
@@ -36,11 +33,12 @@ export class AddContractComponent implements OnInit{
   loading: boolean = false;
   error: string = "";
 
-  constructor(private router: Router, private contractsService: ContractsService, private stocksService: StocksService) {
+  constructor(private router: Router, private contractsService: ContractsService, private stocksService: StocksService, private companiesService: CompaniesService) {
   }
 
   ngOnInit(): void {
     this.getStockSymbols();
+    this.getCompanies();
   }
 
   addContract(){
@@ -113,6 +111,20 @@ export class AddContractComponent implements OnInit{
     this.stocksService.getAllStockSymbols().subscribe(
       (data) => {
         this.stockSymbols = data;
+        this.loading = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loading = false;
+      }
+    );
+  }
+
+  getCompanies(){
+    this.loading = true;
+    this.companiesService.getCompanies("", "", "").subscribe(
+      (data) => {
+        this.companies = data;
         this.loading = false;
       },
       (error) => {
