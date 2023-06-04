@@ -79,7 +79,7 @@ export class CompaniesService {
     return this.httpClient.put(this.companiesUrl + "/" + _id, {
         "name": name,
         "activityCode": activityCode,
-        "adress": address
+        "address": address
       },
       {
         headers: this.headers
