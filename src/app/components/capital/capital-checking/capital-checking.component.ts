@@ -89,7 +89,7 @@ export class CapitalCheckingComponent implements OnInit {
       return listing.listingType == listingType;
     });
 
-    this.listingsPopupComponent.openPopUp(filteredListings);
+    this.listingsPopupComponent.openPopUp(filteredListings, listingType);
   }
 
 }

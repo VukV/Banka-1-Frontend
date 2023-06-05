@@ -71,7 +71,7 @@
         <table class="table table-borderless table-d ">
           <thead>
           <tr class="trtable">
-            <th>AAA</th>
+            <th>Kod</th>
             <th>Cena</th>
             <th>Datum</th>
             <th></th>
@@ -83,7 +83,7 @@
           <tr *ngFor="let option of this.options ">
             <td>{{ option.code }}</td>
             <td>{{ option.bettingPrice }}</td>
-            <td>{{ option.date | date: 'dd/MM/yy HH:mm' }}</td>
+            <td>{{ option.date | date: 'dd/MM/yy' }}</td>
             <td>
               <button type="button" class="btn btn-green rounded-pill" (click)="finalizeOption(option.id)">Završi</button>
             </td>
