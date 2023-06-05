@@ -233,7 +233,7 @@ export class CompanyDetailsComponent implements OnInit {
     this.accountService.deleteAccount(accountId).subscribe(
       () => {
         this.loading = false;
-        //this.getAccounts();
+        this.getAccounts();
       },
       (error) => {
         this.popupComponent.openPopup(error.message);
