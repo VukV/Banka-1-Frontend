@@ -22,7 +22,6 @@
         <th>Volume</th>
         <th>Promena</th>
         <th>Promena (%)</th>
-        <th>Poslednje ažuriranje</th>
       </tr>
       <tr *ngFor="let stock of this.stocks | paginate: { itemsPerPage: stocksPerPage, currentPage: page, totalItems: totalStocks }" (click)="stockDetails(stock)" class="clickable-tr">
         <td>{{ stock.symbol }}</td>
@@ -39,7 +38,6 @@
           <td style="color: #d70000" [countUp]="stock.priceChangeInPercentage" [options]="{ enableScrollSpy: true, decimalPlaces: 3, suffix: '%'}">0</td>
         </ng-template>
 
-        <td>{{ stock.lastRefresh | date: 'dd/MM/yy HH:mm' }}</td>
       </tr>
       </thead>
     </table>

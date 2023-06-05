@@ -23,7 +23,7 @@
           <li *ngIf="isAdmin || isSupervisor" class="nav-item">
             <a [routerLink]="'/orders-admin'" class="nav-link active fw-bold" aria-current="page">Upravljanje porudžbinama</a>
           </li>
-          <li *ngIf="isAdmin || isSupervisor" class="nav-item">
+          <li *ngIf="isSupervisor" class="nav-item">
             <a [routerLink]="'/employees'" class="nav-link active fw-bold" aria-current="page">Zaposleni</a>
           </li>
           <li class="nav-item">
