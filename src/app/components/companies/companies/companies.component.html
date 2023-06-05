@@ -43,14 +43,14 @@
           <h2 class="row fw-bold">Kompanije</h2>
         </div>
         <div class="col-md-auto align-items-center d-flex justify-content-center">
-          <button type="button" id="contract" class="btn btn-outline rounded-pill  wider-button" data-cy="addCompany"
+          <button type="button" id="contract" class="btn btn-outline rounded-pill  wider-button" data-cy="btnAddCompany"
                   (click)="createCompany()">Dodaj
           </button>
         </div>
       </div>
       <br>
       <div class="d-flex justify-content-around">
-        <table class="table table-borderless table-d ">
+        <table class="table table-borderless table-d " data-cy="tableCompany">
           <thead>
           <tr class="trtable">
             <th>Naziv</th>
@@ -62,7 +62,7 @@
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let kompanija of this.companies " (click)="companyDetails(this.kompanija)" class="clickable-tr">
+          <tr *ngFor="let kompanija of this.companies " (click)="companyDetails(this.kompanija)" data-cy="clickTr" class="clickable-tr">
             <td>{{ kompanija.name}}</td>
             <td>{{ kompanija.registrationNumber }}</td>
             <td>{{kompanija.taxNumber}}</td>
