@@ -8,7 +8,7 @@
 }
 
 .color{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 .input-field {
@@ -53,7 +53,7 @@ th {
 
 :host /deep/.ngx-pagination .current,
 .btn-info {
-  background: var(--si-blue) !important;
+  background: var(--si-green) !important;
   border: transparent;
   border-radius: 20px;
 }

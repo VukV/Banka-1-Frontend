@@ -1,12 +1,12 @@
 .container {
   padding: 2rem;
   border: solid 2px;
-  border-color: var(--si-blue);
+  border-color: var(--si-green);
   border-radius: 50px;
 }
 
 #refresh {
-  color: var(--si-navy);
+  color: var(--si-white);
 }
 
 #refresh:hover {
@@ -18,7 +18,7 @@ hr {
   border: 0;
   width: 100%;
   height: 5px;
-  background-color: var(--si-navy);
+  background-color: var(--si-white);
 }
 
 legend {
@@ -29,7 +29,7 @@ legend {
 .stockDetailDiv {
   border-style: solid none none none;
   border-width: 1px;
-  border-color: var(--si-navy);
+  border-color: var(--si-white);
   overflow: hidden;
 }
 

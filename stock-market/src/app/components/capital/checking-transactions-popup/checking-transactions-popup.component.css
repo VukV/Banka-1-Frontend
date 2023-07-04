@@ -4,8 +4,8 @@
 
 .modal-content{
   border-radius: 25px;
-  background-color: var(--si-white);
-  border: 1px solid var(--si-blue);
+  background-color: var(--si-black);
+  border: 1px solid var(--si-green);
   width: 1100px;
 
 }
@@ -15,7 +15,7 @@
 }
 
 .myp-text {
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 select{
@@ -52,7 +52,7 @@ select{
 }
 
 .color{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 table {

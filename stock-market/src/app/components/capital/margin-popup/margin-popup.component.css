@@ -4,12 +4,12 @@
 
 .modal-content{
   border-radius: 25px;
-  background-color: var(--si-white);
-  border: 1px solid var(--si-blue);
+  background-color: var(--si-black);
+  border: 1px solid var(--si-green);
 }
 
 .myp-text {
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 

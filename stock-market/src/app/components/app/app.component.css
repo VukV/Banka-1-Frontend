@@ -1,6 +1,6 @@
 .profile-circle{
   background: #F1FFF9;
-  color: var(--si-blue);
+  color: var(--si-green);
 
   height: 40px;
   width: 40px;
@@ -20,5 +20,5 @@
 }
 
 .nav-link:hover{
-  color: var(--si-blue);
+  color: var(--si-green);
 }

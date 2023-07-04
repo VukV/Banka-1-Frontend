@@ -2,12 +2,12 @@ form {
   padding: 4em;
   padding-bottom: 2em;
   border: solid 2px;
-  border-color: var(--si-blue);
+  border-color: var(--si-green);
   border-radius: 50px;
 }
 
 .myp-text {
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 h6.error {

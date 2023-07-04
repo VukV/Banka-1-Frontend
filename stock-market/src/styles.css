@@ -1,7 +1,7 @@
 :root{
-  --si-blue: #79b6f1;
-  --si-navy: #F1FFF9;
-  --si-white: #eeeeee;
+  --si-green: #00B127;
+  --si-white: #F1FFF9;
+  --si-black: #151515;
   --si-black-transparent: rgba(21, 21, 21, 0.6);
   --si-red: #d70000;
 }
@@ -11,27 +11,27 @@
 }
 
 body {
-  background-color: var(--si-white);
+  background-color: var(--si-black);
   background-image: linear-gradient(0deg, #151515 65%, rgba(0, 177, 39, 0.4) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
 div, p, h1, h2, h3, h4, h5, h6{
-  color: var(--si-navy);
+  color: var(--si-white);
 }
 
 .form-control:focus {
-  border-color: var(--si-blue);
+  border-color: var(--si-green);
   box-shadow: 0 0 0 3px rgba(11, 148, 8, 0.75);
 }
 
 #main-nav{
-  background-color: var(--si-white);
+  background-color: var(--si-black);
 }
 
 .btn-green{
-  background-color: var(--si-blue);
+  background-color: var(--si-green);
   color: #fff;
 }
 
@@ -42,13 +42,13 @@ div, p, h1, h2, h3, h4, h5, h6{
 
 .btn-outline{
   background-color: rgba(255, 255, 255, 0);
-  color: var(--si-blue);
-  border-color: var(--si-blue);
+  color: var(--si-green);
+  border-color: var(--si-green);
 }
 
 .btn-outline:hover{
   color: #fff;
-  background-color: var(--si-blue);
+  background-color: var(--si-green);
 }
 
 .vertical-center {
@@ -79,38 +79,38 @@ div, p, h1, h2, h3, h4, h5, h6{
 }
 
 .blue-link:hover{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 .btn-outline-primary{
-  border-color: var(--si-blue);
-  color: var(--si-blue);
+  border-color: var(--si-green);
+  color: var(--si-green);
 }
 
 .btn-outline.active{
-  background-color: var(--si-blue);
+  background-color: var(--si-green);
   border-color: #007e20;
 }
 
 .btn-green-noborder{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 .btn-green-noborder:hover{
   border-color: #007e20;
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 label.btn.btn-outline-toggle:hover{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 .btn-outline-toggle{
-  color: var(--si-navy);
+  color: var(--si-white);
 }
 
 .btn-check:checked + label{
-  color: var(--si-blue) !important;
-  border-color: var(--si-blue) !important;
+  color: var(--si-green) !important;
+  border-color: var(--si-green) !important;
 }
 
 :host /deep/ .ngx-pagination {
@@ -119,7 +119,7 @@ label.btn.btn-outline-toggle:hover{
 
 :host /deep/.ngx-pagination .current,
 .btn-info {
-  background: var(--si-blue) !important;
+  background: var(--si-green) !important;
   border: transparent;
   border-radius: 20px;
 }
@@ -142,6 +142,11 @@ label.btn.btn-outline-toggle:hover{
 
 .clickable-tr:hover{
   cursor: pointer;
-  color: var(--si-blue);
+  color: var(--si-green);
   background: radial-gradient(circle, rgba(0, 177, 39, 0.25) 0%, rgba(0,177,39,0) 100%);
+}
+
+th{
+  background-color: rgba(2, 117, 216, 0) !important;
+  color: var(--si-white) !important;
 }

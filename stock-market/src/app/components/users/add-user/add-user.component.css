@@ -1,12 +1,12 @@
 form {
   padding: 2rem;
   border: solid 2px;
-  border-color: var(--si-blue);
+  border-color: var(--si-green);
   border-radius: 50px;
 }
 
 label {
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 h5.error {
