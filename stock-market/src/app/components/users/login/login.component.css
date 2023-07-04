@@ -1,0 +1,96 @@
+.login-card {
+  background: rgba(0,0,0,0) !important;
+  /*border: 1px var(--si-green) !important;*/
+  border: 1px solid #00B127;
+  border-radius: 80px;
+  width: 500px;
+  height: 350px;
+
+}
+
+.input-field {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.login-button {
+  width: 250px;
+}
+
+.centralize-input {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.password-input{
+  margin:auto;
+  margin-bottom: 5px;
+  width: 300px;
+}
+
+.input-group {
+  width: 300px;
+}
+
+.centralize-button {
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 1px;
+  font-weight: bold;
+}
+
+.email-validator {
+  color: var(--si-red);
+  text-align: center;
+  font-size: small;
+  height: 15px;
+}
+
+.md-errors-spacer {
+}
+
+.password-reset {
+  color: var(--si-blue) !important;
+  font-weight: bold;
+  font-size: smaller;
+}
+
+.a {
+  text-decoration: none;
+}
+
+.width {
+  width: 500px;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.card {
+  height: auto;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.button-bottom-margin {
+  margin-bottom: 0.3rem !important;
+}
+
+.fa-eye, .fa-eye-slash {
+  position: absolute;
+  color: black;
+  margin-left: 260px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.password-holder {
+  display: flex;
+  justify-content: center;
+}
+

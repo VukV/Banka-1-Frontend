@@ -1,0 +1,24 @@
+.profile-circle{
+  background: #F1FFF9;
+  color: var(--si-blue);
+
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+
+  font-size: 30px;
+}
+
+.profile-circle:hover{
+  cursor: pointer;
+}
+
+.nav-link:hover{
+  color: var(--si-blue);
+}

@@ -1,0 +1,10 @@
+.modal{
+  background: var(--si-black-transparent);
+}
+
+.modal-content{
+  margin-top: 30%;
+  border-radius: 25px;
+  background-color: var(--si-white);
+  border-color: #007e20;
+}
