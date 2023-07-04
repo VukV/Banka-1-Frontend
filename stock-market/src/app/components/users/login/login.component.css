@@ -50,7 +50,7 @@
 }
 
 .password-reset {
-  color: var(--si-blue) !important;
+  color: var(--si-green) !important;
   font-weight: bold;
   font-size: smaller;
 }

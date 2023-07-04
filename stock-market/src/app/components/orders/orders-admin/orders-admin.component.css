@@ -1,5 +1,5 @@
 .trtable{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 
@@ -41,7 +41,7 @@ th{
 }
 
 #refresh {
-  color: var(--si-navy);
+  color: var(--si-white);
 }
 
 #refresh:hover {

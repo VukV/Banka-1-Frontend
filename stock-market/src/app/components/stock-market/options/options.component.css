@@ -1,9 +1,9 @@
 .trtable{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 .text{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 .csstable{
@@ -39,11 +39,11 @@ th{
 }
 
 .nav-link {
-  color: var(--si-blue);
+  color: var(--si-green);
   border: none;
 }
 
 .nav-link.active {
-  color: var(--si-navy);
-  background-color: var(--si-blue);
+  color: var(--si-white);
+  background-color: var(--si-green);
 }

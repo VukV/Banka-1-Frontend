@@ -18,7 +18,7 @@ select{
 }
 
 #trtable{
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 #csstable{
@@ -65,7 +65,7 @@ pagination-controls{
 
 :host /deep/.ngx-pagination .current,
 .btn-info {
-  background: var(--si-blue) !important;
+  background: var(--si-green) !important;
   border: transparent;
   border-radius: 20px;
 }

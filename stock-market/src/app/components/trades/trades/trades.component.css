@@ -1,11 +1,11 @@
 label {
-  color: var(--si-blue);
+  color: var(--si-green);
 }
 
 input {
   margin-top: 5px;
-  color: var(--si-white);
-  border-color: var(--si-navy);
+  color: var(--si-black);
+  border-color: var(--si-white);
   width: 250px;
   height: 40px;
   border-radius: 8px;
@@ -20,7 +20,7 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:checked {
   appearance: none;
-  background-color: var(--si-blue);
+  background-color: var(--si-green);
   font: inherit;
   color: currentColor;
 }
@@ -30,8 +30,8 @@ input[type="checkbox"]:checked {
   margin-right: 10px;
   width: 20px;
   height: 20px;
-  color: var(--si-white);
-  border: 1px solid var(--si-blue);
+  color: var(--si-black);
+  border: 1px solid var(--si-green);
   border-radius: 5px;
 }
 
@@ -40,15 +40,15 @@ input[type="checkbox"]:checked {
   display: flex;
   align-items: center;
   padding-right: 10px;
-  color: var(--si-navy);
+  color: var(--si-white);
   font-family: 'Source Sans Pro', sans-serif;
   font-size: smaller;
 }
 
 select {
   margin-top: 5px;
-  background-color: var(--si-navy);
-  color: var(--si-white);
+  background-color: var(--si-white);
+  color: var(--si-black);
   width: 200px;
   height: 40px;
   border-radius: 8px;
@@ -59,7 +59,7 @@ select {
   padding: 50px;
   padding-bottom: 2em;
   border: solid 2px;
-  border-color: var(--si-blue);
+  border-color: var(--si-green);
   border-radius: 70px;
 }
 
