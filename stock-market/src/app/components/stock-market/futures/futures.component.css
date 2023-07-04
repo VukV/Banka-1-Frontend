@@ -1,0 +1,76 @@
+.stocks-table-header{
+  margin-top: 20px;
+}
+
+.table-d{
+  color: white;
+  font-weight: 600;
+}
+
+.color{
+  color: var(--si-blue);
+}
+
+.input-field {
+  width: 410px;
+  border-radius: 10px;
+}
+
+.centralize-input {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.rectangle{
+  box-sizing: border-box;
+  position: relative;
+  padding: 20px;
+  border: 1px solid #00B127;
+  border-radius: 60px;
+}
+
+.search-btn{
+  width: 130px;
+  margin-left: 420px;
+}
+
+.btn-position{
+  margin-top: -53px;
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+th {
+  text-align: center;
+  width: 25% ;
+}
+
+.kupovna-input{
+  margin-left: 220px;
+  margin-top: -53px;
+  margin-left: 210px;
+}
+
+.search-btn{
+  width: 130px;
+  margin-left: 420px;
+}
+
+.btn-position{
+  margin-top: -53px;
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+th {
+  text-align: left;
+  width: 25% ;
+}
+
+.br-height{
+  line-height: 10px;
+}

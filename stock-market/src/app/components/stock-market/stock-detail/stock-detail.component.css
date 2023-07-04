@@ -1,0 +1,96 @@
+.container {
+  padding: 2rem;
+  border: solid 2px;
+  border-color: var(--si-blue);
+  border-radius: 50px;
+}
+
+#refresh {
+  color: var(--si-navy);
+}
+
+#refresh:hover {
+  color: gray;
+  cursor: pointer;
+}
+
+hr {
+  border: 0;
+  width: 100%;
+  height: 5px;
+  background-color: var(--si-navy);
+}
+
+#stockInfo {
+  border: solid 1px;
+  border-color: var(--si-navy);
+  border-radius: 25px;
+}
+
+#price {
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+
+#priceChange {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+legend {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.stockDetailDiv {
+  border-style: solid none none none;
+  border-width: 1px;
+  border-color: var(--si-navy);
+  overflow: hidden;
+}
+
+.text-red {
+  color: var(--si-red);
+}
+
+.text-green {
+  color: var(--si-blue);
+}
+
+.buttons-div{
+  margin-top: 20px;
+}
+
+#buy{
+  margin-right: 15px;
+}
+
+.text-color{
+  color: var(--si-blue);
+  font-weight: bold;
+}
+
+.toggle1-toggle2-size{
+  width: 100px;
+}
+
+.toggle3-size{
+  width: 210px;
+}
+
+.form-check-input:checked {
+  background-color: var(--si-blue);
+  border-color: #d5d5d5;
+}
+
+.form-switch .form-check-input {
+  background-color: #F1FFF9;
+}
+.form-switch .form-check-input:focus {
+
+  background-color: var(--si-blue);
+}
+
+.details-label{
+  margin-right: 10px;
+}

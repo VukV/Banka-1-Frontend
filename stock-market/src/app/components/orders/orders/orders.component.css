@@ -1,0 +1,60 @@
+.trtable{
+  color: var(--si-blue);
+}
+
+
+.csstable{
+  color: white;
+  table-layout: fixed;
+}
+
+th{
+  font-weight: lighter;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.table-d{
+  color: white;
+  font-weight: 600;
+}
+
+.rectangle{
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 40px;
+  padding-right: 20px;
+  padding-top: 20px;
+  border: 1px solid #00B127;
+  border-radius: 40px;
+}
+
+
+.my-table-row{
+  margin-top: 20px;
+}
+
+.wider-button{
+  width: 180px;
+  text-align: center;
+}
+
+#refresh {
+  color: var(--si-navy);
+}
+
+#refresh:hover {
+  color: gray;
+  cursor: pointer;
+}
+
+#slc {
+  color: white;
+  background-color: transparent;
+  border-color: white;
+}
+
+.opt{
+  background-color: #151515;
+}
