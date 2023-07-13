@@ -1,0 +1,15 @@
+form {
+  padding: 2rem;
+  border: solid 2px;
+  border-color: var(--si-blue);
+  border-radius: 50px;
+  margin-bottom: 10px;
+  min-height: 300px;
+}
+.borderBlue{
+  padding: 0.5rem;
+  border: solid 2px;
+  border-color: var(--si-blue);
+  border-radius: 50px;
+  margin-right: 3px;
+}

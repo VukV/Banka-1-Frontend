@@ -36,7 +36,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   searchUsers(){
-    this.userService.loadAllUsers(this.firstName, this.lastName, this.email, this.position, this.page-1, this.usersPerPage).subscribe(
+    this.userService.loadAllUsersFiltered(this.firstName, this.lastName, this.email, "").subscribe(
       (data) => {
         this.users = data.content;
         this.totalPages = data.totalPages;
