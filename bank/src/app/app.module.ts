@@ -25,6 +25,24 @@ import {NgToggleModule} from "ng-toggle-button";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
 import {DatePipe} from "@angular/common";
+import {MatMenuModule} from "@angular/material/menu";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewPaymentComponent } from "./components/payments/new-payment/new-payment.component";
+import { TransferComponent } from "./components/payments/transfer/transfer.component";
+import { PaymentRecieversComponent } from "./components/payments/payment-recievers/payment-recievers.component";
+import { PaymentRecapComponent } from "./components/payments/payment-recap/payment-recap.component";
+import { DomesticPaymentsComponent } from './components/payments/domestic-payments/domestic-payments.component';
+import { ExchangeComponent } from './components/payments/exchange/exchange.component';
+import {MatFormFieldControl, MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import { AddRecieverPopupComponent } from './components/payments/popup/add-reciever-popup/add-reciever-popup.component';
+import { TransferApprovalPopupComponent } from './components/payments/popup/transfer-approval-popup/transfer-approval-popup.component';
+import { UpdateRecieverPopupComponent } from './components/payments/popup/update-reciever-popup/update-reciever-popup.component';
+import { DomesticPaymentDetailsPopupComponent } from './components/payments/popup/domestic-payment-details-popup/domestic-payment-details-popup.component';
+import { ExchangeDetailsPopupComponent } from './components/payments/popup/exchange-details-popup/exchange-details-popup.component';
 
 
 export function playerFactory() {
@@ -45,7 +63,18 @@ export function playerFactory() {
     UpdateUserComponent,
     HomeComponent,
     PopupComponent,
-    ConfirmationPopupComponent
+    ConfirmationPopupComponent,
+    NewPaymentComponent,
+    TransferComponent,
+    PaymentRecieversComponent,
+    PaymentRecapComponent,
+    DomesticPaymentsComponent,
+    ExchangeComponent,
+    AddRecieverPopupComponent,
+    TransferApprovalPopupComponent,
+    UpdateRecieverPopupComponent,
+    DomesticPaymentDetailsPopupComponent,
+    ExchangeDetailsPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -64,8 +93,15 @@ export function playerFactory() {
       tertiaryColour: '#00B127',
       animationType: ngxLoadingAnimationTypes.wanderingCubes
     }),
-    LottieModule.forRoot({ player: playerFactory })
-  ],
+    LottieModule.forRoot({player: playerFactory}),
+    MatMenuModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatInputModule
+],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })

@@ -13,6 +13,10 @@ import {
 import {ResetPasswordComponent} from "./components/users/reset-password/reset-password.component";
 import {ActivatePasswordComponent} from "./components/users/activate-password/activate-password.component";
 import {UserRoleEnum} from "./model/user/user-role-enum";
+import {PaymentRecieversComponent} from "./components/payments/payment-recievers/payment-recievers.component";
+import {TransferComponent} from "./components/payments/transfer/transfer.component";
+import {PaymentRecapComponent} from "./components/payments/payment-recap/payment-recap.component";
+import {NewPaymentComponent} from "./components/payments/new-payment/new-payment.component";
 
 
 const routes: Routes = [
@@ -59,6 +63,21 @@ const routes: Routes = [
   {
     path: "reset-password/:userId",
     component: ResetPasswordComponent,
+  },
+  {
+    path: "payment-recievers",
+    component: PaymentRecieversComponent
+  },
+  {
+    path: "transfer",
+    component: TransferComponent
+  },
+  { path: "payment-recap",
+    component: PaymentRecapComponent
+  },
+  {
+    path: "new-payment",
+    component: NewPaymentComponent
   }
 ];
 
