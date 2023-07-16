@@ -13,6 +13,7 @@ import {
 import {ResetPasswordComponent} from "./components/users/reset-password/reset-password.component";
 import {ActivatePasswordComponent} from "./components/users/activate-password/activate-password.component";
 import {UserRoleEnum} from "./model/user/user-role-enum";
+import {AddAccountComponent} from "./components/users/add-account/add-account.component";
 
 
 const routes: Routes = [
@@ -30,6 +31,12 @@ const routes: Routes = [
   {
     path: "add-user",
     component: AddUserComponent,
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+  },
+  {
+    path: "add-account",
+    component: AddAccountComponent,
     canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_ADMIN]}
   },

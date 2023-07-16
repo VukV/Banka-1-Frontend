@@ -1,0 +1,11 @@
+#formaBorder {
+  padding: 50px;
+  border: 2px solid;
+  border-radius: 70px;
+  border-color: var(--si-blue);
+}
+
+input {
+  border-radius: 10px;
+}
+

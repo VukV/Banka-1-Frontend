@@ -25,7 +25,7 @@ import {NgToggleModule} from "ng-toggle-button";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
 import {DatePipe} from "@angular/common";
-import { AddAccountComponent } from './components/add-account/add-account.component';
+import { AddAccountComponent } from './components/users/add-account/add-account.component';
 
 
 export function playerFactory() {
