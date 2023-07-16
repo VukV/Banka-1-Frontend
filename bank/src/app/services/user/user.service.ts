@@ -31,16 +31,16 @@ export class UserService{
     });
   }
 
-  addUser(email: string, phone: string, jmbg: string, firstName: string, lastName: string, position: string, roles: string[])
+  addUser(firstName: string, lastName: string, birthDate: string, homeAddress: string, gender: string, email: string, phoneNumber: string)
   : Observable<UserModel> {
     const userCreationData = {
       firstName: firstName,
       lastName: lastName,
+      birthDate: birthDate,
       email: email,
-      jmbg: jmbg,
-      phoneNumber: phone,
-      position: position,
-      roles: roles
+      homeAddress: homeAddress,
+      gender: gender,
+      phoneNumber: phoneNumber,
     };
     return this.httpClient.post<UserModel>(`${this.usersUrl}/create`, userCreationData, {
       headers: this.headers
