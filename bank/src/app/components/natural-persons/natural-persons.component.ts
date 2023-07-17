@@ -38,13 +38,15 @@ export class NaturalPersonsComponent {
     const queryParams = {
       objectId: selectedObject.id,
     };
-
     this.route.queryParams.subscribe(params => {
       let returnUrl = params['returnUrl'];
-      let returnUrl2 = decodeURIComponent(this.route.snapshot.queryParams['returnUrl']);
-      returnUrl = returnUrl2.split('%')[0]; // Cut off at the first occurrence of '%'
+      if (returnUrl) {
+        let returnUrl2 = decodeURIComponent(this.route.snapshot.queryParams['returnUrl']);
+        returnUrl = returnUrl2.split('%')[0]; // Cut off at the first occurrence of '%'
 
-      this.router.navigate([returnUrl], {queryParams});
+        this.router.navigate([returnUrl], {queryParams});
+      }
+
     });
   }
 

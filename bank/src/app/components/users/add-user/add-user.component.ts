@@ -4,6 +4,7 @@ import {UserRoleEnum} from "../../../model/user/user-role-enum";
 import {UserService} from "../../../services/user/user.service";
 import {PopupComponent} from "../../popup/popup/popup.component";
 import {Router} from "@angular/router";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-add-user',
@@ -28,9 +29,14 @@ export class AddUserComponent implements OnInit {
   roles: string[] = [];
   allRoles: string[] = Object.values(UserRoleEnum);
   error: string = "";
+  address: string="";
+  dateBirth!: Date;
+  dateBirthString: string="";
+  gender: string="";
 
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private datePipe: DatePipe) { }
 
   ngOnInit(): void { }
 
@@ -40,6 +46,9 @@ export class AddUserComponent implements OnInit {
       this.roles.push(role);
     else
       this.roles = this.roles.filter(arrayRole => arrayRole !== role);
+  }
+  formatDate(date: Date): string {
+    return <string>this.datePipe.transform(date, 'dd/MM/yyyy');
   }
 
   addUser(): void {
@@ -52,10 +61,6 @@ export class AddUserComponent implements OnInit {
       this.error = "Telefon nije validan!";
       return;
     }
-    if (!this.jmbgRegex.test(this.jmbg)) {
-      this.error = "JMBG nije validan!";
-      return;
-    }
     if (this.firstName == "") {
       this.error = "Ime mora biti uneto!";
       return;
@@ -64,21 +69,32 @@ export class AddUserComponent implements OnInit {
       this.error = "Prezime mora biti uneto!";
       return;
     }
-    if (this.position == "") {
-      this.error = "Pozicija mora biti odabrana!";
+    if (this.address == "") {
+      this.error = "Adresa mora biti uneta!";
       return;
     }
+    if (this.gender == "") {
+      this.error = "Pol mora biti unet!";
+      return;
+    }
+    if (this.dateBirth==null) {
+      this.error = "Datum rodjenja mora biti unet!";
+      return;
+    }
+
+    this.dateBirthString=this.formatDate(this.dateBirth).replace(/\//g, '-');
+
     const position = Object.keys(UserPositionEnum)[Object.values(UserPositionEnum).indexOf(this.position as UserPositionEnum)];
     const roles = this.roles.map(role => Object.keys(UserRoleEnum)[Object.values(UserRoleEnum).indexOf(role as UserRoleEnum)]);
-    this.userService.addUser(this.email, this.phone, this.jmbg, this.firstName, this.lastName, position, roles)
+    this.userService.addUser(this.firstName,this.lastName,this.dateBirthString,this.gender,this.email,this.phone,this.address,this.roles)
       .subscribe({
-          next: () => this.router.navigate(["users"]),
+          next: () => this.router.navigate(["natural-persons"]),
           error: (error) => this.popupComponent.openPopup(`Registrovanje korisnika nije uspelo: ${error.error.message}`)
         }
       );
   }
 
   cancel(): void {
-    this.router.navigate(["users"]);
+    this.router.navigate(["natural-persons"]);
   }
 }

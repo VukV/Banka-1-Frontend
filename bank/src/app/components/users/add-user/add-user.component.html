@@ -20,6 +20,16 @@
   <form class="row justify-content-center">
     <div class="row row-cols-1 row-cols-md-3">
       <div class="col mb-3">
+        <label for="firstName" class="form-label">Ime</label>
+        <input type="text" [(ngModel)]="firstName" class="form-control" id="firstName" name="firstName"
+               placeholder="Ime">
+      </div>
+      <div class="col mb-3">
+        <label for="lastName" class="form-label">Prezime</label>
+        <input type="text" [(ngModel)]="lastName" class="form-control" id="lastName" name="lastName"
+               placeholder="Prezime">
+      </div>
+      <div class="col mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" [(ngModel)]="email" class="form-control" id="email" name="email" placeholder="Email">
       </div>
@@ -28,23 +38,23 @@
         <input type="text" [(ngModel)]="phone" class="form-control" id="phone" name="phone" placeholder="Telefon">
       </div>
       <div class="col mb-3">
-        <label for="citizenId" class="form-label">JMBG</label>
-        <input type="text" [(ngModel)]="jmbg" class="form-control" id="citizenId" name="citizenId" placeholder="JMBG">
+        <label for="address" class="form-label">Adresa</label>
+        <input type="text" [(ngModel)]="address" class="form-control" id="address" name="address" placeholder="Telefon">
       </div>
       <div class="col mb-3">
-        <label for="firstName" class="form-label">Ime</label>
-        <input type="text" [(ngModel)]="firstName" class="form-control" id="firstName" name="firstName" placeholder="Ime">
+        <label for="dateBirth" class="form-label">Datum rođenja</label>
+        <input type="date" [(ngModel)]="dateBirth" class="form-control" id="dateBirth" name="dateBirth"
+               placeholder="Datum rođenja">
       </div>
       <div class="col mb-3">
-        <label for="lastName" class="form-label">Prezime</label>
-        <input type="text" [(ngModel)]="lastName" class="form-control" id="lastName" name="lastName" placeholder="Prezime">
-      </div>
-      <div class="col mb-3">
-        <label for="position" class="form-label">Pozicija</label>
-        <select [(ngModel)]="position" class="form-select" id="position" name="position">
-          <option *ngFor="let position of allPositions" value="{{position}}">{{position}}</option>
+        <label for="gender" class="form-label">Pol</label>
+        <select [(ngModel)]="gender" class="form-select" id="gender" name="gender">
+          <option value="MALE">Musko</option>
+          <option value="FEMALE">Žensko</option>
+          <option value="NON_BINARY">Non binary</option>
         </select>
       </div>
+
     </div>
     <h3>Permisije</h3>
     <div id="permissions" class="row row-cols-1 row-cols-md-3">
