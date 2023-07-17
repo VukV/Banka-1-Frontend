@@ -112,6 +112,7 @@ export function playerFactory() {
     NgToggleModule.forRoot(),
     NgxLoadingModule.forRoot({
       backdropBorderRadius: '3px',
+      fullScreenBackdrop: true,
       primaryColour: '#0275d8',
       secondaryColour: '#0275d8',
       tertiaryColour: '#0275d8',

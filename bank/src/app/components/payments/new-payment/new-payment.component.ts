@@ -26,7 +26,7 @@ export class NewPaymentComponent {
   currency: string = ""
   senderAccountNumber: string = ""
   amount = 0
-  availableAmount = 123456
+  availableAmount = 0
   choose: string = "Odaberi"
   receivers!: RecieverModel[]
   receiver!: RecieverModel
