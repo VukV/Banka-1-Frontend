@@ -1,0 +1,82 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="../../../../../assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold"><a class="blue-link" href="/legal-person">Pravno lice</a></li>
+      <li class="breadcrumb-item fw-bold"><a class="blue-link" href="/create-company">Kreiranje kompanije</a></li>
+
+    </ol>
+  </nav>
+
+  <br>
+  <div class="col-md-6">
+    <h2 class="mt-3 mb-3 fw-bold">Kreiraj novu firmu</h2>
+    <br>
+  </div>
+
+  <div class="row borderBlue col-md-12 justify-content-center text-center align-items-center">
+    <div class="col-md-6 ">
+      <div class=" form-group" style="margin-bottom: 25px">
+        <br>
+        <div class="form-group" style="margin-bottom: 25px">
+          <input [(ngModel)]="companyName" type="input" class="borderBlueInput col-md-6" placeholder="naziv">
+        </div>
+        <br>
+        <div class="form-group" style="margin-bottom: 25px">
+          <input type="number" [(ngModel)]="vatIdNumber" class="borderBlueInput col-md-6" placeholder="PIB">
+        </div>
+        <br>
+        <div class="form-group" style="margin-bottom: 25px">
+          <input type="number" [(ngModel)]="identificationNumber" class="borderBlueInput col-md-6"
+                 placeholder="matični broj">
+        </div>
+        <br>
+        <div class="form-group" style="margin-bottom: 25px">
+          <input type="number" [(ngModel)]="registryNumber" class="borderBlueInput col-md-6"
+                 placeholder="registarski broj">
+        </div>
+      </div>
+    </div>
+
+
+    <div class=" col-md-6 justify-content-center text-center align-items-start ">
+      <div class=" justify-content-center col-md-12 align-items-start " style="margin-bottom: 25px">
+        <div class="form-group" style="margin-bottom: 25px">
+          <input [(ngModel)]="faxNumber" type="number" class="borderBlueInput col-md-6" placeholder="broj faxa">
+        </div>
+        <br>
+        <div class="form-group" style="margin-bottom: 25px">
+          <input [(ngModel)]="activityCode" type="number" class="borderBlueInput col-md-6"
+                 placeholder="šifra delatnosti">
+        </div>
+
+        <br>
+        <div class="form-group" style="margin-bottom: 25px">
+          <input [(ngModel)]="phoneNumber" type="number" class="borderBlueInput col-md-6" placeholder="broj telefona">
+        </div>
+
+      </div>
+    </div>
+    <div class="row col-md-12">
+      <br>
+      <h5 *ngIf="error != ''" class="text-center error mt-3">{{error}}</h5>
+
+      <br>
+      <div class="row d-flex justify-content-center col-md-12" style="margin-bottom: 10px">
+        <button type="button" class="btn btn-primary rounded-pill col-md-2" (click)="createCompany()">Kreiraj</button>
+      </div>
+
+      <div class="row d-flex justify-content-center col-md-12">
+        <button type="button" class="btn btn-outline-primary rounded-pill col-md-2" (click)="goBack()">Nazad</button>
+      </div>
+    </div>
+  </div>
+
+  <app-popup></app-popup>
+
+</div>
+

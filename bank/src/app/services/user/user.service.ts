@@ -12,18 +12,19 @@ import {UserPositionEnum} from "../../model/user/user-position-enum";
 @Injectable({
   providedIn: 'root'
 })
-export class UserService{
+export class UserService {
 
   private loginUrl = environment.bankUrl + "/login"
   private forgotPasswordUrl = environment.bankUrl + "/forgot-password"
   private usersUrl = environment.bankUrl;
+
   private headers = new HttpHeaders({
     'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });
 
   constructor(private httpClient: HttpClient, private currentUserService: CurrentUserService) {
     this.currentUserService.isLoggedIn.subscribe((loggedIn) => {
-      if(loggedIn){
+      if (loggedIn) {
         this.headers = new HttpHeaders({
           'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
         });
@@ -31,12 +32,14 @@ export class UserService{
     });
   }
 
+
   addUser(firstName: string, lastName: string, birthDate: string, homeAddress: string, gender: string, email: string, phoneNumber: string, roles: string[])
   : Observable<BankUserModel> {
     const userCreationData = {
       firstName: firstName,
       lastName: lastName,
       birthDate: birthDate,
+
       email: email,
       homeAddress: homeAddress,
       gender: gender,
@@ -49,7 +52,7 @@ export class UserService{
   }
 
   getUser(id: number): Observable<UserModel> {
-    return this.httpClient.get<UserModel>(`${this.usersUrl}/${id}`, {
+    return this.httpClient.get<UserModel>(`${this.usersUrl}/user/${id}`, {
       headers: this.headers
     });
   }
@@ -73,8 +76,7 @@ export class UserService{
   }
 
   activatePassword(id: string, secretKey: string, password: string): Observable<any> {
-    return this.httpClient.post<any>(`${this.usersUrl}/reset-password/${id}`, {password, secretKey}, {
-    }).pipe(
+    return this.httpClient.post<any>(`${this.usersUrl}/reset-password/${id}`, {password, secretKey}, {}).pipe(
       catchError(err => {
         return throwError(() => new Error(err.error.message));
       })
@@ -84,18 +86,35 @@ export class UserService{
   logUserIn(loginReq: LogInRequest): Observable<LogInResponse> {
     let email = loginReq.email
     let password = loginReq.password
-    return this.httpClient.post<LogInResponse>(`${this.loginUrl}`, {email, password}, {
-    } ).pipe(
+    return this.httpClient.post<LogInResponse>(`${this.loginUrl}`, {email, password}, {}).pipe(
       catchError(err => {
         return throwError(() => new Error(err.error.message))
-        })
+      })
     )
   }
 
-  resetPasswordRequest(email: string): Observable<any>{
+  loadAllUsersFiltered(firstName: string, lastName: string, email: string, datumRodjenja: string): Observable<any> {
+    return this.httpClient.post<any>(this.usersUrl + "_filtered",
+      {
+        "email": email,
+        "firstName": firstName,
+        "lastName": lastName,
+        "birthDate": datumRodjenja
+      },
+      {
+        headers: this.headers
+      }).pipe(
+    ).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  resetPasswordRequest(email: string): Observable<any> {
     let queryParams = new HttpParams();
-    queryParams = queryParams.append("email",email);
-    return this.httpClient.get<any>( `${this.forgotPasswordUrl}`, {params: queryParams}
+    queryParams = queryParams.append("email", email);
+    return this.httpClient.get<any>(`${this.forgotPasswordUrl}`, {params: queryParams}
     ).pipe(
       catchError(err => {
         return throwError(() => new Error(err.error.message))
@@ -103,20 +122,14 @@ export class UserService{
     )
   }
 
-  loadAllUsers(firstName: string, lastName: string, email: string, position: any, page: number, size: number): Observable<any> {
-    return this.httpClient.post<any>(this.usersUrl,
+  loadAllUsers(): Observable<any> {
+    return this.httpClient.get<any>(`${this.usersUrl}`,
       {
-      "firstName": firstName,
-      "lastName": lastName,
-      "email": email,
-      "position": position
-    },
-      {
-      headers: this.headers, params:{"page": page, "size": size}
-    }
-  ).pipe(
-    catchError(err => {
-      return throwError(() => new Error(err.error.message));
+        headers: this.headers
+      }
+    ).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
       })
     );
   }
@@ -124,10 +137,10 @@ export class UserService{
   updateMyProfile(firstName: string, lastName: string, phone: string) {
     return this.httpClient.put<UserModel>(`${this.usersUrl}/my-profile/update`,
       {
-          "firstName": firstName,
-          "lastName": lastName,
-          "phoneNumber": phone
-        },
+        "firstName": firstName,
+        "lastName": lastName,
+        "phoneNumber": phone
+      },
       {
         headers: this.headers
       }).pipe(
@@ -141,6 +154,18 @@ export class UserService{
     return this.httpClient.get<UserModel>(`${this.usersUrl}/my-profile`, {
       headers: this.headers
     }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  getUserById(ownerId: string) {
+    return this.httpClient.get<any>(`${this.bankUrl}/user/` + ownerId,
+      {
+        headers: this.headers
+      }
+    ).pipe(
       catchError(err => {
         return throwError(() => new Error(err.error.message));
       })

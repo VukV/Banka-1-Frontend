@@ -27,6 +27,6 @@ export class HomeComponent implements OnInit {
 
   continueFromHomePage(){
     //TODO navigate
-    this.router.navigate(['']);
+    this.router.navigate(['home-page']);
   }
 }
