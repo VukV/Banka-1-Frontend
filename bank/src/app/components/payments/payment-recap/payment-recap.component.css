@@ -1,0 +1,147 @@
+.header-color{
+  color: var(--si-blue) !important;
+}
+
+.selection-width{
+  width: 220px;
+}
+
+.rectangle{
+  box-sizing: border-box;
+  position: relative;
+  padding: 20px;
+  border: 1px solid var(--si-navy);
+  border-radius: 60px;
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+
+th {
+  text-align: left;
+  width: 25% ;
+}
+
+.br-height{
+  display: block;
+  height: 0;
+}
+
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
+
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: var(--si-blue) !important;
+  border: transparent;
+  border-radius: 20px;
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: rgba(8, 85, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+:host /deep/.ngx-pagination a:hover{
+  background: rgba(8, 106, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+.element1{
+
+}
+
+.container {
+  position: relative;
+}
+
+.element2 {
+  position: absolute;
+  left: 240px;
+}
+
+.button {
+  border: none;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.button:hover {
+  border-radius: 7px;
+  border: 2px var(--si-blue)!important;
+}
+
+.button:active {
+  border-radius: 7px;
+  border: 2px var(--si-blue)!important;
+}
+
+.text-color{
+  color: var(--si-blue);
+}
+
+.status-dropdown button {
+  border: 1px solid var(--si-blue) !important;
+  background: none !important;
+  width: 220px;
+  border-radius: 10px;
+  color: var(--si-blue);
+}
+
+.status-dropdown {
+  width: 220px !important;
+}
+
+.date-select {
+  border: 1px solid var(--si-blue) !important;
+  background: none !important;
+  width: 220px;
+  padding: 10px;
+  color: var(--si-blue);
+  border-radius: 10px;
+  height: 38px !important;
+}
+
+.date-select::-webkit-calendar-picker-indicator{
+  color: var(--si-blue) !important;
+}
+
+#statusDropdown option {
+  padding: 10px;
+}
+
+.right-box {
+  display: flex;
+  justify-content: space-around !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.pretrazi button {
+  margin: 0px !important;
+}
+
+.date-select:focus {
+  border: 1px solid var(--si-blue) !important;
+  background: none !important;
+  width: 220px;
+  padding: 10px;
+  color: var(--si-blue);
+  border-radius: 10px;
+  height: 38px !important;
+}
+
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+  color: var(--si-blue);
+  background-color: transparent;
+  border-color: var(--si-blue);
+  border-radius: 20px !important;
+}
+
+

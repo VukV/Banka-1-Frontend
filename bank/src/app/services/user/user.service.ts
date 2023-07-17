@@ -2,7 +2,7 @@ import {CurrentUserService} from "./current-user.service";
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {UserModel} from "../../model/user/user-model";
+import {BankUserModel, UserModel} from "../../model/user/user-model";
 import {catchError, Observable, throwError} from "rxjs";
 import {LogInResponse} from "../../model/user/log-in-response";
 import {LogInRequest} from "../../model/user/log-in-request";
@@ -16,8 +16,8 @@ export class UserService {
 
   private loginUrl = environment.bankUrl + "/login"
   private forgotPasswordUrl = environment.bankUrl + "/forgot-password"
-  private bankUrl = environment.bankUrl
-  private usersUrl = environment.bankUrl + "/clients";
+  private usersUrl = environment.bankUrl;
+
   private headers = new HttpHeaders({
     'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });
@@ -32,25 +32,27 @@ export class UserService {
     });
   }
 
-  addUser(firstName: string, lastName: string, birthDate: string, gender: string, email: string, phone: string, address: string, roles: string[])
-    : Observable<UserModel> {
+
+  addUser(firstName: string, lastName: string, birthDate: string, homeAddress: string, gender: string, email: string, phoneNumber: string, roles: string[])
+  : Observable<BankUserModel> {
     const userCreationData = {
       firstName: firstName,
       lastName: lastName,
       birthDate: birthDate,
-      gender: gender,
+
       email: email,
-      phoneNumber: phone,
-      homeAddress: address,
+      homeAddress: homeAddress,
+      gender: gender,
+      phoneNumber: phoneNumber,
       roles: roles
     };
-    return this.httpClient.post<UserModel>(`${this.bankUrl}/register`, userCreationData, {
+    return this.httpClient.post<BankUserModel>(`${this.usersUrl}/register`, userCreationData, {
       headers: this.headers
     });
   }
 
   getUser(id: number): Observable<UserModel> {
-    return this.httpClient.get<UserModel>(`${this.bankUrl}/user/${id}`, {
+    return this.httpClient.get<UserModel>(`${this.usersUrl}/user/${id}`, {
       headers: this.headers
     });
   }
@@ -121,7 +123,7 @@ export class UserService {
   }
 
   loadAllUsers(): Observable<any> {
-    return this.httpClient.get<any>(`${this.usersUrl}`,
+    return this.httpClient.get<any>(`${this.usersUrl}/clients`,
       {
         headers: this.headers
       }
@@ -159,7 +161,7 @@ export class UserService {
   }
 
   getUserById(ownerId: string) {
-    return this.httpClient.get<any>(`${this.bankUrl}/user/` + ownerId,
+    return this.httpClient.get<any>(`${this.usersUrl}/user/` + ownerId,
       {
         headers: this.headers
       }

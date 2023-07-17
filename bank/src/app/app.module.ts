@@ -24,6 +24,26 @@ import { ConfirmationPopupComponent } from './components/popup/confirmation-popu
 import {NgToggleModule} from "ng-toggle-button";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
+import {MatMenuModule} from "@angular/material/menu";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewPaymentComponent } from "./components/payments/new-payment/new-payment.component";
+import { TransferComponent } from "./components/payments/transfer/transfer.component";
+import { PaymentRecieversComponent } from "./components/payments/payment-recievers/payment-recievers.component";
+import { PaymentRecapComponent } from "./components/payments/payment-recap/payment-recap.component";
+import { DomesticPaymentsComponent } from './components/payments/domestic-payments/domestic-payments.component';
+import { ExchangeComponent } from './components/payments/exchange/exchange.component';
+import {MatFormFieldControl, MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import { AddRecieverPopupComponent } from './components/payments/popup/add-reciever-popup/add-reciever-popup.component';
+import { TransferApprovalPopupComponent } from './components/payments/popup/transfer-approval-popup/transfer-approval-popup.component';
+import { UpdateRecieverPopupComponent } from './components/payments/popup/update-reciever-popup/update-reciever-popup.component';
+import { DomesticPaymentDetailsPopupComponent } from './components/payments/popup/domestic-payment-details-popup/domestic-payment-details-popup.component';
+import { ExchangeDetailsPopupComponent } from './components/payments/popup/exchange-details-popup/exchange-details-popup.component';
+
+
 import {DatePipe, NgForOf, NgSwitchCase} from "@angular/common";
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AccountsComponent } from './components/accounts/accounts/accounts.component';
@@ -35,6 +55,7 @@ import { CreateForeignCurrencyAccountComponent } from './components/accounts/cre
 import { NaturalPersonsComponent } from './components/natural-persons/natural-persons.component';
 import { LegalPersonsComponent } from './components/legal-persons/legal-persons.component';
 import { CreateCompanyComponent } from './components/legal-persons/create-company/create-company.component';
+import { AddAccountComponent } from './components/users/add-account/add-account.component';
 
 
 export function playerFactory() {
@@ -56,6 +77,17 @@ export function playerFactory() {
     HomeComponent,
     PopupComponent,
     ConfirmationPopupComponent,
+    NewPaymentComponent,
+    TransferComponent,
+    PaymentRecieversComponent,
+    PaymentRecapComponent,
+    DomesticPaymentsComponent,
+    ExchangeComponent,
+    AddRecieverPopupComponent,
+    TransferApprovalPopupComponent,
+    UpdateRecieverPopupComponent,
+    DomesticPaymentDetailsPopupComponent,
+    ExchangeDetailsPopupComponent,
     HomePageComponent,
     AccountsComponent,
     AccountDetailComponent,
@@ -65,7 +97,8 @@ export function playerFactory() {
     CreateForeignCurrencyAccountComponent,
     NaturalPersonsComponent,
     LegalPersonsComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    AddAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -79,12 +112,19 @@ export function playerFactory() {
     NgToggleModule.forRoot(),
     NgxLoadingModule.forRoot({
       backdropBorderRadius: '3px',
-      primaryColour: '#00B127',
-      secondaryColour: '#00B127',
-      tertiaryColour: '#00B127',
+      primaryColour: '#0275d8',
+      secondaryColour: '#0275d8',
+      tertiaryColour: '#0275d8',
       animationType: ngxLoadingAnimationTypes.wanderingCubes
     }),
     LottieModule.forRoot({player: playerFactory}),
+    MatMenuModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatInputModule,
     NgSwitchCase,
     FormsModule,
     NgForOf,

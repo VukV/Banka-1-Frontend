@@ -1,0 +1,75 @@
+<div class="container" data-cy="payment-review">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" data-cy="review" aria-current="page">Pregled plaćanja</li>
+    </ol>
+  </nav>
+
+  <br>
+
+  <div class="row align-items-start">
+    <div class="col">
+      <h2 class="mt-3 mb-3 fw-bold">Pregled plaćanja</h2>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-lg-5 justify-content-center">
+      <div class="btn-group container" role="group" aria-label="Toggle buttons container">
+        <div class="col-md-1">
+          <input checked (click)="setReviewType('payments')" data-cy="payments" type="radio" class="btn-check" name="options" id="option1">
+          <label class="btn selected-btn text-color toggle1-toggle2-size selection-width element1" for="option1"
+                 >Domaća plaćanja</label>
+        </div>
+
+        <div class="col-md-1">
+          <input (click)="setReviewType('exchange')" data-cy="exchange" type="radio" class="btn-check" name="options" id="option2">
+          <label class="btn text-color toggle1-toggle2-size selection-width element2" for="option2"
+                 >Menjačnica</label>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="col-lg-7 justify-content-center right-box">
+      <div class="dropdown status-dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{this.status ? this.status : "Status"}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item"  (click)="setStatus('U obradi')">U obradi</a>
+          <a class="dropdown-item" (click)="setStatus('Realizovano')">Realizovano</a>
+          <a class="dropdown-item" (click)="setStatus('Odbijeno')">Odbijeno</a>
+          <a class="dropdown-item" (click)="setStatus('Sve transakcije')">Sve transakcije</a>
+        </div>
+      </div>
+
+      <input class=" date-select" type="date" placeholder="Readonly input here…" [(ngModel)]="date">
+
+      <div class="col-md-3 d-grid pretrazi">
+        <button type="button" class="btn btn-primary rounded-pill selection-width mt-3 mb-3" (click)="search()">Pretraži</button>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <!--  SWITCH HANDLING-->
+  <div class="parent-component" [ngSwitch]="reviewType">
+    <app-domestic-payments [expectedProp] = "this.childInput" *ngSwitchCase="'payments'" ></app-domestic-payments>
+    <app-exchange [expectedProp] = "this.childInput" *ngSwitchCase="'exchange'"></app-exchange>
+    <app-domestic-payments [expectedProp] = "this.childInput" *ngSwitchDefault></app-domestic-payments>
+  </div>
+
+  <app-popup></app-popup>
+
+</div>
+
+

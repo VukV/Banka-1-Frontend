@@ -2,7 +2,7 @@
   <nav id="main-nav" class="navbar navbar-expand-lg navbar-dark">
 
     <!-- *ngIf="isLoggedIn; else loggedOut" -->
-    <div class="container">
+    <div *ngIf="isLoggedIn; else loggedOut" class="container">
       <a class="navbar-brand" href="/">
         <img src="assets/dollar-icon.svg" alt="icon" width="50" height="50">
       </a>
@@ -12,25 +12,39 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a [routerLink]="'/home-page'" data-cy="home-page" class="nav-link active fw-bold" aria-current="page">Početna</a>
+            <a [routerLink]="'/home-page'" class="nav-link active fw-bold" aria-current="page">Početna</a>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="'/accounts'" data-cy="accounts" class="nav-link active fw-bold" aria-current="page">Računi</a>
+
+          <li *ngIf="isEmployee" class="nav-item">
+            <a [routerLink]="'/natural-persons'" class="nav-link active fw-bold" aria-current="page">Fizička lica</a>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="'/natural-persons'" data-cy="orders" class="nav-link active fw-bold" aria-current="page">Fizička lica</a>
+          <li *ngIf="isEmployee" class="nav-item">
+            <a [routerLink]="'/legal-persons'" class="nav-link active fw-bold" aria-current="page">Pravna lica</a>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="'/legal-persons'" data-cy="orders" class="nav-link active fw-bold" aria-current="page">Pravna lica</a>
+          <li *ngIf="isEmployee" class="nav-item">
+            <a [routerLink]="'/create-new-account'" class="nav-link active fw-bold" aria-current="page">Kreiraj račun</a>
           </li>
-          <li *ngIf="isAdmin || isSupervisor" class="nav-item">
-            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">To Do</a>
+
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/accounts'" class="nav-link active fw-bold" aria-current="page">Računi</a>
           </li>
-          <li *ngIf="isSupervisor" class="nav-item">
-            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">To Do</a>
+          <li *ngIf="isClient" class="nav-item">
+            <a data-cy="orders" class="nav-link active fw-bold" aria-current="page" [matMenuTriggerFor]="menu">Plaćanja</a>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item class="menu-item" (click)="newPaymentRedirect()" >Novo plaćanje</button>
+              <button mat-menu-item class="menu-item" (click)="transferRedirect()" >Prenos</button>
+              <button mat-menu-item class="menu-item" (click)="paymentrecieversRedirect()" >Primaoci plaćanja</button>
+              <button mat-menu-item class="menu-item" (click)="paymentRecapRedirect()" >Pregled plaćanja</button>
+            </mat-menu>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="'/create-new-account'" data-cy="create-new-account" class="nav-link active fw-bold" aria-current="page">Kreiraj račun</a>
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Menjačnica</a>
+          </li>
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Kartice</a>
+          </li>
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Krediti</a>
           </li>
         </ul>
         <div class="d-flex">

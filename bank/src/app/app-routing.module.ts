@@ -13,6 +13,11 @@ import {
 import {ResetPasswordComponent} from "./components/users/reset-password/reset-password.component";
 import {ActivatePasswordComponent} from "./components/users/activate-password/activate-password.component";
 import {UserRoleEnum} from "./model/user/user-role-enum";
+import {PaymentRecieversComponent} from "./components/payments/payment-recievers/payment-recievers.component";
+import {TransferComponent} from "./components/payments/transfer/transfer.component";
+import {PaymentRecapComponent} from "./components/payments/payment-recap/payment-recap.component";
+import {NewPaymentComponent} from "./components/payments/new-payment/new-payment.component";
+
 import {HomePageComponent} from "./components/home-page/home-page.component";
 import {AccountsComponent} from "./components/accounts/accounts/accounts.component";
 import {
@@ -30,6 +35,8 @@ import {
 import {LegalPersonsComponent} from "./components/legal-persons/legal-persons.component";
 import {NaturalPersonsComponent} from "./components/natural-persons/natural-persons.component";
 import {CreateCompanyComponent} from "./components/legal-persons/create-company/create-company.component";
+import {AddAccountComponent} from "./components/users/add-account/add-account.component";
+
 
 
 const routes: Routes = [
@@ -47,19 +54,25 @@ const routes: Routes = [
     path: "users",
     component: ListUsersComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "add-user",
     component: AddUserComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
+  },
+  {
+    path: "add-account",
+    component: AddAccountComponent,
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "update-user/:userId",
     component: UpdateUserComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "my-profile",
@@ -83,36 +96,59 @@ const routes: Routes = [
     component: ResetPasswordComponent,
   },
   {
+    path: "payment-recievers",
+    component: PaymentRecieversComponent
+  },
+  {
+    path: "transfer",
+    component: TransferComponent
+  },
+  {
+    path: "payment-recap",
+    component: PaymentRecapComponent
+  },
+  {
+    path: "new-payment",
+    component: NewPaymentComponent
+  },
+  {
     path: "accounts",
     component: AccountsComponent,
   },
   {
     path: "create-new-account",
     component: CreateAccountMainComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-current-account",
     component: CreateCurrentAccountComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-foreign-currency-account",
     component: CreateForeignCurrencyAccountComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-bussiness-account",
     component: CreateBussinessAccountComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "natural-persons",
     component: NaturalPersonsComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "legal-persons",
     component: LegalPersonsComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-company",
     component: CreateCompanyComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   }
 ];
 

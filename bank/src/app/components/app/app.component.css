@@ -26,3 +26,12 @@ color: #0275d8 !important;
 .nav-link:hover{
   color: #a7cffc !important;
 }
+
+.menu-item, nav-item{
+  background: var(--si-white);
+  color: var(--si-blue) !important;
+}
+
+.menu-item:hover, nav-item{
+  color: #a7cffc !important;
+}

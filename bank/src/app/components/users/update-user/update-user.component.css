@@ -12,3 +12,8 @@ label {
 h5.error {
   color: var(--si-red);
 }
+
+.gray-select {
+  color:gray;
+}
+
