@@ -2,7 +2,7 @@ import {CurrentUserService} from "./current-user.service";
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {UserModel} from "../../model/user/user-model";
+import {BankUserModel, UserModel} from "../../model/user/user-model";
 import {catchError, Observable, throwError} from "rxjs";
 import {LogInResponse} from "../../model/user/log-in-response";
 import {LogInRequest} from "../../model/user/log-in-request";
@@ -31,18 +31,19 @@ export class UserService{
     });
   }
 
-  addUser(email: string, phone: string, jmbg: string, firstName: string, lastName: string, position: string, roles: string[])
-  : Observable<UserModel> {
+  addUser(firstName: string, lastName: string, birthDate: string, homeAddress: string, gender: string, email: string, phoneNumber: string, roles: string[])
+  : Observable<BankUserModel> {
     const userCreationData = {
       firstName: firstName,
       lastName: lastName,
+      birthDate: birthDate,
       email: email,
-      jmbg: jmbg,
-      phoneNumber: phone,
-      position: position,
+      homeAddress: homeAddress,
+      gender: gender,
+      phoneNumber: phoneNumber,
       roles: roles
     };
-    return this.httpClient.post<UserModel>(`${this.usersUrl}/create`, userCreationData, {
+    return this.httpClient.post<BankUserModel>(`${this.usersUrl}/register`, userCreationData, {
       headers: this.headers
     });
   }

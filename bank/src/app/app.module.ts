@@ -25,6 +25,7 @@ import {NgToggleModule} from "ng-toggle-button";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
 import {DatePipe} from "@angular/common";
+import { AddAccountComponent } from './components/users/add-account/add-account.component';
 
 
 export function playerFactory() {
@@ -45,7 +46,8 @@ export function playerFactory() {
     UpdateUserComponent,
     HomeComponent,
     PopupComponent,
-    ConfirmationPopupComponent
+    ConfirmationPopupComponent,
+    AddAccountComponent
   ],
   imports: [
     BrowserModule,

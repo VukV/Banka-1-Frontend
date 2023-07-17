@@ -14,3 +14,16 @@ export interface UserModel {
   active: boolean,
   dailyLimit: number
 }
+
+export interface BankUserModel {
+  //TODO change and refactor
+  id: number,
+  firstName: string,
+  lastName: string,
+  birthDate: string,
+  gender: string,
+  email: string,
+  phoneNumber: string,
+  homeAddress: boolean,
+  roles: string[],
+}

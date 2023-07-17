@@ -4,6 +4,9 @@ import {UserRoleEnum} from "../../../model/user/user-role-enum";
 import {UserService} from "../../../services/user/user.service";
 import {PopupComponent} from "../../popup/popup/popup.component";
 import {Router} from "@angular/router";
+import {formatDate} from "@angular/common";
+
+
 
 @Component({
   selector: 'app-add-user',
@@ -15,19 +18,19 @@ export class AddUserComponent implements OnInit {
   popupComponent!: PopupComponent;
 
   emailRegex = new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
-  jmbgRegex = new RegExp("^[0-9]{13}$");
   phoneRegex = new RegExp('^((\\+381)|0)6[0-9]{4,8}$');
 
-  email: string = "";
-  phone: string = "";
-  jmbg: string = "";
+
   firstName: string = "";
   lastName: string = "";
-  position: string = "";
-  allPositions: string[] = Object.values(UserPositionEnum);
+  birthDate: string = "";
+  gender: string = "";
+  email: string = "";
+  phoneNumber: string = "";
   roles: string[] = [];
-  allRoles: string[] = Object.values(UserRoleEnum);
+  homeAddress: string = "";
   error: string = "";
+
 
   constructor(private userService: UserService,
               private router: Router) { }
@@ -48,12 +51,8 @@ export class AddUserComponent implements OnInit {
       this.error = "Email nije validan!";
       return;
     }
-    if (!this.phoneRegex.test(this.phone)) {
+    if (!this.phoneRegex.test(this.phoneNumber)) {
       this.error = "Telefon nije validan!";
-      return;
-    }
-    if (!this.jmbgRegex.test(this.jmbg)) {
-      this.error = "JMBG nije validan!";
       return;
     }
     if (this.firstName == "") {
@@ -64,21 +63,37 @@ export class AddUserComponent implements OnInit {
       this.error = "Prezime mora biti uneto!";
       return;
     }
-    if (this.position == "") {
-      this.error = "Pozicija mora biti odabrana!";
+    if (this.homeAddress == "") {
+      this.error = "Adresa mora biti uneta!";
       return;
     }
-    const position = Object.keys(UserPositionEnum)[Object.values(UserPositionEnum).indexOf(this.position as UserPositionEnum)];
-    const roles = this.roles.map(role => Object.keys(UserRoleEnum)[Object.values(UserRoleEnum).indexOf(role as UserRoleEnum)]);
-    this.userService.addUser(this.email, this.phone, this.jmbg, this.firstName, this.lastName, position, roles)
+    if (this.gender == "") {
+      this.error = "Pol mora biti unet!";
+      return;
+    }
+    if (this.email == "") {
+      this.error = "Email mora biti unet!";
+      return;
+    }
+    if (this.phoneNumber == "") {
+      this.error = "Broj telefona mora biti unet!";
+      return;
+    }
+    if (this.birthDate == "") {
+      this.error = "Datum rodjenja mora biti unet!";
+      return;
+    }
+
+    const formattedDate = formatDate(this.birthDate, 'dd-MM-yyyy', 'en-US');
+    this.userService.addUser(this.firstName, this.lastName, formattedDate, this.homeAddress, this.gender, this.email, this.phoneNumber, this.roles)
       .subscribe({
-          next: () => this.router.navigate(["users"]),
+          next: () => this.router.navigate([""]),
           error: (error) => this.popupComponent.openPopup(`Registrovanje korisnika nije uspelo: ${error.error.message}`)
         }
       );
   }
 
   cancel(): void {
-    this.router.navigate(["users"]);
+    this.router.navigate([""]);
   }
 }
