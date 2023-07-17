@@ -161,7 +161,7 @@ export class UserService {
   }
 
   getUserById(ownerId: string) {
-    return this.httpClient.get<any>(`${this.bankUrl}/user/` + ownerId,
+    return this.httpClient.get<any>(`${this.usersUrl}/user/` + ownerId,
       {
         headers: this.headers
       }

@@ -12,22 +12,33 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a [routerLink]="'/'" data-cy="stock-market" class="nav-link active fw-bold" aria-current="page">To Do</a>
+            <a [routerLink]="'/home-page'" class="nav-link active fw-bold" aria-current="page">Početna</a>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="'/'" data-cy="capital" class="nav-link active fw-bold" aria-current="page">To Do</a>
+
+          <li *ngIf="isEmployee" class="nav-item">
+            <a [routerLink]="'/natural-persons'" class="nav-link active fw-bold" aria-current="page">Fizička lica</a>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="'/'" data-cy="orders" class="nav-link active fw-bold" aria-current="page">To Do</a>
+          <li *ngIf="isEmployee" class="nav-item">
+            <a [routerLink]="'/legal-persons'" class="nav-link active fw-bold" aria-current="page">Pravna lica</a>
           </li>
-          <li *ngIf="isAdmin || isSupervisor" class="nav-item">
-            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">To Do</a>
+          <li *ngIf="isEmployee" class="nav-item">
+            <a [routerLink]="'/create-new-account'" class="nav-link active fw-bold" aria-current="page">Kreiraj račun</a>
           </li>
-          <li *ngIf="isSupervisor" class="nav-item">
-            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">To Do</a>
+
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/accounts'" class="nav-link active fw-bold" aria-current="page">Računi</a>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="'/'" data-cy="companies" class="nav-link active fw-bold" aria-current="page">To Do</a>
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Plaćanja</a>
+          </li>
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Menjačnica</a>
+          </li>
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Kartice</a>
+          </li>
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Krediti</a>
           </li>
         </ul>
         <div class="d-flex">
