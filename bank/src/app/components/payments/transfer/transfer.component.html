@@ -1,0 +1,101 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Plaćanja</li>
+    </ol>
+  </nav>
+
+  <br>
+
+  <div class="row align-items-start">
+    <div class="col">
+      <h2 class="mt-3 mb-3 fw-bold">Prenos</h2>
+      <br>
+    </div>
+
+
+    <form class="rectangle form-field-wrapper" (ngSubmit)="transferApprovalPopupComponent.openPopup(dropdownSenderAccNoTitle,
+    dropdownReceiverAccNoTitle, amount, currencySymbol)">
+      <legend class="float-none w-auto px-2">Sa računa</legend>
+      <div class="custom-form">
+        <div class="amount-container">
+          <label class="fw-bold txt-color-raspolozivo left-col">RASPOLOŽIVO:</label>
+          <label class="fw-bold txt-color-stanje right-col">{{availableSenderAmount}}</label>
+        </div>
+
+        <div class="col-lg-7 justify-content-center right-box">
+          <div class="dropdown status-dropdown">
+            <button class="btn btn-secondary dropdown-toggle dropdown-width" data-cy="dropdownSenderMenuButton" type="button" id="dropdownSenderMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{this.dropdownSenderAccNoTitle ? this.dropdownSenderAccNoTitle : "Izaberite račun"}}
+            </button>
+            <div class="dropdown-width dropdown-menu" aria-labelledby="dropdownSenderMenuButton">
+                <a class="dropdown-item" *ngFor="let account of accountModel"
+                   (click)="selectedSenderAccountNum(account)">{{ account.accountNumber }}</a>
+              </div>
+          </div>
+          </div>
+      </div>
+
+      <br>
+
+      <legend class="float-none w-auto px-2">Na račun</legend>
+      <div class="custom-form-receiver-acc">
+        <div class="amount-container">
+          <label class="fw-bold txt-color-raspolozivo left-col">RASPOLOŽIVO:</label>
+          <label class="fw-bold txt-color-stanje right-col">{{availableReceiverAmount}}</label>
+        </div>
+
+        <div class="col-lg-7 justify-content-center right-box">
+          <div class="dropdown status-dropdown">
+            <button class="btn btn-secondary dropdown-toggle dropdown-width" data-cy="dropdownReceiverMenuButton" type="button" id="dropdownReceiverMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{this.dropdownReceiverAccNoTitle ? this.dropdownReceiverAccNoTitle : "Izaberite račun"}}
+            </button>
+            <div class="dropdown-width dropdown-menu" aria-labelledby="dropdownReceiverMenuButton">
+              <a class="dropdown-item" *ngFor="let account of accountModel"
+                 (click)="selectedReceiverAccountNum(account)">{{ account.accountNumber }}</a>
+            </div>
+            </div>
+          </div>
+      </div>
+
+      <br>
+
+      <legend class="float-none w-auto px-2">Iznos</legend>
+      <div class="custom-form-amount third-container">
+        <div class="amount-container left-col-amount">
+          <div class="modal-body py-3 px-4">
+            <div class="col-md-9 align-items-md-start d-flex">
+              <input class="form-control input" data-cy="amount" id="amount" name="amount" placeholder="Iznos" type="text"
+                     [(ngModel)]="amount" required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="button-container d-flex align-items-center justify-content-center">
+        <button class="btn btn-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnCreateReciever" type="submit" [disabled]="!checkIfValid()">Nastavi</button>
+        <button class="btn btn-outline-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnAbort" type="submit" (click)="homeRedirect()">Nazad</button>
+      </div>
+      <ngx-loading [show]="loading"></ngx-loading>
+      <app-transfer-approval-popup></app-transfer-approval-popup>
+      <app-popup></app-popup>
+    </form>
+  </div>
+
+  <br><br>
+</div>
+
+
+
+
+
+
+
+

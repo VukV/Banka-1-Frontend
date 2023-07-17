@@ -1,0 +1,4 @@
+export enum UserRoleEnum{
+  ROLE_EMPLOYEE = "ROLE_EMPLOYEE",
+  ROLE_CLIENT = "ROLE_CLIENT"
+}

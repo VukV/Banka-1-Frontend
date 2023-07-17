@@ -1,0 +1,110 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root{
+  --si-blue: #0275d8;
+  --si-navy: #005172;
+  --si-white: #efefef;
+  --si-black-transparent: rgba(21, 21, 21, 0.6);
+  --si-red: #d70000;
+}
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+  background-color: var(--si-white);
+  background-image: linear-gradient(0deg, #e8e8e8 60%, rgba(0, 134, 217, 0.69) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+div, p, h1, h2, h3, h4, h5, h6{
+  color: var(--si-navy);
+}
+
+.form-control:focus {
+  border-color: var(--si-blue);
+  box-shadow: 0 0 0 3px rgba(8, 73, 148, 0.75);
+}
+
+#main-nav{
+  background-color: var(--si-white);
+}
+
+.vertical-center {
+  min-height: 90%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 90vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb{
+  margin-top: 20px;
+  background-color: rgba(47,210,13,0);
+}
+
+.breadcrumb-item{
+  font-size: 20px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  color: #F1FFF9;
+}
+
+.blue-link{
+  color: #F1FFF9;
+  text-decoration: none;
+}
+
+.blue-link:hover{
+  color: var(--si-blue);
+}
+
+
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
+
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: var(--si-blue) !important;
+  border: transparent;
+  border-radius: 20px;
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: rgba(8, 85, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+:host /deep/.ngx-pagination a:hover{
+  background: rgba(8, 69, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+.pagination-div{
+  margin-top: 20px;
+}
+
+.clickable-tr:hover{
+  cursor: pointer;
+  color: var(--si-blue);
+  background: radial-gradient(circle, rgba(0, 103, 177, 0.25) 0%, rgba(0,177,39,0) 100%);
+}
+
+th{
+  background-color: rgba(2, 117, 216, 0) !important;
+}
+
+.breadcrumb-item {
+  color: #F1FFF9;
+}
+

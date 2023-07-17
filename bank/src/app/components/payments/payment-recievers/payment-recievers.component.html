@@ -1,0 +1,70 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Plaćanja</li>
+    </ol>
+  </nav>
+
+  <br>
+
+  <div class="row align-items-start">
+    <div class="col">
+      <h2 class="mt-3 mb-3 fw-bold">Primaoci plaćanja</h2>
+    </div>
+    <div class="col-md-3 d-grid width">
+      <button type="button" class="btn btn-outline-primary rounded-pill mt-3 mb-3 width" (click)="addRecieverPopUp()">Dodaj primaoca</button>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row justify-content-center users-table-row">
+    <div style="overflow: auto" class="rectangle">
+      <table class="table table-borderless table-d " id="csstable">
+        <thead>
+        <tr id="trtable">
+          <th class="header-color">#</th>
+          <th class="header-color">Naziv</th>
+          <th class="header-color">Broj računa</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+<!--        ToDo-->
+        <tr *ngFor="let receiver of receivers | paginate: { itemsPerPage: receiversPerPage, currentPage: page, totalItems: totalReceivers }">
+          <th scope="row">{{ receiver.senderId }}</th>
+          <td>{{ receiver.receiverName }}</td>
+          <td>{{ receiver.receiverAccountNumber }}</td>
+          <td>
+            <div class="d-flex">
+              <button type="button" class="action-button btn btn-outline-primary rounded-pill me-2" (click)="changeReciever(receiver)">Izmeni</button>
+              <button type="button" class="action-button btn btn-outline-primary rounded-pill" (click)="deleteReciever(receiver.id)">Obriši</button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row justify-content-center pagination-div">
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      <pagination-controls (pageChange)="pageChangeEvent($event)" nextLabel="Sledeća" previousLabel="Prethodna"></pagination-controls>
+    </div>
+  </div>
+
+  <app-add-reciever-popup></app-add-reciever-popup>
+  <app-update-reciever-popup></app-update-reciever-popup>
+  <app-popup></app-popup>
+
+</div>
+

@@ -1,0 +1,133 @@
+<div [ngStyle]="{'display':displayStyle}" class="modal" role="dialog" tabindex="-1">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content borderBlue">
+      <div class=" modal-body ">
+        <div class=" justify-content-center text-center " style="margin: 5px">
+          <div *ngIf="selectedAccount" class="col-md-12 ">
+            <h2 class=" mb-3 fw-bold">{{ selectedAccount.accountName }}</h2>
+          </div>
+        </div>
+        <div class="  justify-content-start borderBlue" style="margin: 5px">
+          <div class="col-md-12">
+            <h4 class="mt-3 mb-3 fw-bold">Detalji</h4>
+          </div>
+
+          <div class="  " style="margin: 5px">
+            <div *ngIf="selectedAccount">
+              <div class="separator"></div>
+
+              <div class=" d-flex justify-content-start ">
+                <div class=" justify-content-start" style=" margin-right: 10px">
+                  <p>NAZIV:</p>
+                </div>
+                <div class=" justify-content-end align-self-right" style="  margin-left: auto;">
+                  <p> {{ selectedAccount.accountName}}</p>
+                </div>
+              </div>
+
+              <div class="separator"></div>
+
+              <div class=" d-flex justify-content-start ">
+                <div class=" justify-content-start" style=" margin-right: 10px">
+                  <p>VLASNIK: </p>
+                </div>
+                <div class=" justify-content-end align-self-right" style="  margin-left: auto;">
+                  <p>{{ owner.firstName }} {{ owner.lastName }}</p>
+                </div>
+              </div>
+
+              <div class="separator"></div>
+
+              <div class=" d-flex justify-content-start ">
+                <div class=" justify-content-start" style=" margin-right: 10px">
+                  <p>BROJ RAČUNA:</p>
+                </div>
+                <div class=" justify-content-end align-self-right" style="  margin-left: auto;">
+                  <p>{{ selectedAccount.accountNumber}}</p>
+                </div>
+              </div>
+
+              <div class="separator"></div>
+
+              <div class=" d-flex justify-content-start ">
+                <div class=" justify-content-start" style=" margin-right: 10px">
+                  <p>RASPOLOŽIVO STANJE:</p>
+                </div>
+                <div class=" justify-content-end align-self-right" style="  margin-left: auto;">
+                  <table>
+                    <tbody>
+                    <tr *ngFor="let stanje of selectedAccount.accountBalance">
+                      <td>{{ stanje.toString() }}</td>
+                      <!--                          <td>{{ stanje.iznos }}</td>-->
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="separator"></div>
+
+              <div class=" d-flex justify-content-start ">
+                <div class=" justify-content-start" style=" margin-right: 10px">
+                  <p>STANJE RAČUNA:</p>
+                </div>
+                <div class=" justify-content-end align-self-right" style="  margin-left: auto;">
+                  <p>{{selectedAccount.accountStatus}}</p>
+                </div>
+              </div>
+
+              <div class="separator"></div>
+
+              <div class=" d-flex justify-content-start ">
+                <div class=" justify-content-start" style=" margin-right: 10px">
+                  <p>TIP:</p>
+                </div>
+                <div class=" justify-content-end align-self-right" style="  margin-left: auto;">
+                  <p>{{ selectedAccount.accountType}}</p>
+                </div>
+              </div>
+
+              <div class="separator"></div>
+
+              <div class=" d-flex justify-content-start ">
+                <div class=" justify-content-start" style=" margin-right: 10px">
+                  <p>REZERVISANA SREDSTVA:</p>
+                </div>
+                <div class=" justify-content-end align-self-right" style="  margin-left: auto;">
+                  <p>{{ selectedAccount.reservedResources }}</p>
+                </div>
+              </div>
+
+              <div class="separator"></div>
+
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="d-flex">
+          <div class="col-md-6" style="margin-right: 10px">
+            <input [(ngModel)]="newAccountName" name="newAccountName" class="col-md-12 borderBlueInput"
+                   placeholder="novi naziv">
+            <button class="btn btn-outline-primary rounded-pill col-md-12" style="margin-top: 10px"
+                    (click)="changeName()">Promena naziva računa
+            </button>
+          </div>
+          <div class="col-md-6  justify-content-end align-self-right" style="margin-left: 10px">
+            <div class="col-md-12  justify-content-end align-self-right">
+              <button class="btn btn-outline-primary rounded-pill col-md-12" (click)="newPayment()">Novo plaćanje
+              </button>
+            </div>
+            <div class="col-md-12  justify-content-end align-self-right" style="margin-top: 15px">
+              <button class="btn btn-outline-primary rounded-pill col-md-12" (click)="closePopup()">Izadji</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <app-popup></app-popup>
+  <ngx-loading [show]="loading"></ngx-loading>
+</div>
+

@@ -1,0 +1,152 @@
+:root{
+  --si-green: #00B127;
+  --si-white: #F1FFF9;
+  --si-black: #151515;
+  --si-black-transparent: rgba(21, 21, 21, 0.6);
+  --si-red: #d70000;
+}
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+  background-color: var(--si-black);
+  background-image: linear-gradient(0deg, #151515 65%, rgba(0, 177, 39, 0.4) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+div, p, h1, h2, h3, h4, h5, h6{
+  color: var(--si-white);
+}
+
+.form-control:focus {
+  border-color: var(--si-green);
+  box-shadow: 0 0 0 3px rgba(11, 148, 8, 0.75);
+}
+
+#main-nav{
+  background-color: var(--si-black);
+}
+
+.btn-green{
+  background-color: var(--si-green);
+  color: #fff;
+}
+
+.btn-green:hover{
+  color: #fff;
+  background-color: #007e20;
+}
+
+.btn-outline{
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--si-green);
+  border-color: var(--si-green);
+}
+
+.btn-outline:hover{
+  color: #fff;
+  background-color: var(--si-green);
+}
+
+.vertical-center {
+  min-height: 90%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 90vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb{
+  margin-top: 20px;
+  background-color: rgba(47,210,13,0);
+}
+
+.breadcrumb-item{
+  font-size: 20px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  color: #F1FFF9;
+}
+
+.blue-link{
+  color: #F1FFF9;
+  text-decoration: none;
+}
+
+.blue-link:hover{
+  color: var(--si-green);
+}
+
+.btn-outline-primary{
+  border-color: var(--si-green);
+  color: var(--si-green);
+}
+
+.btn-outline.active{
+  background-color: var(--si-green);
+  border-color: #007e20;
+}
+
+.btn-green-noborder{
+  color: var(--si-green);
+}
+.btn-green-noborder:hover{
+  border-color: #007e20;
+  color: var(--si-green);
+}
+
+label.btn.btn-outline-toggle:hover{
+  color: var(--si-green);
+}
+
+.btn-outline-toggle{
+  color: var(--si-white);
+}
+
+.btn-check:checked + label{
+  color: var(--si-green) !important;
+  border-color: var(--si-green) !important;
+}
+
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
+
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: var(--si-green) !important;
+  border: transparent;
+  border-radius: 20px;
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: rgba(11, 148, 8, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+:host /deep/.ngx-pagination a:hover{
+  background: rgba(11, 148, 8, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+.pagination-div{
+  margin-top: 20px;
+}
+
+.clickable-tr:hover{
+  cursor: pointer;
+  color: var(--si-green);
+  background: radial-gradient(circle, rgba(0, 177, 39, 0.25) 0%, rgba(0,177,39,0) 100%);
+}
+
+th{
+  background-color: rgba(2, 117, 216, 0) !important;
+  color: var(--si-white) !important;
+}

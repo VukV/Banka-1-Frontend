@@ -1,0 +1,201 @@
+.row {
+  margin: 5px;
+}
+
+.header-color{
+  color: var(--si-blue) !important;
+}
+
+.rectangle{
+  box-sizing: border-box;
+  position: relative;
+  padding: 20px;
+  border: 1px solid var(--si-navy);
+  border-radius: 60px;
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+
+th {
+  text-align: left;
+  width: 25% ;
+}
+
+.br-height{
+  display: block;
+  height: 0;
+}
+
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
+
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: var(--si-blue) !important;
+  border: transparent;
+  border-radius: 20px;
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: rgba(8, 85, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+:host /deep/.ngx-pagination a:hover{
+  background: rgba(8, 106, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+.width{
+  width: 220px !important;
+}
+
+.form-field-wrapper{
+  padding: 20px;
+}
+
+.selection-width {
+  width: 220px;
+}
+
+.input{
+  width: 250px;
+  alignment: left;
+}
+
+.modal-body {
+  padding-bottom: 5px !important;
+}
+
+.modal-body input {
+  border: 1px solid var(--si-blue);
+  width: 300px;
+}
+.validator {
+  padding-top: 25px;
+  padding-left: 30px;
+}
+
+.modal-content {
+  border-radius: 60px;
+  border: 1px solid var(--si-blue);
+}
+
+.button-container{
+  flex-direction: column;
+  padding-top: 5px;
+  padding-bottom: 50px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-bottom: 5px;
+  width: 1100px;
+  height: 350px;
+  margin-right: 0px !important;
+  margin-left: 90px;
+}
+
+.start-col {
+  order: 1;
+  width: 400px;
+  height: 400px;
+}
+
+.end-col {
+  order: 2;
+  width: 400px;
+  height: 400px;
+  padding-right: 48px;
+  text-align: right
+}
+
+.label-heading{
+  padding-left: 24px;
+  color: var(--si-navy);
+  font-weight: bold;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+input, select {
+  padding: 5px;
+}
+
+
+.text-color{
+  color: var(--si-blue);
+}
+
+.status-dropdown button {
+  border: 1px solid var(--si-blue) !important;
+  background: none !important;
+  width: 220px;
+  border-radius: 10px;
+  color: var(--si-blue);
+}
+
+.status-dropdown {
+  width: 220px !important;
+}
+
+.validator-width{
+  width: 220px;
+}
+
+.ili {
+  margin: 5px;
+  color: black;
+}
+#dropdownMenuButton {
+  width: 100px;
+}
+
+.wide-input{
+  width: 329px !important;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+.values {
+  color: black !important;
+  font-weight: bold;
+  margin-left: 25px;
+  font-size: 22px;
+  min-height: 27px;
+}
+
+.line {
+  display: block;
+  border-bottom: 1px solid var(--si-blue);
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.line-left {
+  margin-left: 24px;
+}
+
+.line-right {
+  width: 352px;
+}

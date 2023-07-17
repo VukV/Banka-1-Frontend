@@ -1,0 +1,102 @@
+<div *ngIf="senderAccountNumber != ''; else noAccount" class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Plaćanja</li>
+    </ol>
+  </nav>
+
+  <div class="col">
+    <h2 class="mt-3 mb-3 fw-bold">Novo plaćanje</h2>
+    <br>
+  </div>
+
+  <form class="rectangle form-field-wrapper" (ngSubmit)="createPayment(receiverName, senderAccountNumber, receiverAccountNumber, amount, referenceNumber, paymentNumber, paymentPurpose)" [formGroup]="createNewPayment">
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <h3>Broj računa:</h3>
+      </div>
+      <div class="col-md-4">
+        <h3>Raspoloživo:</h3>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <label>{{ senderAccountNumber }}</label>
+      </div>
+      <div class="col-md-4">
+        <label>{{ availableAmount }} RSD</label>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <div class="col-md-9 align-items-md-start d-flex">
+          <input class="form-control input" data-cy="name" id="name" name="name" placeholder="Unesi naziv primaoca" type="text"
+                 [formControlName]="'receiverName'" [(ngModel)]="receiverName" required>
+          <label class="text-color ili">ili</label>
+
+          <div class="dropdown status-dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{this.choose ? this.choose : "Odaberi"}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" *ngFor="let receiver of receivers"
+                 (click)="selectedReceiver(receiver)">{{receiver.receiverName}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <input class="wide-input form-control input" data-cy="referenceNumber" id="referenceNumber" name="referenceNumber" placeholder="Poziv na broj" type="text"
+               [formControlName]="'referenceNumber'" [(ngModel)]="referenceNumber" required>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <input class="form-control input wide-input" data-cy="accountNumberAccount" id="accountNumber" name="accountNumber" placeholder="Broj računa" type="text"
+               [formControlName]="'receiverAccountNumber'" [(ngModel)]="receiverAccountNumber" required>
+      </div>
+      <div class="col-md-4">
+        <input class="wide-input form-control input" data-cy="paymentNumber" id="paymentNumber" name="paymentNumber" placeholder="Model" type="text"
+               [formControlName]="'paymentNumber'" [(ngModel)]="paymentNumber" required>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <input class="wide-input form-control input" data-cy="amount" id="amount" name="amount" placeholder="Iznos" type="text"
+               [formControlName]="'amount'" [(ngModel)]="amount" required>
+      </div>
+      <div class="col-md-4">
+        <input class="wide-input form-control input" data-cy="paymentPurpose" id="paymentPurpose" name="paymentPurpose" placeholder="Svrha uplate" type="text"
+               [formControlName]="'paymentPurpose'" [(ngModel)]="paymentPurpose" required>
+      </div>
+    </div>
+
+    <div class="button-container d-flex align-items-center justify-content-center">
+      <div class="validator">
+              <span class=" col-md-9 align-items-md-start d-flex validator-width" *ngIf="createNewPayment.get('id')?.errors || createNewPayment.get('receiverAccountNumber')?.errors
+                  || createNewPayment.get('receiverName')?.errors || createNewPayment.get('amount')?.errors
+                  || createNewPayment.get('referenceNumber')?.errors || createNewPayment.get('paymentNumber')?.errors
+                  || createNewPayment.get('paymentPurpose')?.errors">Sva polja su obavezna.</span>
+      </div>
+      <button class="btn btn-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnCreateReciever" type="submit" [disabled]="createNewPayment.invalid">Nastavi</button>
+      <button class="btn btn-outline-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnAbort" (click)="homePageRedirect()"type="submit">Nazad</button>
+    </div>
+  </form>
+
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
+</div>
+
+
+<ng-template #noAccount>
+  <div class="container">
+    <br><br>
+    <h3>Nemate otvoren račun.</h3>
+  </div>
+</ng-template>
+

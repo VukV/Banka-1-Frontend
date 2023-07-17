@@ -1,0 +1,6 @@
+services:
+  si-banka-1-frontend:
+    image: harbor.k8s.elab.rs/banka-1/frontend:latest
+    build: ..
+    ports:
+      - 4200:81

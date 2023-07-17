@@ -1,0 +1,183 @@
+.custom-form {
+  border: 1px solid var(--si-navy);
+  border-radius: 30px;
+  position: relative;
+  padding: 30px;
+}
+
+.custom-form-receiver-acc{
+  border: 1px solid var(--si-navy);
+  border-radius: 30px;
+  position: relative;
+  padding: 30px;
+}
+
+.custom-form-amount{
+  border: 1px solid var(--si-navy);
+  border-radius: 30px;
+  position: relative;
+  padding: 30px;
+}
+
+.form-field-wrapper{
+  padding: 20px;
+}
+
+.selection-width {
+  width: 220px;
+}
+
+.dugme{
+  border-radius: 50%;
+  border: 1px solid var(--si-navy);
+  background: transparent;
+  color: var(--si-navy);
+  padding: 8px;
+  height: 30px;
+  width: 30px;
+  line-height: 8px;
+}
+
+.input{
+  width: 250px;
+  alignment: left;
+}
+
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
+
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: var(--si-blue) !important;
+  border: transparent;
+  border-radius: 20px;
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: rgba(8, 85, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+:host /deep/.ngx-pagination a:hover{
+  background: rgba(8, 106, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+.modal-title{
+  margin: 0 auto;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--si-navy);
+  margin-bottom: 40px;
+}
+
+.modal-body {
+  padding-bottom: 5px !important;
+}
+
+.modal-body input {
+  border: 1px solid var(--si-blue);
+  width: 300px;
+}
+.validator {
+  padding-top: 25px;
+  padding-left: 30px;
+}
+
+.modal-content {
+  border-radius: 60px;
+  border: 1px solid var(--si-blue);
+}
+
+.button-container{
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modal-header h3 {
+  color: var(--si-navy) !important;
+}
+
+.txt-color-raspolozivo{
+  color: var(--si-blue);
+  padding-bottom: 10px;
+}
+
+.txt-color-stanje{
+  color: black;
+  padding-bottom: 10px;
+
+}
+
+.amount-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-col{
+  order: 1;
+}
+
+.right-col{
+  order: 2;
+  margin-right: 600px;
+}
+
+.rectangle{
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 70px;
+  padding-left: 170px;
+  padding-right: 170px;
+  border: 1px solid var(--si-navy);
+  border-radius: 60px;
+}
+
+.text-color{
+  color: var(--si-blue);
+}
+
+.status-dropdown button {
+  border: 1px solid var(--si-blue) !important;
+  background: none !important;
+  width: 220px;
+  border-radius: 10px;
+  color: var(--si-blue);
+}
+
+.status-dropdown {
+  width: 220px !important;
+}
+
+.modal-body {
+  margin-left: -24px;
+}
+
+.dropdown-width{
+  width:330px !important;
+}
+
+.currency-dropdown-width{
+  width: 100px !important;
+}
+
+.third-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-col-amount{
+  order: 1;
+  margin-top: -5px;
+  margin-right: 480px;
+}
+
+.right-col-currency{
+  order: 2;
+  margin-top: 11px;
+  width: 100px !important;
+}
