@@ -95,6 +95,10 @@ export class HomePageComponent {
   }
 
   calculate(): void {
+    if(this.amount1 <= 0){
+      return;
+    }
+
     console.log('Performing calculation...');
     this.currencyService.convertMoney(this.amount1, this.currency1, this.currency2)
       .subscribe({

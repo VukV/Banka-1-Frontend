@@ -112,9 +112,9 @@ export function playerFactory() {
     NgToggleModule.forRoot(),
     NgxLoadingModule.forRoot({
       backdropBorderRadius: '3px',
-      primaryColour: '#00B127',
-      secondaryColour: '#00B127',
-      tertiaryColour: '#00B127',
+      primaryColour: '#0275d8',
+      secondaryColour: '#0275d8',
+      tertiaryColour: '#0275d8',
       animationType: ngxLoadingAnimationTypes.wanderingCubes
     }),
     LottieModule.forRoot({player: playerFactory}),

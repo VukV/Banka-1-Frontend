@@ -103,7 +103,7 @@ const routes: Routes = [
     path: "transfer",
     component: TransferComponent
   },
-  { 
+  {
     path: "payment-recap",
     component: PaymentRecapComponent
   },
@@ -118,30 +118,37 @@ const routes: Routes = [
   {
     path: "create-new-account",
     component: CreateAccountMainComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-current-account",
     component: CreateCurrentAccountComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-foreign-currency-account",
     component: CreateForeignCurrencyAccountComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-bussiness-account",
     component: CreateBussinessAccountComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "natural-persons",
     component: NaturalPersonsComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "legal-persons",
     component: LegalPersonsComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-company",
     component: CreateCompanyComponent,
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   }
 ];
 
