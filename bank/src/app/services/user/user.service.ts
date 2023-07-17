@@ -14,9 +14,9 @@ import {UserPositionEnum} from "../../model/user/user-position-enum";
 })
 export class UserService{
 
-  private loginUrl = environment.usersUrl + "/login"
-  private forgotPasswordUrl = environment.usersUrl + "/forgot-password"
-  private usersUrl = environment.usersUrl;
+  private loginUrl = environment.bankUrl + "/login"
+  private forgotPasswordUrl = environment.bankUrl + "/forgot-password"
+  private usersUrl = environment.bankUrl;
   private headers = new HttpHeaders({
     'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
   });

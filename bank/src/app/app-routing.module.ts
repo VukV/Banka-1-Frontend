@@ -26,25 +26,25 @@ const routes: Routes = [
     path: "users",
     component: ListUsersComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "add-user",
     component: AddUserComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "add-account",
     component: AddAccountComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "update-user/:userId",
     component: UpdateUserComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "my-profile",
