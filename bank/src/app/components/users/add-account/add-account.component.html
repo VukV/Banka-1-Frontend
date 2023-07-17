@@ -1,0 +1,120 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold"><a class="blue-link" href="/users">Nalozi</a></li>
+      <li class="breadcrumb-item fw-bold" aria-current="page">Kreiraj novi nalog</li>
+    </ol>
+  </nav>
+
+
+  <div class="d-flex flex-column vertical-center justify-content-center align-items-center ">
+
+    <div class="col-sm-6 align-items-center justify-content-center " >
+      <div class="row-sm-8 justify-content-start">
+        <h2 class="fw-bold">Kreiraj novi nalog</h2>
+      </div>
+      <br>
+
+      <form id="formaBorder" style="border: 2px; border-style: solid; border-color:var(--si-blue)">
+
+          <div class="row justify-content-center">
+            <p *ngIf="step === 1" class="fw-bold col-md-8 mb-5 align-items-center" style="color: var(--si-blue)">1. OSNOVNI PODACI</p>
+          </div>
+          <div class="row justify-content-center">
+            <p *ngIf="step === 2" class="fw-bold col-md-8 mb-5 align-items-center" style="color: var(--si-blue)">2. UNOS AKTIVACIONOG KODA</p>
+          </div>
+          <div class="row justify-content-center">
+            <p *ngIf="step === 3" class="fw-bold col-md-8 mb-5 align-items-center" style="color: var(--si-blue)">3. KREIRANJE LOZINKE</p>
+          </div>
+
+
+          <div *ngIf="step === 1" class="row justify-content-center">
+            <div class="col-md-8 mb-5 align-items-center">
+              <div class="form-group align-items-center">
+                <input placeholder="Broj računa" type="text" class="form-control" id="accountNumber"  name="accountNumber" [(ngModel)]="accountNumber" >
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="step === 1" class="row justify-content-center">
+            <div class="col-md-8 mb-5 align-items-center">
+              <div class="form-group align-items-center">
+                <input placeholder="Broj mobilnog telefona" type="text" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="phoneNumber">
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="step === 1" class="row justify-content-center">
+            <div class="col-md-8  mb-5  align-items-center">
+              <div class="form-group">
+                <input placeholder="E-mail" type="text" class="form-control" id="email" name="email" [(ngModel)]="email">
+              </div>
+            </div>
+          </div>
+
+        <div *ngIf="step === 2" class="row justify-content-center">
+          <div class="col-md-8  mb-5  align-items-center">
+            <div class="form-group">
+              <input placeholder="Aktivacioni kod" type="text" class="form-control" id="activityCode" name="activityCode" [(ngModel)]="activityCode">
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="step === 3" class="row justify-content-center">
+          <div class="col-md-8  mb-5  align-items-center">
+            <div class="form-group">
+              <input placeholder="Lozinka" type="text" class="form-control" id="passwordFieldOne" name="passwordFieldOne" [(ngModel)]="passwordFieldOne">
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="step === 3" class="row justify-content-center">
+          <div class="col-md-8  mb-5  align-items-center">
+            <div class="form-group">
+              <input placeholder="Ponovi lozinku" type="text" class="form-control" id="passwordFieldTwo" name="passwordFieldTwo" [(ngModel)]="passwordFieldTwo">
+            </div>
+          </div>
+        </div>
+
+          <div class="row justify-content-center">
+            <div class="col-md-6 text-center align-items-center">
+              <div *ngIf="errorMessage != ''">
+                <label style="color: red"> {{ errorMessage }} </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mt-3">
+            <div class="col-md-6 d-grid align-items-center">
+              <button *ngIf="step < 3" type="button" class="btn btn-primary rounded-pill btn-block" (click)="nextStep()">Dalje</button>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mt-3">
+            <div class="col-md-6 d-grid align-items-center">
+              <button *ngIf="step === 3" type="button" id="submit" class="btn btn-primary rounded-pill btn-block" (click)="onCreateAccountForm()">Kreiraj nalog</button>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mt-3">
+            <div class="col-md-6 d-grid align-items-center">
+              <button type="button" id="cancel" class="btn btn-outline-primary rounded-pill" (click)="cancel()">
+                Nazad
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+        <app-popup></app-popup>
+
+    </div>
+  </div>
+</div>
+

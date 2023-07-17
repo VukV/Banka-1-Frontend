@@ -24,6 +24,7 @@ import { ConfirmationPopupComponent } from './components/popup/confirmation-popu
 import {NgToggleModule} from "ng-toggle-button";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
+
 import {DatePipe, NgForOf, NgSwitchCase} from "@angular/common";
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AccountsComponent } from './components/accounts/accounts/accounts.component';
@@ -35,6 +36,8 @@ import { CreateForeignCurrencyAccountComponent } from './components/accounts/cre
 import { NaturalPersonsComponent } from './components/natural-persons/natural-persons.component';
 import { LegalPersonsComponent } from './components/legal-persons/legal-persons.component';
 import { CreateCompanyComponent } from './components/legal-persons/create-company/create-company.component';
+import { AddAccountComponent } from './components/users/add-account/add-account.component';
+
 
 
 export function playerFactory() {
@@ -65,7 +68,9 @@ export function playerFactory() {
     CreateForeignCurrencyAccountComponent,
     NaturalPersonsComponent,
     LegalPersonsComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    AddAccountComponent
+
   ],
   imports: [
     BrowserModule,

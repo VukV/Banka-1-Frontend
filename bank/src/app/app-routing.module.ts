@@ -13,6 +13,7 @@ import {
 import {ResetPasswordComponent} from "./components/users/reset-password/reset-password.component";
 import {ActivatePasswordComponent} from "./components/users/activate-password/activate-password.component";
 import {UserRoleEnum} from "./model/user/user-role-enum";
+
 import {HomePageComponent} from "./components/home-page/home-page.component";
 import {AccountsComponent} from "./components/accounts/accounts/accounts.component";
 import {
@@ -30,6 +31,8 @@ import {
 import {LegalPersonsComponent} from "./components/legal-persons/legal-persons.component";
 import {NaturalPersonsComponent} from "./components/natural-persons/natural-persons.component";
 import {CreateCompanyComponent} from "./components/legal-persons/create-company/create-company.component";
+import {AddAccountComponent} from "./components/users/add-account/add-account.component";
+
 
 
 const routes: Routes = [
@@ -47,19 +50,25 @@ const routes: Routes = [
     path: "users",
     component: ListUsersComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "add-user",
     component: AddUserComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
+  },
+  {
+    path: "add-account",
+    component: AddAccountComponent,
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "update-user/:userId",
     component: UpdateUserComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "my-profile",
