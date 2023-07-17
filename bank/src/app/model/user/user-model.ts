@@ -25,5 +25,5 @@ export interface BankUserModel {
   email: string,
   phoneNumber: string,
   homeAddress: boolean,
-  roles: UserRoleEnum[],
+  roles: string[],
 }

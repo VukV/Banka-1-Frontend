@@ -27,7 +27,7 @@
           <input type="text" [(ngModel)]="lastName" class="form-control" id="lastName" name="lastName" placeholder="Prezime">
         </div>
         <div class="mb-3">
-          <input type="date" [(ngModel)]="birthDate" class="form-control" id="birthDate" name="birthDate" placeholder="Datum rodjenja">
+          <input type="text" [(ngModel)]="birthDate" class="form-control" id="birthDate" name="birthDate" placeholder="Datum rodjenja">
         </div>
         <div class="mb-3">
           <input type="text" [(ngModel)]="homeAddress" class="form-control" id="homeAddress" name="homeAddress" placeholder="Adresa">
@@ -39,8 +39,9 @@
         <div class="mb-3">
           <select class="form-control gray-select" id="gender" name="gender" [(ngModel)]="gender">
             <option value="" disabled hidden>Odaberite pol</option>
-            <option value="ženski">Ženski</option>
-            <option value="muški">Muški</option>
+            <option value="FEMALE">Ženski</option>
+            <option value="MALE">Muški</option>
+            <option value="NON_BINARY">Nebinarna</option>
           </select>
         </div>
         <div class="mb-3">

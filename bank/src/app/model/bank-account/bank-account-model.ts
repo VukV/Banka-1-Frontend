@@ -7,4 +7,5 @@ export interface BankAccountModel {
   activityCode: string,
   password: string,
 
+
 }

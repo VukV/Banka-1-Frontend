@@ -4,6 +4,9 @@ import {UserRoleEnum} from "../../../model/user/user-role-enum";
 import {UserService} from "../../../services/user/user.service";
 import {PopupComponent} from "../../popup/popup/popup.component";
 import {Router} from "@angular/router";
+import {formatDate} from "@angular/common";
+
+
 
 @Component({
   selector: 'app-add-user',
@@ -24,7 +27,7 @@ export class AddUserComponent implements OnInit {
   gender: string = "";
   email: string = "";
   phoneNumber: string = "";
-  roles: string[] = Object.values(UserRoleEnum);
+  roles: string[] = [];
   homeAddress: string = "";
   error: string = "";
 
@@ -60,10 +63,6 @@ export class AddUserComponent implements OnInit {
       this.error = "Prezime mora biti uneto!";
       return;
     }
-    if (this.birthDate == "") {
-      this.error = "Datum rodjenja mora biti uneto!";
-      return;
-    }
     if (this.homeAddress == "") {
       this.error = "Adresa mora biti uneta!";
       return;
@@ -80,15 +79,21 @@ export class AddUserComponent implements OnInit {
       this.error = "Broj telefona mora biti unet!";
       return;
     }
-    this.userService.addUser(this.firstName, this.lastName, this.birthDate, this.homeAddress, this.gender, this.email, this.phoneNumber)
+    if (this.birthDate == "") {
+      this.error = "Datum rodjenja mora biti unet!";
+      return;
+    }
+
+    const formattedDate = formatDate(this.birthDate, 'dd-MM-yyyy', 'en-US');
+    this.userService.addUser(this.firstName, this.lastName, formattedDate, this.homeAddress, this.gender, this.email, this.phoneNumber, this.roles)
       .subscribe({
-          next: () => this.router.navigate(["users"]),
+          next: () => this.router.navigate([""]),
           error: (error) => this.popupComponent.openPopup(`Registrovanje korisnika nije uspelo: ${error.error.message}`)
         }
       );
   }
 
   cancel(): void {
-    this.router.navigate(["users"]);
+    this.router.navigate([""]);
   }
 }
