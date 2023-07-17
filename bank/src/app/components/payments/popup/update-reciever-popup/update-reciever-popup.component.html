@@ -1,0 +1,69 @@
+<div [ngStyle]="{'display':displayStyle}" class="modal" role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content ">
+
+      <div class="modal-header py-4 px-4">
+        <h3 class="modal-title align-items-center justify-content-center"><b>Izmeni primaoca</b></h3>
+        <button type="button" class="dugme" data-bs-dismiss="modal" aria-label="Close" (click)="closePopup()">x</button>
+      </div>
+
+      <form class="form-field-wrapper" (ngSubmit)="updateReceiver(id, receiverName, receiverAccountNumber, referenceNumber, paymentNumber, paymentPurpose)" [formGroup]="updateReceiverGroup">
+        <div class="custom-form">
+
+          <div class="modal-body py-3 px-4">
+            <div class="col-md-9 align-items-md-start d-flex">
+              <input class="form-control input" data-cy="receiverName" id="receiverName" name="receiverName" placeholder="Ime primaoca" type="text"
+                     [formControlName]="'receiverName'" [(ngModel)]="receiverName" required>
+            </div>
+          </div>
+
+          <div class="modal-body py-3 px-4">
+            <div class="col-md-9 align-items-md-start d-flex">
+              <input class="form-control input" data-cy="receiverAccountNumber" id="receiverAccountNumber" name="receiverAccountNumber" placeholder="Broj računa" type="text"
+                     [formControlName]="'receiverAccountNumber'" [(ngModel)]="receiverAccountNumber" required>
+            </div>
+          </div>
+
+          <div class="modal-body py-3 px-4">
+            <div class="col-md-9 align-items-md-start d-flex">
+              <input class="form-control input" data-cy="referenceNumber" id="referenceNumber" name="referenceNumber" placeholder="Poziv na broj" type="text"
+                     [formControlName]="'referenceNumber'" [(ngModel)]="referenceNumber" required>
+            </div>
+          </div>
+
+
+          <div class="modal-body py-3 px-4">
+            <div class="col-md-9 align-items-md-start d-flex">
+              <input class="form-control input" data-cy="paymentNumber" id="paymentNumber" name="paymentNumber" placeholder="Model" type="text"
+                     [formControlName]="'paymentNumber'" [(ngModel)]="paymentNumber" required>
+            </div>
+          </div>
+
+
+          <div class="modal-body py-3 px-4">
+            <div class="col-md-9 align-items-md-start d-flex">
+              <input class="form-control input" data-cy="paymentPurpose" id="paymentPurpose" name="paymentPurpose" placeholder="Svrha uplate" type="text"
+                     [formControlName]="'paymentPurpose'" [(ngModel)]="paymentPurpose" required>
+            </div>
+          </div>
+
+          <div class="validator">
+              <span class=" col-md-9 align-items-md-start d-flex" *ngIf="updateReceiverGroup.get('id')?.errors || updateReceiverGroup.get('receiverAccountNumber')?.errors
+                  || updateReceiverGroup.get('receiverName')?.errors || updateReceiverGroup.get('referenceNumber')?.errors
+                  || updateReceiverGroup.get('paymentNumber')?.errors || updateReceiverGroup.get('paymentPurpose')?.errors">
+                Sva polja su obavezna.</span>
+          </div>
+        </div>
+
+        <div class="button-container d-flex align-items-center justify-content-center">
+          <button class="btn btn-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnCreateReciever" type="submit" [disabled]="updateReceiverGroup.invalid">Izmeni</button>
+          <button class="btn btn-outline-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnAbort" type="submit" (click)="closePopup()">Odustani</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
+</div>
+

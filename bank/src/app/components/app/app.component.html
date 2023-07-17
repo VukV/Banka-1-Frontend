@@ -29,7 +29,13 @@
             <a [routerLink]="'/accounts'" class="nav-link active fw-bold" aria-current="page">Računi</a>
           </li>
           <li *ngIf="isClient" class="nav-item">
-            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Plaćanja</a>
+            <a data-cy="orders" class="nav-link active fw-bold" aria-current="page" [matMenuTriggerFor]="menu">Plaćanja</a>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item class="menu-item" (click)="newPaymentRedirect()" >Novo plaćanje</button>
+              <button mat-menu-item class="menu-item" (click)="transferRedirect()" >Prenos</button>
+              <button mat-menu-item class="menu-item" (click)="paymentrecieversRedirect()" >Primaoci plaćanja</button>
+              <button mat-menu-item class="menu-item" (click)="paymentRecapRedirect()" >Pregled plaćanja</button>
+            </mat-menu>
           </li>
           <li *ngIf="isClient" class="nav-item">
             <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Menjačnica</a>

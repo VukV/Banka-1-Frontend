@@ -1,3 +1,8 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 :root{
   --si-blue: #0275d8;
   --si-navy: #005172;
@@ -102,3 +107,4 @@ th{
 .breadcrumb-item {
   color: #F1FFF9;
 }
+

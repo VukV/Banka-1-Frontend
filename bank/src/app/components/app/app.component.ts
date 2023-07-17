@@ -1,7 +1,10 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {CurrentUserService} from "../../services/user/current-user.service";
 import {UserRoleEnum} from "../../model/user/user-role-enum";
+import {MatMenu, MatMenuTrigger} from "@angular/material/menu";
+
+
 
 @Component({
   selector: 'app-root',
@@ -17,6 +20,8 @@ export class AppComponent implements OnInit{
 
   isEmployee: boolean = false;
   isClient: boolean = false;
+
+  @ViewChild('menu') menu!: MatMenuTrigger;
 
   constructor(private router: Router, private currentUserService: CurrentUserService) {
   }
@@ -47,5 +52,29 @@ export class AppComponent implements OnInit{
 
   goToMyProfile(){
     this.router.navigate(['/my-profile']);
+  }
+
+  openMenu(){
+    if (this.menu && this.menu.menuOpen) {
+      this.menu.closeMenu();
+    } else if (this.menu) {
+      this.menu.openMenu();
+    }
+  }
+
+  newPaymentRedirect(){
+    this.router.navigate(['/new-payment']);
+  }
+
+  transferRedirect(){
+    this.router.navigate(['/transfer']);
+  }
+
+  paymentrecieversRedirect(){
+    this.router.navigate(['/payment-recievers']);
+  }
+
+  paymentRecapRedirect(){
+    this.router.navigate(['/payment-recap']);
   }
 }

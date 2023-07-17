@@ -1,0 +1,41 @@
+<div data-cy="domestic-payments-page">
+
+<div *ngIf="!loading" class="row justify-content-center forex-table-header">
+  <div style="overflow: auto" class="rectangle">
+    <table class="table table-borderless table-d table-position"
+           id="domestic-payments-table" data-cy="domestic-payments-table">
+      <thead>
+      <tr class="color table-position" id="trTable">
+        <th class="header-color">#</th>
+        <th class="header-color">Primalac</th>
+        <th class="header-color">Datum</th>
+        <th class="header-color">Status</th>
+        <th class="header-color">Iznos</th>
+      </tr>
+
+      <tr *ngFor="let payment of this.domesticPayments | paginate:
+      { itemsPerPage: domesticPaymentsPerPage, currentPage: page, totalItems: totalDomesticPayments }"
+          (click)="paymentDetailsPopup(this.payment)" data-cy="clickTr" class="clickable-tr">
+        <td>{{ payment.id }}</td>
+        <td>{{ payment.recieverName }}</td>
+        <td>{{ payment.paymentTime }}</td>
+        <td>{{ status }}</td>
+        <td>{{ payment.amount }}</td>
+      </tr>
+      </thead>
+      <tbody>
+    </table>
+  </div>
+
+  <div class="row justify-content-center pagination-div">
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      <pagination-controls (pageChange)="pageChangeEvent($event)" nextLabel="Sledeća" previousLabel="Prethodna"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>
+<app-domestic-payment-details-popup></app-domestic-payment-details-popup>
+<app-popup></app-popup>
+
+</div>

@@ -1,0 +1,49 @@
+.header-color{
+  color: var(--si-blue) !important;
+}
+
+.rectangle{
+  box-sizing: border-box;
+  position: relative;
+  padding: 20px;
+  border: 1px solid var(--si-navy);
+  border-radius: 60px;
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+
+th {
+  text-align: left;
+  width: 25% ;
+}
+
+.br-height{
+  display: block;
+  height: 0;
+}
+
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
+
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: var(--si-blue) !important;
+  border: transparent;
+  border-radius: 20px;
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: rgba(8, 85, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}
+
+:host /deep/.ngx-pagination a:hover{
+  background: rgba(8, 106, 148, 0.75) !important;
+  border-radius: 20px;
+  border: transparent;
+}

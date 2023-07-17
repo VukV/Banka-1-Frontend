@@ -1,0 +1,44 @@
+<div data-cy="exchange-page">
+
+  <div *ngIf="!loading" class="row justify-content-center forex-table-header">
+    <div style="overflow: auto" class="rectangle">
+      <table class="table table-borderless table-d table-position"
+             id="exchange-table" data-cy="exchange-table">
+        <thead>
+        <tr class="color table-position" id="trTable">
+          <th class="header-color">#</th>
+          <th class="header-color">Sa računa</th>
+          <th class="header-color">Na račun</th>
+          <th class="header-color">Datum</th>
+          <th class="header-color">Konverzija</th>
+          <th class="header-color">Iznos</th>
+        </tr>
+
+        <tr *ngFor="let exchange of this.exchangeList | paginate:
+        { itemsPerPage: exchangesPerPage, currentPage: page, totalItems: totalExchanges }"
+            (click)="exchangeDetailsPopup(this.exchange)" data-cy="clickTr" class="clickable-tr">
+          <td>{{ exchange.id }}</td>
+          <td>{{ exchange.senderAccountNumber }}</td>
+          <td>{{ exchange.receiverAccountNumber }}</td>
+          <td>{{ exchange.conversionTime }}</td>
+          <td>{{ exchange.exchangePairSymbol }}</td>
+          <td>{{ exchange.convertedAmount }}</td>
+        </tr>
+        </thead>
+        <tbody>
+      </table>
+    </div>
+
+    <div class="row justify-content-center pagination-div">
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <pagination-controls (pageChange)="pageChangeEvent($event)" nextLabel="Sledeća" previousLabel="Prethodna"></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-exchange-details-popup></app-exchange-details-popup>
+  <app-popup></app-popup>
+
+</div>
+
