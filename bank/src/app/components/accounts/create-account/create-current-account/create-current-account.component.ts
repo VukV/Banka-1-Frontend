@@ -65,7 +65,7 @@ export class CreateCurrentAccountComponent {
 
       this.accountService.createCurrentAccount(this.selectedNaturalPerson.id, this.nameAccount, this.currentUserId, this.selectedAccountType,
         this.interestRate, this.maintenanceCost).subscribe({
-        next: () => this.router.navigate(["accounts"]),
+        next: () => this.router.navigate(["create-new-account"]),
         error: (err) => console.log(err)
       })
     } else {

@@ -22,7 +22,7 @@
   <br>
 
   <div class="row">
-    <div class="col-lg-5 justify-content-center">
+    <div class="col-lg-9 justify-content-center">
       <div class="btn-group container" role="group" aria-label="Toggle buttons container">
         <div class="col-md-1">
           <input checked (click)="setReviewType('payments')" data-cy="payments" type="radio" class="btn-check" name="options" id="option1">
@@ -39,25 +39,16 @@
     </div>
 
 
-  <div class="col-lg-7 justify-content-center right-box">
-      <div class="dropdown status-dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{this.status ? this.status : "Status"}}
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item"  (click)="setStatus('U obradi')">U obradi</a>
-          <a class="dropdown-item" (click)="setStatus('Realizovano')">Realizovano</a>
-          <a class="dropdown-item" (click)="setStatus('Odbijeno')">Odbijeno</a>
-          <a class="dropdown-item" (click)="setStatus('Sve transakcije')">Sve transakcije</a>
-        </div>
-      </div>
+    <div class="col-lg-3">
+      <div class="d-flex justify-content-end align-items-center">
+        <!-- Date input -->
+        <input class="form-control me-2 date-select" type="date" placeholder="Readonly input here…" [(ngModel)]="date">
 
-      <input class=" date-select" type="date" placeholder="Readonly input here…" [(ngModel)]="date">
-
-      <div class="col-md-3 d-grid pretrazi">
-        <button type="button" class="btn btn-primary rounded-pill selection-width mt-3 mb-3" (click)="search()">Pretraži</button>
+        <!-- Pretrazi button -->
+        <button type="button" class="btn btn-primary rounded-pill mt-3 mb-3" (click)="search()">Pretraži</button>
       </div>
     </div>
+
   </div>
 
   <br>

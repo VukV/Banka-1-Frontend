@@ -22,6 +22,8 @@ export class AccountDetailComponent {
   newAccountName: string = "";
   owner!: UserModel;
 
+  loading: boolean = false;
+
   constructor(private accountService: AccountService, private router: Router, private userService: UserService) {
   }
 
@@ -31,21 +33,26 @@ export class AccountDetailComponent {
 
   changeName() {
     if (this.newAccountName != "") {
+      this.loading = true;
       this.accountService.changeAccountName(this.newAccountName, this.selectedAccount.id, this.selectedAccount.accountType).subscribe({
         next: () => this.router.navigate(["accounts"]),
         error: (error) => this.popupComponent.openPopup(`Čuvanje izmena nije uspelo: ${error.error.message}`)
-      })
+      });
+      this.loading = false;
       console.log("dsa" + this.newAccountName)
     }
 
   }
 
   private getOwnerbyId(ownerId: string) {
+    this.loading = true;
     this.userService.getUserById(ownerId).subscribe(
       (user) => {
         this.owner = user;
+        this.loading = false;
       },
       (error) => {
+        this.loading = false;
         this.popupComponent.openPopup(error.message);
       }
     )

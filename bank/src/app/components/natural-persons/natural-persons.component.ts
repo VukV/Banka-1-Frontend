@@ -26,6 +26,8 @@ export class NaturalPersonsComponent {
   usersPerPage: number = 6;
   error: string = "";
 
+  loading: boolean = true;
+
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {
   }
 
@@ -55,22 +57,30 @@ export class NaturalPersonsComponent {
   }
 
   listNaturalPersonsFiltered() {
+    this.loading = true;
+
     this.userService.loadAllUsersFiltered(this.ime, this.prezime, this.email, this.datumRodjenja).subscribe(
       (users) => {
         this.naturalPersons = users;
+        this.loading = false;
       },
       (error) => {
+        this.loading = false;
         this.popupComponent.openPopup(error.message);
       }
     )
   }
 
   listNaturalPersons() {
+    this.loading = true;
+
     this.userService.loadAllUsers().subscribe(
       (users) => {
         this.naturalPersons = users;
+        this.loading = false;
       },
       (error) => {
+        this.loading = false;
         this.popupComponent.openPopup(error.message);
       }
     )

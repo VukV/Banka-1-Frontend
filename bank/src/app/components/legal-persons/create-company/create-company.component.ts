@@ -19,6 +19,8 @@ export class CreateCompanyComponent {
   registryNumber!: number;
   error: string = "";
 
+  loading: boolean = false;
+
   constructor(private router: Router, private location: Location, private companyService: CompanyService) {
   }
 
@@ -30,11 +32,15 @@ export class CreateCompanyComponent {
     if (this.companyName != null && this.phoneNumber != null && this.faxNumber != null && this.vatIdNumber != null
       && this.identificationNumber != null && this.activityCode != null) {
 
+      this.loading = true;
+
       this.companyService.createCompany(this.companyName, this.phoneNumber, this.faxNumber, this.vatIdNumber,
         this.identificationNumber, this.activityCode, this.registryNumber).subscribe({
         next: () => this.router.navigate(["legal-persons"]),
         error: (err) => console.log(err)
-      })
+      });
+      this.loading = false;
+
     } else {
       this.error = "Niste uneli sva polja!"
     }

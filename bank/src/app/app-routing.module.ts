@@ -48,7 +48,8 @@ const routes: Routes = [
   {
     path: "home-page",
     component: HomePageComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "users",
@@ -97,23 +98,28 @@ const routes: Routes = [
   },
   {
     path: "payment-recievers",
-    component: PaymentRecieversComponent
+    component: PaymentRecieversComponent,
+    data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "transfer",
-    component: TransferComponent
+    component: TransferComponent,
+    data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "payment-recap",
-    component: PaymentRecapComponent
+    component: PaymentRecapComponent,
+    data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "new-payment",
-    component: NewPaymentComponent
+    component: NewPaymentComponent,
+    data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "accounts",
     component: AccountsComponent,
+    data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "create-new-account",

@@ -27,6 +27,8 @@ export class AccountsComponent {
   error: string = "";
   transactions: TransactionModel[] = [];
 
+  loading: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private router: Router, private accountService: AccountService, private route: ActivatedRoute) {
   }
 
@@ -52,10 +54,12 @@ export class AccountsComponent {
   }
 
   private getAllAccountsForLoggedInUser() {
+    this.loading = true;
+
     this.accountService.getAllAccountsForLoggedInUser().subscribe({
       error: (error) => {
+        this.loading = false;
         this.popupComponent.openPopup(error.message)
-
       },
       next: (allAccountsForLoggedInUser: any[]) => {
         this.accounts = allAccountsForLoggedInUser;
@@ -66,15 +70,19 @@ export class AccountsComponent {
           const selectedAccId = this.selectedAccount.id.toString();
           this.getAllTransactionsForAccount(selectedAccId);
         }
+
+        this.loading = false;
       }
     });
   }
 
   private getAllTransactionsForAccount(selectedAccountId: string) {
+    this.loading = true;
+
     this.accountService.getAllTransactionsForAccount(selectedAccountId).subscribe({
       error: (error) => {
+        this.loading = false;
         this.popupComponent.openPopup(error.message)
-
       },
       next: (allTransactionsForAccount: any[]) => {
         this.transactions = []
@@ -86,6 +94,7 @@ export class AccountsComponent {
           const dateB = new Date(b.paymentTime.split('-').reverse().join('-'));
           return dateB.getTime() - dateA.getTime();
         });
+        this.loading = false;
         this.error = "";
       }
     });

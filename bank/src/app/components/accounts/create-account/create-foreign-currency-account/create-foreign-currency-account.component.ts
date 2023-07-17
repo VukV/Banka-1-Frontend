@@ -66,7 +66,7 @@ export class CreateForeignCurrencyAccountComponent {
 
       this.accountService.createForeignAccount(this.selectedNaturalPerson.id, this.nameAccount, this.currentUserId, this.selectedCurrency1,
         this.selectedCurrency2, this.selectedCurrency3, this.selectedAccountType).subscribe({
-        next: () => this.router.navigate(["accounts"]),
+        next: () => this.router.navigate(["create-new-account"]),
         error: (err) => console.log(err)
       })
     } else {
