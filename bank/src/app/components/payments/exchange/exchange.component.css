@@ -47,3 +47,7 @@ th {
   border-radius: 20px;
   border: transparent;
 }
+
+td{
+  background-color: rgba(2, 117, 216, 0) !important;
+}

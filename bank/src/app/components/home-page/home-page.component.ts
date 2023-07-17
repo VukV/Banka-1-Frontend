@@ -9,6 +9,7 @@ import {TransactionModel} from "../../model/account/transaction-model";
 import {PaymentReceiver} from "../../model/account/PaymentReceiver";
 import {waitForAsync} from "@angular/core/testing";
 import {UserModel} from "../../model/user/user-model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -35,7 +36,7 @@ export class HomePageComponent {
   transactions: TransactionModel[] = [];
   receivers: PaymentReceiver[] = [];
 
-  constructor(private userService: UserService, private currencyService: CurrencyService, private accountService: AccountService, private location: Location) {
+  constructor(private userService: UserService, private currencyService: CurrencyService, private accountService: AccountService, private location: Location, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -52,7 +53,8 @@ export class HomePageComponent {
     if (account) {
       const selectedAccId = account.id.toString()
       console.log("accsel: " + selectedAccId)
-      this.getAllTransactionsForAccount(selectedAccId)
+      console.log(account.accountNumber)
+      this.getAllTransactionsForAccount(account.accountNumber)
     }
   }
 
@@ -68,7 +70,7 @@ export class HomePageComponent {
         this.selectedAccount = this.accounts[0]
         this.error = "";
         if (this.selectedAccount) {
-          this.getAllTransactionsForAccount(this.selectedAccount.id.toString());
+          this.getAllTransactionsForAccount(this.selectedAccount.accountNumber);
         }
       }
     });
@@ -81,7 +83,7 @@ export class HomePageComponent {
 
       },
       next: (allTransactionsForAccount: any[]) => {
-
+        console.log('transakcije');
         this.transactions = allTransactionsForAccount.slice(0, 5);
         this.getAvailableFunds()
 
@@ -127,6 +129,6 @@ export class HomePageComponent {
   }
 
   createNewReceiver() {
-
+    this.router.navigate(['payment-recievers']);
   }
 }

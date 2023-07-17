@@ -63,7 +63,7 @@ export class CreateBussinessAccountComponent {
     if (this.currentUserId != null && this.nameAccount != "" && this.selectedCompanyId != null && this.selectedNaturalPerson != null) {
 
       this.accountService.createBussinessAccount(this.selectedNaturalPerson.id, this.nameAccount, this.currentUserId, this.selectedCompanyId,).subscribe({
-        next: () => this.router.navigate(["accounts"]),
+        next: () => this.router.navigate(["create-new-account"]),
         error: (err) => console.log(err)
       })
     } else {

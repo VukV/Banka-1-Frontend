@@ -87,5 +87,6 @@
   </div>
 
   <h5 *ngIf="error != ''" class="text-center error mt-3">{{error}}</h5>
+  <ngx-loading [show]="loading"></ngx-loading>
   <app-popup></app-popup>
 </div>

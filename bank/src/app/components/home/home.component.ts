@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {PopupComponent} from "../popup/popup/popup.component";
 import {AnimationOptions} from "ngx-lottie";
 import {Router} from "@angular/router";
+import {CurrentUserService} from "../../services/user/current-user.service";
+import {UserRoleEnum} from "../../model/user/user-role-enum";
 
 @Component({
   selector: 'app-home',
@@ -9,6 +11,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  isEmployee : boolean = false;
 
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
@@ -20,13 +24,19 @@ export class HomeComponent implements OnInit {
 
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private currentUserService: CurrentUserService) { }
 
   ngOnInit(): void {
+    this.isEmployee = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_EMPLOYEE);
   }
 
   continueFromHomePage(){
-    //TODO navigate
-    this.router.navigate(['home-page']);
+    if(this.isEmployee){
+      this.router.navigate(['natural-persons']);
+    }
+    else {
+      this.router.navigate(['home-page']);
+    }
+
   }
 }

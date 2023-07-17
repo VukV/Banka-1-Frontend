@@ -11,9 +11,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a [routerLink]="'/home-page'" class="nav-link active fw-bold" aria-current="page">Početna</a>
-          </li>
 
           <li *ngIf="isEmployee" class="nav-item">
             <a [routerLink]="'/natural-persons'" class="nav-link active fw-bold" aria-current="page">Fizička lica</a>
@@ -25,6 +22,9 @@
             <a [routerLink]="'/create-new-account'" class="nav-link active fw-bold" aria-current="page">Kreiraj račun</a>
           </li>
 
+          <li *ngIf="isClient" class="nav-item">
+            <a [routerLink]="'/home-page'" class="nav-link active fw-bold" aria-current="page">Početna</a>
+          </li>
           <li *ngIf="isClient" class="nav-item">
             <a [routerLink]="'/accounts'" class="nav-link active fw-bold" aria-current="page">Računi</a>
           </li>

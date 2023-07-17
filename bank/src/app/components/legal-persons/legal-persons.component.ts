@@ -21,6 +21,7 @@ export class LegalPersonsComponent {
   sifraDelatnosti: string = "";
   error: string = "";
 
+  loading: boolean = false;
 
   constructor(private companyService: CompanyService, private accountService: AccountService, private route: Router) {
   }
@@ -34,11 +35,14 @@ export class LegalPersonsComponent {
   }
 
   listLegalPersons() {
+    this.loading = true;
     this.companyService.listCompanies().subscribe({
       next: (allCompanies) => {
         this.legalPersons = allCompanies;
+        this.loading = false;
       },
       error: (error) => {
+        this.loading = false;
         this.popupComponent.openPopup(error.message);
       }
     })
@@ -46,11 +50,14 @@ export class LegalPersonsComponent {
 
 
   listLegalPersonsFiltered() {
+    this.loading = true;
     this.companyService.listCompaniesFilter(this.naziv, this.pib, this.maticniBroj, this.sifraDelatnosti).subscribe({
       next: (allCompanies) => {
         this.legalPersons = allCompanies;
+        this.loading = false;
       },
       error: (error) => {
+        this.loading = false;
         this.popupComponent.openPopup(error.message);
       }
     })
