@@ -98,7 +98,7 @@
 
           <div class="row justify-content-center mt-3">
             <div class="col-md-6 d-grid align-items-center">
-              <button *ngIf="step === 3" type="submit" class="btn btn-primary rounded-pill btn-block">Kreiraj nalog</button>
+              <button *ngIf="step === 3" type="button" id="submit" class="btn btn-primary rounded-pill btn-block" (click)="onCreateAccountForm()">Kreiraj nalog</button>
             </div>
           </div>
 
