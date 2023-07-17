@@ -123,7 +123,7 @@ export class UserService {
   }
 
   loadAllUsers(): Observable<any> {
-    return this.httpClient.get<any>(`${this.usersUrl}`,
+    return this.httpClient.get<any>(`${this.usersUrl}/clients`,
       {
         headers: this.headers
       }
