@@ -22,9 +22,8 @@
 
     <form class="rectangle form-field-wrapper" (ngSubmit)="transferApprovalPopupComponent.openPopup(dropdownSenderAccNoTitle,
     dropdownReceiverAccNoTitle, amount, currencySymbol)">
+      <legend class="float-none w-auto px-2">Sa računa</legend>
       <div class="custom-form">
-
-
         <div class="amount-container">
           <label class="fw-bold txt-color-raspolozivo left-col">RASPOLOŽIVO:</label>
           <label class="fw-bold txt-color-stanje right-col">{{availableSenderAmount}}</label>
@@ -44,10 +43,9 @@
       </div>
 
       <br>
-      <br>
 
+      <legend class="float-none w-auto px-2">Na račun</legend>
       <div class="custom-form-receiver-acc">
-
         <div class="amount-container">
           <label class="fw-bold txt-color-raspolozivo left-col">RASPOLOŽIVO:</label>
           <label class="fw-bold txt-color-stanje right-col">{{availableReceiverAmount}}</label>
@@ -67,8 +65,8 @@
       </div>
 
       <br>
-      <br>
 
+      <legend class="float-none w-auto px-2">Iznos</legend>
       <div class="custom-form-amount third-container">
         <div class="amount-container left-col-amount">
           <div class="modal-body py-3 px-4">
@@ -89,8 +87,9 @@
       <app-transfer-approval-popup></app-transfer-approval-popup>
       <app-popup></app-popup>
     </form>
-
   </div>
+
+  <br><br>
 </div>
 
 

@@ -1,3 +1,7 @@
+.row {
+  margin: 5px;
+}
+
 .header-color{
   color: var(--si-blue) !important;
 }
