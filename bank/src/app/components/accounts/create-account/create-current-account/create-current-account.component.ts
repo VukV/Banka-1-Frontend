@@ -6,6 +6,9 @@ import {PopupComponent} from "../../../popup/popup/popup.component";
 import {NaturalPersonsComponent} from "../../../natural-persons/natural-persons.component";
 import {UserModel} from "../../../../model/user/user-model";
 import {UserService} from "../../../../services/user/user.service";
+import {CurrentUserService} from "../../../../services/user/current-user.service";
+import _default from "chart.js/dist/plugins/plugin.tooltip";
+import numbers = _default.defaults.animations.numbers;
 
 @Component({
   selector: 'app-create-current-account',
@@ -16,14 +19,20 @@ export class CreateCurrentAccountComponent {
   @ViewChild(PopupComponent)
   popupComponent!: PopupComponent;
 
-  selectedAccountType: string = "licni";
+  selectedAccountType: string = "PERSONAL";
   selectedNaturalPerson!: UserModel;
   private error: string = "";
+  nameAccount: string = "";
+  private currentUserId!: number;
+  private interestRate = 0.5
+  private maintenanceCost = 255.0
 
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private userService: UserService, private accountService: AccountService) {
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private userService: UserService, private currUserService: CurrentUserService, private accountService: AccountService) {
   }
 
   ngOnInit() {
+    this.currentUserId = this.currUserService.getUserId()
+
     this.route.queryParams.subscribe(params => {
       const objectId = params['objectId'];
 
@@ -46,10 +55,23 @@ export class CreateCurrentAccountComponent {
     this.location.back();
   }
 
-  next() {
+  create() {
+    console.log("emply: " + this.currentUserId)
+    console.log("name: " + this.nameAccount)
     console.log("acctype: " + this.selectedAccountType)
     console.log("owner: " + this.selectedNaturalPerson.firstName)
-    this.router.navigate(["/"]);
+
+    if (this.currentUserId != null && this.nameAccount != "" && this.selectedAccountType != null && this.selectedNaturalPerson != null) {
+
+      this.accountService.createCurrentAccount(this.selectedNaturalPerson.id, this.nameAccount, this.currentUserId, this.selectedAccountType,
+        this.interestRate, this.maintenanceCost).subscribe({
+        next: () => this.router.navigate(["accounts"]),
+        error: (err) => console.log(err)
+      })
+    } else {
+      this.popupComponent.openPopup(`Niste uneli sva polja!`)
+      this.error = "Niste uneli sva polja!"
+    }
   }
 
   goToNaturePersonsPage() {

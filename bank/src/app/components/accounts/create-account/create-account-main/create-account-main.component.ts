@@ -8,17 +8,17 @@ import {Location} from '@angular/common';
   styleUrls: ['./create-account-main.component.css']
 })
 export class CreateAccountMainComponent {
-  selectedAccountType: string = "tekuci";
+  selectedAccountType: string = "CURRENT";
 
   constructor(private router: Router, private location: Location) {
   }
 
   goToAccountPage(): void {
-    if (this.selectedAccountType === 'tekuci') {
+    if (this.selectedAccountType === 'CURRENT') {
       this.router.navigate(['/create-current-account']);
-    } else if (this.selectedAccountType === 'devizni') {
+    } else if (this.selectedAccountType === 'FOREIGN_CURRENCY') {
       this.router.navigate(['/create-foreign-currency-account']);
-    } else if (this.selectedAccountType === 'poslovni') {
+    } else if (this.selectedAccountType === 'BUSINESS') {
       this.router.navigate(['/create-bussiness-account']);
     }
   }
