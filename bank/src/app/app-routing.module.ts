@@ -18,6 +18,26 @@ import {TransferComponent} from "./components/payments/transfer/transfer.compone
 import {PaymentRecapComponent} from "./components/payments/payment-recap/payment-recap.component";
 import {NewPaymentComponent} from "./components/payments/new-payment/new-payment.component";
 
+import {HomePageComponent} from "./components/home-page/home-page.component";
+import {AccountsComponent} from "./components/accounts/accounts/accounts.component";
+import {
+  CreateAccountMainComponent
+} from "./components/accounts/create-account/create-account-main/create-account-main.component";
+import {
+  CreateBussinessAccountComponent
+} from "./components/accounts/create-account/create-bussiness-account/create-bussiness-account.component";
+import {
+  CreateForeignCurrencyAccountComponent
+} from "./components/accounts/create-account/create-foreign-currency-account/create-foreign-currency-account.component";
+import {
+  CreateCurrentAccountComponent
+} from "./components/accounts/create-account/create-current-account/create-current-account.component";
+import {LegalPersonsComponent} from "./components/legal-persons/legal-persons.component";
+import {NaturalPersonsComponent} from "./components/natural-persons/natural-persons.component";
+import {CreateCompanyComponent} from "./components/legal-persons/create-company/create-company.component";
+import {AddAccountComponent} from "./components/users/add-account/add-account.component";
+
+
 
 const routes: Routes = [
   {
@@ -26,22 +46,33 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
+    path: "home-page",
+    component: HomePageComponent,
+    canActivate: [LoginGuard]
+  },
+  {
     path: "users",
     component: ListUsersComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "add-user",
     component: AddUserComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
+  },
+  {
+    path: "add-account",
+    component: AddAccountComponent,
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "update-user/:userId",
     component: UpdateUserComponent,
     canActivate: [LoginGuard],
-    data: {roles: [UserRoleEnum.ROLE_ADMIN]}
+    data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "my-profile",
@@ -72,12 +103,45 @@ const routes: Routes = [
     path: "transfer",
     component: TransferComponent
   },
-  { path: "payment-recap",
+  { 
+    path: "payment-recap",
     component: PaymentRecapComponent
   },
   {
     path: "new-payment",
     component: NewPaymentComponent
+  },
+  {
+    path: "accounts",
+    component: AccountsComponent,
+  },
+  {
+    path: "create-new-account",
+    component: CreateAccountMainComponent,
+  },
+  {
+    path: "create-current-account",
+    component: CreateCurrentAccountComponent,
+  },
+  {
+    path: "create-foreign-currency-account",
+    component: CreateForeignCurrencyAccountComponent,
+  },
+  {
+    path: "create-bussiness-account",
+    component: CreateBussinessAccountComponent,
+  },
+  {
+    path: "natural-persons",
+    component: NaturalPersonsComponent,
+  },
+  {
+    path: "legal-persons",
+    component: LegalPersonsComponent,
+  },
+  {
+    path: "create-company",
+    component: CreateCompanyComponent,
   }
 ];
 
@@ -85,4 +149,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

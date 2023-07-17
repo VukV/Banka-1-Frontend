@@ -24,7 +24,6 @@ import { ConfirmationPopupComponent } from './components/popup/confirmation-popu
 import {NgToggleModule} from "ng-toggle-button";
 import {LottieModule} from "ngx-lottie";
 import player from 'lottie-web';
-import {DatePipe} from "@angular/common";
 import {MatMenuModule} from "@angular/material/menu";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewPaymentComponent } from "./components/payments/new-payment/new-payment.component";
@@ -43,6 +42,20 @@ import { TransferApprovalPopupComponent } from './components/payments/popup/tran
 import { UpdateRecieverPopupComponent } from './components/payments/popup/update-reciever-popup/update-reciever-popup.component';
 import { DomesticPaymentDetailsPopupComponent } from './components/payments/popup/domestic-payment-details-popup/domestic-payment-details-popup.component';
 import { ExchangeDetailsPopupComponent } from './components/payments/popup/exchange-details-popup/exchange-details-popup.component';
+
+
+import {DatePipe, NgForOf, NgSwitchCase} from "@angular/common";
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { AccountsComponent } from './components/accounts/accounts/accounts.component';
+import { AccountDetailComponent } from './components/accounts/accounts/account-details/account-detail/account-detail.component';
+import { CreateAccountMainComponent } from './components/accounts/create-account/create-account-main/create-account-main.component';
+import { CreateBussinessAccountComponent } from './components/accounts/create-account/create-bussiness-account/create-bussiness-account.component';
+import { CreateCurrentAccountComponent } from './components/accounts/create-account/create-current-account/create-current-account.component';
+import { CreateForeignCurrencyAccountComponent } from './components/accounts/create-account/create-foreign-currency-account/create-foreign-currency-account.component';
+import { NaturalPersonsComponent } from './components/natural-persons/natural-persons.component';
+import { LegalPersonsComponent } from './components/legal-persons/legal-persons.component';
+import { CreateCompanyComponent } from './components/legal-persons/create-company/create-company.component';
+import { AddAccountComponent } from './components/users/add-account/add-account.component';
 
 
 export function playerFactory() {
@@ -74,7 +87,18 @@ export function playerFactory() {
     TransferApprovalPopupComponent,
     UpdateRecieverPopupComponent,
     DomesticPaymentDetailsPopupComponent,
-    ExchangeDetailsPopupComponent
+    ExchangeDetailsPopupComponent,
+    HomePageComponent,
+    AccountsComponent,
+    AccountDetailComponent,
+    CreateAccountMainComponent,
+    CreateBussinessAccountComponent,
+    CreateCurrentAccountComponent,
+    CreateForeignCurrencyAccountComponent,
+    NaturalPersonsComponent,
+    LegalPersonsComponent,
+    CreateCompanyComponent,
+    AddAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -100,8 +124,15 @@ export function playerFactory() {
     MatDatepickerModule,
     MatIconModule,
     MatNativeDateModule,
-    MatInputModule
-],
+    MatInputModule,
+    NgSwitchCase,
+    FormsModule,
+    NgForOf,
+    NgxLoadingModule,
+    ReactiveFormsModule,
+    NgForOf,
+    ReactiveFormsModule
+  ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })

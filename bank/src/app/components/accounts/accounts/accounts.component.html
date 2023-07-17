@@ -1,0 +1,81 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold"><a class="blue-link" href="/accounts">Računi</a></li>
+    </ol>
+  </nav>
+
+  <br>
+  <!-- Računi list -->
+  <div class="row d-flex justify-content-start " style="margin: 5px">
+    <div class="col-md-6">
+      <h2 class="mt-3 mb-3 fw-bold">Spisak računa</h2>
+      <br>
+    </div>
+    <div class="borderBlue">
+      <table class="table table-borderless clickable-tr  " data-cy="tableCompany" style="background:transparent">
+        <thead>
+        <tr>
+          <th style="color: var(--si-blue)">#</th>
+          <th style="color: var(--si-blue)">Naziv</th>
+          <th style="color: var(--si-blue)">Broj računa</th>
+          <th style="color: var(--si-blue)">Raspoloživo</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let racun of accounts" [class.selected]="racun === selectedAccount" (click)="selectAccount(racun)">
+          <td style="background:transparent">{{ racun.id }}</td>
+          <td style="background:transparent">{{ racun.accountName }}</td>
+          <td style="background:transparent">{{ racun.accountNumber }}</td>
+          <td style="background:transparent">{{ racun.accountBalance }}</td>
+          <td style="background:transparent">
+            <button class="btn btn-outline-primary rounded-pill col-md-6" (click)="prikaziDetalje(racun)">Detalji
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!--Transakcije za odabrani račun list -->
+  <div class="row d-flex justify-content-start " style="margin: 5px">
+    <div class="col-md-6">
+      <br>
+      <h2 class="mt-3 mb-3 fw-bold">Lista transakcija za odabrani račun</h2>
+      <br>
+    </div>
+    <div class="borderBlue">
+      <table class="table table-borderless " data-cy="tableCompany" style="background:transparent">
+        <thead>
+        <tr>
+          <th style="color: var(--si-blue)">#</th>
+          <th style="color: var(--si-blue)">Naziv</th>
+          <th style="color: var(--si-blue)">Datum</th>
+          <th style="color: var(--si-blue)">Iznos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td style="background:transparent">{{ transaction.id }} </td>
+          <td style="background:transparent">{{ transaction.receiverName }}</td>
+          <td style="background:transparent">{{ transaction.paymentTime }}</td>
+          <td style="background:transparent">{{ transaction.amount }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <app-account-detail></app-account-detail>
+
+  <app-popup></app-popup>
+</div>
+

@@ -18,9 +18,8 @@ export class AppComponent implements OnInit{
   isLoggedIn: boolean = false;
   userLetter: string = "";
 
-  isAdmin: boolean = false;
-  isAgent: boolean = false;
-  isSupervisor: boolean = false;
+  isEmployee: boolean = false;
+  isClient: boolean = false;
 
   @ViewChild('menu') menu!: MatMenuTrigger;
 
@@ -43,9 +42,8 @@ export class AppComponent implements OnInit{
   }
 
   checkRoles(){
-    this.isAdmin = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_ADMIN);
-    this.isAgent = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_AGENT);
-    this.isSupervisor = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_SUPERVISOR);
+    this.isEmployee = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_EMPLOYEE);
+    this.isClient = this.currentUserService.checkUserRole(UserRoleEnum.ROLE_CLIENT);
   }
 
   getUserLetter(){
