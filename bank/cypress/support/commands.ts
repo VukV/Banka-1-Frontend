@@ -3,13 +3,13 @@ export { }
 declare global {
   namespace Cypress {
     interface Chainable {
-      login(): Chainable<void>
-      btnClickStock(): Chainable<void>
+      loginEmployee(): Chainable<void>
+      loginClient(): Chainable<void>
     }
   }
 }
 
-Cypress.Commands.add("login", () => {
+Cypress.Commands.add("loginEmployee", () => {
   cy.visit("/");
   cy.url().should("includes", "login");
   cy.get("#useremail").type(Cypress.env("email"));
@@ -18,16 +18,11 @@ Cypress.Commands.add("login", () => {
   cy.url().should("equal", Cypress.config().baseUrl);
 })
 
-Cypress.Commands.add("btnClickStock", () => {
-  cy.get('button:contains("5 min")').click();
-  cy.get('button:contains("5 min")').should('have.class', 'active')
-  cy.get('button:contains("Sat")').click()
-  cy.get('button:contains("Sat")').should('have.class', 'active')
-  cy.get('button:contains("Dan")').click()
-  cy.get('button:contains("Dan")').should('have.class', 'active')
-  cy.get('button:contains("Nedelja")').click()
-  cy.get('button:contains("Nedelja")').should('have.class', 'active')
-  cy.get('button:contains("Mesec")').click()
-  cy.get('button:contains("Mesec")').should('have.class', 'active')
-
+Cypress.Commands.add("loginClient", () => {
+  cy.visit("/");
+  cy.url().should("includes", "login");
+  cy.get("#useremail").type(Cypress.env("emailClient"));
+  cy.get("#userpassword").type(Cypress.env("passwordClient"));
+  cy.get("[type='submit']").click();
+  cy.url().should("equal", Cypress.config().baseUrl);
 })

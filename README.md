@@ -15,3 +15,10 @@ Komande iz root-a projekta:
 cd bank
 ng serve
 ```
+
+<br>
+
+#### Cypress testovi
+```
+npx cypress open
+```

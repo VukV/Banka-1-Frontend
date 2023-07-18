@@ -19,20 +19,20 @@
             <a [routerLink]="'/legal-persons'" class="nav-link active fw-bold" aria-current="page">Pravna lica</a>
           </li>
           <li *ngIf="isEmployee" class="nav-item">
-            <a [routerLink]="'/create-new-account'" class="nav-link active fw-bold" aria-current="page">Kreiraj račun</a>
+            <a [routerLink]="'/create-new-account'" data-cy="create-new-account" class="nav-link active fw-bold" aria-current="page">Kreiraj račun</a>
           </li>
 
           <li *ngIf="isClient" class="nav-item">
-            <a [routerLink]="'/home-page'" class="nav-link active fw-bold" aria-current="page">Početna</a>
+            <a [routerLink]="'/home-page'" data-cy="homepage-link" class="nav-link active fw-bold" aria-current="page">Početna</a>
           </li>
           <li *ngIf="isClient" class="nav-item">
-            <a [routerLink]="'/accounts'" class="nav-link active fw-bold" aria-current="page">Računi</a>
+            <a [routerLink]="'/accounts'" data-cy="accounts-link" class="nav-link active fw-bold" aria-current="page">Računi</a>
           </li>
           <li *ngIf="isClient" class="nav-item">
             <a data-cy="orders" class="nav-link active fw-bold" aria-current="page" [matMenuTriggerFor]="menu">Plaćanja</a>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item class="menu-item" (click)="newPaymentRedirect()" >Novo plaćanje</button>
-              <button mat-menu-item class="menu-item" (click)="transferRedirect()" >Prenos</button>
+              <button mat-menu-item class="menu-item" data-cy="orders-new-link" (click)="newPaymentRedirect()" >Novo plaćanje</button>
+              <button mat-menu-item class="menu-item" data-cy="transfers-link" (click)="transferRedirect()" >Prenos</button>
               <button mat-menu-item class="menu-item" (click)="paymentrecieversRedirect()" >Primaoci plaćanja</button>
               <button mat-menu-item class="menu-item" (click)="paymentRecapRedirect()" >Pregled plaćanja</button>
             </mat-menu>

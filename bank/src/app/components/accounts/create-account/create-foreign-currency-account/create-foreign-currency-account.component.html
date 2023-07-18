@@ -36,11 +36,11 @@
         <br>
         <p class="mt-3 mb-3 fw-bold ">Izaberite ostale valute</p>
 
-        <select [(ngModel)]="selectedCurrency2" name="curr2" class="col-md-6 borderBlueInput">
+        <select data-cy="secondCurr" [(ngModel)]="selectedCurrency2" name="curr2" class="col-md-6 borderBlueInput">
           <option *ngFor="let curr of allCurrencies" value="{{curr}}">{{curr}}</option>
         </select>
         <br><br>
-        <select [(ngModel)]="selectedCurrency3" name="curr3" class="col-md-6 borderBlueInput">
+        <select data-cy="thirdCurr" [(ngModel)]="selectedCurrency3" name="curr3" class="col-md-6 borderBlueInput">
           <option *ngFor="let curr of allCurrencies" value="{{curr}}">{{curr}}</option>
         </select>
       </div>
@@ -52,7 +52,7 @@
         <p class="mt-3 mb-3 fw-bold ">Izaberite naziv računa</p>
         <br>
 
-        <input class="borderBlueInput col-md-5" type="text" placeholder="naziv" [(ngModel)]="nameAccount">
+        <input data-cy="naziv" class="borderBlueInput col-md-5" type="text" placeholder="naziv" [(ngModel)]="nameAccount">
 
         <br><br>
       </div>
@@ -60,7 +60,7 @@
 
         <p class="mt-3 mb-3 fw-bold ">Izaberite vlasnika deviznog računa</p>
 
-        <button (click)="goToNaturePersonsPage()" type="button" class="btn btn-outline-primary rounded-pill col-md-5">
+        <button data-cy="izaberi" (click)="goToNaturePersonsPage()" type="button" class="btn btn-outline-primary rounded-pill col-md-5">
           Izaberi
         </button>
         <br><br>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="row d-flex justify-content-center col-md-12" style="margin-bottom: 10px">
-      <button type="button" class="btn btn-primary rounded-pill col-md-2" (click)="create()">Kreiraj</button>
+      <button data-cy="kreiraj" type="button" class="btn btn-primary rounded-pill col-md-2" (click)="create()">Kreiraj</button>
     </div>
 
     <div class="row d-flex justify-content-center col-md-12">
