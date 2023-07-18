@@ -19,7 +19,7 @@
             <a [routerLink]="'/legal-persons'" class="nav-link active fw-bold" aria-current="page">Pravna lica</a>
           </li>
           <li *ngIf="isEmployee" class="nav-item">
-            <a [routerLink]="'/create-new-account'" class="nav-link active fw-bold" aria-current="page">Kreiraj račun</a>
+            <a [routerLink]="'/create-new-account'" data-cy="create-new-account" class="nav-link active fw-bold" aria-current="page">Kreiraj račun</a>
           </li>
 
           <li *ngIf="isClient" class="nav-item">
