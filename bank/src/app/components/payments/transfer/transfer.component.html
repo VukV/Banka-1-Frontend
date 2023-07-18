@@ -35,7 +35,7 @@
               {{this.dropdownSenderAccNoTitle ? this.dropdownSenderAccNoTitle : "Izaberite račun"}}
             </button>
             <div class="dropdown-width dropdown-menu" aria-labelledby="dropdownSenderMenuButton">
-                <a class="dropdown-item" *ngFor="let account of accountModel"
+                <a class="dropdown-item link-sender" *ngFor="let account of accountModel"
                    (click)="selectedSenderAccountNum(account)">{{ account.accountNumber }}</a>
               </div>
           </div>
@@ -57,7 +57,7 @@
               {{this.dropdownReceiverAccNoTitle ? this.dropdownReceiverAccNoTitle : "Izaberite račun"}}
             </button>
             <div class="dropdown-width dropdown-menu" aria-labelledby="dropdownReceiverMenuButton">
-              <a class="dropdown-item" *ngFor="let account of accountModel"
+              <a class="dropdown-item link-receiver" *ngFor="let account of accountModel"
                  (click)="selectedReceiverAccountNum(account)">{{ account.accountNumber }}</a>
             </div>
             </div>
@@ -80,7 +80,7 @@
 
 
       <div class="button-container d-flex align-items-center justify-content-center">
-        <button class="btn btn-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnCreateReciever" type="submit" [disabled]="!checkIfValid()">Nastavi</button>
+        <button class="btn btn-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="continueTransfer" type="submit" [disabled]="!checkIfValid()">Nastavi</button>
         <button class="btn btn-outline-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnAbort" type="submit" (click)="homeRedirect()">Nazad</button>
       </div>
       <ngx-loading [show]="loading"></ngx-loading>

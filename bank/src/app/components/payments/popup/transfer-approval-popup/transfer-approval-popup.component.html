@@ -38,6 +38,7 @@
         <br>
         <br>
 
+        <!--
         <div class="custom-form-receiver-acc">
             <div class="modal-body py-3 px-4">
               <div class="col-md-9 align-items-md-start d-flex">
@@ -49,11 +50,12 @@
             <div class="validator validator-style">
               <span class=" col-md-9 align-items-md-start d-flex" *ngIf="createTransferGroup.get('verificationCode')?.errors">Unesite verifikacioni kod.</span>
             </div>
-          </div>
+        </div>
+        -->
 
 
         <div class="button-container d-flex align-items-center justify-content-center">
-          <button class="btn btn-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnCreateReciever" type="submit" [disabled]="createTransferGroup.invalid">Potvrdi</button>
+          <button class="btn btn-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="potvrdiTransfer" type="submit">Potvrdi</button>
           <button class="btn btn-outline-primary selection-width rounded-pill mt-4 px-5 mb-4  m-lg-2" data-cy="btnAbort" type="submit" (click)="closePopup()">Odustani</button>
         </div>
       </form>
