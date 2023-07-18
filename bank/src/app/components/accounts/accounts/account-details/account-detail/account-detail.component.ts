@@ -59,7 +59,7 @@ export class AccountDetailComponent {
   }
 
   newPayment() {
-
+    this.router.navigate(['/new-payment']);
   }
 
   openPopup(selectedAccount: AccountModel) {
