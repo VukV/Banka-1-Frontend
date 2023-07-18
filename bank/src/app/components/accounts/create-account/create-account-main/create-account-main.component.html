@@ -23,14 +23,14 @@
     </div>
 
     <div class="row d-flex justify-content-center col-md-12" style="margin-bottom: 25px">
-      <select [(ngModel)]="selectedAccountType" class="col-md-3 borderBlueInput">
-        <option value="CURRENT">Tekući račun</option>
-        <option value="FOREIGN_CURRENCY">Devizni račun</option>
+      <select data-cy="select-account" [(ngModel)]="selectedAccountType" class="col-md-3 borderBlueInput">
+        <option data-cy="current" value="CURRENT">Tekući račun</option>
+        <option data-cy="foreign" value="FOREIGN_CURRENCY">Devizni račun</option>
         <option value="BUSINESS">Poslovni račun</option>
       </select>
     </div>
     <div class="row d-flex justify-content-center col-md-12" style="margin-bottom: 10px">
-      <button type="button" class="btn btn-primary rounded-pill col-md-2" (click)="goToAccountPage()">Dalje</button>
+      <button data-cy="dalje-btn" type="button" class="btn btn-primary rounded-pill col-md-2" (click)="goToAccountPage()">Dalje</button>
     </div>
 
     <div class="row d-flex justify-content-center col-md-12">

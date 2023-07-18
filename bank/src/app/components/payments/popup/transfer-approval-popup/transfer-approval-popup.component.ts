@@ -46,22 +46,19 @@ export class TransferApprovalPopupComponent {
   }
 
   createTransfer(senderAccountNumber: string, receiverAccountNumber: string, amount: number, currencySymbol: string){
-    if(this.createTransferGroup.invalid){
-      this.popupComponent.openPopup("Unesite kod za validaciju.");
-    }else{
-      this.loading = true
-      this.paymentService.createTransfer(senderAccountNumber, receiverAccountNumber, amount, currencySymbol).subscribe(
-        () => {
-          this.closePopup();
-          window.location.reload();
-          this.loading = false;
-        },
-        (error) => {
-          this.popupComponent.openPopup(error.message);
-          this.loading = false;
-        }
-      )
-    }
+    this.loading = true;
+
+    this.paymentService.createTransfer(senderAccountNumber, receiverAccountNumber, amount, currencySymbol).subscribe(
+      () => {
+        this.closePopup();
+        window.location.reload();
+        this.loading = false;
+      },
+      (error) => {
+        this.popupComponent.openPopup(error.message);
+        this.loading = false;
+      }
+    )
   }
 
 }

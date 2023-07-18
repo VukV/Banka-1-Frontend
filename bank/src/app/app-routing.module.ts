@@ -99,61 +99,73 @@ const routes: Routes = [
   {
     path: "payment-recievers",
     component: PaymentRecieversComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "transfer",
     component: TransferComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "payment-recap",
     component: PaymentRecapComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "new-payment",
     component: NewPaymentComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "accounts",
     component: AccountsComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   },
   {
     path: "create-new-account",
     component: CreateAccountMainComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-current-account",
     component: CreateCurrentAccountComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-foreign-currency-account",
     component: CreateForeignCurrencyAccountComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-bussiness-account",
     component: CreateBussinessAccountComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "natural-persons",
     component: NaturalPersonsComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "legal-persons",
     component: LegalPersonsComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   },
   {
     path: "create-company",
     component: CreateCompanyComponent,
+    canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
   }
 ];
