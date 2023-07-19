@@ -55,6 +55,7 @@ export class TransferComponent {
     this.paymentService.getAllAccountsForLoggedInUser().subscribe(
       (data) => {
         this.accountModel = data;
+        this.cleanUpAccounts();
         this.loading = false;
         console.log(data)
       },
@@ -63,6 +64,10 @@ export class TransferComponent {
         this.loading = false;
       }
     )
+  }
+
+  private cleanUpAccounts(){
+    this.accountModel = this.accountModel.filter((acc) => acc.accountType !== 'FOREIGN_CURRENCY');
   }
 
   checkIfValid(): boolean {
