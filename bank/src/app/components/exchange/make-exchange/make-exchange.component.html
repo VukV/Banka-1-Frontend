@@ -1,1 +1,114 @@
-<p>exchange works!</p>
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold"><a class="blue-link" href="/exchange">Menjačnica</a></li>
+      <li class="breadcrumb-item fw-bold"><a class="blue-link" href="/make-exchange">Konverzija</a></li>
+    </ol>
+  </nav>
+
+  <br>
+  <div class="borderBlue">
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <div class="dropdown status-dropdown dropdown-menu-sender">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Odaberi
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" *ngFor="let acc of accounts"
+               (click)="selectAccount(acc)">{{acc.accountNumber}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        Račun: {{selectedAccountNumber}}
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <div class="dropdown status-dropdown dropdown-menu-sender">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Odaberi valutu
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" *ngFor="let v of selectedAccount.foreignCurrencyBalances"
+               (click)="selectFrom(v)">{{v.foreignCurrencyCode}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        Iz valute: {{ selectedFrom }}
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        Dostupno: {{ selectedFromAmount }}
+      </div>
+    </div>
+    <br>
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <div class="dropdown status-dropdown dropdown-menu-sender">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Odaberi valutu
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" *ngFor="let v of selectedAccount.foreignCurrencyBalances"
+               (click)="selectTo(v)">{{v.foreignCurrencyCode}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        U valutu: {{ selectedTo }}
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        Dostupno: {{ selectedToAmount }}
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        Iznos:
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <input type="number" [(ngModel)]="amount" class="form-control" name="iznos" placeholder="Iznos">
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto error-text">
+        {{ errorText }}
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <button (click)="continueWithExchange()" type="button" class="btn btn-primary rounded-pill">Nastavi</button>
+      </div>
+    </div>
+  </div>
+
+  <app-exchange-confirmation-popup></app-exchange-confirmation-popup>
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
+</div>
+

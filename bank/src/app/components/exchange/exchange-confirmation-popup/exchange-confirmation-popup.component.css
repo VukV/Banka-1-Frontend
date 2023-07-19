@@ -1,0 +1,42 @@
+.custom-form {
+  border: 1px solid var(--si-navy);
+  border-radius: 30px;
+  position: relative;
+  padding: 35px;
+}
+
+.custom-form::after {
+  content: "Detalji";
+  color: var(--si-navy);
+  font-weight: bold;
+  position: absolute;
+  left: 2%;
+  top: -.5em;
+  background: #fff;
+  padding: 0.5em;
+  margin-top: -20px;
+  font-size: 25px;
+}
+
+.form-field-wrapper{
+  padding: 20px;
+}
+
+.selection-width {
+  width: 220px;
+}
+
+.dugme{
+  border-radius: 50%;
+  border: 1px solid var(--si-navy);
+  background: transparent;
+  color: var(--si-navy);
+  padding: 8px;
+  height: 30px;
+  width: 30px;
+  line-height: 8px;
+}
+
+.error-text {
+  color: var(--si-red);
+}

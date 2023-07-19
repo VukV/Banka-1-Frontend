@@ -58,6 +58,7 @@ import { CreateCompanyComponent } from './components/legal-persons/create-compan
 import { AddAccountComponent } from './components/users/add-account/add-account.component';
 import { ExchangeRateComponent } from './components/exchange/exchange-rate/exchange-rate.component';
 import {MakeExchangeComponent} from "./components/exchange/make-exchange/make-exchange.component";
+import { ExchangeConfirmationPopupComponent } from './components/exchange/exchange-confirmation-popup/exchange-confirmation-popup.component';
 
 
 export function playerFactory() {
@@ -102,7 +103,8 @@ export function playerFactory() {
     CreateCompanyComponent,
     AddAccountComponent,
     ExchangeRateComponent,
-    MakeExchangeComponent
+    MakeExchangeComponent,
+    ExchangeConfirmationPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -136,7 +138,8 @@ export function playerFactory() {
     NgxLoadingModule,
     ReactiveFormsModule,
     NgForOf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

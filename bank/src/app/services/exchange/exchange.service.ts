@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CurrentUserService} from "../user/current-user.service";
 import {catchError, Observable, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {ExchangeResponse} from "../../model/exchange/exchange";
 
 @Injectable({
   providedIn: 'root'
@@ -43,4 +44,40 @@ export class ExchangeService {
       })
     );
   }
+
+  initExchange(accountNumber: string, from: string, to: string, amount: number): Observable<any>{
+    return this.httpClient.post(this.exchangeUrl + '/convert_money', {
+        senderAccountNumber: accountNumber,
+        receiverAccountNumber: accountNumber,
+        exchangePairSymbol: from + '/' + to,
+        amount: amount
+    },
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
+  confirmExchange(exchange: ExchangeResponse): Observable<any>{
+    return this.httpClient.post(this.exchangeUrl + '/confirm_conversion', {
+        senderAccountNumber: exchange.senderAccountNumber,
+        receiverAccountNumber: exchange.receiverAccountNumber,
+        exchangePairSymbol: exchange.exchangePairSymbol,
+        amount: exchange.amount,
+        convertedAmount: exchange.convertedAmount,
+        exchangeRate: exchange.exchangeRate,
+        commissionFee: exchange.commissionFee
+      },
+      {
+        headers: this.headers
+      }).pipe(
+      catchError(err => {
+        return throwError(() => new Error(err.error.message));
+      })
+    );
+  }
+
 }

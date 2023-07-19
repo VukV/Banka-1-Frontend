@@ -1,0 +1,30 @@
+.text-color{
+  color: var(--si-blue);
+}
+
+.status-dropdown button {
+  border: 1px solid var(--si-blue) !important;
+  background: none !important;
+  width: 220px;
+  border-radius: 10px;
+  color: var(--si-blue);
+}
+
+#dropdownMenuButton {
+  width: 100px;
+}
+
+.borderBlue{
+  padding: 2rem;
+  border: solid 2px;
+  border-color: var(--si-blue);
+  border-radius: 50px;
+}
+
+.dropdown {
+  margin-bottom: 10px;
+}
+
+.error-text {
+  color: var(--si-red);
+}

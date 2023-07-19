@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PopupComponent} from "../../popup/popup/popup.component";
-import {ExchangeHistory, ExchangePair} from "../../../model/exchange/ExchangePair";
+import {ExchangeHistory, ExchangePair} from "../../../model/exchange/exchange";
 import {ExchangeService} from "../../../services/exchange/exchange.service";
 import {Router} from "@angular/router";
 
