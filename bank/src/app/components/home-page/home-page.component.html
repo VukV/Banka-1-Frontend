@@ -42,8 +42,16 @@
 
               <div class="col-md-auto align-self-center text-center align-items-center">
                 <h5 class="mt-3 mb-3 ">Raspoloživo:</h5>
-                <h4 class="mt-3 mb-3 " [(ngModel)]="availableFunds" name="availableFunds"
-                    ngDefaultControl>{{availableFunds}} RSD</h4>
+                <div *ngIf="selectedAccount.accountType == 'FOREIGN_CURRENCY'; else tekuci">
+                  <h5 *ngFor="let balance of selectedAccount.foreignCurrencyBalances">
+                    {{ balance.accountBalance }} {{ balance.foreignCurrencyCode }}
+                  </h5>
+                </div>
+                <ng-template #tekuci>
+                  <h4 class="mt-3 mb-3 " [(ngModel)]="availableFunds" name="availableFunds"
+                      ngDefaultControl>{{availableFunds}} RSD</h4>
+                </ng-template>
+
               </div>
             </div>
           </div>

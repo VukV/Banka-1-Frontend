@@ -33,7 +33,9 @@ export class NewPaymentComponent {
   receiversAccountNumbers: string[] = []
   isPossible: boolean = false;
   createNewPayment!: FormGroup
+
   accountModel: AccountModel[] = []
+  chooseSender: string = "Odaberi račun"
 
   loading: boolean = false;
 
@@ -79,6 +81,10 @@ export class NewPaymentComponent {
     )
   }
 
+  selectedSender(senderAccount: AccountModel){
+    this.senderAccountNumber = senderAccount.accountNumber
+    this.availableAmount = senderAccount.accountBalance
+  }
 
   //ToDo proveri kako radi input u zavisnosti od ovoga
   selectedReceiver(receiver: RecieverModel){
@@ -135,7 +141,7 @@ export class NewPaymentComponent {
     this.paymentService.getAllAccountsForLoggedInUser().subscribe(
       (data) => {
         this.accountModel = data;
-        this.setUserAccount(data);
+        //this.setUserAccount(data);
         this.loading = false;
       },
       (error) => {

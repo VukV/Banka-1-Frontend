@@ -14,7 +14,7 @@ export interface AccountModel {
   creationDate: string;
   expiryDate: string;
   accountType: string;
-
+  foreignCurrencyBalances: any[];
 }
 
 export interface DevizniRacun extends AccountModel {

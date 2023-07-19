@@ -1,4 +1,4 @@
-<div *ngIf="senderAccountNumber != ''; else noAccount" class="container">
+<div *ngIf="accountModel.length > 0; else noAccount" class="container">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb align-items-center">
       <li class="breadcrumb-item">
@@ -16,6 +16,25 @@
   </div>
 
   <form class="rectangle form-field-wrapper" (ngSubmit)="createPayment(receiverName, senderAccountNumber, receiverAccountNumber, amount, referenceNumber, paymentNumber, paymentPurpose)" [formGroup]="createNewPayment">
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <div class="dropdown status-dropdown dropdown-menu-sender">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{this.chooseSender ? this.chooseSender : "Odaberi račun"}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" *ngFor="let sender of accountModel"
+               (click)="selectedSender(sender)">{{sender.accountNumber}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <!-- na silu ubacen div, ne mogu da se petljam sa poravnanjem -->
+      </div>
+    </div>
+    <br>
+
     <div class="row justify-content-md-center">
       <div class="col-md-4">
         <h3>Broj računa:</h3>
