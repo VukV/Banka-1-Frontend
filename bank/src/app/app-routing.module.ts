@@ -36,6 +36,8 @@ import {LegalPersonsComponent} from "./components/legal-persons/legal-persons.co
 import {NaturalPersonsComponent} from "./components/natural-persons/natural-persons.component";
 import {CreateCompanyComponent} from "./components/legal-persons/create-company/create-company.component";
 import {AddAccountComponent} from "./components/users/add-account/add-account.component";
+import {ExchangeRateComponent} from "./components/exchange/exchange-rate/exchange-rate.component";
+import {MakeExchangeComponent} from "./components/exchange/make-exchange/make-exchange.component";
 
 
 
@@ -167,6 +169,18 @@ const routes: Routes = [
     component: CreateCompanyComponent,
     canActivate: [LoginGuard],
     data: {roles: [UserRoleEnum.ROLE_EMPLOYEE]}
+  },
+  {
+    path: "exchange",
+    component: ExchangeRateComponent,
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_CLIENT]}
+  },
+  {
+    path: "make-exchange",
+    component: MakeExchangeComponent,
+    canActivate: [LoginGuard],
+    data: {roles: [UserRoleEnum.ROLE_CLIENT]}
   }
 ];
 

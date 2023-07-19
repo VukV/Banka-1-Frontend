@@ -57,7 +57,7 @@ import { LegalPersonsComponent } from './components/legal-persons/legal-persons.
 import { CreateCompanyComponent } from './components/legal-persons/create-company/create-company.component';
 import { AddAccountComponent } from './components/users/add-account/add-account.component';
 import { ExchangeRateComponent } from './components/exchange/exchange-rate/exchange-rate.component';
-import { ExchangeHistoryComponent } from './components/exchange/exchange-history/exchange-history.component';
+import {MakeExchangeComponent} from "./components/exchange/make-exchange/make-exchange.component";
 
 
 export function playerFactory() {
@@ -102,7 +102,7 @@ export function playerFactory() {
     CreateCompanyComponent,
     AddAccountComponent,
     ExchangeRateComponent,
-    ExchangeHistoryComponent
+    MakeExchangeComponent
   ],
   imports: [
     BrowserModule,

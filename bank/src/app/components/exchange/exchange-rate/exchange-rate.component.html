@@ -1,1 +1,76 @@
-<p>exchange-rate works!</p>
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb align-items-center">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <img src="assets/home.svg" alt="icon" width="30" height="30">
+        </a>
+      </li>
+      <li class="breadcrumb-item fw-bold"><a class="blue-link" href="/exchange">Menjačnica</a></li>
+    </ol>
+  </nav>
+
+  <br>
+  <button (click)="goToExchanges()" type="button" class="btn btn-outline-primary rounded-pill conversion-btn"> Izvrši konverziju </button>
+
+  <br>
+  <div class="row d-flex justify-content-start " style="margin: 5px">
+    <div class="col-md-6">
+      <h2 class="mt-3 mb-3 fw-bold">Kursna lista</h2>
+      <br>
+    </div>
+    <div class="col-md-6">
+      <h2 class="mt-3 mb-3 fw-bold">Istorija konverzija</h2>
+      <br>
+    </div>
+
+  </div>
+
+  <div class="row d-flex justify-content-center" style="margin: 5px">
+    <div class="col-md-6">
+      <div class="borderBlue">
+        <table class="table table-borderless" style="background: transparent">
+          <thead>
+          <tr>
+            <th class="text-center" style="color: var(--si-blue)">Par valuta</th>
+            <th class="text-center" style="color: var(--si-blue)">Kurs</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let exchange of exchangeRates">
+            <td class="text-center" style="background: transparent">{{ exchange.exchangePairSymbol }}</td>
+            <td class="text-center" style="background: transparent">{{ exchange.exchangeRate }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="borderBlue">
+        <table class="table table-borderless" style="background: transparent">
+          <thead>
+          <tr>
+            <th class="text-center" style="color: var(--si-blue)">Par valuta</th>
+            <th class="text-center" style="color: var(--si-blue)">Kolicina</th>
+            <th class="text-center" style="color: var(--si-blue)">Kurs</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let exchange of exchangeHistory">
+            <td class="text-center" style="background: transparent">{{ exchange.exchangePairSymbol }}</td>
+            <td class="text-center" style="background: transparent">{{ exchange.amount }}</td>
+            <td class="text-center" style="background: transparent">{{ exchange.exchangeRate }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+  <ngx-loading [show]="loading"></ngx-loading>
+  <app-popup></app-popup>
+</div>
+

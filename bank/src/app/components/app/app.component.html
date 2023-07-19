@@ -38,14 +38,16 @@
             </mat-menu>
           </li>
           <li *ngIf="isClient" class="nav-item">
-            <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Menjačnica</a>
+            <a [routerLink]="'/exchange'" class="nav-link active fw-bold" aria-current="page">Menjačnica</a>
           </li>
+          <!--
           <li *ngIf="isClient" class="nav-item">
             <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Kartice</a>
           </li>
           <li *ngIf="isClient" class="nav-item">
             <a [routerLink]="'/'" class="nav-link active fw-bold" aria-current="page">Krediti</a>
           </li>
+          -->
         </ul>
         <div class="d-flex">
           <button type="button" class="btn btn-outline-primary rounded-pill" (click)="logout()" data-cy="logout">Logout</button>
