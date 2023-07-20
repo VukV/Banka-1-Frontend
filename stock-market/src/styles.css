@@ -150,3 +150,8 @@ th{
   background-color: rgba(2, 117, 216, 0) !important;
   color: var(--si-white) !important;
 }
+
+td{
+  background-color: rgba(2, 117, 216, 0) !important;
+  color: var(--si-white) !important;
+}
